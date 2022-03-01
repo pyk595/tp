@@ -1,0 +1,24 @@
+---
+layout: page
+title: Pang Yuan Ker's Project Portfolio Page
+---
+
+### Project: Automated Insurance Assistant (AIA)
+
+Automated Insurance Assistant (AIA) is a desktop application for managing contacts. 
+AIA helps insurance agents handle all contact management processes, making sure they always have a 
+snapshot of clients’ profiles on hand, with reminders for events.
+
+Given below are my contributions to the project.
+
+- **Code contributed:** 
+  [Code Dashboard](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=pyk595&breakdown=true)
+  
+- **Documentation:**
+    - Developer Guide
+        - Wrote 80% of the initial v1.1 draft in Google Docs
+        - Reformatted the following items in the v1.1 draft to MarkDown format
+            1. Target User Profile, User Stories, Value Proposition
+               (Pull request [#19](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/19))
+            2. Non-functional Requirements
+               (Pull request [#20](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/20))
