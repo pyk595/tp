@@ -283,18 +283,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Address Book` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a new contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a new contact to the Address Book.
+2. Address Book adds contact to the contact list.
 
-    Use case ends.
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given input is invalid.
+
+    * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+**Use case: UC02 - Update a contact**
+
+**MSS**
+
+1. User requests to update details for a person in the Address Book.
+2. Address Book updates the details of the contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given input is invalid.
+
+    * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1b. The given index is invalid.
+
+    * 1b1. Address Book shows an error message.
+
+      Use case ends.
+
+**Use case: UC03 - List all contacts in Address Book**
+
+**MSS**
+
+1. User requests to list all contacts.
+2. Address Book shows a list of contacts if any.
+
+   Use case ends.
+
+**Use case: UC04 - Delete a contact**
+
+**MSS**
+
+1. User requests to list all contacts (UC03).
+2. Address Book shows a list of contacts (UC03).
+3. User requests to delete a specific contact in the list.
+4. Address Book deletes the contact.
+
+   Use case ends.
 
 **Extensions**
 
@@ -302,11 +351,228 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given contact is invalid.
 
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: UC05 - Find contact by keyword**
+
+**MSS**
+
+1. User requests to find a person.
+2. Address Book shows a list of persons with names containing the keyword, if any.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No keyword is given.
+
+    * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+**Use case: UC06 - Set previously contacted date**
+
+**MSS**
+
+1. User request to set previously contacted date for a specified contact.
+2. Address Book sets the previously contacted date for the specified contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No date is given.
+
+    * 1a1. Address Book sets the previously contacted date as today for the specified contact.
+
+      Use case ends.
+
+* 1b. The given date is invalid.
+
+    * 1b1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1c. The given index is invalid.
+
+    * 1c1. Address Book shows an error message.
+
+      Use case ends.
+
+**Use case: UC07 - List all contacts in Address Book within a designated time frame**
+
+**MSS**
+
+1. User requests to see all contacts last contacted within a designated number of days.
+2. Address Book shows contacts last contacted within the designated time frame (i.e. less than 30 days).
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No date is given.
+
+    * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+**Use case: UC08 - Set reminder**
+
+**MSS**
+
+1. User requests to set a reminder for a designated contact at a specified date.
+2. Address Book sets a reminder for the contact tagged to the specified date.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given input is invalid.
+
+    * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+**Use case: UC09 - View reminders of a contact**
+
+**MSS**
+
+1. User requests to view reminders of a specific contact.
+2. Address Book shows reminders of the specified contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given reminder is invalid.
+
+    * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+**Use Case: UC10 - View reminders on a date**
+
+**MSS**
+
+1. User requests to view reminders on a specific date.
+2. Address Book shows reminders associated with the specified date.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The date given is invalid.
+
+    * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+**Use case: UC11 - Delete a reminder**
+
+**MSS**
+
+1. User requests to view reminders of a specific contact (UC09).
+2. Address Book shows reminders of the specified contact (UC09).
+3. User requests to delete a reminder for a specified contact.
+4. Address Book deletes a reminder for the specified contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. The given reminder is invalid.
+
+    * 3a1. Address Book shows an error message.
+
+      Use case ends.
+
+* 3b. The given contact is invalid.
+
+    * 3b1. Address Book shows an error message.
+
+      Use case ends.
+
+**Use case: UC12 - Show all tags**
+
+**MSS**
+
+1. User requests to view all tags.
+2. Address Book shows all existing tags.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given input is invalid.
+
+    * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+**Use case: UC13 - Show all contacts that are tagged to a tag**
+
+**MSS**
+
+1. User requests to view all tags (UC12).
+2. Address Book shows all existing tags (UC12).
+3. User requests to view all contacts that are tagged to the specified tag.
+4. Address Book shows all contacts that are tagged to the specified tag, if any.
+
+**Use case: UC14 - Add a tag to a contact**
+
+**MSS**
+
+1. User requests to add a tag to a contact.
+2. Address Book appends the designated tag to the contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given contact is invalid.
+
+    * 1a1 Address Book shows an error message.
+
+      Use case ends.
+
+* 1b. The given tag is invalid.
+
+    * 1b1 Address Book shows an error message.
+
+      Use case ends.
+
+* 1c. The given tag already exists.
+
+    * 1c1 Address Book shows an error message.
+
+      Use case ends.
+
+**Use case: UC15 - Delete a tag from a contact**
+
+**MSS**
+
+1. User requests to delete a tag from a contact.
+2. Address Book removes the specified tag from the contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given contact is invalid.
+
+    * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1b. The given tag is not associated with the contact.
+
+    * 1b1. Address Book shows an error message.
+
+      Use case ends.
 
 *{More to be added}*
 
