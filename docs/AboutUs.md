@@ -3,14 +3,14 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the 
+We are a team based in the
 [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 ## Project team
 ### Pang Yuan Ker
 
 <img src="images/pyk595.png" width="200px">
 
-[github](http://github.com/pyk595)  
+[github](http://github.com/pyk595)
 [portfolio](team/pyk595.md)
 
 * Role: Team Lead
@@ -20,7 +20,7 @@ We are a team based in the
 
 <img src="images/bloodofme.png" width="200px">
 
-[github](https://github.com/bloodofme)  
+[github](https://github.com/bloodofme)
 [portfolio](team/bloodofme.md)
 
 * Role: Developer
@@ -30,7 +30,7 @@ We are a team based in the
 
 <img src="images/ngjunkang.png" width="200px">
 
-[github](http://github.com/ngjunkang)  
+[github](http://github.com/ngjunkang)
 [portfolio](team/ngjunkang.md)
 
 * Role: Developer
@@ -40,7 +40,7 @@ We are a team based in the
 
 <img src="images/cashewnade.png" width="200px">
 
-[github](https://github.com/cashewnade)  
+[github](https://github.com/cashewnade)
 [portfolio](team/bloodofme.md)
 
 * Role: Developer
