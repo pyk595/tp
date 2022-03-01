@@ -312,9 +312,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1.  Should work on any mainstream OS (specifically Windows, Linux and OS X platforms) as long as it has Java `11` or 
+    above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+    should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should not be bigger than 100MB.
+5.  A user should not be required to use an installer to run the **application**.
+6.  A new user should know how to use or where to look for function guides within one day.
+7.  An advanced user should be able to edit and replace the dataset manually.
+8.  The **application** GUI should work well for standard screen resolutions 1920x1080 and higher, 
+    and for screen scales of 100% and 125%.
+9.  The **application** should respond to user input within 2 seconds.
+10. The **application** is not required to support printing or use with other 3rd party software.
+11. The **application** is not required to implement undo, redo and data recovery functions on error.
 
 *{More to be added}*
 
