@@ -325,7 +325,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC03 - List all contacts in Address Book**
+**Use case: UC03 - List all contacts**
 
 **MSS**
 
@@ -333,6 +333,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Address Book shows a list of contacts if any.
 
    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+    * 1a1. AddressBook shows an error message.
+
+      Use case ends.
 
 **Use case: UC04 - Delete a contact**
 
@@ -347,9 +355,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
-  Use case ends.
+    * 1a1. AddressBook shows an error message.
+
+      Use case ends.
 
 * 3a. The given contact is invalid.
 
@@ -362,7 +372,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to find a person.
-2. Address Book shows a list of persons with names containing the keyword, if any.
+2. Address Book shows a list of persons with names containing the keyword.
 
    Use case ends.
 
@@ -371,6 +381,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. No keyword is given.
 
     * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1b. The given keyword does not match any contacts.
+
+    * 1b1. Address Book shows a message that no contacts matches the keyword.
 
       Use case ends.
 
@@ -407,8 +423,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to see all contacts last contacted within a designated number of days.
-2. Address Book shows contacts last contacted within the designated time frame (i.e. less than 30 days).
+1. User requests to see all contacts last contacted within/outside a designated number of days.
+2. Address Book shows contacts last contacted within/outside the designated time frame (i.e. less than 30 days).
 
    Use case ends.
 
@@ -417,6 +433,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. No date is given.
 
     * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1b. No client was contacted within/outside the designated number of days.
+
+    * 1b1. Address Book shows an error message.
 
       Use case ends.
 
@@ -448,9 +470,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given reminder is invalid.
+* 1a. The given contact is invalid.
 
     * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1b. No reminder is found in the given contact.
+
+    * 1b1. Address Book shows an error message.
 
       Use case ends.
 
@@ -522,6 +550,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to view all contacts that are tagged to the specified tag.
 4. Address Book shows all contacts that are tagged to the specified tag, if any.
 
+**Extensions**
+
+* 1a. There is no tag.
+
+    * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+* 3a. The given tag is invalid.
+
+    * 3a1. Address Book shows an error message.
+
+      Use case ends.
+
 **Use case: UC14 - Add a tag to a contact**
 
 **MSS**
@@ -571,6 +613,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. The given tag is not associated with the contact.
 
     * 1b1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1c. The given tag is invalid.
+
+    * 1c1. Address Book shows an error message.
 
       Use case ends.
 
