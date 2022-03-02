@@ -17,7 +17,7 @@ A summary of the enhancements you implemented.
 ### Contributions to the UG:
 Which sections did you contribute to the UG?
 
-###Contributions to the DG:
+### Contributions to the DG:
 Which sections did you contribute to the DG? Which UML diagrams did you add/updated?
 
 ## Contributions to team-based tasks
