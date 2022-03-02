@@ -320,8 +320,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Address Book**: Address book used to store contacts in the application
+* **Application**: The Automated Insurance Assistant Application
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **MSS**: Main Success Scenario that describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
 
 --------------------------------------------------------------------------------------------------------------------
 
