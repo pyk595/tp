@@ -3,57 +3,46 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+Hello! We are a team of year 2 students based in the
+[School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 ## Project team
+### Pang Yuan Ker
 
-### John Doe
+<img src="images/pyk595.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[github](http://github.com/pyk595)
+[portfolio](team/pyk595.md)
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Scheduling + Tracking
 
-### Johnny Doe
+### Nadine Chiun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bloodofme.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[github](https://github.com/bloodofme)
+[portfolio](team/bloodofme.md)
 
 * Role: Developer
 * Responsibilities: UI
+
+### Ng Jun Kang
+
+<img src="images/ngjunkang.png" width="200px">
+
+[github](http://github.com/ngjunkang)
+[portfolio](team/ngjunkang.md)
+
+* Role: Developer
+* Responsibilities: Integration
+
+### Shi Kexin
+
+<img src="images/cashewnade.png" width="200px">
+
+[github](https://github.com/cashewnade)
+[portfolio](team/cashewnade.md)
+
+* Role: Developer
+* Responsibilities: Documentation
