@@ -1,4 +1,4 @@
-#User Guide
+# User Guide
 
 Automated Insurance Assistant (AIA) is **a desktop app for managing contacts, optimised for use via a Command Line
 Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AIA can
@@ -86,20 +86,19 @@ handle all your contact management processes, making sure you always have a snap
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDATE [d/DATE s/SUPPLEMENTARY_INFORMATION]… [t/TAG]…​`
-* Dates are in `DD-MM-YYYY` format.
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDATE [t/TAG]…​`
+* Birthdates are in `DD-MM-YYYY` format.
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:**
-A person can have any number of supplementary information and tags (including 0)
+A person can have any number of tags (including 0)
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/01-01-1970` Adds the contact with
   only the compulsory information provided.
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/01-01-1970 d/12/02/2022 s/Interview
-  over Zoom t/Interviewee t/National University of Sashimi student` Adds the contact with the compulsory information
-  provided and the optional information.
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/01-01-1970 t/Interviewee t/National
+  University of Sashimi student` Adds the contact with the compulsory information provided and the optional information.
 
 ### Listing all contacts : `list`
 
@@ -121,7 +120,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDATE] [d/DA
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
-* Dates are in `DD-MM-YYYY` format.
+* Birthdates are in `DD-MM-YYYY` format.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
@@ -164,37 +163,37 @@ Examples:
 Manually logs the date of the most recent interaction with the contact.
 
 Format: `contacted INDEX d/DATE n/description`
-* Dates are in `DD-MM-YYYY` format.
+* Contacted dates are in `DD-MM-YYYY` format.
 
 Example:
 * `contacted 23 d/28-07-2022 n/Sign Contract`
 
 ### Displaying contacted contacts within DAYS: `within`
 
-Displays contacted contacts between **now**, and a **specified date**
+Display contacts that needs to be contacts within DAYS.
 
-Format: `within d/DAY`
-* Dates are in `DD-MM-YYYY` format.
+Format: `within d/DAYS`
+* DAYS must be a positive integer.
 
 Example:
-* `within d/11-09-2022`
+* `within d/12`
 
 ### Displaying contacted contacts later than DAYS: `later`
 
-Displays contacted contacts **after a specified date**.
+Display contacts that needs to be contacts after DAYS.
 
-Format: `later d/DAY`
-* Dates are in `DD-MM-YYYY` format.
+Format: `later d/DAYS`
+* DAYS must be a positive integer.
 
 Example:
-* `later d/29-02-2024`
+* `later d/12`
 
 ### Adding a non-recurring reminder to a contact: `remind`
 
 Creates a reminder for a contact.
 
 Format: `remind INDEX r/REMINDER d/DATE`
-* Dates are in `DD-MM-YYYY` format.
+* Reminder dates are in `DD-MM-YYYY` format.
 
 Example:
 * `remind 13 r/dinner d/12-03-2022`
@@ -214,6 +213,7 @@ Example:
 Displays all contact with a reminder with the specified date.
 
 Format: `reminders [d/DATE]`
+* Reminder dates are in `DD-MM-YYYY` format.
 
 Example:
 * `reminders d/01-01-2023`
@@ -234,7 +234,7 @@ Adds a tag to an existing contact, as specified by the index.
 Format: `tag INDEX #tag`
 
 Example:
-* `tag 27 #Cereal Killer`
+* `tag 27 #Cereal`
 
 ### Deleting a tag: `untag`
 
@@ -243,7 +243,7 @@ Deletes a tag from an existing contact, as specified by the index.
 Format: `untag INDEX #tag`
 
 Example:
-* `untag 27 #Missed Steak`
+* `untag 27 #Steak`
 
 ### Showing all available tags: `tags`
 
