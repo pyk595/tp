@@ -89,7 +89,7 @@ Adds a person to the address book.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDATE [d/DATE s/SUPPLEMENTARY_INFORMATION]… [t/TAG]…​`
 * Dates are in `DD-MM-YYYY` format.
 
-<div markdown="span" class="alert alert-primary">:bulb: 
+<div markdown="span" class="alert alert-primary">:bulb:
 **Tip:**
 A person can have any number of supplementary information and tags (including 0)
 </div>
@@ -173,7 +173,7 @@ Example:
 
 Displays contacted contacts between **now**, and a **specified date**
 
-Format: `within d/DAY` 
+Format: `within d/DAY`
 * Dates are in `DD-MM-YYYY` format.
 
 Example:
@@ -191,12 +191,12 @@ Example:
 
 ### Adding a non-recurring reminder to a contact: `remind`
 
-Creates a reminder for a contact. 
+Creates a reminder for a contact.
 
 Format: `remind INDEX r/REMINDER d/DATE`
 * Dates are in `DD-MM-YYYY` format.
 
-Example: 
+Example:
 * `remind 13 r/dinner d/12-03-2022`
 
 
@@ -231,7 +231,7 @@ Example:
 
 Adds or deletes a tag of an existing contact, as specified by the index.
 
-Format: 
+Format:
 * `tag INDEX add t/TAG` Adds a tag to the contact specified by the index
 * `tag INDEX delete t/TAG` Deletes a tag from the contact specified by the index
 
