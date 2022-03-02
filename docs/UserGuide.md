@@ -227,17 +227,23 @@ Format: `forget INDEX r/REMINDER`
 Example:
 * `forget 5 r/Dinner outing`
 
-### Editing tags: `tag`
+### Adding a tag: `tag`
 
-Adds or deletes a tag of an existing contact, as specified by the index.
+Adds a tag to an existing contact, as specified by the index.
 
-Format:
-* `tag INDEX add t/TAG` Adds a tag to the contact specified by the index
-* `tag INDEX delete t/TAG` Deletes a tag from the contact specified by the index
+Format: `tag INDEX #tag`
 
 Example:
-* `tag 27 add t/Cereal Killer`
-* `tag 27 delete t/Missed Steak`
+* `tag 27 #Cereal Killer`
+
+### Deleting a tag: `untag`
+
+Deletes a tag from an existing contact, as specified by the index.
+
+Format: `untag INDEX #tag`
+
+Example:
+* `untag 27 #Missed Steak`
 
 ### Showing all available tags: `tags`
 
