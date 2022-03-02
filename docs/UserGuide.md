@@ -110,7 +110,7 @@ Format: `list`
 
 Edits an existing contact's in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDATE] [d/DATES s/SUPPLEMENTARY_INFORMATION]…
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDATE]
 [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
