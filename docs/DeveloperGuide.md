@@ -183,7 +183,7 @@ This section describes some noteworthy details on how certain features are imple
 * is reasonably comfortable using CLI apps
 * prefers getting reminders on actionable items
 
-**Value proposition**: manage  and consolidate information on contacts with automated reminders,
+**Value proposition**: manage and consolidate information on contacts with automated reminders,
 faster than a typical mouse/GUI driven application
 
 
