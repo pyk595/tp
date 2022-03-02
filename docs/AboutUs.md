@@ -3,8 +3,9 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the
+Hello! We are a team of year 2 students based in the
 [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+
 ## Project team
 ### Pang Yuan Ker
 
@@ -41,7 +42,7 @@ We are a team based in the
 <img src="images/cashewnade.png" width="200px">
 
 [github](https://github.com/cashewnade)
-[portfolio](team/bloodofme.md)
+[portfolio](team/cashewnade.md)
 
 * Role: Developer
 * Responsibilities: Documentation
