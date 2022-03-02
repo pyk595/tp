@@ -231,19 +231,19 @@ Example:
 
 Adds a tag to an existing contact, as specified by the index.
 
-Format: `tag INDEX #tag`
+Format: `tag INDEX t/TAG`
 
 Example:
-* `tag 27 #Cereal`
+* `tag 27 t/cereal`
 
 ### Deleting a tag: `untag`
 
 Deletes a tag from an existing contact, as specified by the index.
 
-Format: `untag INDEX #tag`
+Format: `untag INDEX t/TAG`
 
 Example:
-* `untag 27 #Steak`
+* `untag 27 t/Steak`
 
 ### Showing all available tags: `tags`
 
