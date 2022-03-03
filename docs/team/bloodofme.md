@@ -13,8 +13,8 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * README:
-      * updated README for project according to AIA [\#17](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/17)
-    * AboutUs: 
+      * Updated README for project according to AIA [\#17](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/17)
+    * AboutUs:
       * Updated AboutUs for project according to team member's roles and information [\#17](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/17)
     * Review:
       * Reviewed most team member's tasks, before approving for merge to master
