@@ -1,29 +1,20 @@
 ---
 layout: page
-title: bloodofme's Project Portfolio Page
+title: Nadine Chiun's Project Portfolio Page
 ---
 
-## Overview:
-AIA is a program to aid financial assistants in managing their clients and their details. Furthermore, AIA
-helps them manage their schedule too.
+### Project: Automated Insurance Assistant (AIA)
 
-## Summary of Contributions
-### Code contributed:
-Give a link to your code on tP Code Dashboard. The link is available in the Project List Page -- linked to the  icon under your profile picture.
+Automated Insurance Assistant (AIA) is a desktop application for managing contacts. AIA helps insurance agents handle all contact management processes, making sure they always have a snapshot of clients’ profiles on hand, with reminders for events.
 
-### Enhancements implemented:
-A summary of the enhancements you implemented.
+Given below are my contributions to the project.
 
-### Contributions to the UG:
-Which sections did you contribute to the UG?
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=bloodofme&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-02-18&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-### Contributions to the DG:
-Which sections did you contribute to the DG? Which UML diagrams did you add/updated?
-
-## Contributions to team-based tasks
-### Review/mentoring contributions:
-Links to PRs reviewed, instances of helping team members in other ways.
-
-### Contributions beyond the project team:
-Evidence of helping others e.g. responses you posted in our forum, bugs you reported in other team's products,
-Evidence of technical leadership e.g. sharing useful information in the forum
+* **Documentation**:
+    * README:
+      * updated README for project according to AIA [\#17](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/17)
+    * AboutUs: 
+      * Updated AboutUs for project according to team member's roles and information [\#17](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/17)
+    * Review:
+      * Reviewed most team member's tasks, before approving for merge to master
