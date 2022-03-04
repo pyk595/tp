@@ -10,7 +10,6 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-
 class DateTest {
 
     @Test
