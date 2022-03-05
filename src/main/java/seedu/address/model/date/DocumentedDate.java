@@ -11,8 +11,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a DocumentedDate in the address book.
  */
 public class DocumentedDate {
+    private static final int TWENTY_YEARS = 7300;
     private LocalDate date;
-    private final int TWENTY_YEARS = 7300;
 
     /**
      * Constructs a {@code DocumentedDate}.
