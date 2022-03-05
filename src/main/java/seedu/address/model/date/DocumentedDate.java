@@ -1,22 +1,29 @@
 package seedu.address.model.date;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+
 import static java.time.temporal.ChronoUnit.DAYS;
+import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
 /**
  * Represents a Date in the address book.
  */
-public class Date {
+public class DocumentedDate {
     private LocalDate date;
 
     /**
      * Constructs a {@code Date}.
      *
-     * @param parsedDate A valid string to be parsed as a date.
+     * @param date A non null LocalDate object.
      */
-    public Date(String parsedDate) {
-        this.date = LocalDate.parse(parsedDate);
+    public DocumentedDate(LocalDate date) throws IllegalValueException {
+        requireNonNull(date);
+        if (DAYS.between(date, LocalDate.now()) >= Integer.MAX_VALUE) {
+            throw new IllegalValueException("Unrealistic date given");
+        }
+        this.date = date;
     }
 
     /**
@@ -37,7 +44,7 @@ public class Date {
      */
     public boolean isToday() {
         LocalDate today = LocalDate.now();
-        return (today.compareTo(date) == 0);
+        return date.equals(today);
     }
 
     /**
