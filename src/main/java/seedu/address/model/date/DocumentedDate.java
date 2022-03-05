@@ -1,11 +1,11 @@
 package seedu.address.model.date;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-
 import static java.time.temporal.ChronoUnit.DAYS;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+
+import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
  * Represents a Date in the address book.
