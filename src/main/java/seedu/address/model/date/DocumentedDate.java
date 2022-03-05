@@ -8,26 +8,27 @@ import java.time.LocalDate;
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Date in the address book.
+ * Represents a DocumentedDate in the address book.
  */
 public class DocumentedDate {
     private LocalDate date;
+    private final int TWENTY_YEARS = 7300;
 
     /**
-     * Constructs a {@code Date}.
+     * Constructs a {@code DocumentedDate}.
      *
      * @param date A non null LocalDate object.
      */
     public DocumentedDate(LocalDate date) throws IllegalValueException {
         requireNonNull(date);
-        if (DAYS.between(date, LocalDate.now()) >= Integer.MAX_VALUE) {
+        if (DAYS.between(date, LocalDate.now()) >= TWENTY_YEARS) {
             throw new IllegalValueException("Unrealistic date given");
         }
         this.date = date;
     }
 
     /**
-     * Returns the number of days passed since the parsed date.
+     * Returns the number of days passed since the saved date.
      *
      * @return an int representing the number of days passed.
      */
@@ -48,7 +49,7 @@ public class DocumentedDate {
     }
 
     /**
-     * Returns a string representation of the {@code Date}.
+     * Returns a string representation of the {@code DocumentedDate}.
      *
      * @return a string in the format of Day Month Year.
      */
