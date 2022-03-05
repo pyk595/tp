@@ -5,13 +5,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-
 /**
  * Represents a DocumentedDate in the address book.
  */
 public class DocumentedDate {
-    private static final int TWENTY_YEARS = 7300;
     private LocalDate date;
 
     /**
@@ -19,11 +16,8 @@ public class DocumentedDate {
      *
      * @param date A non null LocalDate object.
      */
-    public DocumentedDate(LocalDate date) throws IllegalValueException {
+    public DocumentedDate(LocalDate date) {
         requireNonNull(date);
-        if (DAYS.between(date, LocalDate.now()) >= TWENTY_YEARS) {
-            throw new IllegalValueException("Unrealistic date given");
-        }
         this.date = date;
     }
 

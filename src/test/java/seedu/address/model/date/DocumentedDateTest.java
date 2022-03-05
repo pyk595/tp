@@ -10,8 +10,6 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-
 class DocumentedDateTest {
 
     @Test
@@ -20,7 +18,7 @@ class DocumentedDateTest {
     }
 
     @Test
-    public void getDaysPassed_validTestDate_success() throws IllegalValueException {
+    public void getDaysPassed_validTestDate_success() {
         String dateString = "2022-01-01";
         LocalDate testDate = LocalDate.parse(dateString);
         LocalDate today = LocalDate.now();
@@ -30,20 +28,20 @@ class DocumentedDateTest {
     }
 
     @Test
-    public void isToday_currentDate_returnsTrue() throws IllegalValueException {
+    public void isToday_currentDate_returnsTrue() {
         LocalDate today = LocalDate.now();
         DocumentedDate date = new DocumentedDate(today);
         assertTrue(date.isToday());
     }
 
     @Test
-    public void isToday_differentDate_returnsFalse() throws IllegalValueException {
+    public void isToday_differentDate_returnsFalse() {
         DocumentedDate date = new DocumentedDate(LocalDate.parse("2022-01-01"));
         assertFalse(date.isToday());
     }
 
     @Test
-    public void testToString_standardDate_success() throws IllegalValueException {
+    public void testToString_standardDate_success() {
         DocumentedDate date = new DocumentedDate(LocalDate.parse("2022-01-01"));
         assertEquals("1 JANUARY 2022", date.toString());
     }
