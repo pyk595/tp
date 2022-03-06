@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -13,6 +14,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -87,5 +89,30 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void hasTagIgnoreCase_hasTagIgnoreCase_returnsTrue() {
+        Person alice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+
+        // same tag
+        assertTrue(alice.hasTagIgnoreCase(new Tag(VALID_TAG_HUSBAND)));
+
+        // all upper case
+        assertTrue(alice.hasTagIgnoreCase(new Tag(VALID_TAG_HUSBAND.toUpperCase())));
+
+        // all lower case
+        assertTrue(alice.hasTagIgnoreCase(new Tag(VALID_TAG_FRIEND.toLowerCase())));
+    }
+
+    @Test
+    public void hasTagIgnoreCase_noTagOrNull_returnsFalse() {
+        Person alice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+
+        // not tag
+        assertFalse(alice.hasTagIgnoreCase(new Tag("randomTag123")));
+
+        // null
+        assertFalse(alice.hasTagIgnoreCase(null));
     }
 }
