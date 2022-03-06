@@ -27,21 +27,21 @@ class HashtagCommandTest {
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    void isHashTag_hashTag_returnsTrue() {
+    public void isHashTag_hashTag_returnsTrue() {
         assertTrue(HashtagCommand.isHashTag(" #test"));
         assertTrue(HashtagCommand.isHashTag("#test"));
         assertTrue(HashtagCommand.isHashTag("#test 123"));
     }
 
     @Test
-    void isHashTag_notHashTag_returnFalse() {
+    public void isHashTag_notHashTag_returnFalse() {
         assertFalse(HashtagCommand.isHashTag(null));
         assertFalse(HashtagCommand.isHashTag("find"));
         assertFalse(HashtagCommand.isHashTag("notTag#test"));
     }
 
     @Test
-    void execute_noMatchingTag_noPersonFound() {
+    public void execute_noMatchingTag_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         PersonContainsTagPredicate predicate = new PersonContainsTagPredicate(new Tag("randomTag"));
         HashtagCommand command = new HashtagCommand(predicate);
@@ -61,7 +61,7 @@ class HashtagCommandTest {
     }
 
     @Test
-    void equals() {
+    public void equals() {
         PersonContainsTagPredicate firstPredicate =
                 new PersonContainsTagPredicate(new Tag("first"));
         PersonContainsTagPredicate secondPredicate =

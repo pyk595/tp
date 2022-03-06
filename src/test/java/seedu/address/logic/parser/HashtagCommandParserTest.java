@@ -25,7 +25,7 @@ class HashtagCommandParserTest {
     }
 
     @Test
-    void parse_validArgs_returnsHashtagCommand() {
+    public void parse_validArgs_returnsHashtagCommand() {
         HashtagCommand expectedHashtagCommand =
                 new HashtagCommand(new PersonContainsTagPredicate(new Tag("friends")));
 
