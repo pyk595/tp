@@ -2,6 +2,8 @@ package seedu.address.model.tag;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -26,16 +28,30 @@ public class TagTest {
     }
 
     @Test
-    public void isSameTagIgnoreCase_notSameTagOrNull_returnsFalse() {
-        assertFalse(new Tag("tiger").isSameTagIgnoreCase(new Tag("lion")));
-        assertFalse(new Tag("tiger").isSameTagIgnoreCase(null));
-    }
+    public void equals() {
+        Tag firstTag = new Tag("first");
+        Tag secondTag = new Tag("second");
 
-    @Test
-    public void isSameTagIgnoreCase_sameTag_returnsTrue() {
-        assertTrue(new Tag("TiGeR").isSameTagIgnoreCase(new Tag("tIgEr")));
-        assertTrue(new Tag("Tiger").isSameTagIgnoreCase(new Tag("Tiger")));
-        Tag tag = new Tag("lion");
-        assertTrue(tag.isSameTagIgnoreCase(tag));
+        // same values -> returns true
+        assertTrue(new Tag(VALID_TAG_FRIEND).equals(new Tag(VALID_TAG_FRIEND)));
+
+        // same object -> returns true
+        assertTrue(firstTag.equals(firstTag));
+
+        // null -> returns false
+        assertFalse(new Tag(VALID_TAG_FRIEND).equals(null));
+
+        // different type -> returns false
+        assertFalse(firstTag.equals(5));
+
+        // different person -> returns false
+        assertFalse(firstTag.equals(secondTag));
+
+        // not equal
+        assertFalse(new Tag(VALID_TAG_FRIEND).equals(new Tag(VALID_TAG_HUSBAND)));
+
+        // equal (case insensitive)
+        assertTrue(new Tag("TiGeR").equals(new Tag("tIgEr")));
+        assertTrue(new Tag("Tiger").equals(new Tag("Tiger")));
     }
 }

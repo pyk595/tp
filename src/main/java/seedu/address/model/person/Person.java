@@ -79,9 +79,9 @@ public class Person {
      * @param tag the {@code Tag} to verify whether it is tagged to this {@code Person}
      * @return true if this {@code Person} is tagged to the specified {@code Tag}.
      */
-    public boolean hasTagIgnoreCase(Tag tag) {
+    public boolean hasTag(Tag tag) {
         return (tag != null)
-                && this.tags.stream().anyMatch(currentTag -> currentTag.isSameTagIgnoreCase(tag));
+                && this.tags.contains(tag);
     }
 
     /**

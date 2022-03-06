@@ -92,27 +92,27 @@ public class PersonTest {
     }
 
     @Test
-    public void hasTagIgnoreCase_hasTagIgnoreCase_returnsTrue() {
+    public void hasTag_hasTagIgnoreCase_returnsTrue() {
         Person alice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
         // same tag
-        assertTrue(alice.hasTagIgnoreCase(new Tag(VALID_TAG_HUSBAND)));
+        assertTrue(alice.hasTag(new Tag(VALID_TAG_HUSBAND)));
 
         // all upper case
-        assertTrue(alice.hasTagIgnoreCase(new Tag(VALID_TAG_HUSBAND.toUpperCase())));
+        assertTrue(alice.hasTag(new Tag(VALID_TAG_HUSBAND.toUpperCase())));
 
         // all lower case
-        assertTrue(alice.hasTagIgnoreCase(new Tag(VALID_TAG_FRIEND.toLowerCase())));
+        assertTrue(alice.hasTag(new Tag(VALID_TAG_FRIEND.toLowerCase())));
     }
 
     @Test
-    public void hasTagIgnoreCase_noTagOrNull_returnsFalse() {
+    public void hasTag_noTagOrNull_returnsFalse() {
         Person alice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
         // not tag
-        assertFalse(alice.hasTagIgnoreCase(new Tag("randomTag123")));
+        assertFalse(alice.hasTag(new Tag("randomTag123")));
 
         // null
-        assertFalse(alice.hasTagIgnoreCase(null));
+        assertFalse(alice.hasTag(null));
     }
 }

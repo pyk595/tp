@@ -32,26 +32,11 @@ public class Tag {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Returns true if this {@code Tag} equals to the given {@code Tag} (case-insensitive).
-     *
-     * @param otherTag the other {@code Tag} to compare to this {@code Tag}.
-     * @return true if this {@code Tag} equals to the given {@code Tag} (case-insensitive).
-     */
-    public boolean isSameTagIgnoreCase(Tag otherTag) {
-        if (otherTag == this) {
-            return true;
-        }
-
-        return (otherTag != null)
-                && this.tagName.equalsIgnoreCase(otherTag.tagName);
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Tag // instanceof handles nulls
-                && tagName.equals(((Tag) other).tagName)); // state check
+                && tagName.equalsIgnoreCase(((Tag) other).tagName)); // state check
     }
 
     @Override

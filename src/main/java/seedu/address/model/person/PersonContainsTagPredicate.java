@@ -30,7 +30,7 @@ public class PersonContainsTagPredicate implements Predicate<Person> {
      */
     @Override
     public boolean test(Person person) {
-        return person.hasTagIgnoreCase(this.tag);
+        return person.hasTag(this.tag);
     }
 
     /**
