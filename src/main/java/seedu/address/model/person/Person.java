@@ -74,6 +74,17 @@ public class Person {
     }
 
     /**
+     * Returns true if this {@code Person} is tagged to the specified {@code Tag} (case-insensitive).
+     *
+     * @param tag the {@code Tag} to verify whether it is tagged to this {@code Person}
+     * @return true if this {@code Person} is tagged to the specified {@code Tag}.
+     */
+    public boolean hasTag(Tag tag) {
+        return (tag != null)
+                && this.tags.contains(tag);
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
