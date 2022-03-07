@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.PersonContainsTagPredicate;
+import seedu.address.model.person.PersonWithTagPredicate;
 import seedu.address.model.tag.Tag;
 
 class HashtagCommandTest {
@@ -43,7 +43,7 @@ class HashtagCommandTest {
     @Test
     public void execute_noMatchingTag_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        PersonContainsTagPredicate predicate = new PersonContainsTagPredicate(new Tag("randomTag"));
+        PersonWithTagPredicate predicate = new PersonWithTagPredicate(new Tag("randomTag"));
         HashtagCommand command = new HashtagCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -53,7 +53,7 @@ class HashtagCommandTest {
     @Test
     public void execute_matchingTag_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        PersonContainsTagPredicate predicate = new PersonContainsTagPredicate(new Tag("friends"));
+        PersonWithTagPredicate predicate = new PersonWithTagPredicate(new Tag("friends"));
         HashtagCommand command = new HashtagCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -62,10 +62,10 @@ class HashtagCommandTest {
 
     @Test
     public void equals() {
-        PersonContainsTagPredicate firstPredicate =
-                new PersonContainsTagPredicate(new Tag("first"));
-        PersonContainsTagPredicate secondPredicate =
-                new PersonContainsTagPredicate(new Tag("second"));
+        PersonWithTagPredicate firstPredicate =
+                new PersonWithTagPredicate(new Tag("first"));
+        PersonWithTagPredicate secondPredicate =
+                new PersonWithTagPredicate(new Tag("second"));
 
         HashtagCommand hashtagFirstCommand = new HashtagCommand(firstPredicate);
         HashtagCommand hashtagSecondCommand = new HashtagCommand(secondPredicate);

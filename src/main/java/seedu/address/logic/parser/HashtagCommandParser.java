@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.HashtagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.PersonContainsTagPredicate;
+import seedu.address.model.person.PersonWithTagPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,6 +27,6 @@ public class HashtagCommandParser implements Parser<HashtagCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, HashtagCommand.MESSAGE_USAGE));
         }
         Tag newTag = ParserUtil.parseTag(trimmedInput);
-        return new HashtagCommand(new PersonContainsTagPredicate(newTag));
+        return new HashtagCommand(new PersonWithTagPredicate(newTag));
     }
 }

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.PersonContainsTagPredicate;
+import seedu.address.model.person.PersonWithTagPredicate;
 
 /**
  * Finds and lists all persons in address book who is tagged to the given tag.
@@ -19,14 +19,14 @@ public class HashtagCommand extends Command {
             + "Parameters: TAG\n"
             + "Example: " + COMMAND_WORD + "client";
 
-    private final PersonContainsTagPredicate predicate;
+    private final PersonWithTagPredicate predicate;
 
     /**
-     * Constructs a {@code HashtagCommand} object with the given {@code PersonContainsTagPredicate}.
+     * Constructs a {@code HashtagCommand} object with the given {@code PersonWithTagPredicate}.
      *
      * @param predicate the predicate for the command execution in the context of {@code HashtagCommand}.
      */
-    public HashtagCommand(PersonContainsTagPredicate predicate) {
+    public HashtagCommand(PersonWithTagPredicate predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;
     }

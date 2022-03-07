@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.HashtagCommand;
-import seedu.address.model.person.PersonContainsTagPredicate;
+import seedu.address.model.person.PersonWithTagPredicate;
 import seedu.address.model.tag.Tag;
 
 class HashtagCommandParserTest {
@@ -27,7 +27,7 @@ class HashtagCommandParserTest {
     @Test
     public void parse_validArgs_returnsHashtagCommand() {
         HashtagCommand expectedHashtagCommand =
-                new HashtagCommand(new PersonContainsTagPredicate(new Tag("friends")));
+                new HashtagCommand(new PersonWithTagPredicate(new Tag("friends")));
 
         // vanilla
         assertParseSuccess(parser, "friends", expectedHashtagCommand);

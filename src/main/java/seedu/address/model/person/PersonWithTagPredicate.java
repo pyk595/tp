@@ -9,15 +9,15 @@ import seedu.address.model.tag.Tag;
 /**
  * Tests that a {@code Person} is tagged to a {@code Tag}.
  */
-public class PersonContainsTagPredicate implements Predicate<Person> {
+public class PersonWithTagPredicate implements Predicate<Person> {
     private final Tag tag;
 
     /**
-     * Constructs a {@code PersonContainsTagPredicate} object.
+     * Constructs a {@code PersonWithTagPredicate} object.
      *
      * @param tag the {@code Tag} for this predicate to verify.
      */
-    public PersonContainsTagPredicate(Tag tag) {
+    public PersonWithTagPredicate(Tag tag) {
         requireNonNull(tag);
         this.tag = tag;
     }
@@ -34,15 +34,15 @@ public class PersonContainsTagPredicate implements Predicate<Person> {
     }
 
     /**
-     * Returns true if this {@code PersonContainsTagPredicate} object is equal to the given {@code Object}.
+     * Returns true if this {@code PersonWithTagPredicate} object is equal to the given {@code Object}.
      *
      * @param other the other {@code Object} to verify the equality.
-     * @return true if this {@code PersonContainsTagPredicate} object is equal to the given {@code Object}.
+     * @return true if this {@code PersonWithTagPredicate} object is equal to the given {@code Object}.
      */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PersonContainsTagPredicate // instanceof handles nulls
-                && tag.equals(((PersonContainsTagPredicate) other).tag)); // state check
+                || (other instanceof PersonWithTagPredicate // instanceof handles nulls
+                && tag.equals(((PersonWithTagPredicate) other).tag)); // state check
     }
 }

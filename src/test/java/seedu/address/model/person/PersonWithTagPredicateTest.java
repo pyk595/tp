@@ -12,32 +12,32 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
-class PersonContainsTagPredicateTest {
+class PersonWithTagPredicateTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new PersonContainsTagPredicate(null));
+        assertThrows(NullPointerException.class, () -> new PersonWithTagPredicate(null));
     }
 
     @Test
-    public void test_personContainsTag_returnsTrue() {
+    public void test_personWithTag_returnsTrue() {
         // one tag
-        PersonContainsTagPredicate predicate = new PersonContainsTagPredicate(new Tag(VALID_TAG_FRIEND));
+        PersonWithTagPredicate predicate = new PersonWithTagPredicate(new Tag(VALID_TAG_FRIEND));
         assertTrue(predicate.test(new PersonBuilder(ALICE).withTags(VALID_TAG_FRIEND).build()));
 
         // multiple tag
-        predicate = new PersonContainsTagPredicate(new Tag(VALID_TAG_FRIEND));
+        predicate = new PersonWithTagPredicate(new Tag(VALID_TAG_FRIEND));
         assertTrue(predicate.test(new PersonBuilder(ALICE).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build()));
 
         // mixed case
-        predicate = new PersonContainsTagPredicate(new Tag("WIfe"));
+        predicate = new PersonWithTagPredicate(new Tag("WIfe"));
         assertTrue(predicate.test(new PersonBuilder(ALICE).withTags("wiFE", VALID_TAG_HUSBAND).build()));
     }
 
     @Test
-    public void test_personDoesNotContainsTag_returnsFalse() {
+    public void test_personWithoutTag_returnsFalse() {
         // non-matching
-        PersonContainsTagPredicate predicate = new PersonContainsTagPredicate(new Tag("randomTag123"));
+        PersonWithTagPredicate predicate = new PersonWithTagPredicate(new Tag("randomTag123"));
         assertFalse(predicate.test(new PersonBuilder(ALICE).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build()));
     }
 
@@ -46,14 +46,14 @@ class PersonContainsTagPredicateTest {
         Tag firstTag = new Tag("firstTag");
         Tag secondTag = new Tag("secondTag");
 
-        PersonContainsTagPredicate firstPredicate = new PersonContainsTagPredicate(firstTag);
-        PersonContainsTagPredicate secondPredicate = new PersonContainsTagPredicate(secondTag);
+        PersonWithTagPredicate firstPredicate = new PersonWithTagPredicate(firstTag);
+        PersonWithTagPredicate secondPredicate = new PersonWithTagPredicate(secondTag);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        PersonContainsTagPredicate firstPredicateCopy = new PersonContainsTagPredicate(firstTag);
+        PersonWithTagPredicate firstPredicateCopy = new PersonWithTagPredicate(firstTag);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false

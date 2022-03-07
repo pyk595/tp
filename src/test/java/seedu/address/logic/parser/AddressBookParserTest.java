@@ -26,7 +26,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonContainsTagPredicate;
+import seedu.address.model.person.PersonWithTagPredicate;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -83,7 +83,7 @@ public class AddressBookParserTest {
     public void parseCommand_hashtag() throws Exception {
         Tag tag = new Tag("foo");
         HashtagCommand command = (HashtagCommand) parser.parseCommand(HashtagCommand.COMMAND_WORD + "foo");
-        assertEquals(new HashtagCommand(new PersonContainsTagPredicate(tag)), command);
+        assertEquals(new HashtagCommand(new PersonWithTagPredicate(tag)), command);
     }
 
     @Test
