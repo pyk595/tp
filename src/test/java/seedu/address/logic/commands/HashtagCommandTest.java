@@ -27,17 +27,17 @@ class HashtagCommandTest {
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void isHashTag_hashTag_returnsTrue() {
-        assertTrue(HashtagCommand.isHashTag(" #test"));
-        assertTrue(HashtagCommand.isHashTag("#test"));
-        assertTrue(HashtagCommand.isHashTag("#test 123"));
+    public void isHashtagCommand_isHashtagCommand_returnsTrue() {
+        assertTrue(HashtagCommand.isHashtagCommand(" #test"));
+        assertTrue(HashtagCommand.isHashtagCommand("#test"));
+        assertTrue(HashtagCommand.isHashtagCommand("#test 123"));
     }
 
     @Test
-    public void isHashTag_notHashTag_returnFalse() {
-        assertFalse(HashtagCommand.isHashTag(null));
-        assertFalse(HashtagCommand.isHashTag("find"));
-        assertFalse(HashtagCommand.isHashTag("notTag#test"));
+    public void isHashtagCommand_notHashtagCommand_returnFalse() {
+        assertFalse(HashtagCommand.isHashtagCommand(null));
+        assertFalse(HashtagCommand.isHashtagCommand("find"));
+        assertFalse(HashtagCommand.isHashtagCommand("notTag#test"));
     }
 
     @Test

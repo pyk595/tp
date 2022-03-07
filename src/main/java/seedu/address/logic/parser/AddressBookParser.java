@@ -39,7 +39,7 @@ public class AddressBookParser {
         final String trimmedUserInput = userInput.trim();
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(trimmedUserInput);
 
-        if (HashtagCommand.isHashTag(trimmedUserInput)) { // in hashtag format, starts with #.
+        if (HashtagCommand.isHashtagCommand(trimmedUserInput)) { // in hashtag format, starts with #.
             return new HashtagCommandParser().parse(trimmedUserInput.substring(1));
         }
 

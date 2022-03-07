@@ -37,8 +37,12 @@ public class HashtagCommand extends Command {
      * @param input the input string to verify.
      * @return true if the given input string is a hashtag (any string that starts with #).
      */
-    public static boolean isHashTag(String input) {
-        return (input != null) && input.trim().startsWith("#");
+    public static boolean isHashtagCommand(String input) {
+        if (input == null) {
+            return false;
+        }
+        String trimmedInput = input.trim();
+        return trimmedInput.startsWith(COMMAND_WORD);
     }
 
     @Override
