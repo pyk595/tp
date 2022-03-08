@@ -59,7 +59,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        birthDate = source.getBirthDate().jsonValue;
+        birthDate = source.getBirthDate().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -114,7 +114,7 @@ class JsonAdaptedPerson {
         if (!DocumentedDate.isValidDate(birthDate)) {
             throw new IllegalValueException(DocumentedDate.MESSAGE_CONSTRAINTS);
         }
-        final BirthDate modelBirthDate = BirthDate.of(birthDate);
+        final BirthDate modelBirthDate = BirthDate.parse(birthDate);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthDate, modelTags);

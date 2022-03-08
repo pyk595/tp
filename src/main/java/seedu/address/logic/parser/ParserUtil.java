@@ -98,7 +98,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date} into a {@code BirthDate}.
+     * Parses a {@code String} date into a {@code BirthDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code date} is invalid.
@@ -109,7 +109,7 @@ public class ParserUtil {
         if (!DocumentedDate.isValidDate(trimmedDate)) {
             throw new ParseException(DocumentedDate.MESSAGE_CONSTRAINTS);
         }
-        return BirthDate.of(trimmedDate);
+        return BirthDate.parse(trimmedDate);
     }
 
     /**

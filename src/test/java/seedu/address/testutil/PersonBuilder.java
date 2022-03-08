@@ -38,7 +38,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        birthDate = BirthDate.of(DEFAULT_BIRTHDATE);
+        birthDate = BirthDate.parse(DEFAULT_BIRTHDATE);
         tags = new HashSet<>();
     }
 
@@ -101,7 +101,7 @@ public class PersonBuilder {
      * @return the PersonBuilder.
      */
     public PersonBuilder withBirthDate(String birthDate) {
-        this.birthDate = BirthDate.of(birthDate);
+        this.birthDate = BirthDate.parse(birthDate);
         return this;
     }
 

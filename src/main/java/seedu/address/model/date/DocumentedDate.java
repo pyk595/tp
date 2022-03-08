@@ -38,6 +38,9 @@ public class DocumentedDate {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
+        if (test.length() != 10) {
+            return false;
+        }
         if (test.charAt(0) == '-' || test.charAt(0) == '+') {
             return false;
         }

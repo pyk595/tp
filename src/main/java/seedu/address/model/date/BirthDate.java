@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 public class BirthDate extends DocumentedDate {
     private static final DateTimeFormatter FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public final String value;
-    public final String jsonValue;
 
     /**
      * Constructs a {@code BirthDate}.
@@ -15,8 +14,7 @@ public class BirthDate extends DocumentedDate {
      */
     public BirthDate(LocalDate date) {
         super(date);
-        value = super.toString();
-        jsonValue = date.format(FORMATTER_INPUT);
+        value = date.format(FORMATTER_INPUT);
     }
 
     /**
@@ -25,7 +23,7 @@ public class BirthDate extends DocumentedDate {
      * @param parsedDate a String to be converted into a date.
      * @return A non null {@code BirthDate}.
      */
-    public static BirthDate of(String parsedDate) {
+    public static BirthDate parse(String parsedDate) {
         LocalDate date = LocalDate.parse(parsedDate);
         return new BirthDate(date);
     }
@@ -41,5 +39,21 @@ public class BirthDate extends DocumentedDate {
         LocalDate savedDate = super.getDate();
         savedDate = savedDate.withYear(today.getYear());
         return savedDate.equals(today);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof BirthDate)) {
+            return false;
+        }
+
+        // state check
+        return value.equals(((BirthDate) other).value);
     }
 }

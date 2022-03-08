@@ -16,12 +16,12 @@ class BirthDateTest {
 
     @Test
     public void of_validString_success() {
-        assertEquals("1 JANUARY 2020", BirthDate.of("2020-01-01").toString());
+        assertEquals("1 JANUARY 2020", BirthDate.parse("2020-01-01").toString());
     }
 
     @Test
     public void of_invalidString_failure() {
-        assertThrows(DateTimeParseException.class, ()->BirthDate.of("hello"));
+        assertThrows(DateTimeParseException.class, ()->BirthDate.parse("hello"));
     }
 
     @Test
