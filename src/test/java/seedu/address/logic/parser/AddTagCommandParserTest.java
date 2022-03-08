@@ -3,6 +3,9 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -52,6 +55,16 @@ class AddTagCommandParserTest {
         assertParseFailure(parser, "0" + TAG_EMPTY + VALID_TAG_FRIEND, MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "-1" + TAG_EMPTY + VALID_TAG_FRIEND, MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "1 1" + TAG_EMPTY + VALID_TAG_FRIEND, MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_additionalPrefix_failure() {
+        assertParseFailure(parser, PREFIX_ADDRESS + "address " + INDEX_FIRST_PERSON.getOneBased()
+                + TAG_EMPTY + VALID_TAG_FRIEND, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, INDEX_FIRST_PERSON.getOneBased() + TAG_EMPTY + VALID_TAG_FRIEND
+                + PREFIX_EMAIL + "email", Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_PHONE + "phone"
+                + TAG_EMPTY + VALID_TAG_FRIEND, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
