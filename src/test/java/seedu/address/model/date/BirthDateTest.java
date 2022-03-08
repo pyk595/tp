@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
@@ -13,15 +14,26 @@ import org.junit.jupiter.api.Test;
 
 
 class BirthDateTest {
+    private static final DateTimeFormatter FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @Test
-    public void of_validString_success() {
+    public void parse_validString_success() {
         assertEquals("1 JANUARY 2020", BirthDate.parse("2020-01-01").toString());
     }
 
     @Test
-    public void of_invalidString_failure() {
+    public void parse_invalidString_failure() {
         assertThrows(DateTimeParseException.class, ()->BirthDate.parse("hello"));
+    }
+
+    @Test
+    public void equals_validDate_success() {
+        LocalDate test = LocalDate.now();
+        BirthDate testBirthDate = new BirthDate(test);
+        String testString = test.format(FORMATTER_INPUT);
+        BirthDate alternate = BirthDate.parse(testString);
+        assertTrue(testBirthDate.equals(alternate));
+        assertEquals(testBirthDate, alternate);
     }
 
     @Test

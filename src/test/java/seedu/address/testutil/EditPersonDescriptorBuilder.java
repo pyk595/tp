@@ -74,7 +74,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code BirthDate} of the {@EditPersonDescriptor} that we are building.
+     * Sets the {@code BirthDate} of the {@code EditPersonDescriptor} that we are building.
      *
      * @param birthDate String to be converted to a BirthDate
      * @return this {@code EditPersonDescriptorBuilder}.
