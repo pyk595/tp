@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -14,6 +17,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddTagCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -81,9 +85,17 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_hashtag() throws Exception {
-        Tag tag = new Tag("foo");
-        HashtagCommand command = (HashtagCommand) parser.parseCommand(HashtagCommand.COMMAND_WORD + "foo");
+        Tag tag = new Tag(VALID_TAG_HUSBAND);
+        HashtagCommand command = (HashtagCommand) parser.parseCommand(HashtagCommand.COMMAND_WORD + VALID_TAG_HUSBAND);
         assertEquals(new HashtagCommand(new PersonWithTagPredicate(tag)), command);
+    }
+
+    @Test
+    public void parseCommand_addTag() throws Exception {
+        Tag tag = new Tag(VALID_TAG_FRIEND);
+        AddTagCommand command = (AddTagCommand) parser.parseCommand(AddTagCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_TAG + VALID_TAG_FRIEND);
+        assertEquals(new AddTagCommand(INDEX_FIRST_PERSON, tag), command);
     }
 
     @Test
