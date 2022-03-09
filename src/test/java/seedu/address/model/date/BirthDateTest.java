@@ -27,13 +27,20 @@ class BirthDateTest {
     }
 
     @Test
-    public void equals_validDate_success() {
+    public void equals() {
         LocalDate test = LocalDate.now();
+        LocalDate tomorrow = LocalDate.now().plusDays(1);
         BirthDate testBirthDate = new BirthDate(test);
+        BirthDate nextDay = new BirthDate(tomorrow);
         String testString = test.format(FORMATTER_INPUT);
         BirthDate alternate = BirthDate.parse(testString);
-        assertTrue(testBirthDate.equals(alternate));
         assertEquals(testBirthDate, alternate);
+
+        assertTrue(testBirthDate.equals(testBirthDate));
+        assertTrue(testBirthDate.equals(alternate));
+        assertFalse(testBirthDate.equals(1));
+        assertFalse(testBirthDate.equals(null));
+        assertFalse(testBirthDate.equals(nextDay));
     }
 
     @Test
