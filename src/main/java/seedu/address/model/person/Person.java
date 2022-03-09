@@ -22,17 +22,22 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Date date;
+    private final Description description;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Date date,
+                  Description description, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, date, description);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.date = date;
+        this.description = description;
         this.tags.addAll(tags);
     }
 
@@ -50,6 +55,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Date getLastContactedDate() {
+        return date;
+    }
+
+    public Description getLastContactedDesc() {
+        return description;
     }
 
     /**
@@ -121,7 +134,11 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Last Contacted: ")
+                .append(getLastContactedDate())
+                .append("; Description of Last Contacted: ")
+                .append(getLastContactedDesc());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

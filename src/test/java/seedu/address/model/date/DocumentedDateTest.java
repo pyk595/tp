@@ -23,26 +23,26 @@ class DocumentedDateTest {
         LocalDate testDate = LocalDate.parse(dateString);
         LocalDate today = LocalDate.now();
         int days = (int) DAYS.between(testDate, today);
-        DocumentedDate date = new DocumentedDate(testDate);
+        DocumentedDate date = new DocumentedDate(dateString);
         assertEquals(days, date.getDaysPassed());
     }
 
     @Test
     public void isToday_currentDate_returnsTrue() {
-        LocalDate today = LocalDate.now();
+        String today = LocalDate.now().toString();
         DocumentedDate date = new DocumentedDate(today);
         assertTrue(date.isToday());
     }
 
     @Test
     public void isToday_differentDate_returnsFalse() {
-        DocumentedDate date = new DocumentedDate(LocalDate.parse("2022-01-01"));
+        DocumentedDate date = new DocumentedDate("2022-01-01");
         assertFalse(date.isToday());
     }
 
     @Test
     public void testToString_standardDate_success() {
-        DocumentedDate date = new DocumentedDate(LocalDate.parse("2022-01-01"));
+        DocumentedDate date = new DocumentedDate("2022-01-01");
         assertEquals("1 JANUARY 2022", date.toString());
     }
 }

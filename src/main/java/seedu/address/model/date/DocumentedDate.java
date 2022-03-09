@@ -4,21 +4,23 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a DocumentedDate in the address book.
  */
 public class DocumentedDate {
-    private LocalDate date;
+    private final LocalDate date;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
 
     /**
      * Constructs a {@code DocumentedDate}.
      *
      * @param date A non null LocalDate object.
      */
-    public DocumentedDate(LocalDate date) {
+    public DocumentedDate(String date) {
         requireNonNull(date);
-        this.date = date;
+        this.date = LocalDate.parse(date);
     }
 
     /**
@@ -49,10 +51,7 @@ public class DocumentedDate {
      */
     @Override
     public String toString() {
-        return String.format("%d %s %d",
-                date.getDayOfMonth(),
-                date.getMonth(),
-                date.getYear());
+        return formatter.format(date);
     }
 
 }
