@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.date.BirthDate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -36,6 +37,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setBirthdate(person.getBirthDate());
         descriptor.setTags(person.getTags());
     }
 
@@ -68,6 +70,17 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code BirthDate} of the {@code EditPersonDescriptor} that we are building.
+     *
+     * @param birthDate String to be converted to a BirthDate
+     * @return this {@code EditPersonDescriptorBuilder}.
+     */
+    public EditPersonDescriptorBuilder withBirthDate(String birthDate) {
+        descriptor.setBirthdate(BirthDate.parse(birthDate));
         return this;
     }
 

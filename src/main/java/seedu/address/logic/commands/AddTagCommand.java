@@ -13,6 +13,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.date.BirthDate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -95,9 +96,10 @@ public class AddTagCommand extends Command {
         Phone updatedPhone = personToEdit.getPhone();
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
+        BirthDate updatedBirthDate = personToEdit.getBirthDate();
         Set<Tag> updatedTags = addTagToSet(personToEdit.getTags(), tagToAdd);
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthDate, updatedTags);
     }
 
     /**

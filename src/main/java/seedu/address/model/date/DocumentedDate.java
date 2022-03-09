@@ -4,11 +4,13 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a DocumentedDate in the address book.
  */
 public class DocumentedDate {
+    public static final String MESSAGE_CONSTRAINTS = "Dates should be in the format of YYYY-MM-DD";
     private LocalDate date;
 
     /**
@@ -33,6 +35,24 @@ public class DocumentedDate {
     }
 
     /**
+     * Returns true if a given string is a valid date.
+     */
+    public static boolean isValidDate(String test) {
+        if (test.length() != 10) {
+            return false;
+        }
+        if (test.charAt(0) == '-' || test.charAt(0) == '+') {
+            return false;
+        }
+        try {
+            LocalDate.parse(test);
+        } catch (DateTimeParseException dte) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Returns true if the saved date occurs today, false otherwise.
      *
      * @return a boolean checking if the saved date occurs today.
@@ -40,6 +60,15 @@ public class DocumentedDate {
     public boolean isToday() {
         LocalDate today = LocalDate.now();
         return date.equals(today);
+    }
+
+    /**
+     * Gets saved date.
+     *
+     * @return saved date.
+     */
+    protected LocalDate getDate() {
+        return this.date;
     }
 
     /**
