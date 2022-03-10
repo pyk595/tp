@@ -23,26 +23,66 @@ class DocumentedDateTest {
         LocalDate testDate = LocalDate.parse(dateString);
         LocalDate today = LocalDate.now();
         int days = (int) DAYS.between(testDate, today);
-        DocumentedDate date = new DocumentedDate(dateString);
+        DocumentedDate date = new DocumentedDate(testDate);
         assertEquals(days, date.getDaysPassed());
     }
 
     @Test
     public void isToday_currentDate_returnsTrue() {
-        String today = LocalDate.now().toString();
+        LocalDate today = LocalDate.now();
         DocumentedDate date = new DocumentedDate(today);
         assertTrue(date.isToday());
     }
 
     @Test
     public void isToday_differentDate_returnsFalse() {
-        DocumentedDate date = new DocumentedDate("2022-01-01");
+        DocumentedDate date = new DocumentedDate(LocalDate.parse("2022-01-01"));
         assertFalse(date.isToday());
     }
 
     @Test
+    public void isValidDate_validDate_returnsTrue() {
+        assertTrue(DocumentedDate.isValidDate("2000-01-01"));
+    }
+
+    @Test
+    public void isValidDate_invalidDate_returnsFalse() {
+        assertFalse(DocumentedDate.isValidDate("2000/01/01"));
+    }
+
+    @Test
+    public void isValidDate_isoFormattedDate_returnsFalse() {
+        assertFalse(DocumentedDate.isValidDate("01 JANUARY 2020"));
+    }
+
+    @Test
+    public void isValidDate_negativeDatePrefix_returnsFalse() {
+        assertFalse(DocumentedDate.isValidDate("-2000-01-01"));
+    }
+
+    @Test
+    public void isValidDate_positiveDatePrefix_returnsFalse() {
+        assertFalse(DocumentedDate.isValidDate("+2000-01-01"));
+    }
+
+    @Test
+    public void isValidDate_invalidYearLength_returnsFalse() {
+        assertFalse(DocumentedDate.isValidDate("200000-01-01"));
+    }
+
+    @Test
+    public void isValidDate_validYearLengthPositive_returnsFalse() {
+        assertFalse(DocumentedDate.isValidDate("+200000-01-01"));
+    }
+
+    @Test
+    public void isValidDate_validYearLengthNegative_returnsFalse() {
+        assertFalse(DocumentedDate.isValidDate("-200000-01-01"));
+    }
+
+    @Test
     public void testToString_standardDate_success() {
-        DocumentedDate date = new DocumentedDate("2022-01-01");
+        DocumentedDate date = new DocumentedDate(LocalDate.parse("2022-01-01"));
         assertEquals("1 JANUARY 2022", date.toString());
     }
 }
