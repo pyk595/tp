@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.date.BirthDate;
+import seedu.address.model.date.RecentDate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,22 +24,25 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Date date;
+    private final RecentDate date;
     private final Description description;
+    private final BirthDate birthDate;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Date date,
+    public Person(Name name, Phone phone, Email email, Address address, BirthDate birthDate, RecentDate date,
                   Description description, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, date, description);
+        requireAllNonNull(name, phone, email, address, birthDate, date, description);
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.date = date;
         this.description = description;
+        this.birthDate = birthDate;
         this.tags.addAll(tags);
     }
 
@@ -57,12 +62,16 @@ public class Person {
         return address;
     }
 
-    public Date getLastContactedDate() {
+    public RecentDate getLastContactedDate() {
         return date;
     }
 
     public Description getLastContactedDesc() {
         return description;
+    }
+
+    public BirthDate getBirthDate() {
+        return birthDate;
     }
 
     /**
@@ -135,6 +144,8 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; birthday: ")
+                .append(getBirthDate())
                 .append("; Last Contacted: ")
                 .append(getLastContactedDate())
                 .append("; Description of Last Contacted: ")

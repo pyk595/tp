@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ContactedCommand;
-import seedu.address.model.person.Date;
+import seedu.address.model.date.RecentDate;
 import seedu.address.model.person.Description;
 
 public class ContactedCommandParserTest {
@@ -26,7 +26,7 @@ public class ContactedCommandParserTest {
         String userInput = targetIndex.getOneBased() + " " + PREFIX_DATE + nonEmptyDate + " "
                 + PREFIX_DESCRIPTION + nonEmptyDesc;
         ContactedCommand expectedCommand = new ContactedCommand(INDEX_FIRST_PERSON,
-                new Date(nonEmptyDate), new Description(nonEmptyDesc));
+                RecentDate.parse(nonEmptyDate), new Description(nonEmptyDesc));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

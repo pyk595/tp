@@ -4,7 +4,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.ContactedCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Date;
+import seedu.address.model.date.RecentDate;
 import seedu.address.model.person.Description;
 
 import static java.util.Objects.requireNonNull;
@@ -36,6 +36,6 @@ public class ContactedCommandParser implements Parser<ContactedCommand> {
         String date = argMultimap.getValue(PREFIX_DATE).orElse("");
         String description = argMultimap.getValue(PREFIX_DESCRIPTION).orElse("");
 
-        return new ContactedCommand(index, new Date(date), new Description(description));
+        return new ContactedCommand(index, RecentDate.parse(date), new Description(description));
     }
 }

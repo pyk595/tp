@@ -4,7 +4,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.person.Date;
+import seedu.address.model.date.RecentDate;
 import seedu.address.model.person.Description;
 import seedu.address.model.person.Person;
 
@@ -36,7 +36,7 @@ public class ContactedCommand extends Command {
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Last contacted date: %2$s, Description: %3$s";
 
     private final Index index;
-    private final Date date;
+    private final RecentDate date;
     private final Description description;
 
     /**
@@ -44,7 +44,7 @@ public class ContactedCommand extends Command {
      * @param date of the person to be updated to
      * @param description of the contacted date
      */
-    public ContactedCommand(Index index, Date date, Description description) {
+    public ContactedCommand(Index index, RecentDate date, Description description) {
         requireAllNonNull(index, date, description);
 
         this.index = index;
@@ -63,7 +63,7 @@ public class ContactedCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), date, description, personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getBirthDate(), date, description, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
