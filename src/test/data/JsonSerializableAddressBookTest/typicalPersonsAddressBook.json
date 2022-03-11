@@ -6,6 +6,8 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "birthDate": "2001-01-01",
+    "date": "2020-02-02",
+    "description": "meetup",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -13,6 +15,8 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "birthDate": "2002-01-02",
+    "date": "2020-03-02",
+    "description": "phone call",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -20,6 +24,8 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "birthDate": "2003-01-03",
+    "date": "2020-02-02",
+    "description": "meetup",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -27,6 +33,8 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "birthDate": "2004-01-04",
+    "date": "2020-04-02",
+    "description": "meet up",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -34,6 +42,8 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "birthDate": "2005-01-05",
+    "date": "2020-03-02",
+    "description": "phone call",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -41,6 +51,8 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "birthDate": "2006-01-06",
+    "date": "2020-03-02",
+    "description": "phone call",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -48,6 +60,8 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "birthDate": "2000-01-07",
+    "date": "2020-04-02",
+    "description": "meet up",
     "tagged" : [ ]
   } ]
 }
