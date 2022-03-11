@@ -100,7 +100,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String} date into an {@code RecentDate}.
+     * Parses a {@code String} date into a {@code RecentDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code date} is invalid.

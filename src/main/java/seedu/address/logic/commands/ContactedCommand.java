@@ -40,6 +40,8 @@ public class ContactedCommand extends Command {
     private final Description description;
 
     /**
+     * Creates an ContactedCommand to add the specified {@code Person}
+     *
      * @param index of the person in the filtered person list to edit the contacted date
      * @param date of the person to be updated to
      * @param description of the contacted date
@@ -52,6 +54,13 @@ public class ContactedCommand extends Command {
         this.description = description;
     }
 
+    /**
+     * Creates a CommandResult object.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return the CommandResult object.
+     * @throws CommandException if it is an invalid command.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -94,6 +103,8 @@ public class ContactedCommand extends Command {
      * Generates a command execution success message based on whether
      * the contacted informaiton is added to or removed from
      * {@code personToEdit}.
+     *
+     * returns success message
      */
     private String generateSuccessMessage(Person personToEdit) {
         String message = !date.value.toString().isEmpty() ? MESSAGE_ADD_CONTACTEDINFO_SUCCESS
