@@ -14,11 +14,11 @@ import seedu.address.model.date.BirthDate;
 import seedu.address.model.date.DocumentedDate;
 import seedu.address.model.date.RecentDate;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Description;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -137,7 +137,8 @@ class JsonAdaptedPerson {
         final RecentDate modelDate = RecentDate.parse(recentDate);
 
         if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
         }
         final Description modelDescription = new Description(description);
 

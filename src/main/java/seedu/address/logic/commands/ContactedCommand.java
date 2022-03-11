@@ -1,17 +1,17 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.date.RecentDate;
-import seedu.address.model.person.Description;
-import seedu.address.model.person.Person;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.date.RecentDate;
+import seedu.address.model.Model;
+import seedu.address.model.person.Description;
+import seedu.address.model.person.Person;
 
 /**
  * Changes the recent date of an existing person in the address book.
@@ -96,7 +96,8 @@ public class ContactedCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !date.value.toString().isEmpty() ? MESSAGE_ADD_CONTACTEDINFO_SUCCESS : MESSAGE_DELETE_CONTACTEDINFO_SUCCESS;
+        String message = !date.value.toString().isEmpty() ? MESSAGE_ADD_CONTACTEDINFO_SUCCESS
+                : MESSAGE_DELETE_CONTACTEDINFO_SUCCESS;
         return String.format(message, personToEdit);
     }
 }
