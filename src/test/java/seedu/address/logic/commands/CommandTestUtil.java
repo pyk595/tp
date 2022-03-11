@@ -37,8 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_RECENTDATE_AMY = "2020-02-14";
-    public static final String VALID_RECENTDATE_BOB = "2020-02-13";
+    public static final String VALID_RECENT_DATE_AMY = "2020-02-14";
+    public static final String VALID_RECENT_DATE_BOB = "2020-02-13";
     public static final String VALID_DESCRIPTION_AMY = "Meetup";
     public static final String VALID_DESCRIPTION_BOB = "Phone Call";
     public static final String VALID_BIRTH_DATE_AMY = "2000-01-01";
@@ -54,8 +54,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String CONTACTED_RECENT_DATE_AMY = " " + PREFIX_DATE + VALID_RECENTDATE_AMY;
-    public static final String CONTACTED_RECENT_DATE_BOB = " " + PREFIX_DATE + VALID_RECENTDATE_BOB;
+    public static final String CONTACTED_RECENT_DATE_AMY = " " + PREFIX_DATE + VALID_RECENT_DATE_AMY;
+    public static final String CONTACTED_RECENT_DATE_BOB = " " + PREFIX_DATE + VALID_RECENT_DATE_BOB;
     public static final String CONTACTED_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
     public static final String CONTACTED_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
     public static final String BIRTH_DATE_DESC_AMY = " " + PREFIX_BIRTH_DATE + VALID_BIRTH_DATE_AMY;

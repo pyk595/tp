@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RECENTDATE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RECENTDATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RECENT_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RECENT_DATE_BOB;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
@@ -22,11 +22,11 @@ public class ContactedCommandTest {
     @Test
     public void equals() {
         final ContactedCommand standardCommand = new ContactedCommand(INDEX_FIRST_PERSON,
-                RecentDate.parse(VALID_RECENTDATE_AMY), new Description(VALID_DESCRIPTION_AMY));
+                RecentDate.parse(VALID_RECENT_DATE_AMY), new Description(VALID_DESCRIPTION_AMY));
 
         // same values -> returns true
         ContactedCommand commandWithSameValues = new ContactedCommand(INDEX_FIRST_PERSON,
-                RecentDate.parse(VALID_RECENTDATE_AMY), new Description(VALID_DESCRIPTION_AMY));
+                RecentDate.parse(VALID_RECENT_DATE_AMY), new Description(VALID_DESCRIPTION_AMY));
 
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -41,10 +41,10 @@ public class ContactedCommandTest {
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new ContactedCommand(INDEX_SECOND_PERSON,
-                RecentDate.parse(VALID_RECENTDATE_AMY), new Description(VALID_DESCRIPTION_AMY))));
+                RecentDate.parse(VALID_RECENT_DATE_AMY), new Description(VALID_DESCRIPTION_AMY))));
 
         // different remark -> returns false
         assertFalse(standardCommand.equals(new ContactedCommand(INDEX_SECOND_PERSON,
-                RecentDate.parse(VALID_RECENTDATE_BOB), new Description(VALID_DESCRIPTION_BOB))));
+                RecentDate.parse(VALID_RECENT_DATE_BOB), new Description(VALID_DESCRIPTION_BOB))));
     }
 }

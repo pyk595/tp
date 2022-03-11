@@ -27,7 +27,6 @@ public class PersonBuilder {
     public static final String DEFAULT_DESCRIPTION = "Meet up";
     public static final String DEFAULT_BIRTHDATE = "2000-01-01";
 
-
     private Name name;
     private Phone phone;
     private Email email;

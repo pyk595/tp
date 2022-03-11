@@ -28,6 +28,15 @@ public class RecentDate extends DocumentedDate {
         return new RecentDate(date);
     }
 
+    /**
+     * Returns today's date
+     *
+     * @return today's date {@code RecentDate}.
+     */
+    public static RecentDate defaultRecentDate() {
+        return new RecentDate(LocalDate.now());
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
