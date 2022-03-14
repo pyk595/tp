@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACTED_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACTED_DESC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -47,7 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_DATE + "DATE " + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_CONTACTED_DATE + "DATE " + PREFIX_CONTACTED_DESC + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -105,8 +105,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         BirthDate updatedBirthDate = editPersonDescriptor.getBirthDate().orElse(personToEdit.getBirthDate());
-        RecentDate updatedDate = personToEdit.getLastContactedDate();
-        Description updatedDescription = personToEdit.getLastContactedDesc();
+        RecentDate updatedDate = editPersonDescriptor.getContactedDate().orElse(personToEdit.getContactedDate());
+        Description updatedDescription = editPersonDescriptor.getDescription()
+                .orElse(personToEdit.getContactedDesc());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
@@ -141,6 +142,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private BirthDate birthDate;
+        private RecentDate contactedDate;
+        private Description description;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -155,6 +158,8 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setBirthdate(toCopy.birthDate);
+            setContactedDate(toCopy.contactedDate);
+            setContactedDesc(toCopy.description);
             setTags(toCopy.tags);
         }
 
@@ -162,7 +167,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, birthDate, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address,
+                    birthDate, contactedDate, description, tags);
         }
 
         public void setName(Name name) {
@@ -205,6 +211,24 @@ public class EditCommand extends Command {
             return Optional.ofNullable(birthDate);
         }
 
+        public void setContactedDate(RecentDate contactedDate) {
+            this.contactedDate = contactedDate;
+        }
+
+        public Optional<RecentDate> getContactedDate() {
+            return Optional.ofNullable(contactedDate);
+        }
+
+        public void setContactedDesc(Description description) {
+            this.description = description;
+        }
+
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
+        }
+
+
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -242,6 +266,8 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getBirthDate().equals(e.getBirthDate())
+                    && getContactedDate().equals(e.getContactedDate())
+                    && getDescription().equals(e.getDescription())
                     && getTags().equals(e.getTags());
         }
     }

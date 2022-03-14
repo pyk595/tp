@@ -99,8 +99,8 @@ public class AddTagCommand extends Command {
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
         BirthDate updatedBirthDate = personToEdit.getBirthDate();
-        RecentDate updatedRecentDate = personToEdit.getLastContactedDate();
-        Description updatedDescription = personToEdit.getLastContactedDesc();
+        RecentDate updatedRecentDate = personToEdit.getContactedDate();
+        Description updatedDescription = personToEdit.getContactedDesc();
         Set<Tag> updatedTags = addTagToSet(personToEdit.getTags(), tagToAdd);
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthDate,

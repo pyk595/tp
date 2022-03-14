@@ -33,9 +33,9 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final String VALID_RECENT_DATE = BENSON.getLastContactedDate().value.toString();
-    private static final String VALID_RECENT_DESC = BENSON.getLastContactedDesc().toString();
-    private static final String VALID_BIRTHDATE = BENSON.getBirthDate().toString();
+    private static final String VALID_RECENT_DATE = BENSON.getContactedDate().value;
+    private static final String VALID_RECENT_DESC = BENSON.getContactedDesc().toString();
+    private static final String VALID_BIRTHDATE = BENSON.getBirthDate().value;
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -208,8 +208,7 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
-    /*
-    TODO fix test case for null recentDate case
+
     @Test
     public void toModelType_nullRecentDate_throwsIllegalValueException() {
         JsonAdaptedPerson person =
@@ -226,7 +225,6 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, RecentDate.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
-    */
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {

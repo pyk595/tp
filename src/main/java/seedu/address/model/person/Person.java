@@ -24,24 +24,24 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final RecentDate date;
-    private final Description description;
+    private final RecentDate contactedDate;
+    private final Description contactedDesc;
     private final BirthDate birthDate;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, BirthDate birthDate, RecentDate date,
-                  Description description, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, birthDate, date, description);
+    public Person(Name name, Phone phone, Email email, Address address, BirthDate birthDate, RecentDate contactedDate,
+                  Description contactedDesc, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, birthDate, contactedDate, contactedDesc);
 
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.date = date;
-        this.description = description;
+        this.contactedDate = contactedDate;
+        this.contactedDesc = contactedDesc;
         this.birthDate = birthDate;
         this.tags.addAll(tags);
     }
@@ -62,12 +62,12 @@ public class Person {
         return address;
     }
 
-    public RecentDate getLastContactedDate() {
-        return date;
+    public RecentDate getContactedDate() {
+        return contactedDate;
     }
 
-    public Description getLastContactedDesc() {
-        return description;
+    public Description getContactedDesc() {
+        return contactedDesc;
     }
 
     public BirthDate getBirthDate() {
@@ -147,9 +147,9 @@ public class Person {
                 .append("; birthday: ")
                 .append(getBirthDate())
                 .append("; Last Contacted: ")
-                .append(getLastContactedDate())
+                .append(getContactedDate())
                 .append("; Description of Last Contacted: ")
-                .append(getLastContactedDesc());
+                .append(getContactedDesc());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
