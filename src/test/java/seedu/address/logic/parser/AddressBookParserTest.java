@@ -6,8 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACTED_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACTED_DESC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -121,8 +121,8 @@ public class AddressBookParserTest {
         final String desc = "Meeting";
         ContactedCommand command = (ContactedCommand) parser.parseCommand(ContactedCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " "
-                + PREFIX_DATE + date + " "
-                + PREFIX_DESCRIPTION + desc);
+                + PREFIX_CONTACTED_DATE + date + " "
+                + PREFIX_CONTACTED_DESC + desc);
         assertEquals(new ContactedCommand(INDEX_FIRST_PERSON, RecentDate.parse(date), new Description(desc)), command);
     }
 

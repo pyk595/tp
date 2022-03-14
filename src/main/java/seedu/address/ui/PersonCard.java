@@ -59,9 +59,9 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         birthDate.setText(person.getBirthDate().toString());
         contactedDate.setText("recently contacted at: "
-                + person.getLastContactedDate().toString()
+                + person.getContactedDate().toString()
                 + " description: "
-                + person.getLastContactedDesc().value);
+                + person.getContactedDesc().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

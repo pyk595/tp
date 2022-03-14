@@ -2,10 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RECENT_DATE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RECENT_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTACTED_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTACTED_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTACTED_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTACTED_DESC_BOB;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
@@ -20,13 +21,25 @@ import seedu.address.model.person.Description;
 public class ContactedCommandTest {
 
     @Test
+    public void constructor_anyFieldsNull_throwsNullPointerException() {
+
+        RecentDate recentDate = RecentDate.defaultRecentDate();
+        Description description = Description.defaultDesc();
+        assertThrows(NullPointerException.class, () -> new ContactedCommand(null, recentDate, description));
+        assertThrows(NullPointerException.class, (
+                    ) -> new ContactedCommand(INDEX_FIRST_PERSON, null, description));
+        assertThrows(NullPointerException.class, (
+                    ) -> new ContactedCommand(INDEX_FIRST_PERSON, null, description));
+    }
+
+    @Test
     public void equals() {
         final ContactedCommand standardCommand = new ContactedCommand(INDEX_FIRST_PERSON,
-                RecentDate.parse(VALID_RECENT_DATE_AMY), new Description(VALID_DESCRIPTION_AMY));
+                RecentDate.parse(VALID_CONTACTED_DATE_AMY), new Description(VALID_CONTACTED_DESC_AMY));
 
         // same values -> returns true
         ContactedCommand commandWithSameValues = new ContactedCommand(INDEX_FIRST_PERSON,
-                RecentDate.parse(VALID_RECENT_DATE_AMY), new Description(VALID_DESCRIPTION_AMY));
+                RecentDate.parse(VALID_CONTACTED_DATE_AMY), new Description(VALID_CONTACTED_DESC_AMY));
 
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -41,10 +54,10 @@ public class ContactedCommandTest {
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new ContactedCommand(INDEX_SECOND_PERSON,
-                RecentDate.parse(VALID_RECENT_DATE_AMY), new Description(VALID_DESCRIPTION_AMY))));
+                RecentDate.parse(VALID_CONTACTED_DATE_AMY), new Description(VALID_CONTACTED_DESC_AMY))));
 
         // different remark -> returns false
         assertFalse(standardCommand.equals(new ContactedCommand(INDEX_SECOND_PERSON,
-                RecentDate.parse(VALID_RECENT_DATE_BOB), new Description(VALID_DESCRIPTION_BOB))));
+                RecentDate.parse(VALID_CONTACTED_DATE_BOB), new Description(VALID_CONTACTED_DESC_BOB))));
     }
 }

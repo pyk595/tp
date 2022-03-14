@@ -67,8 +67,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        recentDate = source.getLastContactedDate().value.toString();
-        description = source.getLastContactedDesc().value;
+        recentDate = source.getContactedDate().value;
+        description = source.getContactedDesc().value;
         birthDate = source.getBirthDate().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -131,8 +131,8 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                                                             RecentDate.class.getSimpleName()));
         }
-        if (!RecentDate.isValidDate(recentDate)) {
-            throw new IllegalValueException(RecentDate.MESSAGE_CONSTRAINTS);
+        if (!DocumentedDate.isValidDate(recentDate)) {
+            throw new IllegalValueException(DocumentedDate.MESSAGE_CONSTRAINTS);
         }
         final RecentDate modelDate = RecentDate.parse(recentDate);
 

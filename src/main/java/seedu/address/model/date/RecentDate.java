@@ -29,6 +29,15 @@ public class RecentDate extends DocumentedDate {
     }
 
     /**
+     * Returns today's date in String format.
+     *
+     * @return today's date in String format.
+     */
+    public static String defaultRecentDateInStr() {
+        return LocalDate.now().format(FORMATTER_INPUT);
+    }
+
+    /**
      * Returns today's date
      *
      * @return today's date {@code RecentDate}.

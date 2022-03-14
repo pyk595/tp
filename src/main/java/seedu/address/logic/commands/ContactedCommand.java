@@ -107,7 +107,7 @@ public class ContactedCommand extends Command {
      * returns success message
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !date.value.toString().isEmpty() ? MESSAGE_ADD_CONTACTEDINFO_SUCCESS
+        String message = !date.value.isEmpty() ? MESSAGE_ADD_CONTACTEDINFO_SUCCESS
                 : MESSAGE_DELETE_CONTACTEDINFO_SUCCESS;
         return String.format(message, personToEdit);
     }

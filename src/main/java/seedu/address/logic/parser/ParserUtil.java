@@ -118,10 +118,13 @@ public class ParserUtil {
      * Parses a {@code String tag} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Description parseDescription(String tag) {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        return new Description(trimmedTag);
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
     }
 
     /**

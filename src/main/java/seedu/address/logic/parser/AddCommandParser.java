@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACTED_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACTED_DESC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -40,6 +42,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_PHONE,
                         PREFIX_EMAIL,
                         PREFIX_BIRTH_DATE,
+                        PREFIX_CONTACTED_DATE,
+                        PREFIX_CONTACTED_DESC,
                         PREFIX_ADDRESS,
                         PREFIX_TAG);
 
@@ -53,12 +57,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         BirthDate birthDate = ParserUtil.parseBirthDate(argMultimap.getValue(PREFIX_BIRTH_DATE).get());
-        //RecentDate date = ParserUtil.parseContactedDate(argMultimap.getValue(PREFIX_DATE).get());
-        //Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        RecentDate date = ParserUtil.parseContactedDate(argMultimap.getValue(PREFIX_CONTACTED_DATE)
+                .orElseGet(RecentDate::defaultRecentDateInStr));
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_CONTACTED_DESC)
+                .orElseGet(() -> Description.defaultDesc().toString()));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, phone, email, address, birthDate,
-                RecentDate.defaultRecentDate(), new Description("meet up"), tagList);
+                date, description, tagList);
 
         return new AddCommand(person);
     }

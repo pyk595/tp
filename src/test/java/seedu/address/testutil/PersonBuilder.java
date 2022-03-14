@@ -59,8 +59,8 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         birthDate = personToCopy.getBirthDate();
-        date = personToCopy.getLastContactedDate();
-        description = personToCopy.getLastContactedDesc();
+        date = personToCopy.getContactedDate();
+        description = personToCopy.getContactedDesc();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
