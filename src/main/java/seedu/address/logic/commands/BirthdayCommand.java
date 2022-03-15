@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 
 public class BirthdayCommand extends Command {
 
-    public static final String COMMAND_WORD = "Birthdays";
+    public static final String COMMAND_WORD = "birthdays";
 
     public static final String MESSAGE_SUCCESS = "Here are the people with birthdays today.\n"
                                                     + Messages.MESSAGE_PERSONS_LISTED_OVERVIEW
