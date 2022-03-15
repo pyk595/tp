@@ -24,33 +24,33 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Adds a tag to an existing person in the address book, if the tag does not exist.
+ * Deletes a tag from an existing person in the address book, if the tag exists.
  */
-public class AddTagCommand extends Command {
+public class DeleteTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "tag";
+    public static final String COMMAND_WORD = "untag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to the tags of an existing contact, "
-            + "as specified by the index number used in the displayed person list. The tag will be added only if "
-            + "the tag is valid and is not already tagged to the contact (case-insensitive).\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a tag from the tags of an existing contact, "
+            + "as specified by the index number used in the displayed person list. The tag will be deleted only if "
+            + "the tag is valid and is tagged to the contact (case-insensitive).\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_TAG + "friends";
 
-    public static final String MESSAGE_ADD_TAG_SUCCESS = "Added tag: %1$s";
-    public static final String MESSAGE_DUPLICATE_TAG = "This person is already tagged to %1$s.";
+    public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag: %1$s";
+    public static final String MESSAGE_MISSING_TAG = "This person is not tagged to %1$s.";
 
     private final Index index;
     private final Tag tag;
 
     /**
-     * Constructs an {@code AddTagCommand} with the given {@code Index} and {@code Tag}.
+     * Constructs an {@code DeleteTagCommand} with the given {@code Index} and {@code Tag}.
      *
      * @param index of the person in the filtered person list to add the {@code Tag}.
-     * @param tag to be tagged to the {@code Person} specified by {@code index}.
+     * @param tag to be deleted from the {@code Person} specified by {@code index}.
      */
-    public AddTagCommand(Index index, Tag tag) {
+    public DeleteTagCommand(Index index, Tag tag) {
         requireNonNull(index);
         requireNonNull(tag);
 
@@ -59,11 +59,11 @@ public class AddTagCommand extends Command {
     }
 
     /**
-     * Adds a tag to an existing person in the address book, if the tag does not exist.
+     * Deletes a tag from an existing person in the address book, if the tag exists.
      *
      * @param model {@code Model} which the command should operate on.
      * @return the command result after the command execution.
-     * @throws CommandException if the {@code Tag} already exists or the {@code Index} is invalid.
+     * @throws CommandException if the {@code Tag} do not exist or the {@code Index} is invalid.
      */
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -75,27 +75,27 @@ public class AddTagCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        if (personToEdit.hasTag(this.tag)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_TAG, this.tag));
+        if (!personToEdit.hasTag(this.tag)) {
+            throw new CommandException(String.format(MESSAGE_MISSING_TAG, this.tag));
         }
 
-        Person editedPerson = createPersonWithAddedTag(personToEdit, this.tag);
+        Person editedPerson = createPersonWithDeletedTag(personToEdit, this.tag);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, editedPerson));
     }
 
     /**
      * Creates and returns a {@code Person} with the details of personToEdit {@code Person}
-     * added with tagToAdd {@code Tag}.
+     * with tagToDelete {@code Tag} deleted.
      *
-     * @param personToEdit the {@code Person} to add the {@code Tag} to.
-     * @param tagToAdd the {@code Tag} to add to {@code Person}.
-     * @return the edited {@code Person} added with tagToAdd {@code Tag}.
+     * @param personToEdit the {@code Person} to delete the {@code Tag} from.
+     * @param tagToDelete the {@code Tag} to delete from {@code Person}.
+     * @return the edited {@code Person} with tagToDelete {@code Tag} deleted.
      */
-    private static Person createPersonWithAddedTag(Person personToEdit, Tag tagToAdd) {
+    private static Person createPersonWithDeletedTag(Person personToEdit, Tag tagToDelete) {
         assert personToEdit != null;
 
         Name updatedName = personToEdit.getName();
@@ -105,22 +105,22 @@ public class AddTagCommand extends Command {
         BirthDate updatedBirthDate = personToEdit.getBirthDate();
         RecentDate updatedRecentDate = personToEdit.getContactedDate();
         Description updatedDescription = personToEdit.getContactedDesc();
-        Set<Tag> updatedTags = addTagToSet(personToEdit.getTags(), tagToAdd);
+        Set<Tag> updatedTags = deleteTagFromSet(personToEdit.getTags(), tagToDelete);
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthDate,
                 updatedRecentDate, updatedDescription, updatedTags);
     }
 
     /**
-     * Adds a {Tag} to a tag set by creating a new {@code HashSet} (immutable).
+     * Deletes a {Tag} from a tag set by creating a new {@code HashSet} (immutable) if the tag exists.
      *
-     * @param tags the tag set to add a {@code Tag} to.
-     * @param tagToAdd the {@code Tag} to be added.
-     * @return an immutable tag set consisting of the existing {@code Tag} and {@code tagToAdd} (only unique tags).
+     * @param tags the tag set to delete a {@code Tag} from.
+     * @param tagToDelete the {@code Tag} to be deleted.
+     * @return an immutable tag set consisting of the existing {@code Tag} and {@code tagToDelete} (only unique tags).
      */
-    private static Set<Tag> addTagToSet(Set<Tag> tags, Tag tagToAdd) {
+    private static Set<Tag> deleteTagFromSet(Set<Tag> tags, Tag tagToDelete) {
         Set<Tag> updatedTags = new HashSet<>(tags);
-        updatedTags.add(tagToAdd);
+        updatedTags.remove(tagToDelete);
         return Collections.unmodifiableSet(updatedTags);
     }
 
@@ -132,12 +132,12 @@ public class AddTagCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddTagCommand)) {
+        if (!(other instanceof DeleteTagCommand)) {
             return false;
         }
 
         // state check
-        AddTagCommand e = (AddTagCommand) other;
+        DeleteTagCommand e = (DeleteTagCommand) other;
         return this.index.equals(e.index)
                 && this.tag.equals(e.tag);
     }

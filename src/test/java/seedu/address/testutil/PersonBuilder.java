@@ -95,6 +95,20 @@ public class PersonBuilder {
     }
 
     /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and deletes them from the tag set of {@code Person}
+     * that we are building.
+     *
+     * @param tags the tags to delete from the tag set.
+     * @return this {@code PersonBuilder}.
+     */
+    public PersonBuilder deleteTags(String ... tags) {
+        Set<Tag> newSet = new HashSet<>(this.tags);
+        newSet.removeAll(SampleDataUtil.getTagSet(tags));
+        this.tags = newSet;
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
