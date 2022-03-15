@@ -1,6 +1,7 @@
 package seedu.address.model.reminder;
 
 import seedu.address.model.date.DocumentedDate;
+import seedu.address.model.date.ReminderDate;
 
 import java.time.LocalDate;
 
@@ -10,33 +11,25 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents a reminder given to a contact in the address book.
  */
-public class Reminder {
-    private final String reminderDescription;
-    private final DocumentedDate date;
+public class Reminder implements Comparable<Reminder> {
+    private final ReminderDescription reminderDescription;
+    private final ReminderDate date;
 
     public static final String MESSAGE_CONSTRAINTS = "Reminder descriptions should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    private static final Reminder EMPTY_REMINDER = new Reminder("", new DocumentedDate(LocalDate.now()));
+    private static final Reminder EMPTY_REMINDER = new Reminder(new ReminderDescription(""),
+            new ReminderDate(LocalDate.now()));
 
     /**
      * Constructs a {@code Reminder}
      * @param reminderDescription Description of the reminder
      * @param date the date which the reminder is on
      */
-    public Reminder(String reminderDescription, DocumentedDate date) {
+    public Reminder(ReminderDescription reminderDescription, ReminderDate date) {
         requireNonNull(reminderDescription);
-        checkArgument(isValidReminderDescription(reminderDescription), MESSAGE_CONSTRAINTS);
         requireNonNull(date);
         this.date = date;
         this.reminderDescription = reminderDescription;
-    }
-
-    /**
-     * Returns true if a given string is a valid reminder description.
-     */
-    public static boolean isValidReminderDescription(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     /**
@@ -55,5 +48,18 @@ public class Reminder {
 
     public static Reminder empty() {
         return EMPTY_REMINDER;
+    }
+
+    @Override
+    public int compareTo(Reminder otherReminder) {
+        if (this.isSameDateAs(otherReminder.date)) {
+            return this.reminderDescription.compareTo(otherReminder.reminderDescription);
+        } else {
+            return this.date.compareTo(otherReminder.date);
+        }
+    }
+
+    public ReminderDescription getDescription() {
+        return reminderDescription;
     }
 }
