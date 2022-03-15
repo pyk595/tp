@@ -2,14 +2,13 @@ package seedu.address.logic.commands;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.date.BirthDate;
 import seedu.address.model.date.DocumentedDate;
 import seedu.address.model.person.*;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 
 import java.time.LocalDate;
@@ -21,6 +20,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+/**
+ * Adds a reminder to a contact.
+ */
 public class AddReminderCommand extends Command {
 
     private final Index index;
@@ -30,12 +32,12 @@ public class AddReminderCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to an existing contact, "
             + "as specified by the index number used in the displayed person list. The reminder will be replace "
-            + "any existing reminder.\n"
+            + "any existing reminder. If a date is not specified, it will register today as the reminder date.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_REMINDER + "REMINDER\n"
+            + PREFIX_REMINDER + "REMINDER "
             + "[" + PREFIX_DATE + "DATE]\n"
             + "Example: " + COMMAND_WORD + " 2 "
-            + PREFIX_REMINDER + "meeting"
+            + PREFIX_REMINDER + "meeting "
             + PREFIX_DATE + new DocumentedDate(LocalDate.of(2022, 01, 01)).toString();
 
     public static final String MESSAGE_ADD_REMINDER_SUCCESS = "Added reminder: %1$s";
@@ -43,7 +45,7 @@ public class AddReminderCommand extends Command {
     /**
      * Constructs an {@code AddReminderCommand} with the given {@code Index} and {@code Reminder}.
      *
-     * @param index of the person in the filtered person list to add the {@code Reminder}.
+     * @param index    of the person in the filtered person list to add the {@code Reminder}.
      * @param reminder to be added to the {@code Person} specified by {@code index}.
      */
     public AddReminderCommand(Index index, Reminder reminder) {
@@ -67,8 +69,11 @@ public class AddReminderCommand extends Command {
         Address updatedAddress = personToEdit.getAddress();
         BirthDate updatedBirthDate = personToEdit.getBirthDate();
         Set<Tag> updatedTags = personToEdit.getTags();
+        ReminderList updatedReminders = personToEdit.getReminderList();
+        updatedReminders.add(reminderToAdd);
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthDate, updatedTags, reminderToAdd);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthDate, updatedTags,
+                updatedReminders);
     }
 
     /**
