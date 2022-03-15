@@ -90,6 +90,10 @@ public class AddTagCommand extends Command {
     /**
      * Creates and returns a {@code Person} with the details of personToEdit {@code Person}
      * added with tagToAdd {@code Tag}.
+     *
+     * @param personToEdit the {@code Person} to add the {@code Tag} to.
+     * @param tagToAdd the {@code Tag} to add to {@code Person}.
+     * @return the edited {@code Person} added with tagToAdd {@code Tag}.
      */
     private static Person createPersonWithAddedTag(Person personToEdit, Tag tagToAdd) {
         assert personToEdit != null;

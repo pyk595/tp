@@ -90,6 +90,10 @@ public class DeleteTagCommand extends Command {
     /**
      * Creates and returns a {@code Person} with the details of personToEdit {@code Person}
      * with tagToDelete {@code Tag} deleted.
+     *
+     * @param personToEdit the {@code Person} to delete the {@code Tag} from.
+     * @param tagToDelete the {@code Tag} to delete from {@code Person}.
+     * @return the edited {@code Person} with tagToDelete {@code Tag} deleted.
      */
     private static Person createPersonWithDeletedTag(Person personToEdit, Tag tagToDelete) {
         assert personToEdit != null;
