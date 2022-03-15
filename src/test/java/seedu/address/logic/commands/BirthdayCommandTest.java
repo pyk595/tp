@@ -1,8 +1,6 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS_WITH_BIRTHDAY_TODAY;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -26,9 +24,9 @@ import seedu.address.testutil.PersonBuilder;
 class BirthdayCommandTest {
 
     private static final DateTimeFormatter FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private static final String MESSAGE_SUCCESS = String.format(BirthdayCommand.MESSAGE_SUCCESS, 0);
     private Model model;
     private Model emptyModel;
+    private Model expectedModel;
     private Person alice;
     private Person bob;
     private Person carl;
@@ -37,6 +35,7 @@ class BirthdayCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(new AddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         emptyModel = new ModelManager(new AddressBook(), new UserPrefs());
         alice = ALICE;
         bob = BOB;
@@ -56,36 +55,51 @@ class BirthdayCommandTest {
     @Test
     public void execute_listHasNoPersons_showsEmptyList() {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS_WITH_BIRTHDAY_TODAY);
-        assertCommandSuccess(new BirthdayCommand(), model, MESSAGE_SUCCESS, emptyModel);
+
+        assertCommandSuccess(new BirthdayCommand(),
+                model,
+                String.format(BirthdayCommand.MESSAGE_SUCCESS, 0),
+                emptyModel);
     }
 
     @Test
     public void execute_listHasNoBirthdaysToday_showsEmptyList() {
         model.addPerson(bob);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS_WITH_BIRTHDAY_TODAY);
-        assertEquals(0, model.getFilteredPersonListSize());
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        assertEquals(1, model.getFilteredPersonListSize());
+        expectedModel.addPerson(bob);
+        expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS_WITH_BIRTHDAY_TODAY);
+        int size = expectedModel.getFilteredPersonListSize();
+        assertCommandSuccess(new BirthdayCommand(),
+                model,
+                String.format(BirthdayCommand.MESSAGE_SUCCESS, size),
+                expectedModel);
     }
 
     @Test
     public void execute_listHasBirthdayToday_showsOne() {
         model.addPerson(alice);
+        expectedModel.addPerson(alice);
         model.addPerson(bob);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS_WITH_BIRTHDAY_TODAY);
-        assertEquals(1, model.getFilteredPersonListSize());
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        assertEquals(2, model.getFilteredPersonListSize());
+        expectedModel.addPerson(bob);
+        expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS_WITH_BIRTHDAY_TODAY);
+        int size = expectedModel.getFilteredPersonListSize();
+        assertCommandSuccess(new BirthdayCommand(),
+                model,
+                String.format(BirthdayCommand.MESSAGE_SUCCESS, size),
+                expectedModel);
     }
 
     @Test
     public void execute_listHasBirthDateTenYearsAgo_showsOne() {
         model.addPerson(carl);
+        expectedModel.addPerson(carl);
         model.addPerson(bob);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS_WITH_BIRTHDAY_TODAY);
-        assertEquals(1, model.getFilteredPersonListSize());
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        assertEquals(2, model.getFilteredPersonListSize());
+        expectedModel.addPerson(bob);
+        expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS_WITH_BIRTHDAY_TODAY);
+        int size = expectedModel.getFilteredPersonListSize();
+        assertCommandSuccess(new BirthdayCommand(),
+                model,
+                String.format(BirthdayCommand.MESSAGE_SUCCESS, size),
+                expectedModel);
     }
 
 
