@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACTED_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACTED_DESC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -41,8 +39,6 @@ public class EditCommandParser implements Parser<EditCommand> {
                         PREFIX_EMAIL,
                         PREFIX_ADDRESS,
                         PREFIX_BIRTH_DATE,
-                        PREFIX_CONTACTED_DATE,
-                        PREFIX_CONTACTED_DESC,
                         PREFIX_TAG);
 
         Index index;
@@ -68,14 +64,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_BIRTH_DATE).isPresent()) {
             editPersonDescriptor.setBirthdate(ParserUtil.parseBirthDate(argMultimap.getValue(PREFIX_BIRTH_DATE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_CONTACTED_DATE).isPresent()) {
-            editPersonDescriptor.setContactedDate(
-                    ParserUtil.parseContactedDate(argMultimap.getValue(PREFIX_CONTACTED_DATE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_CONTACTED_DESC).isPresent()) {
-            editPersonDescriptor.setContactedDesc(
-                    ParserUtil.parseDescription(argMultimap.getValue(PREFIX_CONTACTED_DESC).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

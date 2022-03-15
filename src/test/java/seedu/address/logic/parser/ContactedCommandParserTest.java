@@ -1,6 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.CONTACTED_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.CONTACTED_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CONTACTED_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CONTACTED_DESC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACTED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACTED_DESC;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -15,7 +19,7 @@ import seedu.address.model.date.RecentDate;
 import seedu.address.model.person.Description;
 
 public class ContactedCommandParserTest {
-    private ContactedCommandParser parser = new ContactedCommandParser();
+    private final ContactedCommandParser parser = new ContactedCommandParser();
     private final String nonEmptyDate = "2020-02-02";
     private final String nonEmptyDesc = "Meeting";
 
@@ -41,5 +45,19 @@ public class ContactedCommandParserTest {
         // no index
         assertParseFailure(parser, ContactedCommand.COMMAND_WORD + " "
                 + nonEmptyDate + " " + nonEmptyDesc, expectedMessage);
+    }
+
+    @Test
+    public void parse_invalidValue_failure() {
+        // invalid date
+        assertParseFailure(parser, "1" + INVALID_CONTACTED_DATE + CONTACTED_DESC_BOB,
+                RecentDate.MESSAGE_CONSTRAINTS
+        );
+
+        // invalid description
+        assertParseFailure(
+                parser, "1" + CONTACTED_DATE_BOB + INVALID_CONTACTED_DESC,
+                Description.MESSAGE_CONSTRAINTS
+        );
     }
 }
