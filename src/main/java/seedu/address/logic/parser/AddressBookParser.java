@@ -6,17 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddTagCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HashtagCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -36,7 +26,7 @@ public class AddressBookParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommand(String userInput) throws ParseException {
+    public Command parseCommand(String userInput) throws ParseException, java.text.ParseException {
         final String trimmedUserInput = userInput.trim();
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(trimmedUserInput);
 
@@ -78,6 +68,18 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddReminderCommand.COMMAND_WORD:
+            return new AddReminderCommandParser().parse(arguments);
+
+        case DeleteReminderCommand.COMMAND_WORD:
+            return new DeleteReminderCommandParser().parse(arguments);
+
+        case ListContactRemindersCommand.COMMAND_WORD:
+            return new ListContactRemindersCommandParser().parse(arguments);
+
+        case ListDateRemindersCommand.COMMAND_WORD:
+            return new ListDateRemindersCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
