@@ -55,6 +55,7 @@ class BirthdayCommandTest {
 
     @Test
     public void execute_listHasNoPersons_showsEmptyList() {
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS_WITH_BIRTHDAY_TODAY);
         assertCommandSuccess(new BirthdayCommand(), model, MESSAGE_SUCCESS, emptyModel);
     }
 
