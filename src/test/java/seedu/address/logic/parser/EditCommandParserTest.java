@@ -8,8 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BIRTH_DATE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_CONTACTED_DATE;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_CONTACTED_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -42,9 +40,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.date.BirthDate;
-import seedu.address.model.date.RecentDate;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -97,10 +93,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS);
         // invalid birth date
         assertParseFailure(parser, "1" + INVALID_BIRTH_DATE_DESC, BirthDate.MESSAGE_CONSTRAINTS);
-        // invalid recent date
-        assertParseFailure(parser, "1" + INVALID_CONTACTED_DATE, RecentDate.MESSAGE_CONSTRAINTS);
-        // invalid description
-        assertParseFailure(parser, "1" + INVALID_CONTACTED_DESC, Description.MESSAGE_CONSTRAINTS);
         // invalid address
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS);
         // invalid tag
