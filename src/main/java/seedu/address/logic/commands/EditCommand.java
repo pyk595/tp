@@ -102,9 +102,8 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         BirthDate updatedBirthDate = editPersonDescriptor.getBirthDate().orElse(personToEdit.getBirthDate());
-        RecentDate updatedDate = editPersonDescriptor.getContactedDate().orElse(personToEdit.getContactedDate());
-        Description updatedDescription = editPersonDescriptor.getDescription()
-                .orElse(personToEdit.getContactedDesc());
+        RecentDate updatedDate = personToEdit.getContactedDate();
+        Description updatedDescription = personToEdit.getContactedDesc();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
@@ -139,8 +138,6 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private BirthDate birthDate;
-        private RecentDate contactedDate;
-        private Description description;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -155,8 +152,6 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setBirthdate(toCopy.birthDate);
-            setContactedDate(toCopy.contactedDate);
-            setContactedDesc(toCopy.description);
             setTags(toCopy.tags);
         }
 
@@ -165,7 +160,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address,
-                    birthDate, contactedDate, description, tags);
+                    birthDate, tags);
         }
 
         public void setName(Name name) {
@@ -208,24 +203,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(birthDate);
         }
 
-        public void setContactedDate(RecentDate contactedDate) {
-            this.contactedDate = contactedDate;
-        }
-
-        public Optional<RecentDate> getContactedDate() {
-            return Optional.ofNullable(contactedDate);
-        }
-
-        public void setContactedDesc(Description description) {
-            this.description = description;
-        }
-
-        public Optional<Description> getDescription() {
-            return Optional.ofNullable(description);
-        }
-
-
-
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -263,8 +240,6 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getBirthDate().equals(e.getBirthDate())
-                    && getContactedDate().equals(e.getContactedDate())
-                    && getDescription().equals(e.getDescription())
                     && getTags().equals(e.getTags());
         }
     }
