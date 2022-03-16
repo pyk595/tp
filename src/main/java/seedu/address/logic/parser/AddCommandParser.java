@@ -23,6 +23,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -62,9 +63,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_CONTACTED_DESC)
                 .orElseGet(() -> Description.defaultDesc().toString()));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        ReminderList reminderList = new ReminderList();
 
         Person person = new Person(name, phone, email, address, birthDate,
-                date, description, tagList);
+                date, description, tagList, reminderList);
 
         return new AddCommand(person);
     }

@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,27 +26,27 @@ public class SampleDataUtil {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 BirthDate.parse("2000-01-01"), RecentDate.parse("2020-01-02"), new Description("meet up"),
-                getTagSet("friends")),
+                getTagSet("friends"), new ReminderList()),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 BirthDate.parse("2000-01-02"), RecentDate.parse("2020-01-02"), new Description("meet up"),
-                getTagSet("colleagues", "friends")),
+                getTagSet("colleagues", "friends"), new ReminderList()),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 BirthDate.parse("2000-03-01"), RecentDate.parse("2020-01-02"), new Description("meet up"),
-                getTagSet("neighbours")),
+                getTagSet("neighbours"), new ReminderList()),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 BirthDate.parse("2000-01-04"), RecentDate.parse("2020-01-02"), new Description("meet up"),
-                getTagSet("family")),
+                getTagSet("family"), new ReminderList()),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 BirthDate.parse("2000-05-01"), RecentDate.parse("2020-01-02"), new Description("meet up"),
-                getTagSet("classmates")),
+                getTagSet("classmates"), new ReminderList()),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 BirthDate.parse("2006-07-01"), RecentDate.parse("2020-01-02"), new Description("meet up"),
-                getTagSet("colleagues"))
+                getTagSet("colleagues"), new ReminderList())
         };
     }
 

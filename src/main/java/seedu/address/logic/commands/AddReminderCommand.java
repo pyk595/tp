@@ -6,6 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.date.BirthDate;
 import seedu.address.model.date.DocumentedDate;
+import seedu.address.model.date.RecentDate;
 import seedu.address.model.person.*;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderList;
@@ -68,12 +69,14 @@ public class AddReminderCommand extends Command {
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
         BirthDate updatedBirthDate = personToEdit.getBirthDate();
+        RecentDate updatedContactedDate = personToEdit.getContactedDate();
+        Description updatedContactedDescription = personToEdit.getContactedDesc();
         Set<Tag> updatedTags = personToEdit.getTags();
         ReminderList updatedReminders = personToEdit.getReminderList();
         updatedReminders.add(reminderToAdd);
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthDate, updatedTags,
-                updatedReminders);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthDate,
+                updatedContactedDate, updatedContactedDescription, updatedTags, updatedReminders);
     }
 
     /**

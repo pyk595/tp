@@ -21,6 +21,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -106,9 +107,10 @@ public class DeleteTagCommand extends Command {
         RecentDate updatedRecentDate = personToEdit.getContactedDate();
         Description updatedDescription = personToEdit.getContactedDesc();
         Set<Tag> updatedTags = deleteTagFromSet(personToEdit.getTags(), tagToDelete);
+        ReminderList updatedReminders = personToEdit.getReminderList();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthDate,
-                updatedRecentDate, updatedDescription, updatedTags);
+                updatedRecentDate, updatedDescription, updatedTags, updatedReminders);
     }
 
     /**

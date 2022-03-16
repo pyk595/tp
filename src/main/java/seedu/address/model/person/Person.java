@@ -31,34 +31,36 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private ReminderList reminderList;
 
+//    /**
+//     * Every field must be present and not null.
+//     */
+//    public Person(Name name, Phone phone, Email email, Address address, BirthDate birthDate, RecentDate contactedDate,
+//                  Description contactedDesc, Set<Tag> tags) {
+//        requireAllNonNull(name, phone, email, address, birthDate, contactedDate, contactedDesc);
+//
+//        this.name = name;
+//        this.phone = phone;
+//        this.email = email;
+//        this.address = address;
+//        this.contactedDate = contactedDate;
+//        this.contactedDesc = contactedDesc;
+//        this.birthDate = birthDate;
+//        this.tags.addAll(tags);
+//        this.reminderList = new ReminderList();
+//    }
+
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. A constructor including the reminder.
      */
     public Person(Name name, Phone phone, Email email, Address address, BirthDate birthDate, RecentDate contactedDate,
-                  Description contactedDesc, Set<Tag> tags) {
+                  Description contactedDesc, Set<Tag> tags, ReminderList reminderList) {
         requireAllNonNull(name, phone, email, address, birthDate, contactedDate, contactedDesc);
-
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.contactedDate = contactedDate;
         this.contactedDesc = contactedDesc;
-        this.birthDate = birthDate;
-        this.tags.addAll(tags);
-        this.reminderList = new ReminderList();
-    }
-
-    /**
-     * Every field must be present and not null. A constructor including the reminder.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, BirthDate birthDate, Set<Tag> tags,
-                  ReminderList reminderList) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
         this.birthDate = birthDate;
         this.tags.addAll(tags);
         this.reminderList = reminderList;
