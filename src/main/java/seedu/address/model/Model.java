@@ -13,6 +13,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS_WITH_BIRTHDAY_TODAY = person -> person.isBirthdayToday();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -78,6 +79,11 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    /**
+     * Returns the number of persons with the filtered predicate.
+     */
+    int getFilteredPersonListSize();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

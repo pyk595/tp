@@ -74,6 +74,10 @@ public class Person {
         return birthDate;
     }
 
+    public boolean isBirthdayToday() {
+        return this.birthDate.isToday();
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
