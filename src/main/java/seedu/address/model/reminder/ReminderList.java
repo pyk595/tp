@@ -1,8 +1,8 @@
 package seedu.address.model.reminder;
 
-import seedu.address.model.date.ReminderDate;
-
 import java.util.PriorityQueue;
+
+import seedu.address.model.date.ReminderDate;
 
 /**
  * Represents a list of reminders.

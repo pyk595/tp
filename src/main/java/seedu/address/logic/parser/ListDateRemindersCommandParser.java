@@ -1,15 +1,15 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.ListDateRemindersCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.date.ReminderDate;
-
-import java.time.LocalDate;
-
 import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
+
+import java.time.LocalDate;
+
+import seedu.address.logic.commands.ListDateRemindersCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.date.ReminderDate;
 
 /**
  * Parses input arguments and creates a new ListDateRemindersCommand object.

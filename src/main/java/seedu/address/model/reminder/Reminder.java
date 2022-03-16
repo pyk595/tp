@@ -1,12 +1,11 @@
 package seedu.address.model.reminder;
 
-import seedu.address.model.date.DocumentedDate;
-import seedu.address.model.date.ReminderDate;
+import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import seedu.address.model.date.DocumentedDate;
+import seedu.address.model.date.ReminderDate;
 
 /**
  * Represents a reminder given to a contact in the address book.
