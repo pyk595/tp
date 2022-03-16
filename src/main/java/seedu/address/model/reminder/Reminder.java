@@ -13,7 +13,7 @@ import seedu.address.model.date.ReminderDate;
 public class Reminder implements Comparable<Reminder> {
 
     public static final String MESSAGE_CONSTRAINTS = "Reminder descriptions should be alphanumeric";
-    private static final Reminder EMPTY_REMINDER = new Reminder(new ReminderDescription(""),
+    private static final Reminder EMPTY_REMINDER = new Reminder(new ReminderDescription("Default reminder"),
             new ReminderDate(LocalDate.now()));
 
     private final ReminderDescription reminderDescription;
@@ -45,6 +45,9 @@ public class Reminder implements Comparable<Reminder> {
         return this.date.equals(comparedDate);
     }
 
+    /**
+     * Creates an empty Reminder object.
+     */
     public static Reminder empty() {
         return EMPTY_REMINDER;
     }
@@ -60,5 +63,10 @@ public class Reminder implements Comparable<Reminder> {
 
     public ReminderDescription getDescription() {
         return reminderDescription;
+    }
+
+    @Override
+    public String toString() {
+        return this.reminderDescription.toString();
     }
 }

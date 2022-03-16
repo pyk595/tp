@@ -15,5 +15,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_CONTACTED_DATE = new Prefix("d/");
     public static final Prefix PREFIX_CONTACTED_DESC = new Prefix("des/");
     public static final Prefix PREFIX_REMINDER_DESCRIPTION = new Prefix("r/");
-    public static final Prefix PREFIX_REMINDER_DATE = new Prefix("d/");
+    public static final Prefix PREFIX_REMINDER_DATE = new Prefix("rd/");
 }
