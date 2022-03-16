@@ -36,7 +36,7 @@ public class DeleteReminderCommand extends Command {
             + PREFIX_REMINDER_DESCRIPTION + "REMINDER\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_REMINDER_DESCRIPTION + "meeting";
-    public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Added reminder: %1$s";
+    public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Deleted reminder: %1$s";
 
     private final Index index;
     private final ReminderDescription reminderDescription;

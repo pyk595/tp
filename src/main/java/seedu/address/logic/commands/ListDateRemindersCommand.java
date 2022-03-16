@@ -50,6 +50,7 @@ public class ListDateRemindersCommand extends Command {
 
                 output.append(String.format("%1$d. %2$s (%3$s)\n", counter, reminder.toString(),
                         person.getName().toString()));
+                counter++;
             }
         }
 

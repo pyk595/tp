@@ -32,7 +32,7 @@ public class DeleteReminderCommandParser implements Parser<DeleteReminderCommand
         ReminderDescription reminderDescription;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_REMINDER_DESCRIPTION)
-                || !argMultimap.getPreamble().isEmpty()) {
+                || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteReminderCommand.MESSAGE_USAGE));
         }

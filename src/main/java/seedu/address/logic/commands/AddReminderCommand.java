@@ -41,7 +41,7 @@ public class AddReminderCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_REMINDER_DESCRIPTION + "meeting "
             + PREFIX_REMINDER_DATE + new DocumentedDate(LocalDate.of(2022, 01, 01)).toString();
-    public static final String MESSAGE_ADD_REMINDER_SUCCESS = "Added reminder: %1$s";
+    public static final String MESSAGE_ADD_REMINDER_SUCCESS = "Added reminder %1$s for %2$s";
 
     private final Index index;
     private final Reminder reminder;
@@ -105,6 +105,6 @@ public class AddReminderCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_ADD_REMINDER_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_ADD_REMINDER_SUCCESS, this.reminder, editedPerson.getName()));
     }
 }

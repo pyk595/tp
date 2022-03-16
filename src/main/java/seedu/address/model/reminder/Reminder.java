@@ -45,13 +45,6 @@ public class Reminder implements Comparable<Reminder> {
         return this.date.equals(comparedDate);
     }
 
-    /**
-     * Creates an empty Reminder object.
-     */
-    public static Reminder empty() {
-        return EMPTY_REMINDER;
-    }
-
     @Override
     public int compareTo(Reminder otherReminder) {
         if (this.isSameDateAs(otherReminder.date)) {
@@ -67,6 +60,6 @@ public class Reminder implements Comparable<Reminder> {
 
     @Override
     public String toString() {
-        return this.reminderDescription.toString();
+        return String.format("%1$s(%2$s)", this.reminderDescription.toString(), this.date.toString());
     }
 }
