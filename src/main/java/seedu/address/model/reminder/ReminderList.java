@@ -63,7 +63,7 @@ public class ReminderList {
                 break;
             }
         }
-        
+
         if (reminderFound.getDescription().equals(reminderDescription)) {
             return reminderFound;
         } else {
