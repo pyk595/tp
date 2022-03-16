@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.date.BirthDate;
+import seedu.address.model.date.RecentDate;
 import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 
@@ -24,6 +25,8 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final RecentDate contactedDate;
+    private final Description contactedDesc;
     private final BirthDate birthDate;
     private final Set<Tag> tags = new HashSet<>();
     private ReminderList reminderList;
@@ -31,12 +34,16 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, BirthDate birthDate, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, BirthDate birthDate, RecentDate contactedDate,
+                  Description contactedDesc, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, birthDate, contactedDate, contactedDesc);
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.contactedDate = contactedDate;
+        this.contactedDesc = contactedDesc;
         this.birthDate = birthDate;
         this.tags.addAll(tags);
         this.reminderList = new ReminderList();
@@ -71,6 +78,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public RecentDate getContactedDate() {
+        return contactedDate;
+    }
+
+    public Description getContactedDesc() {
+        return contactedDesc;
     }
 
     public BirthDate getBirthDate() {
@@ -152,7 +167,11 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; birthday: ")
-                .append(getBirthDate());
+                .append(getBirthDate())
+                .append("; Last Contacted: ")
+                .append(getContactedDate())
+                .append("; Description of Last Contacted: ")
+                .append(getContactedDesc());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
