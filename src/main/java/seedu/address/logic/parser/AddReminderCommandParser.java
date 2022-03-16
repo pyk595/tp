@@ -43,7 +43,8 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            reminderDescription = ParserUtil.parseReminderDescription(argMultimap.getValue(PREFIX_REMINDER_DESCRIPTION).get());
+            reminderDescription = ParserUtil.parseReminderDescription(
+                    argMultimap.getValue(PREFIX_REMINDER_DESCRIPTION).get());
             reminderDate = ParserUtil.parseReminderDate(argMultimap.getValue(PREFIX_REMINDER_DATE).get());
         } catch (ParseException pe) {
             throw new ParseException(format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE), pe);

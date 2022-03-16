@@ -29,23 +29,22 @@ import seedu.address.model.tag.Tag;
  */
 public class DeleteReminderCommand extends Command {
 
-    private final Index index;
-    private final ReminderDescription reminderDescription;
-
     public static final String COMMAND_WORD = "forget";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a reminder from an existing contact, "
             + "as specified by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_REMINDER_DESCRIPTION + "REMINDER\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_REMINDER_DESCRIPTION + "meeting";
-
     public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Added reminder: %1$s";
+
+    private final Index index;
+    private final ReminderDescription reminderDescription;
 
     /**
      * Creates an DeleteReminderCommand to delete the specified {@code ReminderDescription} from the
      * specified {@code Person}
+     *
      * @param index of the person
      * @param reminderDescription of the reminder to be deleted.
      */

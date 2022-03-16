@@ -11,13 +11,13 @@ import seedu.address.model.date.ReminderDate;
  * Represents a reminder given to a contact in the address book.
  */
 public class Reminder implements Comparable<Reminder> {
-    private final ReminderDescription reminderDescription;
-    private final ReminderDate date;
 
     public static final String MESSAGE_CONSTRAINTS = "Reminder descriptions should be alphanumeric";
-
     private static final Reminder EMPTY_REMINDER = new Reminder(new ReminderDescription(""),
             new ReminderDate(LocalDate.now()));
+
+    private final ReminderDescription reminderDescription;
+    private final ReminderDate date;
 
     /**
      * Constructs a {@code Reminder}

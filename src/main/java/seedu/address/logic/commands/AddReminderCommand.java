@@ -31,11 +31,7 @@ import seedu.address.model.tag.Tag;
  */
 public class AddReminderCommand extends Command {
 
-    private final Index index;
-    private final Reminder reminder;
-
     public static final String COMMAND_WORD = "remind";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to an existing contact, "
             + "as specified by the index number used in the displayed person list. The reminder will be replace "
             + "any existing reminder. If a date is not specified, it will register today as the reminder date.\n"
@@ -45,8 +41,10 @@ public class AddReminderCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_REMINDER_DESCRIPTION + "meeting "
             + PREFIX_REMINDER_DATE + new DocumentedDate(LocalDate.of(2022, 01, 01)).toString();
-
     public static final String MESSAGE_ADD_REMINDER_SUCCESS = "Added reminder: %1$s";
+
+    private final Index index;
+    private final Reminder reminder;
 
     /**
      * Constructs an {@code AddReminderCommand} with the given {@code Index} and {@code Reminder}.

@@ -33,14 +33,17 @@ public class DeleteReminderCommandParser implements Parser<DeleteReminderCommand
 
         if (!arePrefixesPresent(argMultimap, PREFIX_REMINDER_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteReminderCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteReminderCommand.MESSAGE_USAGE));
         }
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            reminderDescription = ParserUtil.parseReminderDescription(argMultimap.getValue(PREFIX_REMINDER_DESCRIPTION).get());
+            reminderDescription = ParserUtil.parseReminderDescription(
+                    argMultimap.getValue(PREFIX_REMINDER_DESCRIPTION).get());
         } catch (seedu.address.logic.parser.exceptions.ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddReminderCommand.MESSAGE_USAGE), pe);
         }
 
         return new DeleteReminderCommand(index, reminderDescription);
