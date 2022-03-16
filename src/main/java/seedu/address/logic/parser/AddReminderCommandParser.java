@@ -29,22 +29,22 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_REMINDER,
-                        PREFIX_DATE);
+                        PREFIX_REMINDER_DESCRIPTION,
+                        PREFIX_REMINDER_DATE);
 
         Index index;
         ReminderDescription reminderDescription;
         ReminderDate reminderDate;
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_REMINDER, PREFIX_DATE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_REMINDER_DESCRIPTION, PREFIX_REMINDER_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE));
         }
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            reminderDescription = ParserUtil.parseReminderDescription(argMultimap.getValue(PREFIX_REMINDER).get());
-            reminderDate = ParserUtil.parseReminderDate(argMultimap.getValue(PREFIX_DATE).get());
+            reminderDescription = ParserUtil.parseReminderDescription(argMultimap.getValue(PREFIX_REMINDER_DESCRIPTION).get());
+            reminderDate = ParserUtil.parseReminderDate(argMultimap.getValue(PREFIX_REMINDER_DATE).get());
         } catch (ParseException pe) {
             throw new ParseException(format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE), pe);
         }

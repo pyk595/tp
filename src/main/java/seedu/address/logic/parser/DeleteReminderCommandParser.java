@@ -8,9 +8,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddReminderCommand;
 import seedu.address.logic.commands.DeleteReminderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.date.ReminderDate;
 import seedu.address.model.reminder.ReminderDescription;
-import seedu.address.model.reminder.ReminderList;
 
 import java.util.stream.Stream;
 
@@ -28,19 +26,19 @@ public class DeleteReminderCommandParser implements Parser<DeleteReminderCommand
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_REMINDER);
+                        PREFIX_REMINDER_DESCRIPTION);
 
         Index index;
         ReminderDescription reminderDescription;
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_REMINDER)
+        if (!arePrefixesPresent(argMultimap, PREFIX_REMINDER_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteReminderCommand.MESSAGE_USAGE));
         }
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            reminderDescription = ParserUtil.parseReminderDescription(argMultimap.getValue(PREFIX_REMINDER).get());
+            reminderDescription = ParserUtil.parseReminderDescription(argMultimap.getValue(PREFIX_REMINDER_DESCRIPTION).get());
         } catch (seedu.address.logic.parser.exceptions.ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE), pe);
         }

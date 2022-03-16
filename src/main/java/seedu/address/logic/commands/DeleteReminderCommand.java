@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
@@ -35,9 +35,9 @@ public class DeleteReminderCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a reminder from an existing contact, "
             + "as specified by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_REMINDER + "REMINDER\n"
+            + PREFIX_REMINDER_DESCRIPTION + "REMINDER\n"
             + "Example: " + COMMAND_WORD + " 2 "
-            + PREFIX_REMINDER + "meeting";
+            + PREFIX_REMINDER_DESCRIPTION + "meeting";
 
     public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Added reminder: %1$s";
 

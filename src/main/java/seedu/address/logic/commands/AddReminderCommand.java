@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
@@ -34,11 +34,11 @@ public class AddReminderCommand extends Command {
             + "as specified by the index number used in the displayed person list. The reminder will be replace "
             + "any existing reminder. If a date is not specified, it will register today as the reminder date.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_REMINDER + "REMINDER "
-            + "[" + PREFIX_DATE + "DATE]\n"
+            + PREFIX_REMINDER_DESCRIPTION + "REMINDER "
+            + "[" + PREFIX_REMINDER_DATE + "DATE]\n"
             + "Example: " + COMMAND_WORD + " 2 "
-            + PREFIX_REMINDER + "meeting "
-            + PREFIX_DATE + new DocumentedDate(LocalDate.of(2022, 01, 01)).toString();
+            + PREFIX_REMINDER_DESCRIPTION + "meeting "
+            + PREFIX_REMINDER_DATE + new DocumentedDate(LocalDate.of(2022, 01, 01)).toString();
 
     public static final String MESSAGE_ADD_REMINDER_SUCCESS = "Added reminder: %1$s";
 
