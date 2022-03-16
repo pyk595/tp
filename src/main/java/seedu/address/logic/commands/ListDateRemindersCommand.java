@@ -10,7 +10,7 @@ import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderList;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
 
 /**
  * Lists all reminders happening on a specified date.
@@ -20,9 +20,9 @@ public class ListDateRemindersCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all reminders on the specified date. "
             + "Parameters: "
-            + PREFIX_DATE + "DATE\n"
+            + PREFIX_REMINDER_DATE + "DATE\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DATE + "2022-03-15\n";
+            + PREFIX_REMINDER_DATE + "2022-03-15\n";
 
     public static final String MESSAGE_SUCCESS = "Listed all reminders on the date %1$s:\n %2$s";
 

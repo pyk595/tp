@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
 
 /**
  * Parses input arguments and creates a new ListDateRemindersCommand object.
@@ -25,10 +25,10 @@ public class ListDateRemindersCommandParser implements Parser<ListDateRemindersC
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_DATE);
+                        PREFIX_REMINDER_DATE);
         ReminderDate reminderDate;
 
-        if (!argMultimap.getValue(PREFIX_DATE).isPresent()) {
+        if (!argMultimap.getValue(PREFIX_REMINDER_DATE).isPresent()) {
             reminderDate = new ReminderDate(LocalDate.now());
         } else {
             try {
