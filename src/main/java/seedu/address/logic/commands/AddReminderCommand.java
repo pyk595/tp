@@ -83,8 +83,7 @@ public class AddReminderCommand extends Command {
     }
 
     /**
-     * Adds a reminder to an existing person in the address book, if the reminder does not exist.
-     * If there is an existing reminder, the newly added reminder will replace the previous one.
+     * Adds a reminder to an existing person in the address book.
      *
      * @param model {@code Model} which the command should operate on.
      * @return the command result after the command execution.

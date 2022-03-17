@@ -21,6 +21,7 @@ public class Reminder implements Comparable<Reminder> {
 
     /**
      * Constructs a {@code Reminder}
+     *
      * @param reminderDescription Description of the reminder
      * @param date the date which the reminder is on
      */

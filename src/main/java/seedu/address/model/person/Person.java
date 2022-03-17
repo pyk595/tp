@@ -33,6 +33,15 @@ public class Person {
 
     /**
      * Every field must be present and not null. A constructor including the reminder.
+     * @param name of the person
+     * @param phone number of the person
+     * @param email of the person
+     * @param address of the person
+     * @param birthDate of the person
+     * @param contactedDate last contacted date with this person
+     * @param contactedDesc last contacted description with this person
+     * @param tags of the person
+     * @param reminderList associated with this person
      */
     public Person(Name name, Phone phone, Email email, Address address, BirthDate birthDate, RecentDate contactedDate,
                   Description contactedDesc, Set<Tag> tags, ReminderList reminderList) {

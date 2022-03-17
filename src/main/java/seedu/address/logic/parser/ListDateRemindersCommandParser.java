@@ -17,8 +17,9 @@ import seedu.address.model.date.ReminderDate;
 public class ListDateRemindersCommandParser implements Parser<ListDateRemindersCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the ListDateRemindersCommand
+     * Parses the given {@code String} of arguments in the context of the {@code ListDateRemindersCommand}
      * and returns a ListDateRemindersCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListDateRemindersCommand parse(String args) throws ParseException {
