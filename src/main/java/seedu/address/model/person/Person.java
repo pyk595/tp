@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.model.date.BirthDate;
 import seedu.address.model.date.RecentDate;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,14 +29,14 @@ public class Person {
     private final Description contactedDesc;
     private final BirthDate birthDate;
     private final Set<Tag> tags = new HashSet<>();
+    private ReminderList reminderList;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. A constructor including the reminder.
      */
     public Person(Name name, Phone phone, Email email, Address address, BirthDate birthDate, RecentDate contactedDate,
-                  Description contactedDesc, Set<Tag> tags) {
+                  Description contactedDesc, Set<Tag> tags, ReminderList reminderList) {
         requireAllNonNull(name, phone, email, address, birthDate, contactedDate, contactedDesc);
-
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +45,7 @@ public class Person {
         this.contactedDesc = contactedDesc;
         this.birthDate = birthDate;
         this.tags.addAll(tags);
+        this.reminderList = reminderList;
     }
 
     public Name getName() {
@@ -84,6 +86,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public ReminderList getReminderList() {
+        return reminderList;
     }
 
     /**

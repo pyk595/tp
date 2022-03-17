@@ -12,11 +12,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.date.BirthDate;
 import seedu.address.model.date.DocumentedDate;
 import seedu.address.model.date.RecentDate;
+import seedu.address.model.date.ReminderDate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -167,5 +169,35 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code ReminderDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static ReminderDescription parseReminderDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!ReminderDescription.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new ReminderDescription(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String reminderDate} into a {@code ReminderDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static ReminderDate parseReminderDate(String reminderDate) throws ParseException {
+        requireNonNull(reminderDate);
+        String trimmedDate = reminderDate.trim();
+        if (!ReminderDate.isValidDate(trimmedDate)) {
+            throw new ParseException(DocumentedDate.MESSAGE_CONSTRAINTS);
+        }
+        return ReminderDate.parse(trimmedDate);
     }
 }

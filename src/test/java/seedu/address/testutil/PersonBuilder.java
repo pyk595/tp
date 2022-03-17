@@ -11,6 +11,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -35,6 +36,7 @@ public class PersonBuilder {
     private Description description;
     private BirthDate birthDate;
     private Set<Tag> tags;
+    private ReminderList reminderList;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -48,6 +50,7 @@ public class PersonBuilder {
         description = new Description(DEFAULT_DESCRIPTION);
         birthDate = BirthDate.parse(DEFAULT_BIRTHDATE);
         tags = new HashSet<>();
+        reminderList = new ReminderList();
     }
 
     /**
@@ -62,6 +65,7 @@ public class PersonBuilder {
         date = personToCopy.getContactedDate();
         description = personToCopy.getContactedDesc();
         tags = new HashSet<>(personToCopy.getTags());
+        reminderList = new ReminderList(personToCopy.getReminderList());
     }
 
     /**
@@ -160,7 +164,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, birthDate, date, description, tags);
+        return new Person(name, phone, email, address, birthDate, date, description, tags, reminderList);
     }
 
 }

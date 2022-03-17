@@ -27,6 +27,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -105,9 +106,10 @@ public class EditCommand extends Command {
         RecentDate updatedDate = personToEdit.getContactedDate();
         Description updatedDescription = personToEdit.getContactedDesc();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        ReminderList updatedReminderList = personToEdit.getReminderList();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedBirthDate, updatedDate, updatedDescription, updatedTags);
+                updatedBirthDate, updatedDate, updatedDescription, updatedTags, updatedReminderList);
     }
 
     @Override

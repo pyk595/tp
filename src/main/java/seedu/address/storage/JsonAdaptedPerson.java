@@ -19,6 +19,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -144,8 +145,10 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        final ReminderList modelReminderList = new ReminderList();
+
         return new Person(modelName, modelPhone, modelEmail,
-                modelAddress, modelBirthDate, modelDate, modelDescription, modelTags);
+                modelAddress, modelBirthDate, modelDate, modelDescription, modelTags, modelReminderList);
     }
 
 }
