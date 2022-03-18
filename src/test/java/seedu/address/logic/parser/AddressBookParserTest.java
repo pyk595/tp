@@ -20,10 +20,10 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddContactedCommand;
 import seedu.address.logic.commands.AddTagCommand;
 import seedu.address.logic.commands.BirthdayCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.ContactedCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteTagCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -34,8 +34,7 @@ import seedu.address.logic.commands.HashtagCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.date.RecentDate;
-import seedu.address.model.person.Description;
+import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonWithTagPredicate;
@@ -50,7 +49,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
+        Person person = new PersonBuilder().addDefaultContactedInfo().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
@@ -71,7 +70,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
+        Person person = new PersonBuilder().addDefaultContactedInfo().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
@@ -141,11 +140,11 @@ public class AddressBookParserTest {
     public void parseCommand_contacted() throws Exception {
         final String date = "2020-02-02";
         final String desc = "Meeting";
-        ContactedCommand command = (ContactedCommand) parser.parseCommand(ContactedCommand.COMMAND_WORD + " "
+        AddContactedCommand command = (AddContactedCommand) parser.parseCommand(AddContactedCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " "
                 + PREFIX_CONTACTED_DATE + date + " "
                 + PREFIX_CONTACTED_DESC + desc);
-        assertEquals(new ContactedCommand(INDEX_FIRST_PERSON, RecentDate.parse(date), new Description(desc)), command);
+        assertEquals(new AddContactedCommand(INDEX_FIRST_PERSON, new ContactedInfo(date, desc)), command);
     }
 
     @Test

@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -19,10 +20,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.date.BirthDate;
-import seedu.address.model.date.RecentDate;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -103,13 +103,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         BirthDate updatedBirthDate = editPersonDescriptor.getBirthDate().orElse(personToEdit.getBirthDate());
-        RecentDate updatedDate = personToEdit.getContactedDate();
-        Description updatedDescription = personToEdit.getContactedDesc();
+        ArrayList<ContactedInfo> updatedContactedInfoList = personToEdit.getContactedInfoList();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         ReminderList updatedReminderList = personToEdit.getReminderList();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedBirthDate, updatedDate, updatedDescription, updatedTags, updatedReminderList);
+                updatedBirthDate, updatedContactedInfoList, updatedTags, updatedReminderList);
     }
 
     @Override

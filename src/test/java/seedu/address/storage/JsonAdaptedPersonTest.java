@@ -5,7 +5,6 @@ import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORM
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
-//import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,8 +12,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.date.BirthDate;
-import seedu.address.model.date.RecentDate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -33,9 +32,10 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final String VALID_RECENT_DATE = BENSON.getContactedDate().value;
-    private static final String VALID_RECENT_DESC = BENSON.getContactedDesc().toString();
     private static final String VALID_BIRTHDATE = BENSON.getBirthDate().value;
+    private static final List<JsonAdaptedContactedInfo> VALID_CONTACTED_INFO = BENSON.getContactedInfoList().stream()
+            .map(JsonAdaptedContactedInfo::new)
+            .collect(Collectors.toList());
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -55,8 +55,7 @@ public class JsonAdaptedPersonTest {
                         VALID_EMAIL,
                         VALID_ADDRESS,
                         VALID_BIRTHDATE,
-                        VALID_RECENT_DATE,
-                        VALID_RECENT_DESC,
+                        VALID_CONTACTED_INFO,
                         VALID_TAGS
                 );
 
@@ -73,8 +72,7 @@ public class JsonAdaptedPersonTest {
                         VALID_EMAIL,
                         VALID_ADDRESS,
                         VALID_BIRTHDATE,
-                        VALID_RECENT_DATE,
-                        VALID_RECENT_DESC,
+                        VALID_CONTACTED_INFO,
                         VALID_TAGS
                 );
 
@@ -91,8 +89,7 @@ public class JsonAdaptedPersonTest {
                         VALID_EMAIL,
                         VALID_ADDRESS,
                         VALID_BIRTHDATE,
-                        VALID_RECENT_DATE,
-                        VALID_RECENT_DESC,
+                        VALID_CONTACTED_INFO,
                         VALID_TAGS
                 );
 
@@ -109,8 +106,7 @@ public class JsonAdaptedPersonTest {
                         VALID_EMAIL,
                         VALID_ADDRESS,
                         VALID_BIRTHDATE,
-                        VALID_RECENT_DATE,
-                        VALID_RECENT_DESC,
+                        VALID_CONTACTED_INFO,
                         VALID_TAGS
                 );
 
@@ -128,8 +124,7 @@ public class JsonAdaptedPersonTest {
                         INVALID_EMAIL,
                         VALID_ADDRESS,
                         VALID_BIRTHDATE,
-                        VALID_RECENT_DATE,
-                        VALID_RECENT_DESC,
+                        VALID_CONTACTED_INFO,
                         VALID_TAGS
                 );
 
@@ -146,8 +141,7 @@ public class JsonAdaptedPersonTest {
                         null,
                         VALID_ADDRESS,
                         VALID_BIRTHDATE,
-                        VALID_RECENT_DATE,
-                        VALID_RECENT_DESC,
+                        VALID_CONTACTED_INFO,
                         VALID_TAGS
                 );
 
@@ -164,8 +158,7 @@ public class JsonAdaptedPersonTest {
                         VALID_EMAIL,
                         INVALID_ADDRESS,
                         VALID_BIRTHDATE,
-                        VALID_RECENT_DATE,
-                        VALID_RECENT_DESC,
+                        VALID_CONTACTED_INFO,
                         VALID_TAGS
                 );
 
@@ -182,8 +175,7 @@ public class JsonAdaptedPersonTest {
                         VALID_EMAIL,
                         null,
                         VALID_BIRTHDATE,
-                        VALID_RECENT_DATE,
-                        VALID_RECENT_DESC,
+                        VALID_CONTACTED_INFO,
                         VALID_TAGS
                 );
 
@@ -192,7 +184,10 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidRecentDate_throwsIllegalValueException() {
+    public void toModelType_invalidContactedInfoDate_throwsIllegalValueException() {
+        List<JsonAdaptedContactedInfo> invalidDate = new ArrayList<>(VALID_CONTACTED_INFO);
+        invalidDate.add(new JsonAdaptedContactedInfo(INVALID_RECENT_DATE, "Meet up"));
+
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(
                         VALID_NAME,
@@ -200,17 +195,18 @@ public class JsonAdaptedPersonTest {
                         VALID_EMAIL,
                         VALID_ADDRESS,
                         VALID_BIRTHDATE,
-                        INVALID_RECENT_DATE,
-                        VALID_RECENT_DESC,
+                        invalidDate,
                         VALID_TAGS
                 );
-        String expectedMessage = RecentDate.MESSAGE_CONSTRAINTS;
+        String expectedMessage = ContactedInfo.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
-
     @Test
-    public void toModelType_nullRecentDate_throwsIllegalValueException() {
+    public void toModelType_invalidContactedDescription_throwsIllegalValueException() {
+        List<JsonAdaptedContactedInfo> invalidDesc = new ArrayList<>(VALID_CONTACTED_INFO);
+        invalidDesc.add(new JsonAdaptedContactedInfo("2020-02-02", " "));
+
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(
                         VALID_NAME,
@@ -218,11 +214,10 @@ public class JsonAdaptedPersonTest {
                         VALID_EMAIL,
                         VALID_ADDRESS,
                         VALID_BIRTHDATE,
-                        null,
-                        VALID_RECENT_DESC,
+                        invalidDesc,
                         VALID_TAGS
                 );
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, RecentDate.class.getSimpleName());
+        String expectedMessage = ContactedInfo.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -237,8 +232,7 @@ public class JsonAdaptedPersonTest {
                         VALID_EMAIL,
                         VALID_ADDRESS,
                         VALID_BIRTHDATE,
-                        VALID_RECENT_DATE,
-                        VALID_RECENT_DESC,
+                        VALID_CONTACTED_INFO,
                         invalidTags
                 );
         assertThrows(IllegalValueException.class, person::toModelType);
@@ -253,8 +247,7 @@ public class JsonAdaptedPersonTest {
                         VALID_EMAIL,
                         VALID_ADDRESS,
                         null,
-                        VALID_RECENT_DATE,
-                        VALID_RECENT_DESC,
+                        VALID_CONTACTED_INFO,
                         VALID_TAGS
                 );
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, BirthDate.class.getSimpleName());
@@ -270,8 +263,7 @@ public class JsonAdaptedPersonTest {
                         VALID_EMAIL,
                         VALID_ADDRESS,
                         INVALID_BIRTHDATE,
-                        VALID_RECENT_DATE,
-                        VALID_RECENT_DESC,
+                        VALID_CONTACTED_INFO,
                         VALID_TAGS
                 );
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, BirthDate.class.getSimpleName());
