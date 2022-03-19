@@ -61,7 +61,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             try {
-                emergencyBackupFiles();
+                backupFiles();
             } catch (IOException ioe) {
                 logger.info(FILE_OPS_ERROR_MESSAGE + BACKUP_PATH);
             }
@@ -74,7 +74,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      *
      * @throws IOException if the designated file paths are invalid.
      */
-    public void emergencyBackupFiles() throws IOException {
+    public void backupFiles() throws IOException {
         Files.copy(getAddressBookFilePath(), BACKUP_PATH);
     }
 
@@ -82,7 +82,6 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
         saveAddressBook(addressBook, filePath);
     }
-
 
     /**
      * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
