@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
 
+    private static Path backupAddressBookFilePath = Paths.get("data", "backup.json");
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
 
@@ -49,6 +50,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     public Path getAddressBookFilePath() {
         return addressBookFilePath;
+    }
+
+    public static Path getBackupFilePath() {
+        return backupAddressBookFilePath;
     }
 
     public void setAddressBookFilePath(Path addressBookFilePath) {
