@@ -624,11 +624,13 @@ testers are expected to do more *exploratory* testing.
 ### Saving data
 
 1. Dealing with missing data files
+    1. Remove addressbook.json and the data directory 
     1. Run the jar file 
        
         Expected: The application will automatically generate a data directory and populate addressbook.json with sample data.
     
 1. Dealing with corrupted data files
+    1. Remove some lines from addressbook.json 
     1. Run the jar file
     
         Expected: The application will make a copy of the current addressbook.json in backup.json and continue running with an empty addressbook.json. If changes are made, addressbook.json will be overwritten.
