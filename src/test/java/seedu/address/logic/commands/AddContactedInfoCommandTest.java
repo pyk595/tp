@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTACTED_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTACTED_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -55,6 +56,7 @@ public class AddContactedInfoCommandTest {
 
     @Test
     public void execute_validIndex_success() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
         ContactedInfo contactedInfo = new ContactedInfo(VALID_CONTACTED_DATE_AMY, VALID_CONTACTED_DESC_AMY);
 
         Person personToAddContactedLog = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
