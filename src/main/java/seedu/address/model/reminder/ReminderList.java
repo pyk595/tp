@@ -30,6 +30,7 @@ public class ReminderList {
 
     /**
      * Adds a Reminder object to the current list.
+     *
      * @param reminder to be added.
      * @return the updated ReminderList
      */
@@ -40,6 +41,7 @@ public class ReminderList {
 
     /**
      * Deletes a Reminder object from the current list.
+     *
      * @param reminder to be deleted.
      * @return the updated ReminderList
      */
@@ -50,6 +52,7 @@ public class ReminderList {
 
     /**
      * Finds a Reminder object to the current list.
+     *
      * @param reminderDescription to search.
      * @return the Reminder found. If there is no matching searches, returns null.
      */
@@ -73,6 +76,7 @@ public class ReminderList {
 
     /**
      * Finds all the Reminder objects with the same ReminderDate as the parameter.
+     *
      * @param reminderDate to check for
      * @return a ReminderList with Reminder objects happening on the same date as the provided date.
      */

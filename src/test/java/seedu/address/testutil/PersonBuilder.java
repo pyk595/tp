@@ -1,12 +1,13 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.date.BirthDate;
-import seedu.address.model.date.RecentDate;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -24,16 +25,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_RECENTDATE = "2020-02-02";
-    public static final String DEFAULT_DESCRIPTION = "Meet up";
     public static final String DEFAULT_BIRTHDATE = "2000-01-01";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-    private RecentDate date;
-    private Description description;
+    private ArrayList<ContactedInfo> contactedInfo;
     private BirthDate birthDate;
     private Set<Tag> tags;
     private ReminderList reminderList;
@@ -46,9 +44,9 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        date = RecentDate.parse(DEFAULT_RECENTDATE);
-        description = new Description(DEFAULT_DESCRIPTION);
         birthDate = BirthDate.parse(DEFAULT_BIRTHDATE);
+        contactedInfo = new ArrayList<>();
+        //contactedInfo.add(ContactedInfo.getDefaultContactedInfo());
         tags = new HashSet<>();
         reminderList = new ReminderList();
     }
@@ -62,8 +60,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         birthDate = personToCopy.getBirthDate();
-        date = personToCopy.getContactedDate();
-        description = personToCopy.getContactedDesc();
+        contactedInfo = personToCopy.getContactedInfoList();
         tags = new HashSet<>(personToCopy.getTags());
         reminderList = new ReminderList(personToCopy.getReminderList());
     }
@@ -129,18 +126,30 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Date} of the {@code Date} that we are building.
+     * Parses the {@code contactedInfo} into a {@code ArrayList<ContactedInfo>}
+     * and add it to the ContactedInfo ArrayList of {@code Person}
+     * that we are building.
+     *
+     * @param contactedInfo the contacted info to add to the contacted info set.
+     * @return this {@code PersonBuilder}.
      */
-    public PersonBuilder withDate(String date) {
-        this.date = RecentDate.parse(date);
+    public PersonBuilder addContactedInfo(String ... contactedInfo) {
+        ArrayList<ContactedInfo> newArrLst = new ArrayList<>(this.contactedInfo);
+        newArrLst.addAll(SampleDataUtil.getContactedInfoList(contactedInfo));
+        Collections.sort(newArrLst);
+        this.contactedInfo = newArrLst;
         return this;
     }
 
     /**
-     * Sets the {@code Description} of the {@code Description} that we are building.
+     * Returns the default contacted info.
+     *
+     * @return this {@code PersonBuilder}.
      */
-    public PersonBuilder withDescription(String description) {
-        this.description = new Description(description);
+    public PersonBuilder addDefaultContactedInfo() {
+        ArrayList<ContactedInfo> newArrLst = new ArrayList<>(this.contactedInfo);
+        newArrLst.add(ContactedInfo.getDefaultContactedInfo());
+        this.contactedInfo = newArrLst;
         return this;
     }
 
@@ -164,7 +173,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, birthDate, date, description, tags, reminderList);
+        return new Person(name, phone, email, address, birthDate, contactedInfo, tags, reminderList);
     }
 
 }

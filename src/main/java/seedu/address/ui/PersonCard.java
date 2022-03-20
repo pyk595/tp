@@ -39,7 +39,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label contactedDate;
+    private Label contactedInfo;
     @FXML
     private Label birthDate;
 
@@ -58,10 +58,7 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         birthDate.setText(person.getBirthDate().toString());
-        contactedDate.setText("recently contacted at: "
-                + person.getContactedDate().toString()
-                + " description: "
-                + person.getContactedDesc().value);
+        contactedInfo.setText(person.getContactedInfoList().get(0).toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

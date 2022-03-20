@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -13,10 +14,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.date.BirthDate;
-import seedu.address.model.date.RecentDate;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -104,13 +104,12 @@ public class AddTagCommand extends Command {
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
         BirthDate updatedBirthDate = personToEdit.getBirthDate();
-        RecentDate updatedRecentDate = personToEdit.getContactedDate();
-        Description updatedDescription = personToEdit.getContactedDesc();
+        ArrayList<ContactedInfo> updatedContactedInfo = personToEdit.getContactedInfoList();
         Set<Tag> updatedTags = addTagToSet(personToEdit.getTags(), tagToAdd);
         ReminderList updatedReminders = personToEdit.getReminderList();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthDate,
-                updatedRecentDate, updatedDescription, updatedTags, updatedReminders);
+                updatedContactedInfo, updatedTags, updatedReminders);
     }
 
     /**

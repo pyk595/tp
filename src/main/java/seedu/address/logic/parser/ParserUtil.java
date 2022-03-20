@@ -9,12 +9,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.date.BirthDate;
 import seedu.address.model.date.DocumentedDate;
-import seedu.address.model.date.RecentDate;
 import seedu.address.model.date.ReminderDate;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -102,31 +101,20 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String} date into a {@code RecentDate}.
+     * Parses {@code String date} and {@code String description} into a {@code ContactedInfo}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code date} is invalid.
+     * @throws ParseException if the given {@code String date} or {@code String description} is invalid.
      */
-    public static RecentDate parseContactedDate(String date) throws ParseException {
+    public static ContactedInfo parseContactedInfo(String date, String description) throws ParseException {
         requireNonNull(date);
-        String trimmedDate = date.trim();
-        if (!DocumentedDate.isValidDate(trimmedDate)) {
-            throw new ParseException(DocumentedDate.MESSAGE_CONSTRAINTS);
-        }
-        return RecentDate.parse(trimmedDate);
-    }
-
-    /**
-     * Parses a {@code String tag} into a {@code Description}.
-     * Leading and trailing whitespaces will be trimmed.
-     */
-    public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
+        String trimmedDate = date.trim();
         String trimmedDescription = description.trim();
-        if (!Description.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        if (!ContactedInfo.isValidContactedInfo(trimmedDate, trimmedDescription)) {
+            throw new ParseException(ContactedInfo.MESSAGE_CONSTRAINTS);
         }
-        return new Description(trimmedDescription);
+        return new ContactedInfo(trimmedDate, trimmedDescription);
     }
 
     /**
