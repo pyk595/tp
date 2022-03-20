@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddContactedCommand;
+import seedu.address.logic.commands.AddContactedInfoCommand;
 import seedu.address.logic.commands.AddTagCommand;
 import seedu.address.logic.commands.BirthdayCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -140,11 +140,12 @@ public class AddressBookParserTest {
     public void parseCommand_contacted() throws Exception {
         final String date = "2020-02-02";
         final String desc = "Meeting";
-        AddContactedCommand command = (AddContactedCommand) parser.parseCommand(AddContactedCommand.COMMAND_WORD + " "
+        AddContactedInfoCommand command = (AddContactedInfoCommand) parser.parseCommand(
+                AddContactedInfoCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " "
                 + PREFIX_CONTACTED_DATE + date + " "
                 + PREFIX_CONTACTED_DESC + desc);
-        assertEquals(new AddContactedCommand(INDEX_FIRST_PERSON, new ContactedInfo(date, desc)), command);
+        assertEquals(new AddContactedInfoCommand(INDEX_FIRST_PERSON, new ContactedInfo(date, desc)), command);
     }
 
     @Test

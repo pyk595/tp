@@ -77,8 +77,8 @@ public class ContactedInfo implements Comparable<ContactedInfo> {
      */
     @Override
     public String toString() {
-        return "Recently Contacted: " + recentDate.toString()
-                + " Description: " + description.toString();
+        return "Last contacted: " + description.toString()
+                + " (" + recentDate.toString() + ")";
     }
 
     @Override

@@ -6,14 +6,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACTED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACTED_DESC;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddContactedCommand;
+import seedu.address.logic.commands.AddContactedInfoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contactedinfo.ContactedInfo;
 
 /**
  * Parses input arguments and creates a new {@code AddContactedCommandParser} object
  */
-public class AddContactedCommandParser implements Parser<AddContactedCommand> {
+public class AddContactedCommandParser implements Parser<AddContactedInfoCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code AddContactedCommand}
@@ -22,7 +22,7 @@ public class AddContactedCommandParser implements Parser<AddContactedCommand> {
      * @return a {@code AddContactedCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    public AddContactedCommand parse(String args) throws ParseException {
+    public AddContactedInfoCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CONTACTED_DATE, PREFIX_CONTACTED_DESC);
 
@@ -32,12 +32,12 @@ public class AddContactedCommandParser implements Parser<AddContactedCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddContactedCommand.MESSAGE_USAGE), ive);
+                    AddContactedInfoCommand.MESSAGE_USAGE), ive);
         }
 
         ContactedInfo contactedInfo = ParserUtil.parseContactedInfo(argMultimap.getValue(PREFIX_CONTACTED_DATE).get(),
                 argMultimap.getValue(PREFIX_CONTACTED_DESC).get());
 
-        return new AddContactedCommand(index, contactedInfo);
+        return new AddContactedInfoCommand(index, contactedInfo);
     }
 }

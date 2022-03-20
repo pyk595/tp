@@ -27,7 +27,7 @@ import seedu.address.testutil.PersonBuilder;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
  */
-public class AddContactedCommandTest {
+public class AddContactedInfoCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -35,9 +35,9 @@ public class AddContactedCommandTest {
     public void constructor_anyFieldsNull_throwsNullPointerException() {
 
         ContactedInfo contactedInfo = ContactedInfo.getDefaultContactedInfo();
-        assertThrows(NullPointerException.class, () -> new AddContactedCommand(null, contactedInfo));
+        assertThrows(NullPointerException.class, () -> new AddContactedInfoCommand(null, contactedInfo));
         assertThrows(NullPointerException.class, (
-                ) -> new AddContactedCommand(INDEX_FIRST_PERSON, null));
+                ) -> new AddContactedInfoCommand(INDEX_FIRST_PERSON, null));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class AddContactedCommandTest {
         // ensures that outOfBoundIndex is out bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() >= model.getAddressBook().getPersonList().size());
 
-        AddContactedCommand contactedCommand = new AddContactedCommand(
+        AddContactedInfoCommand contactedCommand = new AddContactedInfoCommand(
                 outOfBoundIndex, new ContactedInfo(VALID_CONTACTED_DATE_AMY, VALID_CONTACTED_DESC_AMY));
 
         assertCommandFailure(contactedCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -55,32 +55,32 @@ public class AddContactedCommandTest {
 
     @Test
     public void execute_validIndex_success() {
-        // showPersonAtIndex(model, INDEX_FIRST_PERSON);
         ContactedInfo contactedInfo = new ContactedInfo(VALID_CONTACTED_DATE_AMY, VALID_CONTACTED_DESC_AMY);
 
         Person personToAddContactedLog = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person expectedPerson = new PersonBuilder(personToAddContactedLog)
                 .addContactedInfo(VALID_CONTACTED_DATE_AMY + " " + VALID_CONTACTED_DESC_AMY).build();
 
-        AddContactedCommand contactedCommand = new AddContactedCommand(INDEX_FIRST_PERSON,
+        AddContactedInfoCommand contactedCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON,
                 contactedInfo);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()),
                 expectedPerson);
 
-        String expectedMessage = String.format(AddContactedCommand.MESSAGE_ADD_CONTACTEDINFO_SUCCESS, expectedPerson);
+        String expectedMessage = String.format(
+                AddContactedInfoCommand.MESSAGE_ADD_CONTACTEDINFO_SUCCESS, expectedPerson);
 
         assertCommandSuccess(contactedCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void equals() {
-        final AddContactedCommand standardCommand = new AddContactedCommand(INDEX_FIRST_PERSON,
+        final AddContactedInfoCommand standardCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON,
                 new ContactedInfo(VALID_CONTACTED_DATE_AMY, VALID_CONTACTED_DESC_AMY));
 
         // same values -> returns true
-        AddContactedCommand commandWithSameValues = new AddContactedCommand(INDEX_FIRST_PERSON,
+        AddContactedInfoCommand commandWithSameValues = new AddContactedInfoCommand(INDEX_FIRST_PERSON,
                 new ContactedInfo(VALID_CONTACTED_DATE_AMY, VALID_CONTACTED_DESC_AMY));
 
         assertTrue(standardCommand.equals(commandWithSameValues));
@@ -95,11 +95,11 @@ public class AddContactedCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new AddContactedCommand(INDEX_SECOND_PERSON,
+        assertFalse(standardCommand.equals(new AddContactedInfoCommand(INDEX_SECOND_PERSON,
                 new ContactedInfo(VALID_CONTACTED_DATE_AMY, VALID_CONTACTED_DESC_AMY))));
 
         // different remark -> returns false
-        assertFalse(standardCommand.equals(new AddContactedCommand(INDEX_SECOND_PERSON,
+        assertFalse(standardCommand.equals(new AddContactedInfoCommand(INDEX_SECOND_PERSON,
                 new ContactedInfo(VALID_CONTACTED_DATE_BOB, VALID_CONTACTED_DESC_BOB))));
     }
 }

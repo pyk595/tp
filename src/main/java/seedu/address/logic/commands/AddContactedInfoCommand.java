@@ -15,9 +15,9 @@ import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.person.Person;
 
 /**
- * Changes the recent date of an existing person in the address book.
+ * Adds or changes the recent date of an existing person in the address book.
  */
-public class AddContactedCommand extends Command {
+public class AddContactedInfoCommand extends Command {
 
     public static final String MESSAGE_ADD_CONTACTEDINFO_SUCCESS = "Added Contacted Info to Person: %1$s";
 
@@ -44,7 +44,7 @@ public class AddContactedCommand extends Command {
      * @param index of the person in the filtered person list to edit the contacted date
      * @param contactedInfo of the person to be updated to
      */
-    public AddContactedCommand(Index index, ContactedInfo contactedInfo) {
+    public AddContactedInfoCommand(Index index, ContactedInfo contactedInfo) {
         requireAllNonNull(index, contactedInfo);
 
         this.index = index;
@@ -112,12 +112,12 @@ public class AddContactedCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddContactedCommand)) {
+        if (!(other instanceof AddContactedInfoCommand)) {
             return false;
         }
 
         // state check
-        AddContactedCommand e = (AddContactedCommand) other;
+        AddContactedInfoCommand e = (AddContactedInfoCommand) other;
         return index.equals(e.index)
                 && contactedInfo.equals(contactedInfo);
     }
