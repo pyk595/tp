@@ -11,7 +11,6 @@ import seedu.address.model.description.Description;
  * Represents a Person's recently contacted information in the address book.
  */
 public class ContactedInfo implements Comparable<ContactedInfo> {
-
     public static final String MESSAGE_CONSTRAINTS =
             "Only 1 date and description should be given, both fields are needed as well, "
             + RecentDate.MESSAGE_CONSTRAINTS + " and " + Description.MESSAGE_CONSTRAINTS;
@@ -77,8 +76,10 @@ public class ContactedInfo implements Comparable<ContactedInfo> {
      */
     @Override
     public String toString() {
-        return "Last contacted: " + description.toString()
-                + " (" + recentDate.toString() + ")";
+        return description.toString()
+                + " ("
+                + recentDate.toString()
+                + ")";
     }
 
     @Override
