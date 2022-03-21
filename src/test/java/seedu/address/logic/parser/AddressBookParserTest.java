@@ -35,6 +35,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contactedinfo.ContactedInfo;
+import seedu.address.model.date.RecentDate;
+import seedu.address.model.description.Description;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonWithTagPredicate;
@@ -140,12 +142,15 @@ public class AddressBookParserTest {
     public void parseCommand_contacted() throws Exception {
         final String date = "2020-02-02";
         final String desc = "Meeting";
+        final RecentDate recentDate = RecentDate.parse(date);
+        final Description description = new Description(desc);
         AddContactedInfoCommand command = (AddContactedInfoCommand) parser.parseCommand(
                 AddContactedInfoCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " "
                 + PREFIX_CONTACTED_DATE + date + " "
                 + PREFIX_CONTACTED_DESC + desc);
-        assertEquals(new AddContactedInfoCommand(INDEX_FIRST_PERSON, new ContactedInfo(date, desc)), command);
+        assertEquals(new AddContactedInfoCommand(INDEX_FIRST_PERSON,
+                new ContactedInfo(recentDate, description)), command);
     }
 
     @Test

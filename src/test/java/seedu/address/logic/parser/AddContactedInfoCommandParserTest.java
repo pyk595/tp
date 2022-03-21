@@ -12,8 +12,13 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddContactedInfoCommand;
 import seedu.address.model.contactedinfo.ContactedInfo;
+import seedu.address.model.date.RecentDate;
+import seedu.address.model.description.Description;
 
 public class AddContactedInfoCommandParserTest {
+
+    private static final String RECENT_DATE_EMPTY = " " + PREFIX_CONTACTED_DATE;
+    private static final String RECENT_DESC_EMPTY = " " + PREFIX_CONTACTED_DESC;
     private final AddContactedCommandParser parser = new AddContactedCommandParser();
     private final String nonEmptyDate = "2020-02-02";
     private final String nonEmptyDesc = "Meeting";
@@ -26,7 +31,7 @@ public class AddContactedInfoCommandParserTest {
         String userInput = targetIndex.getOneBased() + " " + PREFIX_CONTACTED_DATE + nonEmptyDate + " "
                 + PREFIX_CONTACTED_DESC + nonEmptyDesc;
         AddContactedInfoCommand expectedCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON,
-                new ContactedInfo(nonEmptyDate, nonEmptyDesc));
+                new ContactedInfo(RecentDate.parse(nonEmptyDate), new Description(nonEmptyDesc)));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -40,5 +45,16 @@ public class AddContactedInfoCommandParserTest {
         // no index
         assertParseFailure(parser, AddContactedInfoCommand.COMMAND_WORD + " "
                 + nonEmptyDate + " " + nonEmptyDesc, expectedMessage);
+    }
+
+    @Test
+    public void constructor_invalidInputs_throwsIllegalArgumentException() {
+        String description = "";
+        assertParseFailure(parser, "1" + RECENT_DATE_EMPTY + RECENT_DESC_EMPTY,
+                ContactedInfo.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + RECENT_DATE_EMPTY + "hello " + RECENT_DESC_EMPTY + "meet up",
+                ContactedInfo.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + RECENT_DATE_EMPTY + RECENT_DESC_EMPTY + " ",
+                ContactedInfo.MESSAGE_CONSTRAINTS);
     }
 }
