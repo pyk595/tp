@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * A list of tags that enforces uniqueness between its elements and does not allow nulls.
@@ -22,6 +25,8 @@ import java.util.Set;
  * @see HashMap
  */
 public class UniqueTagList implements ReadOnlyUniqueTagList {
+
+    private final Logger logger = LogsCenter.getLogger(UniqueTagList.class);
 
     private final HashMap<Tag, Integer> tagFrequencyMap;
 
@@ -83,8 +88,11 @@ public class UniqueTagList implements ReadOnlyUniqueTagList {
 
         for (Tag tag : tagSet) {
             requireNonNull(tag);
-            assert tagFrequencyMap.containsKey(tag) : "Attempting to remove an un-added Tag.";
+
             if (!tagFrequencyMap.containsKey(tag)) {
+                String warningMessage = String.format("Attempting to remove an un-added Tag: %1$s", tag);
+                logger.warning(warningMessage);
+                assert false : warningMessage;
                 continue;
             }
 
