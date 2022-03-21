@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.ReadOnlyUniqueTagList;
 
 /**
  * The API of the Model component.
@@ -90,4 +91,18 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns an unmodifiable view of {@code UniqueTagList} that stores a list of unique tags.
+     *
+     * @return an unmodifiable view of {@code UniqueTagList} that stores a list of unique tags.
+     */
+    ReadOnlyUniqueTagList getUniqueTagList();
+
+    /**
+     * Returns the number of unique tags in {@code UniqueTagList}.
+     *
+     * @return the number of unique tags in {@code UniqueTagList}.
+     */
+    int getNumberOfUniqueTags();
 }
