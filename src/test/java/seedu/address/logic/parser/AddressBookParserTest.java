@@ -33,6 +33,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HashtagCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListTagsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -113,6 +114,13 @@ public class AddressBookParserTest {
         DeleteTagCommand command = (DeleteTagCommand) parser.parseCommand(DeleteTagCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_TAG + VALID_TAG_FRIEND);
         assertEquals(new DeleteTagCommand(INDEX_FIRST_PERSON, tag), command);
+    }
+
+    @Test
+    public void parseCommand_tags() throws Exception {
+        assertTrue(parser.parseCommand(ListTagsCommand.COMMAND_WORD) instanceof ListTagsCommand);
+        assertThrows(ParseException.class, MESSAGE_INVALID_ARGUMENTS, ()
+            -> parser.parseCommand(ListTagsCommand.COMMAND_WORD + " 3"));
     }
 
     @Test
