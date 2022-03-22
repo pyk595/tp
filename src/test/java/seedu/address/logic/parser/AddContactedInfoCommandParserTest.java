@@ -20,16 +20,24 @@ public class AddContactedInfoCommandParserTest {
     private static final String RECENT_DATE_EMPTY = " " + PREFIX_CONTACTED_DATE;
     private static final String RECENT_DESC_EMPTY = " " + PREFIX_CONTACTED_DESC;
     private final AddContactedCommandParser parser = new AddContactedCommandParser();
-    private final String nonEmptyDate = "2020-02-02";
+    private final String nonEmptyDate = "2024-02-02";
     private final String nonEmptyDesc = "Meeting";
+    private final String validDate = RECENT_DATE_EMPTY + nonEmptyDate;
+    private final String validDesc = RECENT_DESC_EMPTY + nonEmptyDesc;
 
     @Test
     public void parse_indexSpecified_success() {
 
         // have date and description
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + " " + PREFIX_CONTACTED_DATE + nonEmptyDate + " "
+        String userInput =
+                targetIndex.getOneBased()
+                + " "
+                + PREFIX_CONTACTED_DATE
+                + nonEmptyDate
+                + " "
                 + PREFIX_CONTACTED_DESC + nonEmptyDesc;
+
         AddContactedInfoCommand expectedCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON,
                 new ContactedInfo(RecentDate.parse(nonEmptyDate), new Description(nonEmptyDesc)));
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -43,8 +51,25 @@ public class AddContactedInfoCommandParserTest {
         assertParseFailure(parser, AddContactedInfoCommand.COMMAND_WORD, expectedMessage);
 
         // no index
-        assertParseFailure(parser, AddContactedInfoCommand.COMMAND_WORD + " "
-                + nonEmptyDate + " " + nonEmptyDesc, expectedMessage);
+        assertParseFailure(parser, AddContactedInfoCommand.COMMAND_WORD
+                + " "
+                + validDate
+                + " "
+                + validDesc,
+                expectedMessage);
+
+        //no date
+        assertParseFailure(parser, AddContactedInfoCommand.COMMAND_WORD
+                + " 1 "
+                + validDesc,
+                expectedMessage);
+
+        //no description
+        assertParseFailure(parser, AddContactedInfoCommand.COMMAND_WORD
+                + " 1 "
+                + validDate,
+                expectedMessage);
+
     }
 
     @Test
