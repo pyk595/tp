@@ -35,7 +35,6 @@ public class AddContactedCommandParser implements Parser<AddContactedInfoCommand
         }
 
         Index index;
-        ContactedInfo contactedInfo;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -44,14 +43,9 @@ public class AddContactedCommandParser implements Parser<AddContactedInfoCommand
                     AddContactedInfoCommand.MESSAGE_USAGE), ive);
         }
 
-        try {
-            contactedInfo = ParserUtil.parseContactedInfo(
-                    argMultimap.getValue(PREFIX_CONTACTED_DATE).get(),
-                    argMultimap.getValue(PREFIX_CONTACTED_DESC).get());
-        } catch (IllegalArgumentException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddContactedInfoCommand.MESSAGE_USAGE), ive);
-        }
+        ContactedInfo contactedInfo = ParserUtil.parseContactedInfo(
+                argMultimap.getValue(PREFIX_CONTACTED_DATE).get(),
+                argMultimap.getValue(PREFIX_CONTACTED_DESC).get());
 
         return new AddContactedInfoCommand(index, contactedInfo);
     }
