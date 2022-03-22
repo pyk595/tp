@@ -46,7 +46,6 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         birthDate = BirthDate.parse(DEFAULT_BIRTHDATE);
         contactedInfo = new ArrayList<>();
-        //contactedInfo.add(ContactedInfo.getDefaultContactedInfo());
         tags = new HashSet<>();
         reminderList = new ReminderList();
     }
@@ -149,6 +148,7 @@ public class PersonBuilder {
     public PersonBuilder addDefaultContactedInfo() {
         ArrayList<ContactedInfo> newArrLst = new ArrayList<>(this.contactedInfo);
         newArrLst.add(ContactedInfo.getDefaultContactedInfo());
+        Collections.sort(newArrLst);
         this.contactedInfo = newArrLst;
         return this;
     }

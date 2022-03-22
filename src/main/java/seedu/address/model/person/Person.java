@@ -76,6 +76,12 @@ public class Person {
         return contactedInfoList.size() == 0 ? Optional.empty() : Optional.of(contactedInfoList.get(0));
     }
 
+    public Integer getContactedDateRange() {
+        return getLatestContactedInfoEntry()
+                .map(ContactedInfo::getDaysPassed)
+                .orElse(Integer.MAX_VALUE);
+    }
+
 
     public boolean isBirthdayToday() {
         return this.birthDate.isToday();

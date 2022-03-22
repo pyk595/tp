@@ -60,6 +60,10 @@ public class ContactedInfo implements Comparable<ContactedInfo> {
         return recentDate;
     }
 
+    public Integer getDaysPassed() {
+        return recentDate.getDaysPassed();
+    }
+
     /**
      * Returns {@code Description} instance.
      *
