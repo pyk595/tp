@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACTED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACTED_DESC;
 
@@ -35,6 +36,7 @@ public class AddContactedCommandParser implements Parser<AddContactedInfoCommand
         }
 
         Index index;
+        ContactedInfo contactedInfo;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -43,8 +45,14 @@ public class AddContactedCommandParser implements Parser<AddContactedInfoCommand
                     AddContactedInfoCommand.MESSAGE_USAGE), ive);
         }
 
-        ContactedInfo contactedInfo = ParserUtil.parseContactedInfo(argMultimap.getValue(PREFIX_CONTACTED_DATE).get(),
-                argMultimap.getValue(PREFIX_CONTACTED_DESC).get());
+        try {
+            contactedInfo = ParserUtil.parseContactedInfo(
+                    argMultimap.getValue(PREFIX_CONTACTED_DATE).get(),
+                    argMultimap.getValue(PREFIX_CONTACTED_DESC).get());
+        } catch (IllegalArgumentException ive) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddContactedInfoCommand.MESSAGE_USAGE), ive);
+        }
 
         return new AddContactedInfoCommand(index, contactedInfo);
     }

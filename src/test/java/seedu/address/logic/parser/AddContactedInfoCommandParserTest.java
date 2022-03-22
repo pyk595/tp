@@ -20,7 +20,7 @@ public class AddContactedInfoCommandParserTest {
     private static final String RECENT_DATE_EMPTY = " " + PREFIX_CONTACTED_DATE;
     private static final String RECENT_DESC_EMPTY = " " + PREFIX_CONTACTED_DESC;
     private final AddContactedCommandParser parser = new AddContactedCommandParser();
-    private final String nonEmptyDate = "2024-02-02";
+    private final String nonEmptyDate = "2020-02-02";
     private final String nonEmptyDesc = "Meeting";
     private final String validDate = RECENT_DATE_EMPTY + nonEmptyDate;
     private final String validDesc = RECENT_DESC_EMPTY + nonEmptyDesc;
