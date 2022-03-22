@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.contactedinfo.ContactedInfo;
+import seedu.address.model.date.RecentDate;
+import seedu.address.model.description.Description;
 
 public class JsonAdaptedContactedInfo {
     private final String description;
@@ -38,6 +40,9 @@ public class JsonAdaptedContactedInfo {
         if (!ContactedInfo.isValidContactedInfo(date, description)) {
             throw new IllegalValueException(ContactedInfo.MESSAGE_CONSTRAINTS);
         }
-        return new ContactedInfo(date, description);
+
+        RecentDate recentDate = RecentDate.parse(date);
+        Description desc = new Description(description);
+        return new ContactedInfo(recentDate, desc);
     }
 }

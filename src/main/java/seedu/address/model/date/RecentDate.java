@@ -1,5 +1,7 @@
 package seedu.address.model.date;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -28,6 +30,7 @@ public class RecentDate extends DocumentedDate implements Comparable<RecentDate>
      * @return A non null {@code RecentDate}.
      */
     public static RecentDate parse(String parsedDate) {
+        checkArgument(isValidDate(parsedDate));
         LocalDate date = LocalDate.parse(parsedDate);
         return new RecentDate(date);
     }
