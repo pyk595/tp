@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.contactedinfo.ContactedInfo;
@@ -70,6 +71,17 @@ public class Person {
     public ArrayList<ContactedInfo> getContactedInfoList() {
         return contactedInfoList;
     }
+
+    public Optional<ContactedInfo> getLatestContactedInfoEntry() {
+        return contactedInfoList.size() == 0 ? Optional.empty() : Optional.of(contactedInfoList.get(0));
+    }
+
+    public Integer getContactedDateRange() {
+        return getLatestContactedInfoEntry()
+                .map(ContactedInfo::getDaysPassed)
+                .orElse(Integer.MAX_VALUE);
+    }
+
 
     public boolean isBirthdayToday() {
         return this.birthDate.isToday();
@@ -154,7 +166,9 @@ public class Person {
                 .append("; birthday: ")
                 .append(getBirthDate())
                 .append("; Last Contacted: ")
-                .append(getContactedInfoList().get(0));
+                .append(getLatestContactedInfoEntry()
+                        .map(ContactedInfo::toString)
+                        .orElse("No entry yet"));
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

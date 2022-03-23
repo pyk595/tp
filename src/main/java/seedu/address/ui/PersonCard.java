@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.person.Person;
 
 /**
@@ -15,7 +16,9 @@ import seedu.address.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final String LAST_CONTACTED_PREAMBLE = "Last contacted: ";
     private static final String DATE_OF_BIRTH_PREAMBLE = "Date of Birth: ";
+
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -59,7 +62,10 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         birthDate.setText(DATE_OF_BIRTH_PREAMBLE + person.getBirthDate().toString());
-        contactedInfo.setText(person.getContactedInfoList().get(0).toString());
+        contactedInfo.setText(LAST_CONTACTED_PREAMBLE + person
+                        .getLatestContactedInfoEntry()
+                        .map(ContactedInfo::toString)
+                        .orElse("No entry yet"));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
