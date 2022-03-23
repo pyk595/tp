@@ -83,6 +83,6 @@ class DocumentedDateTest {
     @Test
     public void testToString_standardDate_success() {
         DocumentedDate date = new DocumentedDate(LocalDate.parse("2022-01-01"));
-        assertEquals("1 JANUARY 2022", date.toString());
+        assertEquals("01 Jan 2022", date.toString());
     }
 }
