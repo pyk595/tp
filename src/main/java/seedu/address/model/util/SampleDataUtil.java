@@ -82,7 +82,7 @@ public class SampleDataUtil {
     public static ArrayList<ContactedInfo> getContactedInfoList(String... strings) {
         return (ArrayList<ContactedInfo>) Arrays.stream(strings)
                 .map((str) -> {
-                    String[] strArr = str.split("\\s", 2);
+                    String[] strArr = str.split("\\s+", 2);
                     RecentDate recentDate = RecentDate.parse(strArr[0]);
                     Description description = new Description(strArr[1]);
                     return new ContactedInfo(recentDate, description);
