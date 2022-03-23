@@ -9,6 +9,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.date.BirthDate;
+import seedu.address.model.date.RecentDate;
+import seedu.address.model.description.Description;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -81,7 +83,9 @@ public class SampleDataUtil {
         return (ArrayList<ContactedInfo>) Arrays.stream(strings)
                 .map((str) -> {
                     String[] strArr = str.split("\\s", 2);
-                    return new ContactedInfo(strArr[0], strArr[1]);
+                    RecentDate recentDate = RecentDate.parse(strArr[0]);
+                    Description description = new Description(strArr[1]);
+                    return new ContactedInfo(recentDate, description);
                 })
                 .collect(Collectors.toList());
     }

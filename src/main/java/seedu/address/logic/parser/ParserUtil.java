@@ -12,7 +12,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.date.BirthDate;
 import seedu.address.model.date.DocumentedDate;
+import seedu.address.model.date.RecentDate;
 import seedu.address.model.date.ReminderDate;
+import seedu.address.model.description.Description;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -129,7 +131,10 @@ public class ParserUtil {
         if (!ContactedInfo.isValidContactedInfo(trimmedDate, trimmedDescription)) {
             throw new ParseException(ContactedInfo.MESSAGE_CONSTRAINTS);
         }
-        return new ContactedInfo(trimmedDate, trimmedDescription);
+
+        RecentDate recentDate = RecentDate.parse(trimmedDate);
+        Description desc = new Description(trimmedDescription);
+        return new ContactedInfo(recentDate, desc);
     }
 
     /**

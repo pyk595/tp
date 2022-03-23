@@ -28,6 +28,21 @@ public class TagTest {
     }
 
     @Test
+    public void compareTo() {
+        Tag firstTag = new Tag("apple");
+        Tag secondTag = new Tag("banana");
+        Tag thirdTag = new Tag("BANANA");
+        Tag fourthTag = new Tag("cat");
+
+        assertTrue(secondTag.compareTo(thirdTag) == 0);
+        assertTrue(secondTag.compareTo(firstTag) > 0);
+        assertTrue(firstTag.compareTo(secondTag) < 0);
+        assertTrue(firstTag.compareTo(fourthTag) < 0);
+        assertTrue(fourthTag.compareTo(firstTag) > 0);
+        assertTrue(firstTag.compareTo(firstTag) == 0);
+    }
+
+    @Test
     public void equals() {
         Tag firstTag = new Tag("first");
         Tag secondTag = new Tag("second");

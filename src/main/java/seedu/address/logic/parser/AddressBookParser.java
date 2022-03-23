@@ -26,6 +26,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListContactRemindersCommand;
 import seedu.address.logic.commands.ListDateRemindersCommand;
+import seedu.address.logic.commands.ListTagsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -71,18 +72,18 @@ public class AddressBookParser {
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            isValidCommand(arguments);
+            checkEmptyArguments(arguments);
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case BirthdayCommand.COMMAND_WORD:
-            isValidCommand(arguments);
+            checkEmptyArguments(arguments);
             return new BirthdayCommand();
 
         case ListCommand.COMMAND_WORD:
-            isValidCommand(arguments);
+            checkEmptyArguments(arguments);
             return new ListCommand();
 
         case AddContactedInfoCommand.COMMAND_WORD:
@@ -97,12 +98,16 @@ public class AddressBookParser {
         case DeleteTagCommand.COMMAND_WORD:
             return new DeleteTagCommandParser().parse(arguments);
 
+        case ListTagsCommand.COMMAND_WORD:
+            checkEmptyArguments(arguments);
+            return new ListTagsCommand();
+
         case ExitCommand.COMMAND_WORD:
-            isValidCommand(arguments);
+            checkEmptyArguments(arguments);
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
-            isValidCommand(arguments);
+            checkEmptyArguments(arguments);
             return new HelpCommand();
 
         case AddReminderCommand.COMMAND_WORD:
@@ -122,11 +127,16 @@ public class AddressBookParser {
         }
     }
 
-    private void isValidCommand(String args) throws ParseException {
+    /**
+     * Checks if argument is empty, to be used for commands that do not require arguments.
+     *
+     * @param args the argument to be checked.
+     * @throws ParseException if argument is not empty.
+     */
+    private void checkEmptyArguments(String args) throws ParseException {
         if (args.length() != 0) {
             throw new ParseException(MESSAGE_INVALID_ARGUMENTS);
         }
-
     }
 
 }

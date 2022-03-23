@@ -3,10 +3,13 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.tag.ReadOnlyUniqueTagList;
+import seedu.address.model.tag.UniqueTagList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueTagList tags;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        tags = new UniqueTagList();
     }
 
     public AddressBook() {}
@@ -45,6 +50,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
+        tags.clearTags();
+        persons.stream()
+                .map(Person::getTags)
+                .forEach(tags::addTags);
     }
 
     /**
@@ -72,6 +81,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+        tags.addTags(p.getTags());
     }
 
     /**
@@ -83,6 +93,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+        tags.removeAndAddTags(target.getTags(), editedPerson.getTags());
     }
 
     /**
@@ -91,6 +102,29 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        tags.removeTags(key.getTags());
+    }
+
+    //// tag-level methods
+
+    /**
+     * Returns an unmodifiable view of {@code UniqueTagList} that stores a list of unique tags,
+     * used in {@code AddressBook}.
+     *
+     * @return an unmodifiable view of {@code UniqueTagList}.
+     */
+    public ReadOnlyUniqueTagList getUniqueTagList() {
+        return tags.getCopy();
+    }
+
+    /**
+     * Returns the number of unique tags in this {@code UniqueTagList}.
+     *
+     * @return the number of unique tags in this {@code UniqueTagList}.
+     */
+    public int getNumberOfUniqueTags() {
+        assert tags.getUniqueTagListSize() >= 0;
+        return tags.getUniqueTagListSize();
     }
 
     //// util methods
@@ -108,13 +142,22 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+        if (this == other) {
+            return true;
+        }
+
+        if (!(other instanceof AddressBook)) {
+            return false;
+        }
+
+        AddressBook addressBook = (AddressBook) other;
+
+        return persons.equals(addressBook.persons)
+                && tags.equals(addressBook.tags);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return Objects.hash(persons, tags);
     }
 }

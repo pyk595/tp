@@ -83,6 +83,12 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
 
+    @Test
+    public void equals() {
+        assertFalse(addressBook.equals(5));
+        assertTrue(addressBook.equals(addressBook));
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */

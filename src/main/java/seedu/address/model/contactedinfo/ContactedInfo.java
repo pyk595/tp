@@ -1,7 +1,6 @@
 package seedu.address.model.contactedinfo;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.model.date.DocumentedDate;
 import seedu.address.model.date.RecentDate;
@@ -21,14 +20,14 @@ public class ContactedInfo implements Comparable<ContactedInfo> {
     /**
      * Constructs an {@code ContactedInfo}.
      *
-     * @param desc A valid description.
-     * @param date a valid date.
+     * @param recentDate A valid description.
+     * @param description a valid date.
      */
-    public ContactedInfo(String date, String desc) {
-        requireNonNull(date, desc);
-        checkArgument(isValidContactedInfo(date, desc), MESSAGE_CONSTRAINTS);
-        description = new Description(desc);
-        recentDate = RecentDate.parse(date);
+    public ContactedInfo(RecentDate recentDate, Description description) {
+        requireNonNull(recentDate);
+        requireNonNull(description);
+        this.description = description;
+        this.recentDate = recentDate;
     }
 
     /**
@@ -37,7 +36,7 @@ public class ContactedInfo implements Comparable<ContactedInfo> {
      * @return the default contacted info.
      */
     public static ContactedInfo getDefaultContactedInfo() {
-        return new ContactedInfo(RecentDate.defaultRecentDateInStr(), Description.defaultDesc().toString());
+        return new ContactedInfo(RecentDate.defaultRecentDate(), Description.defaultDesc());
     }
 
     /**
