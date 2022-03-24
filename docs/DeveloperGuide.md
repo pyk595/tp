@@ -270,26 +270,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list all contacts (UC03).
-2. Address Book shows a list of contacts (UC03).
-3. User requests to delete a specific contact in the list.
-4. Address Book deletes the contact.
+1. User lists all contacts (UC03).
+2. User requests to delete a specific contact in the list.
+3. Address Book deletes the contact.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 2a. The given contact is invalid.
 
-    * 1a1. AddressBook shows an error message.
+    * 2a1. AddressBook shows an error message.
 
       Use case ends.
-
-* 3a. The given contact is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
 
 **Use case: UC05 - Find contact by keyword**
 
@@ -427,24 +420,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to view reminders of a specific contact (UC09).
-2. Address Book shows reminders of the specified contact (UC09).
-3. User requests to delete a reminder for a specified contact.
-4. Address Book deletes a reminder for the specified contact.
+1. User views reminders of a specific contact (UC09).
+2. User requests to delete a reminder for a specified contact.
+3. Address Book deletes a reminder for the specified contact.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. The given reminder is invalid.
+* 2a. The given reminder is invalid.
 
-    * 3a1. Address Book shows an error message.
+    * 2a1. Address Book shows an error message.
 
       Use case ends.
 
-* 3b. The given contact is invalid.
+* 2b. The given contact is invalid.
 
-    * 3b1. Address Book shows an error message.
+    * 2b1. Address Book shows an error message.
 
       Use case ends.
 
@@ -459,9 +451,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given input is invalid.
+* 1a. There is no tags in Address Book.
 
-    * 1a1. Address Book shows an error message.
+    * 1a1. Address Book shows a message, stating that there is no tags.
 
       Use case ends.
 
@@ -469,22 +461,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to view all tags (UC12).
-2. Address Book shows all existing tags (UC12).
-3. User requests to view all contacts that are tagged to the specified tag.
-4. Address Book shows all contacts that are tagged to the specified tag, if any.
+1. User views all tags (UC12).
+2. User requests to view all contacts that are tagged to the specified tag.
+3. Address Book shows all contacts that are tagged to the specified tag, if any.
 
 **Extensions**
 
-* 1a. There is no tag.
+* 2a. The given tag is invalid.
 
-    * 1a1. Address Book shows an error message.
-
-      Use case ends.
-
-* 3a. The given tag is invalid.
-
-    * 3a1. Address Book shows an error message.
+    * 2a1. Address Book shows an error message.
 
       Use case ends.
 
@@ -545,8 +530,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. Address Book shows an error message.
 
       Use case ends.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
