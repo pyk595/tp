@@ -574,8 +574,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file 
-      
+   1. Double-click the jar file
+
         Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
@@ -607,15 +607,15 @@ testers are expected to do more *exploratory* testing.
 ### Saving data
 
 1. Dealing with missing data files
-    1. Remove addressbook.json and the data directory 
-    1. Run the jar file 
-       
-        Expected: The application will automatically generate a data directory and populate addressbook.json with sample data.
-    
-1. Dealing with corrupted data files
-    1. Remove some lines from addressbook.json 
+    1. Remove addressbook.json and the data directory
     1. Run the jar file
-    
+
+        Expected: The application will automatically generate a data directory and populate addressbook.json with sample data.
+
+1. Dealing with corrupted data files
+    1. Remove some lines from addressbook.json
+    1. Run the jar file
+
         Expected: The application will make a copy of the current addressbook.json in backup.json and continue running with an empty addressbook.json. If changes are made, addressbook.json will be overwritten.
 
 
