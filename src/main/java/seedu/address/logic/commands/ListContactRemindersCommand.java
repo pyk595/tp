@@ -42,7 +42,6 @@ public class ListContactRemindersCommand extends Command {
         ReminderList reminderList = personSpecified.getReminderList();
 
         for (Reminder reminder : reminderList.getPriorityQueue()) {
-
             output.append(String.format("%1$d. %2$s\n", counter, reminder.toString()));
             counter++;
         }
