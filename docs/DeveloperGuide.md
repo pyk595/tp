@@ -536,7 +536,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to view all birthdays occurring today.
 2. Address Book shows all persons with birthdays today.
-   
+
     Use case ends.
 
 **Extensions**
