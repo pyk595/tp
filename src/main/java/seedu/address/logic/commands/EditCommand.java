@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -103,7 +102,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         BirthDate updatedBirthDate = editPersonDescriptor.getBirthDate().orElse(personToEdit.getBirthDate());
-        ArrayList<ContactedInfo> updatedContactedInfoList = personToEdit.getContactedInfoList();
+        List<ContactedInfo> updatedContactedInfoList = personToEdit.getContactedInfoList();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         ReminderList updatedReminderList = personToEdit.getReminderList();
 
