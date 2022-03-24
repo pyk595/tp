@@ -24,6 +24,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListContactRemindersCommand;
+import seedu.address.logic.commands.ListContactedInfoCommand;
 import seedu.address.logic.commands.ListDateRemindersCommand;
 import seedu.address.logic.commands.ListTagsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -90,6 +91,9 @@ public class AddressBookParser {
 
         case ContactedWithinRangeCommand.COMMAND_WORD:
             return new ContactedWithinRangeCommandParser().parse(arguments);
+
+        case ListContactedInfoCommand.COMMAND_WORD:
+            return new ListContactedInfoCommandParser().parse(arguments);
 
         case AddTagCommand.COMMAND_WORD:
             return new AddTagCommandParser().parse(arguments);
