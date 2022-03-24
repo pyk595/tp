@@ -31,20 +31,6 @@ public class HashtagCommand extends Command {
         this.predicate = predicate;
     }
 
-    /**
-     * Returns true if the given input string is a hashtag (any string that starts with #).
-     *
-     * @param input the input string to verify.
-     * @return true if the given input string is a hashtag (any string that starts with #).
-     */
-    public static boolean isHashtagCommand(String input) {
-        if (input == null) {
-            return false;
-        }
-        String trimmedInput = input.trim();
-        return trimmedInput.startsWith(COMMAND_WORD);
-    }
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
@@ -55,8 +41,17 @@ public class HashtagCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return (other == this) // short circuit if same object
-                || (other instanceof HashtagCommand // instanceof handles nulls
-                && predicate.equals(((HashtagCommand) other).predicate)); // state check
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof HashtagCommand)) {
+            return false;
+        }
+
+        // state check
+        return predicate.equals(((HashtagCommand) other).predicate);
     }
 }

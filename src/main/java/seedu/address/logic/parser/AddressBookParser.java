@@ -21,7 +21,6 @@ import seedu.address.logic.commands.DeleteTagCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HashtagCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListContactRemindersCommand;
@@ -50,8 +49,8 @@ public class AddressBookParser {
         final String trimmedUserInput = userInput.trim();
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(trimmedUserInput);
 
-        if (HashtagCommand.isHashtagCommand(trimmedUserInput)) { // in hashtag format, starts with #.
-            return new HashtagCommandParser().parse(trimmedUserInput.substring(1));
+        if (HashtagCommandParser.isHashtagCommand(trimmedUserInput)) { // in hashtag format, it starts with #.
+            return new HashtagCommandParser().parse(trimmedUserInput);
         }
 
         if (!matcher.matches()) {

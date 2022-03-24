@@ -25,7 +25,7 @@ import seedu.address.testutil.PersonBuilder;
 
 class AddTagCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void constructor_anyFieldsNull_throwsNullPointerException() {
@@ -168,7 +168,7 @@ class AddTagCommandTest {
         // null -> returns false
         assertFalse(addTagFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different command -> returns false
         assertFalse(addTagFirstCommand.equals(addTagSecondCommand));
         assertFalse(addTagFirstCommand.equals(addTagThirdCommand));
         assertFalse(addTagFirstCommand.equals(addTagFourthCommand));
