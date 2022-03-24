@@ -531,6 +531,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: UC16 - Show all birthdays today**
+
+**MSS**
+1. User requests to view all birthdays occurring today.
+2. Address Book shows all persons with birthdays today.
+   
+    Use case ends.
+
+**Extensions**
+* 1a. No birthdays occur today.
+
+    * 1a1. Address Book shows message stating that there are 0 persons with birthdays today.
+
+      Use case ends.
 ### Non-Functional Requirements
 
 1.  Should work on any **mainstream OS** as long as it has Java `11` or
