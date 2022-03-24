@@ -336,7 +336,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC07 - List all contacts in Address Book within a designated time frame**
+**Use case: UC07 - Delete a previously set contacted date**
+
+**MSS**
+
+1. User request to delete a previously set contacted date for a specified contact.
+2. Address Book deletes the previously set contacted date for the specified contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No index specifying a specific contact is given.
+
+    * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1b. The given index specifying a specific contact is invalid.
+
+    * 1b1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1c. The given index specifying contacted date to delete is invalid.
+
+    * 1c1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1d. No index specifying contacted date to delete given.
+
+    * 1d1. Address Book shows an error message.
+
+      Use case ends.
+
+**Use case: UC08 - List all contacts in Address Book within a designated time frame**
 
 **MSS**
 
@@ -359,7 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC08 - Set reminder**
+**Use case: UC09 - Set reminder**
 
 **MSS**
 
@@ -376,7 +411,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC09 - View reminders of a contact**
+**Use case: UC10 - View reminders of a contact**
 
 **MSS**
 
@@ -399,7 +434,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use Case: UC10 - View reminders on a date**
+**Use Case: UC11 - View reminders on a date**
 
 **MSS**
 
@@ -416,7 +451,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC11 - Delete a reminder**
+**Use case: UC12 - Delete a reminder**
 
 **MSS**
 
@@ -440,7 +475,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC12 - Show all tags**
+**Use case: UC13 - Show all tags**
 
 **MSS**
 
@@ -457,7 +492,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC13 - Show all contacts that are tagged to a tag**
+**Use case: UC14 - Show all contacts that are tagged to a tag**
 
 **MSS**
 
@@ -473,7 +508,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC14 - Add a tag to a contact**
+**Use case: UC15 - Add a tag to a contact**
 
 **MSS**
 
@@ -502,7 +537,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC15 - Delete a tag from a contact**
+**Use case: UC16 - Delete a tag from a contact**
 
 **MSS**
 
