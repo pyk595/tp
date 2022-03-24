@@ -17,7 +17,7 @@ public class ListContactedInfoCommandParserTest {
 
     @Test
     public void parse_indexSpecified_success() {
-        // vanilla
+        // Expected case
         ListContactedInfoCommand expectedCommand = new ListContactedInfoCommand(INDEX_FIRST_PERSON);
         assertParseSuccess(parser, " 1 ", expectedCommand);
 

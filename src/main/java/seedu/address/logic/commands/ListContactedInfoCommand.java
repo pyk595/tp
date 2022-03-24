@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -14,14 +16,14 @@ import seedu.address.model.person.Person;
  * Lists all reminders for a contact.
  */
 public class ListContactedInfoCommand extends Command {
-    public static final String COMMAND_WORD = "listcontacted";
+    public static final String COMMAND_WORD = "logs";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists all contacted information for a specified contact. "
             + "Parameters: "
-            + "INDEX\n"
+            + "INDEX "
             + "Example: " + COMMAND_WORD + " "
-            + "3\n";
+            + "3";
 
     public static final String MESSAGE_SUCCESS = "Listed all contacted information for %1$s:\n%2$s";
 
@@ -38,6 +40,13 @@ public class ListContactedInfoCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         StringBuilder output = new StringBuilder();
+
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
         Person personSpecified = model.getFilteredPersonList().get(index.getZeroBased());
         ArrayList<ContactedInfo> contactedInfoArrayList = personSpecified.getContactedInfoList();
 
