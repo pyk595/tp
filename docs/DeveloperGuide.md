@@ -336,12 +336,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC07 - Delete a previously set contacted date**
+**Use case: UC07 - Show all contacted information for a specified contact**
 
 **MSS**
 
-1. User request to delete a previously set contacted date for a specified contact.
-2. Address Book deletes the previously set contacted date for the specified contact.
+1. User request to list all contacted information for a specified contact.
+2. Address Book shows all contacted information for the specified contact.
 
    Use case ends.
 
@@ -356,18 +356,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. The given index specifying a specific contact is invalid.
 
     * 1b1. Address Book shows an error message.
-
-      Use case ends.
-
-* 1c. The given index specifying contacted date to delete is invalid.
-
-    * 1c1. Address Book shows an error message.
-
-      Use case ends.
-
-* 1d. No index specifying contacted date to delete given.
-
-    * 1d1. Address Book shows an error message.
 
       Use case ends.
 
@@ -496,7 +484,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User views all tags (UC12).
+1. User views all tags (UC13).
 2. User requests to view all contacts that are tagged to the specified tag.
 3. Address Book shows all contacts that are tagged to the specified tag, if any.
 
