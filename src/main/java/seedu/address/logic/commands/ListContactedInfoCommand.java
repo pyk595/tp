@@ -48,7 +48,7 @@ public class ListContactedInfoCommand extends Command {
         }
 
         Person personSpecified = model.getFilteredPersonList().get(index.getZeroBased());
-        ArrayList<ContactedInfo> contactedInfoArrayList = personSpecified.getContactedInfoList();
+        ArrayList<ContactedInfo> contactedInfoArrayList = new ArrayList<>(personSpecified.getContactedInfoList());
 
         for (int i = 1; i <= contactedInfoArrayList.size(); i++) {
             ContactedInfo contactedInfo = contactedInfoArrayList.get(i - 1);

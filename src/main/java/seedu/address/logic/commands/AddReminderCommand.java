@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -72,7 +71,7 @@ public class AddReminderCommand extends Command {
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
         BirthDate updatedBirthDate = personToEdit.getBirthDate();
-        ArrayList<ContactedInfo> updatedContactedInfoList = personToEdit.getContactedInfoList();
+        List<ContactedInfo> updatedContactedInfoList = personToEdit.getContactedInfoList();
         Set<Tag> updatedTags = personToEdit.getTags();
         ReminderList updatedReminders = personToEdit.getReminderList();
         updatedReminders.add(reminderToAdd);

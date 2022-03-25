@@ -59,7 +59,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         birthDate = personToCopy.getBirthDate();
-        contactedInfo = personToCopy.getContactedInfoList();
+        contactedInfo = new ArrayList<>(personToCopy.getContactedInfoList());
         tags = new HashSet<>(personToCopy.getTags());
         reminderList = new ReminderList(personToCopy.getReminderList());
     }
@@ -125,7 +125,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code contactedInfo} into a {@code ArrayList<ContactedInfo>}
+     * Parses the {@code ContactedInfo} into a {@code ArrayList<ContactedInfo>}
      * and add it to the ContactedInfo ArrayList of {@code Person}
      * that we are building.
      *
@@ -137,6 +137,25 @@ public class PersonBuilder {
         newArrLst.addAll(SampleDataUtil.getContactedInfoList(contactedInfo));
         Collections.sort(newArrLst);
         this.contactedInfo = newArrLst;
+        return this;
+    }
+
+    /**
+     * Parses the {@code ContactedInfo} into a {@code ArrayList<ContactedInfo>} and
+     * deletes them from the contacted information list of {@code Person}
+     * that we are building.
+     *
+     * @param indexToDel the index of the contacted information to delete from the list.
+     * @return this {@code PersonBuilder}.
+     */
+    public PersonBuilder deleteContactedInfo(Integer ... indexToDel) {
+        ArrayList<ContactedInfo> newArrLst = new ArrayList<>(contactedInfo);
+
+        for (Integer index: indexToDel) {
+            newArrLst.remove(indexToDel);
+        }
+        this.contactedInfo = newArrLst;
+
         return this;
     }
 

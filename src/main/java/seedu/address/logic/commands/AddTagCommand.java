@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -104,7 +103,7 @@ public class AddTagCommand extends Command {
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
         BirthDate updatedBirthDate = personToEdit.getBirthDate();
-        ArrayList<ContactedInfo> updatedContactedInfo = personToEdit.getContactedInfoList();
+        List<ContactedInfo> updatedContactedInfo = personToEdit.getContactedInfoList();
         Set<Tag> updatedTags = addTagToSet(personToEdit.getTags(), tagToAdd);
         ReminderList updatedReminders = personToEdit.getReminderList();
 

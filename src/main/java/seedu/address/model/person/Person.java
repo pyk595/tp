@@ -2,9 +2,9 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -28,7 +28,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final BirthDate birthDate;
-    private final ArrayList<ContactedInfo> contactedInfoList;
+    private final List<ContactedInfo> contactedInfoList;
     private final Set<Tag> tags = new HashSet<>();
     private final ReminderList reminderList;
 
@@ -36,7 +36,7 @@ public class Person {
      * Every field must be present and not null. A constructor including the reminder.
      */
     public Person(Name name, Phone phone, Email email, Address address, BirthDate birthDate,
-                  ArrayList<ContactedInfo> contactedInfoList, Set<Tag> tags, ReminderList reminderList) {
+                  List<ContactedInfo> contactedInfoList, Set<Tag> tags, ReminderList reminderList) {
         requireAllNonNull(name, phone, email, address, birthDate, contactedInfoList, tags, reminderList);
         this.name = name;
         this.phone = phone;
@@ -68,8 +68,12 @@ public class Person {
         return birthDate;
     }
 
-    public ArrayList<ContactedInfo> getContactedInfoList() {
-        return contactedInfoList;
+    public List<ContactedInfo> getContactedInfoList() {
+        return Collections.unmodifiableList(contactedInfoList);
+    }
+
+    public int getContactedInfoListSize() {
+        return Collections.unmodifiableList(contactedInfoList).size();
     }
 
     public Optional<ContactedInfo> getLatestContactedInfoEntry() {

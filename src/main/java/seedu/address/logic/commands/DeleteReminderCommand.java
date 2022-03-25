@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -72,7 +71,7 @@ public class DeleteReminderCommand extends Command {
         Email updatedEmail = personToDelete.getEmail();
         Address updatedAddress = personToDelete.getAddress();
         BirthDate updatedBirthDate = personToDelete.getBirthDate();
-        ArrayList<ContactedInfo> updatedContactedInfo = personToDelete.getContactedInfoList();
+        List<ContactedInfo> updatedContactedInfo = personToDelete.getContactedInfoList();
         Set<Tag> updatedTags = personToDelete.getTags();
         ReminderList updatedReminderList = reminderList.delete(reminderToDelete);
         Person updatedPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthDate,

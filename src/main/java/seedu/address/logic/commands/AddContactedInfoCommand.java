@@ -77,7 +77,7 @@ public class AddContactedInfoCommand extends Command {
                 personToEdit.getEmail(),
                 personToEdit.getAddress(),
                 personToEdit.getBirthDate(),
-                updatedContactedInfo,
+                Collections.unmodifiableList(updatedContactedInfo),
                 personToEdit.getTags(),
                 personToEdit.getReminderList());
 
