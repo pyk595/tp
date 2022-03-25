@@ -370,15 +370,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. No date is given.
+* 1a. No client was contacted within/outside the designated number of days.
 
     * 1a1. Address Book shows an error message.
-
-      Use case ends.
-
-* 1b. No client was contacted within/outside the designated number of days.
-
-    * 1b1. Address Book shows an error message.
 
       Use case ends.
 
