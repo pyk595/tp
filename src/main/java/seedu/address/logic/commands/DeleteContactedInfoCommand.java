@@ -43,7 +43,7 @@ public class DeleteContactedInfoCommand extends Command {
     public static final String MESSAGE_EMPTY_LIST = "Cannot delete, list is empty!";
 
     private final Index index;
-    private final int indexToDel;
+    private final Index indexToDel;
 
     private ContactedInfo contactedInfo;
     /**
@@ -52,12 +52,12 @@ public class DeleteContactedInfoCommand extends Command {
      * @param index of the person in the filtered person list to add the {@code Tag}.
      * @param indexToDel  to be deleted from the {@code Person} specified by {@code index}.
      */
-    public DeleteContactedInfoCommand(Index index, int indexToDel) {
+    public DeleteContactedInfoCommand(Index index, Index indexToDel) {
         requireNonNull(index);
         requireNonNull(indexToDel);
 
         this.index = index;
-        this.indexToDel = indexToDel - 1;
+        this.indexToDel = indexToDel;
     }
 
     /**
@@ -81,19 +81,15 @@ public class DeleteContactedInfoCommand extends Command {
             throw new CommandException(MESSAGE_EMPTY_LIST);
         }
 
-        if (!(personToEdit.getContactedInfoList().size() > indexToDel)) {
+        if (personToEdit.getContactedInfoListSize() <= indexToDel.getZeroBased()) {
             throw new CommandException(MESSAGE_MISSING_INFO);
         }
 
-        if (!(personToEdit.getContactedInfoList().size() > indexToDel)) {
+        if (indexToDel.getZeroBased() < 0) {
             throw new CommandException(MESSAGE_MISSING_INFO);
         }
 
-        if (indexToDel < 0) {
-            throw new CommandException(MESSAGE_MISSING_INFO);
-        }
-
-        contactedInfo = personToEdit.getContactedInfoList().get(indexToDel);
+        contactedInfo = personToEdit.getContactedInfoList().get(indexToDel.getZeroBased());
         Person editedPerson = createPersonWithDeletedContactedInfo(personToEdit, this.contactedInfo);
 
         model.setPerson(personToEdit, editedPerson);
@@ -156,6 +152,6 @@ public class DeleteContactedInfoCommand extends Command {
 
         // state check
         DeleteContactedInfoCommand e = (DeleteContactedInfoCommand) other;
-        return this.index.equals(e.index) && indexToDel == e.indexToDel;
+        return this.index.equals(e.index) && this.indexToDel.equals(e.indexToDel);
     }
 }

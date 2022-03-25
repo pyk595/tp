@@ -19,7 +19,7 @@ public class DeleteContactedInfoCommandTest {
 
     @Test
     public void constructor_anyFieldsNull_throwsNullPointerException() {
-        int indexToDel = 1;
+        Index indexToDel = Index.fromZeroBased(0);
         assertThrows(NullPointerException.class, () -> new DeleteContactedInfoCommand(null, indexToDel));
     }
 
@@ -49,13 +49,13 @@ public class DeleteContactedInfoCommandTest {
     @Test
     public void execute_invalidIndex_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getAddressBook().getPersonList().size() + 10);
-
+        Index indexToDelete = Index.fromZeroBased(1);
 
         // ensures that outOfBoundIndex is out bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() >= model.getAddressBook().getPersonList().size());
 
         DeleteContactedInfoCommand deleteContactedInfoCommand = new DeleteContactedInfoCommand(
-                outOfBoundIndex, 1);
+                outOfBoundIndex, indexToDelete);
 
         assertCommandFailure(deleteContactedInfoCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -64,19 +64,15 @@ public class DeleteContactedInfoCommandTest {
     public void execute_invalidContactedInfoIndex_throwsCommandException() {
         Index index = Index.fromOneBased(1);
 
-        int outOfBoundUpperIndex = model.getAddressBook().getPersonList().size() + 10;
-        int outOfBoundLowerIndex = -1;
+        Index outOfBoundUpperIndex = Index.fromOneBased(model.getAddressBook().getPersonList().size() + 10);
 
         // ensures that outOfBoundIndex is out bounds of address book list
-        assertTrue(outOfBoundUpperIndex >= model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundUpperIndex.getOneBased() >= model.getAddressBook().getPersonList().size());
 
         DeleteContactedInfoCommand deleteContactedInfoCommandU = new DeleteContactedInfoCommand(
                 index, outOfBoundUpperIndex);
-        DeleteContactedInfoCommand deleteContactedInfoCommandL = new DeleteContactedInfoCommand(
-                index, outOfBoundLowerIndex);
 
         assertCommandFailure(deleteContactedInfoCommandU, model, DeleteContactedInfoCommand.MESSAGE_MISSING_INFO);
-        assertCommandFailure(deleteContactedInfoCommandL, model, DeleteContactedInfoCommand.MESSAGE_MISSING_INFO);
     }
 
     @Test
@@ -84,8 +80,8 @@ public class DeleteContactedInfoCommandTest {
         Index firstIndex = Index.fromOneBased(1);
         Index secondIndex = Index.fromOneBased(2);
 
-        int first = 1;
-        int second = 2;
+        Index first = Index.fromOneBased(1);
+        Index second = Index.fromOneBased(2);
 
         DeleteContactedInfoCommand deleteContactedInfoFirstCommand = new DeleteContactedInfoCommand(firstIndex, first);
         DeleteContactedInfoCommand deleteContactedInfoSecondCommand = new DeleteContactedInfoCommand(

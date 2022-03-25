@@ -72,6 +72,10 @@ public class Person {
         return Collections.unmodifiableList(contactedInfoList);
     }
 
+    public int getContactedInfoListSize() {
+        return Collections.unmodifiableList(contactedInfoList).size();
+    }
+
     public Optional<ContactedInfo> getLatestContactedInfoEntry() {
         return contactedInfoList.size() == 0 ? Optional.empty() : Optional.of(contactedInfoList.get(0));
     }

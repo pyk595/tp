@@ -37,7 +37,9 @@ public class DeleteContactedInfoCommandParser implements Parser<DeleteContactedI
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactedInfoCommand.MESSAGE_USAGE));
         }
-        int indexToDel = Integer.parseInt(argumentMultimap.getValue(PREFIX_DELETE_CONTACTED_INFO).get());
+
+        Index indexToDel = ParserUtil.parseIndex(
+                argumentMultimap.getValue(PREFIX_DELETE_CONTACTED_INFO).get());
 
         return new DeleteContactedInfoCommand(index, indexToDel);
     }

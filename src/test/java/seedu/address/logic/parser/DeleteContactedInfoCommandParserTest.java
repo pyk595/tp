@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteContactedInfoCommand;
 
 public class DeleteContactedInfoCommandParserTest {
@@ -58,18 +59,19 @@ public class DeleteContactedInfoCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
+        Index index = Index.fromOneBased(1);
         // basic format
         DeleteContactedInfoCommand expectedCommand =
-                new DeleteContactedInfoCommand(INDEX_FIRST_PERSON, 1);
+                new DeleteContactedInfoCommand(INDEX_FIRST_PERSON, index);
         assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased() + CONTACTED_INFO, expectedCommand);
 
         // trailing and leading whitespaces
-        expectedCommand = new DeleteContactedInfoCommand(INDEX_FIRST_PERSON, 1);
+        expectedCommand = new DeleteContactedInfoCommand(INDEX_FIRST_PERSON, index);
         assertParseSuccess(parser, " \n \t  " + INDEX_FIRST_PERSON.getOneBased() + CONTACTED_INFO_EMPTY
                 + "1 " + " \n \t  ", expectedCommand);
 
         // leading spaces in tag
-        expectedCommand = new DeleteContactedInfoCommand(INDEX_FIRST_PERSON, 1);
+        expectedCommand = new DeleteContactedInfoCommand(INDEX_FIRST_PERSON, index);
         assertParseSuccess(parser, "  \n \t " + INDEX_FIRST_PERSON.getOneBased()
                 + CONTACTED_INFO_EMPTY + " \n \t  "
                 + " 1 " + " \n \t  ", expectedCommand);
