@@ -27,7 +27,7 @@ import seedu.address.model.tag.Tag;
  * Deletes a specified contacted info from an existing person in the address book, if list is not empty.
  */
 public class DeleteContactedInfoCommand extends Command {
-    public static final String COMMAND_WORD = "delContacted";
+    public static final String COMMAND_WORD = "unlog";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a contacted information from an existing contact, "
