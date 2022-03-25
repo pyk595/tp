@@ -124,17 +124,6 @@ public class Person {
     }
 
     /**
-     * Returns true if {@code ContactedInfo} is in contacted information list.
-     *
-     * @param contactedInfo {@code ContactedInfo} to verify whether it is in the person's contacted information list.
-     * @return true if {@code ContactedInfo} is in contacted information list.
-     */
-    public boolean hasContactedInfo(ContactedInfo contactedInfo) {
-        return (contactedInfo != null)
-                && this.contactedInfoList.contains(contactedInfo);
-    }
-
-    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
