@@ -10,7 +10,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
-    public static final String MESSAGE_EMPTY_CONTACTED_INFORMATION = "No logs of previous contact";
+    public static final String MESSAGE_EMPTY_CONTACTED_INFORMATION = "You have not contacted this person before";
 
 
 }
