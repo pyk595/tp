@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -13,6 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.date.BirthDate;
 import seedu.address.model.date.RecentDate;
+import seedu.address.model.date.ReminderDate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
@@ -33,13 +35,17 @@ public class DeleteReminderCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a reminder from an existing contact, "
             + "as specified by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_REMINDER_DESCRIPTION + "REMINDER\n"
+            + PREFIX_REMINDER_DESCRIPTION + "REMINDER "
+            + PREFIX_REMINDER_DATE + "REMINDER_DATE\n"
             + "Example: " + COMMAND_WORD + " 2 "
-            + PREFIX_REMINDER_DESCRIPTION + "meeting";
+            + PREFIX_REMINDER_DESCRIPTION + "meeting "
+            + PREFIX_REMINDER_DATE + "2022-01-01";
     public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Deleted reminder: %1$s";
+    public static final String MESSAGE_MISSING_REMINDER = "There is no reminder named %1$s happening on %2$s";
 
     private final Index index;
     private final ReminderDescription reminderDescription;
+    private final ReminderDate reminderDate;
 
     /**
      * Creates an DeleteReminderCommand to delete the specified {@code ReminderDescription} from the
@@ -48,9 +54,13 @@ public class DeleteReminderCommand extends Command {
      * @param index of the person
      * @param reminderDescription of the reminder to be deleted.
      */
-    public DeleteReminderCommand(Index index, ReminderDescription reminderDescription) {
+    public DeleteReminderCommand(Index index, ReminderDescription reminderDescription, ReminderDate reminderDate) {
+        requireNonNull(index);
+        requireNonNull(reminderDescription);
+        requireNonNull(reminderDate);
         this.index = index;
         this.reminderDescription = reminderDescription;
+        this.reminderDate = reminderDate;
     }
 
 
@@ -65,7 +75,14 @@ public class DeleteReminderCommand extends Command {
 
         Person personToDelete = lastShownList.get(index.getZeroBased());
         ReminderList reminderList = personToDelete.getReminderList();
-        Reminder reminderToDelete = reminderList.find(reminderDescription);
+        Reminder reminderToDelete;
+
+        try {
+            reminderToDelete = reminderList.find(reminderDescription, reminderDate);
+        } catch (CommandException commandException) {
+            throw new CommandException(String.format("There is no reminder named %1$s happening on %2$s",
+                    reminderDescription, reminderDate));
+        }
 
         Name updatedName = personToDelete.getName();
         Phone updatedPhone = personToDelete.getPhone();
@@ -83,5 +100,20 @@ public class DeleteReminderCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_DELETE_REMINDER_SUCCESS, reminderToDelete));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DeleteReminderCommand)) {
+            return false;
+        }
+
+        DeleteReminderCommand deleteReminderCommand = (DeleteReminderCommand) other;
+        return this.index.equals(deleteReminderCommand.index)
+                && this.reminderDescription.equals(deleteReminderCommand.reminderDescription);
     }
 }

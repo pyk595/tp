@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.model.date.BirthDate;
 import seedu.address.model.date.RecentDate;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 
@@ -94,7 +95,7 @@ public class Person {
     }
 
     public ReminderList getReminderList() {
-        return reminderList;
+        return reminderList.getCopy();
     }
 
     /**
@@ -174,4 +175,13 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Checks if the {@code ReminderList} contains the {@code Reminder} object.
+     *
+     * @param reminder to be checked
+     * @return true if the {@code ReminderList} contains the {@code Reminder}, false otherwise
+     */
+    public boolean containsReminder(Reminder reminder) {
+        return this.reminderList.containsReminder(reminder);
+    }
 }

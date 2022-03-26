@@ -64,8 +64,8 @@ public class AddReminderCommand extends Command {
      * Creates and returns a {@code Person} with the details of personToEdit {@code Person}
      * added with reminderToAdd {@code Reminder}.
      */
-    private static Person createPersonWithAddedReminder(Person personToEdit, Reminder reminderToAdd) {
-        assert personToEdit != null;
+    private static Person createPersonWithAddedReminder(Person personToEdit, Reminder reminderToAdd) throws CommandException {
+        requireNonNull(personToEdit);
 
         Name updatedName = personToEdit.getName();
         Phone updatedPhone = personToEdit.getPhone();
@@ -99,11 +99,29 @@ public class AddReminderCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
+        if (personToEdit.getReminderList().containsReminder(reminder)) {
+            throw new CommandException(String.format(ReminderList.MESSAGE_DUPLICATE_REMINDER, reminder));
+        }
         Person editedPerson = createPersonWithAddedReminder(personToEdit, this.reminder);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_ADD_REMINDER_SUCCESS, this.reminder, editedPerson.getName()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AddReminderCommand)) {
+            return false;
+        }
+
+        AddReminderCommand addReminderCommand = (AddReminderCommand) other;
+        return this.index.equals(addReminderCommand.index)
+                && this.reminder.equals(addReminderCommand.reminder);
     }
 }

@@ -1,8 +1,12 @@
 package seedu.address.model.date;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class ReminderDate extends DocumentedDate implements Comparable<ReminderDate> {
+    private static final DateTimeFormatter FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public final String value;
+
     /**
      * Constructs a {@code DocumentedDate}.
      *
@@ -10,6 +14,7 @@ public class ReminderDate extends DocumentedDate implements Comparable<ReminderD
      */
     public ReminderDate(LocalDate date) {
         super(date);
+        value = date.format(FORMATTER_INPUT);
     }
 
     /**

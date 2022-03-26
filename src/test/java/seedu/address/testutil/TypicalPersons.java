@@ -13,12 +13,17 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.date.ReminderDate;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderDescription;
+import seedu.address.model.reminder.ReminderList;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -29,27 +34,48 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withBirthDate("2000-01-01")
-            .withTags("friends").build();
+            .withTags("friends")
+            .withReminders(new Reminder(new ReminderDescription("Meeting"),
+                    new ReminderDate(LocalDate.of(2022, 1, 1))))
+            .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withBirthDate("2000-01-01").withDate("2020-02-02")
             .withDescription("Meet up")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends")
+            .withReminders(new Reminder(new ReminderDescription("Meeting"),
+                    new ReminderDate(LocalDate.of(2022, 1, 1))))
+            .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
-            .withBirthDate("2000-01-01").build();
+            .withBirthDate("2000-01-01")
+            .withReminders(new Reminder(new ReminderDescription("Meeting"),
+                    new ReminderDate(LocalDate.of(2022, 1, 1))))
+            .build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
-            .withBirthDate("2000-01-01").build();
+            .withBirthDate("2000-01-01")
+            .withReminders(new Reminder(new ReminderDescription("Meeting"),
+                    new ReminderDate(LocalDate.of(2022, 1, 1))))
+            .build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
-            .withBirthDate("2000-01-01").build();
+            .withBirthDate("2000-01-01")
+            .withReminders(new Reminder(new ReminderDescription("Meeting"),
+                    new ReminderDate(LocalDate.of(2022, 1, 1))))
+            .build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
-            .withBirthDate("2000-01-01").build();
+            .withBirthDate("2000-01-01")
+            .withReminders(new Reminder(new ReminderDescription("Meeting"),
+                    new ReminderDate(LocalDate.of(2022, 1, 1))))
+            .build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
-            .withBirthDate("2000-01-01").build();
+            .withBirthDate("2000-01-01")
+            .withReminders(new Reminder(new ReminderDescription("Meeting"),
+                    new ReminderDate(LocalDate.of(2022, 1, 1))))
+            .build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")

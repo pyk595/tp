@@ -2,6 +2,7 @@ package seedu.address.model.reminder;
 
 import java.util.PriorityQueue;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.date.ReminderDate;
 
 /**
@@ -11,6 +12,7 @@ import seedu.address.model.date.ReminderDate;
  */
 public class ReminderList {
 
+    public static final String MESSAGE_DUPLICATE_REMINDER = "This person already has a reminder %s";
     private final PriorityQueue<Reminder> reminderPriorityQueue;
 
     /**
@@ -31,14 +33,33 @@ public class ReminderList {
     }
 
     /**
+     * Returns a copy of the current {@code ReminderList}.
+     */
+    public ReminderList getCopy() {
+        return new ReminderList(this);
+    }
+
+    /**
+     * Checks if a given {@code Reminder} exists in the {@code ReminderList}.
+     *
+     * @param reminder to be checked
+     * @return true if the reminder exists, false otherwise.
+     */
+    public boolean containsReminder(Reminder reminder) {
+        return this.reminderPriorityQueue.contains(reminder);
+    }
+
+    /**
      * Adds a Reminder object to the current list.
      *
      * @param reminder to be added.
-     * @return the updated ReminderList
      */
-    public ReminderList add(Reminder reminder) {
+    public void add(Reminder reminder) {
+        if (reminderPriorityQueue.contains(reminder)) {
+            return;
+        }
+
         this.reminderPriorityQueue.add(reminder);
-        return this;
     }
 
     /**
@@ -56,23 +77,27 @@ public class ReminderList {
      * Finds a Reminder object to the current list.
      *
      * @param reminderDescription to search.
+     * @param reminderDate
      * @return the Reminder found. If there is no matching searches, returns null.
      */
-    public Reminder find(ReminderDescription reminderDescription) {
+    public Reminder find(ReminderDescription reminderDescription, ReminderDate reminderDate) throws CommandException {
         Reminder reminderFound = null;
         PriorityQueue<Reminder> reminderListCopy = new PriorityQueue<Reminder>(this.reminderPriorityQueue);
 
         while (!reminderListCopy.isEmpty()) {
             reminderFound = reminderListCopy.poll();
-            if (reminderFound.getDescription().equals(reminderDescription)) {
+            if (reminderFound.getDescription().equals(reminderDescription)
+                    && reminderFound.getReminderDate().equals(reminderDate)) {
                 break;
             }
         }
 
-        if (reminderFound.getDescription().equals(reminderDescription)) {
+        if (reminderFound.getDescription().equals(reminderDescription)
+                && reminderFound.getReminderDate().equals(reminderDate)) {
             return reminderFound;
         } else {
-            return null;
+            throw new CommandException(String.format("There is no reminder %1$s happening on %2$s.",
+                    reminderDescription, reminderDate));
         }
     }
 

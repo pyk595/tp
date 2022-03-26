@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.date.BirthDate;
 import seedu.address.model.date.RecentDate;
 import seedu.address.model.person.Address;
@@ -11,6 +12,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -18,7 +20,8 @@ import seedu.address.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Person objects.
  */
-public class PersonBuilder {
+public class
+PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
@@ -109,6 +112,38 @@ public class PersonBuilder {
         Set<Tag> newSet = new HashSet<>(this.tags);
         newSet.removeAll(SampleDataUtil.getTagSet(tags));
         this.tags = newSet;
+        return this;
+    }
+
+    /**
+     * Sets the {@code ReminderList} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withReminders(Reminder ... reminders) {
+        for (Reminder reminder : reminders) {
+            this.reminderList.add(reminder);
+        }
+        return this;
+    }
+
+    /**
+     * Adds the {@code Reminder} to the {@code Person} that we are building.
+     *
+     * @param reminder the reminder to add to the ReminderList
+     * @return this {@code PersonBuilder}
+     */
+    public PersonBuilder addReminder(Reminder reminder) {
+        this.reminderList.add(reminder);
+        return this;
+    }
+
+    /**
+     * Deletes the {@code Reminder} from the {@code Person} that we are building.
+     *
+     * @param reminder the reminder to delete from the ReminderList
+     * @return this {@code PersonBuilder}
+     */
+    public PersonBuilder deleteReminder(Reminder reminder) {
+        this.reminderList.delete(reminder);
         return this;
     }
 

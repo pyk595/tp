@@ -33,7 +33,7 @@ public class ListDateRemindersCommandParser implements Parser<ListDateRemindersC
             reminderDate = new ReminderDate(LocalDate.now());
         } else {
             try {
-                reminderDate = ParserUtil.parseReminderDate(args);
+                reminderDate = ParserUtil.parseReminderDate(argMultimap.getValue(PREFIX_REMINDER_DATE).get());
             } catch (ParseException pe) {
                 throw new ParseException(format(MESSAGE_INVALID_COMMAND_FORMAT,
                         ListDateRemindersCommand.MESSAGE_USAGE), pe);

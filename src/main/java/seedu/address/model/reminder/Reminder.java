@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
-import seedu.address.model.date.DocumentedDate;
 import seedu.address.model.date.ReminderDate;
 
 /**
@@ -33,17 +32,10 @@ public class Reminder implements Comparable<Reminder> {
     }
 
     /**
-     * Returns true if the reminder date is today.
-     */
-    public boolean isToday() {
-        return date.isToday();
-    }
-
-    /**
      * Returns true if the reminder date is on the specified date.
      */
-    public boolean isSameDateAs(DocumentedDate comparedDate) {
-        return this.date.equals(comparedDate);
+    public boolean isSameDateAs(ReminderDate reminderDate) {
+        return this.date.compareTo(reminderDate) == 0;
     }
 
     @Override
@@ -55,6 +47,14 @@ public class Reminder implements Comparable<Reminder> {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof Reminder
+                && reminderDescription.equalsIgnoreCase(((Reminder) other).reminderDescription)
+                && date.equals(((Reminder) other).date));
+    }
+
     public ReminderDescription getDescription() {
         return reminderDescription;
     }
@@ -62,5 +62,9 @@ public class Reminder implements Comparable<Reminder> {
     @Override
     public String toString() {
         return String.format("%1$s(%2$s)", this.reminderDescription.toString(), this.date.toString());
+    }
+
+    public ReminderDate getReminderDate() {
+        return this.date;
     }
 }

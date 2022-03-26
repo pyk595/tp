@@ -58,4 +58,13 @@ public class ReminderDescription implements Comparable<ReminderDescription> {
     public int compareTo(ReminderDescription otherReminderDescription) {
         return this.description.compareTo(otherReminderDescription.description);
     }
+
+    /**
+     * Checks if the {@code ReminderDescription} is the same as the given one, ignoring the cases.
+     * @param reminderDescription to be checked with
+     * @return true if both are the same, false otherwise
+     */
+    public boolean equalsIgnoreCase(ReminderDescription reminderDescription) {
+        return this.description.equalsIgnoreCase(reminderDescription.description);
+    }
 }
