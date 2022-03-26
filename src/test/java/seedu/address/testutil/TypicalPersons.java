@@ -23,7 +23,6 @@ import seedu.address.model.date.ReminderDate;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDescription;
-import seedu.address.model.reminder.ReminderList;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.

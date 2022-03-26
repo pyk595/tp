@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.date.BirthDate;
 import seedu.address.model.date.RecentDate;
 import seedu.address.model.person.Address;
@@ -20,8 +19,7 @@ import seedu.address.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Person objects.
  */
-public class
-PersonBuilder {
+public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";

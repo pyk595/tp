@@ -64,7 +64,7 @@ public class AddReminderCommand extends Command {
      * Creates and returns a {@code Person} with the details of personToEdit {@code Person}
      * added with reminderToAdd {@code Reminder}.
      */
-    private static Person createPersonWithAddedReminder(Person personToEdit, Reminder reminderToAdd) throws CommandException {
+    private static Person createPersonWithAddedReminder(Person personToEdit, Reminder reminderToAdd) {
         requireNonNull(personToEdit);
 
         Name updatedName = personToEdit.getName();
