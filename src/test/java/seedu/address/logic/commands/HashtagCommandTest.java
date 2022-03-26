@@ -23,22 +23,8 @@ import seedu.address.model.tag.Tag;
 
 class HashtagCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
-    @Test
-    public void isHashtagCommand_isHashtagCommand_returnsTrue() {
-        assertTrue(HashtagCommand.isHashtagCommand(" #test"));
-        assertTrue(HashtagCommand.isHashtagCommand("#test"));
-        assertTrue(HashtagCommand.isHashtagCommand("#test 123"));
-    }
-
-    @Test
-    public void isHashtagCommand_notHashtagCommand_returnFalse() {
-        assertFalse(HashtagCommand.isHashtagCommand(null));
-        assertFalse(HashtagCommand.isHashtagCommand("find"));
-        assertFalse(HashtagCommand.isHashtagCommand("notTag#test"));
-    }
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_noMatchingTag_noPersonFound() {

@@ -73,7 +73,7 @@ public class DeleteTagCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        // vanilla
+        // basic format
         DeleteTagCommand expectedCommand = new DeleteTagCommand(INDEX_FIRST_PERSON, new Tag(VALID_TAG_FRIEND));
         assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased() + TAG_EMPTY + VALID_TAG_FRIEND, expectedCommand);
 

@@ -1,11 +1,16 @@
 package seedu.address.model.date;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class RecentDate extends DocumentedDate {
+public class RecentDate extends DocumentedDate implements Comparable<RecentDate> {
+
     private static final DateTimeFormatter FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
     public final String value;
+    private LocalDate date;
 
     /**
      * Constructs a {@code RecentDate}.
@@ -14,6 +19,7 @@ public class RecentDate extends DocumentedDate {
      */
     public RecentDate(LocalDate date) {
         super(date);
+        this.date = date;
         value = date.format(FORMATTER_INPUT);
     }
 
@@ -24,6 +30,7 @@ public class RecentDate extends DocumentedDate {
      * @return A non null {@code RecentDate}.
      */
     public static RecentDate parse(String parsedDate) {
+        checkArgument(isValidDate(parsedDate));
         LocalDate date = LocalDate.parse(parsedDate);
         return new RecentDate(date);
     }
@@ -44,6 +51,17 @@ public class RecentDate extends DocumentedDate {
      */
     public static RecentDate defaultRecentDate() {
         return new RecentDate(LocalDate.now());
+    }
+
+    /**
+     * compare two {@code RecentDate} objects
+     *
+     * @param rd RecentDate object to compare to.
+     * @return an integer corresponding to which date comes first.
+     */
+    @Override
+    public int compareTo(RecentDate rd) {
+        return date.compareTo(rd.date) * -1;
     }
 
     @Override

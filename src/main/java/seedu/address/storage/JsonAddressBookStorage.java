@@ -1,8 +1,10 @@
 package seedu.address.storage;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -13,6 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.UserPrefs;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -20,6 +23,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 public class JsonAddressBookStorage implements AddressBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+
+    private static final Path BACKUP_PATH = UserPrefs.getBackupFilePath();
 
     private Path filePath;
 
@@ -55,8 +60,22 @@ public class JsonAddressBookStorage implements AddressBookStorage {
             return Optional.of(jsonAddressBook.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            try {
+                backupFiles();
+            } catch (IOException ioe) {
+                logger.info(FILE_OPS_ERROR_MESSAGE + BACKUP_PATH);
+            }
             throw new DataConversionException(ive);
         }
+    }
+
+    /**
+     * Creates an exact copy of the current addressbook.json file.
+     *
+     * @throws IOException if the designated file paths are invalid.
+     */
+    public void backupFiles() throws IOException {
+        Files.copy(getAddressBookFilePath(), BACKUP_PATH);
     }
 
     @Override

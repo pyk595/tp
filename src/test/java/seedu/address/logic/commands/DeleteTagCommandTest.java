@@ -155,7 +155,7 @@ public class DeleteTagCommandTest {
         // null -> returns false
         assertFalse(deleteTagFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different command -> returns false
         assertFalse(deleteTagFirstCommand.equals(deleteTagSecondCommand));
         assertFalse(deleteTagFirstCommand.equals(deleteTagThirdCommand));
         assertFalse(deleteTagFirstCommand.equals(deleteTagFourthCommand));

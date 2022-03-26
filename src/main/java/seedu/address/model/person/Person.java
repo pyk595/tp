@@ -4,9 +4,12 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.date.BirthDate;
 import seedu.address.model.date.RecentDate;
 import seedu.address.model.reminder.Reminder;
@@ -26,11 +29,10 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final RecentDate contactedDate;
-    private final Description contactedDesc;
     private final BirthDate birthDate;
+    private final List<ContactedInfo> contactedInfoList;
     private final Set<Tag> tags = new HashSet<>();
-    private ReminderList reminderList;
+    private final ReminderList reminderList;
 
     /**
      * Every field must be present and not null. A constructor including the reminder.
@@ -44,16 +46,15 @@ public class Person {
      * @param tags of the person
      * @param reminderList associated with this person
      */
-    public Person(Name name, Phone phone, Email email, Address address, BirthDate birthDate, RecentDate contactedDate,
-                  Description contactedDesc, Set<Tag> tags, ReminderList reminderList) {
-        requireAllNonNull(name, phone, email, address, birthDate, contactedDate, contactedDesc);
+    public Person(Name name, Phone phone, Email email, Address address, BirthDate birthDate,
+                  List<ContactedInfo> contactedInfoList, Set<Tag> tags, ReminderList reminderList) {
+        requireAllNonNull(name, phone, email, address, birthDate, contactedInfoList, tags, reminderList);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.contactedDate = contactedDate;
-        this.contactedDesc = contactedDesc;
         this.birthDate = birthDate;
+        this.contactedInfoList = contactedInfoList;
         this.tags.addAll(tags);
         this.reminderList = reminderList;
     }
@@ -74,16 +75,31 @@ public class Person {
         return address;
     }
 
-    public RecentDate getContactedDate() {
-        return contactedDate;
-    }
-
-    public Description getContactedDesc() {
-        return contactedDesc;
-    }
-
     public BirthDate getBirthDate() {
         return birthDate;
+    }
+
+    public List<ContactedInfo> getContactedInfoList() {
+        return Collections.unmodifiableList(contactedInfoList);
+    }
+
+    public int getContactedInfoListSize() {
+        return Collections.unmodifiableList(contactedInfoList).size();
+    }
+
+    public Optional<ContactedInfo> getLatestContactedInfoEntry() {
+        return contactedInfoList.size() == 0 ? Optional.empty() : Optional.of(contactedInfoList.get(0));
+    }
+
+    public Integer getContactedDateRange() {
+        return getLatestContactedInfoEntry()
+                .map(ContactedInfo::getDaysPassed)
+                .orElse(Integer.MAX_VALUE);
+    }
+
+
+    public boolean isBirthdayToday() {
+        return this.birthDate.isToday();
     }
 
     /**
@@ -141,13 +157,15 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getBirthDate().equals(getBirthDate())
+                && otherPerson.getContactedInfoList().equals(getContactedInfoList())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, contactedInfoList, tags);
     }
 
     @Override
@@ -163,9 +181,9 @@ public class Person {
                 .append("; birthday: ")
                 .append(getBirthDate())
                 .append("; Last Contacted: ")
-                .append(getContactedDate())
-                .append("; Description of Last Contacted: ")
-                .append(getContactedDesc());
+                .append(getLatestContactedInfoEntry()
+                        .map(ContactedInfo::toString)
+                        .orElse("No entry yet"));
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.description;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -35,7 +35,7 @@ public class Description {
      * Returns defulat description
      */
     public static Description defaultDesc() {
-        return new Description("Get Contact Information");
+        return new Description("First Interaction");
     }
 
     /**
