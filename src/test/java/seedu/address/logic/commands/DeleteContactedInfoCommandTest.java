@@ -56,7 +56,7 @@ public class DeleteContactedInfoCommandTest {
         String expectedMessage = String.format(DeleteContactedInfoCommand.MESSAGE_DELETE_CONTACTED_INFO_SUCCESS,
                 personToDelete.getContactedInfoEntry(indexToDel));
         assertCommandSuccess(deleteContactedInfoCommand, model, expectedMessage, expectedModel);
-        String emptyListMessage = DeleteContactedInfoCommand.MESSAGE_EMPTY_LIST;
+        String emptyListMessage = DeleteContactedInfoCommand.MESSAGE_EMPTY_CONTACTED_INFO_LIST;
         assertCommandFailure(deleteContactedInfoCommand, model, emptyListMessage);
     }
 

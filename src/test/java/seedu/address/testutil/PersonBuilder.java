@@ -134,10 +134,10 @@ public class PersonBuilder {
      * @return this {@code PersonBuilder}.
      */
     public PersonBuilder addContactedInfo(String ... contactedInfo) {
-        ArrayList<ContactedInfo> newArrLst = new ArrayList<>(this.contactedInfo);
-        newArrLst.addAll(SampleDataUtil.getContactedInfoList(contactedInfo));
-        Collections.sort(newArrLst);
-        this.contactedInfo = newArrLst;
+        ArrayList<ContactedInfo> contactedInfoList = new ArrayList<>(this.contactedInfo);
+        contactedInfoList.addAll(SampleDataUtil.getContactedInfoList(contactedInfo));
+        Collections.sort(contactedInfoList);
+        this.contactedInfo = contactedInfoList;
         return this;
     }
 
@@ -146,14 +146,14 @@ public class PersonBuilder {
      * deletes them from the contacted information list of {@code Person}
      * that we are building.
      *
-     * @param indexToDel the index of the contacted information to delete from the list.
+     * @param contactedInfoIndex the index of the contacted information to delete from the list.
      * @return this {@code PersonBuilder}.
      */
-    public PersonBuilder deleteContactedInfo(Index indexToDel) {
-        ArrayList<ContactedInfo> newArrLst = new ArrayList<>(contactedInfo);
-        int index = indexToDel.getZeroBased();
-        newArrLst.remove(index);
-        this.contactedInfo = newArrLst;
+    public PersonBuilder deleteContactedInfo(Index contactedInfoIndex) {
+        ArrayList<ContactedInfo> contactedInfoList = new ArrayList<>(contactedInfo);
+        int index = contactedInfoIndex.getZeroBased();
+        contactedInfoList.remove(index);
+        this.contactedInfo = contactedInfoList;
 
         return this;
     }
@@ -164,10 +164,10 @@ public class PersonBuilder {
      * @return this {@code PersonBuilder}.
      */
     public PersonBuilder addDefaultContactedInfo() {
-        ArrayList<ContactedInfo> newArrLst = new ArrayList<>(this.contactedInfo);
-        newArrLst.add(ContactedInfo.getDefaultContactedInfo());
-        Collections.sort(newArrLst);
-        this.contactedInfo = newArrLst;
+        ArrayList<ContactedInfo> contactedInfoList = new ArrayList<>(this.contactedInfo);
+        contactedInfoList.add(ContactedInfo.getDefaultContactedInfo());
+        Collections.sort(contactedInfoList);
+        this.contactedInfo = contactedInfoList;
         return this;
     }
 

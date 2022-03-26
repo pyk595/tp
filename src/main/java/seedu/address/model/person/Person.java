@@ -74,8 +74,14 @@ public class Person {
         return Collections.unmodifiableList(contactedInfoList);
     }
 
+    /**
+     * Returns the string representation of the list of {@code ContactedInfo}
+     * tethered to the {@code Person}.
+     *
+     * @return String representing the ContactedInfoList.
+     */
     public String getContactedInfoListToString() {
-        if (contactedInfoList.size() < 1) {
+        if (contactedInfoList.isEmpty()) {
             return Messages.MESSAGE_EMPTY_CONTACTED_INFORMATION;
         }
         StringBuilder output = new StringBuilder();

@@ -88,7 +88,10 @@ public interface Model {
     int getFilteredPersonListSize();
 
     /**
-     * Returns the person at the given index.
+     * Returns the {@code Person} at the given index.
+     *
+     * @param index the {@code Index} used to identify the person.
+     * @return the {@code Person} at the given index.
      */
     Person getFilteredPerson(Index index);
 

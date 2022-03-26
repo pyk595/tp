@@ -20,6 +20,7 @@ public class DeleteContactedInfoCommandParser implements Parser<DeleteContactedI
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DELETE_CONTACTED_INFO);
 
         Index index;
+        Index contactedInfoIndex;
 
         try {
             index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
@@ -38,10 +39,15 @@ public class DeleteContactedInfoCommandParser implements Parser<DeleteContactedI
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactedInfoCommand.MESSAGE_USAGE));
         }
 
-        Index indexToDel = ParserUtil.parseIndex(
-                argumentMultimap.getValue(PREFIX_DELETE_CONTACTED_INFO).get());
+        try {
+            contactedInfoIndex = ParserUtil.parseIndex(
+                    argumentMultimap.getValue(PREFIX_DELETE_CONTACTED_INFO).get());
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactedInfoCommand.MESSAGE_USAGE), pe);
+        }
 
-        return new DeleteContactedInfoCommand(index, indexToDel);
+        return new DeleteContactedInfoCommand(index, contactedInfoIndex);
     }
 
     /**

@@ -32,7 +32,7 @@ public class ListContactedInfoCommandTest {
     public void execute_validIndex_showsSameLogs() {
         Index index = Index.fromOneBased(1);
         Person expectedPerson = model.getFilteredPerson(index);
-        String expectedMessage = String.format(ListContactedInfoCommand.MESSAGE_SUCCESS,
+        String expectedMessage = String.format(ListContactedInfoCommand.MESSAGE_LIST_CONTACTED_INFO_SUCCESS,
                 expectedPerson.getName(), expectedPerson.getContactedInfoListToString());
         assertCommandSuccess(new ListContactedInfoCommand(index), model, expectedMessage, expectedModel);
     }
@@ -41,7 +41,7 @@ public class ListContactedInfoCommandTest {
     public void execute_validBoundaryIndex_showsSameLogs() {
         Index index = Index.fromOneBased(getTypicalPersons().size());
         Person expectedPerson = model.getFilteredPerson(index);
-        String expectedMessage = String.format(ListContactedInfoCommand.MESSAGE_SUCCESS,
+        String expectedMessage = String.format(ListContactedInfoCommand.MESSAGE_LIST_CONTACTED_INFO_SUCCESS,
                 expectedPerson.getName(), expectedPerson.getContactedInfoListToString());
         assertCommandSuccess(new ListContactedInfoCommand(index), model, expectedMessage, expectedModel);
     }
@@ -50,7 +50,7 @@ public class ListContactedInfoCommandTest {
     public void execute_validBoundaryIndexLessOne_showsSameLogs() {
         Index index = Index.fromOneBased(getTypicalPersons().size() - 1);
         Person expectedPerson = model.getFilteredPerson(index);
-        String expectedMessage = String.format(ListContactedInfoCommand.MESSAGE_SUCCESS,
+        String expectedMessage = String.format(ListContactedInfoCommand.MESSAGE_LIST_CONTACTED_INFO_SUCCESS,
                 expectedPerson.getName(), expectedPerson.getContactedInfoListToString());
         assertCommandSuccess(new ListContactedInfoCommand(index), model, expectedMessage, expectedModel);
     }

@@ -23,7 +23,7 @@ public class ListContactedInfoCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + "3";
 
-    public static final String MESSAGE_SUCCESS = "Listed all contacted information for %1$s:\n%2$s";
+    public static final String MESSAGE_LIST_CONTACTED_INFO_SUCCESS = "Listed all contacted information for %1$s:\n%2$s";
 
     private final Index index;
 
@@ -45,7 +45,7 @@ public class ListContactedInfoCommand extends Command {
 
         Person personSpecified = model.getFilteredPerson(index);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS,
+        return new CommandResult(String.format(MESSAGE_LIST_CONTACTED_INFO_SUCCESS,
                 personSpecified.getName(),
                 personSpecified.getContactedInfoListToString()));
     }
