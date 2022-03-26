@@ -2,14 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.person.Person;
 
 /**
@@ -19,7 +17,7 @@ public class ListContactedInfoCommand extends Command {
     public static final String COMMAND_WORD = "logs";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lists all contacted information for a specified contact. "
+            + ": Lists all contacted information for a specified contact. \n"
             + "Parameters: "
             + "INDEX "
             + "Example: " + COMMAND_WORD + " "
@@ -39,23 +37,17 @@ public class ListContactedInfoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        StringBuilder output = new StringBuilder();
-
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getOneBased() > lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personSpecified = model.getFilteredPersonList().get(index.getZeroBased());
-        ArrayList<ContactedInfo> contactedInfoArrayList = new ArrayList<>(personSpecified.getContactedInfoList());
+        Person personSpecified = model.getFilteredPerson(index);
 
-        for (int i = 1; i <= contactedInfoArrayList.size(); i++) {
-            ContactedInfo contactedInfo = contactedInfoArrayList.get(i - 1);
-            output.append(String.format("%1$d. %2$s\n", i, contactedInfo.toString()));
-        }
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personSpecified.getName(), output.toString()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS,
+                personSpecified.getName(),
+                personSpecified.getContactedInfoListToString()));
     }
 
     @Override

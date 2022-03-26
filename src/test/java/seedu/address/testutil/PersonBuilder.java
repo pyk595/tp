@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.date.BirthDate;
 import seedu.address.model.person.Address;
@@ -148,12 +149,10 @@ public class PersonBuilder {
      * @param indexToDel the index of the contacted information to delete from the list.
      * @return this {@code PersonBuilder}.
      */
-    public PersonBuilder deleteContactedInfo(Integer ... indexToDel) {
+    public PersonBuilder deleteContactedInfo(Index indexToDel) {
         ArrayList<ContactedInfo> newArrLst = new ArrayList<>(contactedInfo);
-
-        for (Integer index: indexToDel) {
-            newArrLst.remove(indexToDel);
-        }
+        int index = indexToDel.getZeroBased();
+        newArrLst.remove(index);
         this.contactedInfo = newArrLst;
 
         return this;
