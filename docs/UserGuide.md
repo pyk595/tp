@@ -11,7 +11,7 @@ This user guide offers the following to insurance agents or other users trying t
 - All available features
 - Examples on how to use each feature
 
-
+Bold words refer to commands to be performed by users.
 
 ----
 
@@ -45,15 +45,15 @@ This user guide offers the following to insurance agents or other users trying t
 
 ## Quick Start
 
-1. Ensure you have `Java JDK 11` or above installed in your Computer.
+1. Ensure you have "Java JDK 11" or above installed in your Computer.
 
-2. Download the latest `jar` file, `AIA.jar` from [here](https://github.com/AY2122S2-CS2103T-T17-3/tp/releases).
+2. Download the latest "jar" file, "AIA.jar" from [here](https://github.com/AY2122S2-CS2103T-T17-3/tp/releases).
 
-3. Move the `jar` file to an empty folder in where you want to store the `jar` file and the contacts.
+3. Move the "jar" file to an empty folder in where you want to store the "jar" file and the contacts.
 
 4. Open a shell application (Command Prompt or Terminal etc.) and navigate to the folder created in step 3.
 
-5. Run the `jar` file with the `java -jar` command in the shell application to run the application, e.g. `java -jar AIA.jar`.
+5. Run the "jar" file with the **java -jar** command in the shell application to run the application, e.g. **java -jar AIA.jar**.
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.
 
@@ -69,7 +69,7 @@ This user guide offers the following to insurance agents or other users trying t
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the information to be supplied by the user.<br>
+* Markup words in `UPPER_CASE` are the information to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is an information which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
