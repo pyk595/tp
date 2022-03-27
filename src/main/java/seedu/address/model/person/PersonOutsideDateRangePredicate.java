@@ -9,7 +9,7 @@ public class PersonOutsideDateRangePredicate implements Predicate<Person> {
     private final int numberOfDays;
 
     /**
-     * Constructs a {@code PersonWithinDateRangePredicate} object.
+     * Constructs a {@code PersonOutsideDateRangePredicate} object.
      *
      * @param days the number of days used as a range for this predicate.
      */

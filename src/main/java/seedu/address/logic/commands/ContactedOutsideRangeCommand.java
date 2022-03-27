@@ -20,9 +20,9 @@ public class ContactedOutsideRangeCommand extends Command {
     private final PersonOutsideDateRangePredicate predicate;
 
     /**
-     * Constructs a {@code ContactedWithinRangeCommand} object with the given {@code PersonWithinDateRangePredicate}.
+     * Constructs a {@code ContactedOutsideRangeCommand} object with the given {@code PersonOutsideDateRangePredicate}.
      *
-     * @param predicate the predicate for the command execution in the context of {@code ContactedWithinRangeCommand}.
+     * @param predicate the predicate for the command execution in the context of {@code ContactedOutsideRangeCommand}.
      */
     public ContactedOutsideRangeCommand(PersonOutsideDateRangePredicate predicate) {
         requireNonNull(predicate);
