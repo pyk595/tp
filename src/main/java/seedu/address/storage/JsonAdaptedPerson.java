@@ -45,7 +45,6 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("birthDate") String birthDate,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("contactedInfo") List<JsonAdaptedContactedInfo> contactedInfo,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("reminders") List<JsonAdaptedReminder> reminders) {
