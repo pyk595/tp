@@ -22,7 +22,8 @@ handle all your contact management processes, making sure you always have a snap
   * [Viewing reminders of a contact](#viewing-reminders-of-a-contact-reminder)
   * [Viewing contacts by reminder](#viewing-contacts-by-reminder-reminders)
   * [Deleting a reminder](#deleting-a-reminder-forget)
-  * [Editing tags](#editing-tags-tag)
+  * [Adding a tag](#adding-a-tag-tag)
+  * [Deleting a tag](#deleting-a-tag-untag)
   * [Showing all available tags](#showing-all-available-tags-tags)
   * [Find contacts with tag](#finding-contacts-with-tag-)
   * [Exiting the program](#exiting-the-program--exit)
@@ -33,24 +34,23 @@ handle all your contact management processes, making sure you always have a snap
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Usage
+## Quick Start
 
 1. Ensure you have `Java JDK 11` or above installed in your Computer.
 
-1. Download the latest `AIA.jar` from [here](https://github.com/AY2122S2-CS2103T-T17-3/tp/releases).
+2. Download the latest `jar` file, `AIA.jar` from [here](https://github.com/AY2122S2-CS2103T-T17-3/tp/releases).
 
-1. If you are using Windows, double-click the file to start the application. The GUI similar to the below should appear
-   in a few seconds. Note how the app contains some sample data.
+3. Move the `jar` file to an empty folder in where you want to store the `jar` file and the contacts.
 
-1. If you are using MacOS, use terminal to change directory to where you saved the jar file and run the following CLI
-   “java -jar AIA.jar”
+4. Open a shell application (Command Prompt or Terminal etc.) and navigate to the folder created in step 3.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.
+5. Run the `jar` file with the `java -jar` command in the shell application to run the application, e.g. `java -jar AIA.jar`.
 
-1. When in doubt, type **`help`** in the command bar to pull up the list of commands
+6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. When in doubt, type `help` in the command box or click "Help" in the application bar to pull up the list of available commands.
+
+8. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
