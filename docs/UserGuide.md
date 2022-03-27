@@ -12,6 +12,7 @@ This user guide offers the following to insurance agents or other users trying t
 - Examples on how to use each feature
 
 Bold words refer to commands to be performed by users.
+Words in quotations are files, file type or dependencies.
 
 ----
 
