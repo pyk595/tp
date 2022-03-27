@@ -30,10 +30,10 @@ public class ContactedWithinRangeCommand extends Command {
     }
 
     /**
-     * Executes the command and returns the result message.
+     * Executes the command and returns the {@code CommandResult}.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return feedback message of the operation result for display
+     * @return {@code CommandResult} of the operation result for display.
      * @throws CommandException If an error occurs during command execution.
      */
     @Override
@@ -46,8 +46,15 @@ public class ContactedWithinRangeCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return (other == this) // short circuit if same object
-                || (other instanceof ContactedWithinRangeCommand // instanceof handles nulls
-                && predicate.equals(((ContactedWithinRangeCommand) other).predicate)); // state check
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+        // instanceof handles nulls
+        if (!(other instanceof ContactedWithinRangeCommand)) {
+            return false;
+        }
+        // state check
+        return predicate.equals(((ContactedWithinRangeCommand) other).predicate);
     }
 }

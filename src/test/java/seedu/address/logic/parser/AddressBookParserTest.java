@@ -24,6 +24,8 @@ import seedu.address.logic.commands.AddContactedInfoCommand;
 import seedu.address.logic.commands.AddTagCommand;
 import seedu.address.logic.commands.BirthdayCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ContactedOutsideRangeCommand;
+import seedu.address.logic.commands.ContactedWithinRangeCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteTagCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -144,6 +146,20 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(BirthdayCommand.COMMAND_WORD) instanceof BirthdayCommand);
         assertThrows(ParseException.class, MESSAGE_INVALID_ARGUMENTS, ()
             -> parser.parseCommand(BirthdayCommand.COMMAND_WORD + " 3"));
+    }
+
+    @Test
+    public void parseCommand_contactedWithinRange() throws Exception {
+        assertTrue(
+                parser.parseCommand(ContactedWithinRangeCommand.COMMAND_WORD + " 5")
+                        instanceof ContactedWithinRangeCommand);
+    }
+
+    @Test
+    public void parseCommand_contactedOutsideRange() throws Exception {
+        assertTrue(
+                parser.parseCommand(ContactedOutsideRangeCommand.COMMAND_WORD + " 5")
+                        instanceof ContactedOutsideRangeCommand);
     }
 
     @Test

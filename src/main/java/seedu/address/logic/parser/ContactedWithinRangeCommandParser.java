@@ -7,7 +7,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PersonWithinDateRangePredicate;
 
 /**
- * Parses input arguments and creates a new ContactedWithinRangeCommand object
+ * Parses input arguments and creates a new {@code ContactedWithinRangeCommand} object
  */
 public class ContactedWithinRangeCommandParser implements Parser<ContactedWithinRangeCommand> {
 

@@ -7,7 +7,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PersonOutsideDateRangePredicate;
 
 /**
- * Parses input arguments and creates a new ContactedOutsideRangeCommand object
+ * Parses input arguments and creates a new {@code ContactedOutsideRangeCommand} object
  */
 public class ContactedOutsideRangeCommandParser implements Parser<ContactedOutsideRangeCommand> {
     /**
