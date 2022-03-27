@@ -22,24 +22,16 @@ public class DeleteContactedInfoCommandParser implements Parser<DeleteContactedI
         Index index;
         Index contactedInfoIndex;
 
-        try {
-            index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactedInfoCommand.MESSAGE_USAGE), pe);
-        }
-
         if (argumentMultimap.getValue(PREFIX_DELETE_CONTACTED_INFO).isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactedInfoCommand.MESSAGE_USAGE));
         }
-
-        if (!isNumeric(argumentMultimap.getValue(PREFIX_DELETE_CONTACTED_INFO).get())) {
+        if (argumentMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactedInfoCommand.MESSAGE_USAGE));
         }
-
         try {
+            index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
             contactedInfoIndex = ParserUtil.parseIndex(
                     argumentMultimap.getValue(PREFIX_DELETE_CONTACTED_INFO).get());
         } catch (ParseException pe) {
@@ -48,24 +40,6 @@ public class DeleteContactedInfoCommandParser implements Parser<DeleteContactedI
         }
 
         return new DeleteContactedInfoCommand(index, contactedInfoIndex);
-    }
-
-    /**
-     * Return true if String is a number.
-     *
-     * @param strNum the String to test.
-     * @return true if String is a number
-     */
-    public static boolean isNumeric(String strNum) {
-        if (strNum == null) {
-            return false;
-        }
-        try {
-            Integer.parseInt(strNum);
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-        return true;
     }
 }
 
