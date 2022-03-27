@@ -31,7 +31,8 @@ This user guide offers the following to insurance agents or other users trying t
   * [Viewing reminders of a contact](#viewing-reminders-of-a-contact-reminder)
   * [Viewing contacts by reminder](#viewing-contacts-by-reminder-reminders)
   * [Deleting a reminder](#deleting-a-reminder-forget)
-  * [Editing tags](#editing-tags-tag)
+  * [Adding a tag](#adding-a-tag-tag)
+  * [Deleting a tag](#deleting-a-tag-untag)
   * [Showing all available tags](#showing-all-available-tags-tags)
   * [Find contacts with tag](#finding-contacts-with-tag-)
   * [Exiting the program](#exiting-the-program--exit)
@@ -42,24 +43,23 @@ This user guide offers the following to insurance agents or other users trying t
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Usage
+## Quick Start
 
 1. Ensure you have `Java JDK 11` or above installed in your Computer.
 
-1. Download the latest `AIA.jar` from [here](https://github.com/AY2122S2-CS2103T-T17-3/tp/releases).
+2. Download the latest `jar` file, `AIA.jar` from [here](https://github.com/AY2122S2-CS2103T-T17-3/tp/releases).
 
-1. If you are using Windows, double-click the file to start the application. The GUI similar to the below should appear
-   in a few seconds. Note how the app contains some sample data.
+3. Move the `jar` file to an empty folder in where you want to store the `jar` file and the contacts.
 
-1. If you are using MacOS, use terminal to change directory to where you saved the jar file and run the following CLI
-   “java -jar AIA.jar”
+4. Open a shell application (Command Prompt or Terminal etc.) and navigate to the folder created in step 3.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.
+5. Run the `jar` file with the `java -jar` command in the shell application to run the application, e.g. `java -jar AIA.jar`.
 
-1. When in doubt, type **`help`** in the command bar to pull up the list of commands
+6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. When in doubt, type `help` in the command box or click "Help" in the application bar to pull up the list of available commands.
+
+8. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -164,10 +164,10 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in the application.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Assigning dates to a contact: `contacted`
+### Assigning a recently contacted date to a contact: `contacted`
 
 Manually logs the date of the most recent interaction with the contact.
 
@@ -177,15 +177,42 @@ Format: `contacted INDEX d/DATE n/description`
 Example:
 * `contacted 23 d/28-07-2022 n/Sign Contract`
 
-### Displaying contacted contacts within DAYS: `within`
+### Deleting a recently contacted date to from contact: `unlog`
 
-Display contacts that needs to be contacts within DAYS.
+Deletes the specified recently contacted date from a specified contact.
 
-Format: `within d/DAYS`
+Format: `unlog INDEX del/INDEX`
+
+* First `INDEX` signifies the specified contact.
+* The first index refers to the index number shown in the displayed person list.
+* Second `INDEX` signifies the contacted date to delete.
+* The second index refers to the index number shown in the person's displayed recently contacted date list.
+* both indexes **must be a positive integer** 1, 2, 3, …​
+
+Example:
+* `unlog 2 del/6`
+
+### Deleting a recently contacted date to from contact: `logs`
+
+Display all recently contacted date for a specified contact.
+Format: `logs INDEX`
+yep
+* `INDEX` signifies the specified contact.
+* The index refers to the index number shown in the displayed person list.
+* both indexes **must be a positive integer** 1, 2, 3, …​
+
+Example:
+* `logs 2`
+
+### Displaying contacts that were contacted within days: `within`
+
+Display contacts that were contacted within specified range of days.
+
+Format: `within DAYS`
 * DAYS must be a positive integer.
 
 Example:
-* `within d/12`
+* `within 12`
 
 ### Displaying contacts contacted more than a specified number of days ago: `after`
 
@@ -219,7 +246,7 @@ Example:
 
 ### Viewing contacts by reminder: `reminders`
 
-Displays all contact with a reminder with the specified date.
+Displays all contacts with a reminder with the specified date.
 
 Format: `reminders [d/DATE]`
 * Reminder dates are in `DD-MM-YYYY` format.
