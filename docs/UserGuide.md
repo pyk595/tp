@@ -1,8 +1,15 @@
 # User Guide
 
-Automated Insurance Assistant (AIA) is **a desktop app for managing contacts, optimised for use via a Command Line
-Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AIA can
-handle all your contact management processes, making sure you always have a snapshot of your clients’ profiles on hand.
+Automated Insurance Assistant (AIA) is a desktop application that aims to serve as an easy alternative to a customer relationship management system for Insurance Agents to manage their client contacts.
+Insurance agents can use this application to keep track of client meetings and important dates of each client.
+
+Usage of this application is optimised for use via a Command Line Interface (CLI) while still displaying information to users in an intuitive manner, through a Graphical User Interface (GUI). 
+If you can type fast, AIA can reduce the amount of administrative work you need to do for each client.
+
+This user guide offers the following to insurance agents or other users trying to learn how to use the application:
+- A quick start to running the application
+- All available features
+- Examples on how to use each feature
 
 ----
 
