@@ -30,22 +30,22 @@ public class DeleteContactedInfoCommand extends Command {
     public static final String COMMAND_WORD = "unlog";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a contacted information from an existing contact, "
-            + "as specified by the index number used in the displayed person list. The tag will be deleted only if "
-            + "the contacted information list is not empty\n"
+            + ": Deletes a contacted information from an existing contact, \n"
+            + "as specified by the index number used in the displayed person list.\n"
+            + "The log will be deleted only if "
+            + "the contacted information list is not empty.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_DELETE_CONTACTED_INFO + "INDEX\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_DELETE_CONTACTED_INFO + "1";
 
     public static final String MESSAGE_DELETE_CONTACTED_INFO_SUCCESS = "Deleted contacted information: %1$s";
-    public static final String MESSAGE_MISSING_INFO = "Index specified out of range.";
-    public static final String MESSAGE_EMPTY_LIST = "Cannot delete, list is empty!";
+    public static final String MESSAGE_INVALID_CONTACTED_INFO_INDEX = "The specified log entry does not exist.";
+    public static final String MESSAGE_EMPTY_CONTACTED_INFO_LIST = "Cannot delete, list is empty!";
 
     private final Index index;
     private final Index indexToDel;
 
-    private ContactedInfo contactedInfo;
     /**
      * Constructs an {@code DeleteContactedInfoCommand} with the given {@code Index} and {@code ContactedInfo}.
      *
@@ -77,25 +77,21 @@ public class DeleteContactedInfoCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        if (personToEdit.getContactedInfoList().isEmpty()) {
-            throw new CommandException(MESSAGE_EMPTY_LIST);
+        if (personToEdit.isContactedInfoListEmpty()) {
+            throw new CommandException(MESSAGE_EMPTY_CONTACTED_INFO_LIST);
         }
 
-        if (personToEdit.getContactedInfoListSize() <= indexToDel.getZeroBased()) {
-            throw new CommandException(MESSAGE_MISSING_INFO);
+        if (indexToDel.getOneBased() > personToEdit.getContactedInfoListSize()) {
+            throw new CommandException(MESSAGE_INVALID_CONTACTED_INFO_INDEX);
         }
 
-        if (indexToDel.getZeroBased() < 0) {
-            throw new CommandException(MESSAGE_MISSING_INFO);
-        }
-
-        contactedInfo = personToEdit.getContactedInfoList().get(indexToDel.getZeroBased());
-        Person editedPerson = createPersonWithDeletedContactedInfo(personToEdit, this.contactedInfo);
+        ContactedInfo contactedInfo = personToEdit.getContactedInfoEntry(indexToDel);
+        Person editedPerson = createPersonWithDeletedContactedInfo(personToEdit, contactedInfo);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(MESSAGE_DELETE_CONTACTED_INFO_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_DELETE_CONTACTED_INFO_SUCCESS, contactedInfo));
     }
 
     /**

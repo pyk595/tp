@@ -20,46 +20,26 @@ public class DeleteContactedInfoCommandParser implements Parser<DeleteContactedI
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DELETE_CONTACTED_INFO);
 
         Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactedInfoCommand.MESSAGE_USAGE), pe);
-        }
+        Index contactedInfoIndex;
 
         if (argumentMultimap.getValue(PREFIX_DELETE_CONTACTED_INFO).isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactedInfoCommand.MESSAGE_USAGE));
         }
-
-        if (!isNumeric(argumentMultimap.getValue(PREFIX_DELETE_CONTACTED_INFO).get())) {
+        if (argumentMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactedInfoCommand.MESSAGE_USAGE));
         }
-
-        Index indexToDel = ParserUtil.parseIndex(
-                argumentMultimap.getValue(PREFIX_DELETE_CONTACTED_INFO).get());
-
-        return new DeleteContactedInfoCommand(index, indexToDel);
-    }
-
-    /**
-     * Return true if String is a number.
-     *
-     * @param strNum the String to test.
-     * @return true if String is a number
-     */
-    public static boolean isNumeric(String strNum) {
-        if (strNum == null) {
-            return false;
-        }
         try {
-            Integer.parseInt(strNum);
-        } catch (NumberFormatException nfe) {
-            return false;
+            index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
+            contactedInfoIndex = ParserUtil.parseIndex(
+                    argumentMultimap.getValue(PREFIX_DELETE_CONTACTED_INFO).get());
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactedInfoCommand.MESSAGE_USAGE), pe);
         }
-        return true;
+
+        return new DeleteContactedInfoCommand(index, contactedInfoIndex);
     }
 }
 
