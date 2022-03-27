@@ -315,21 +315,21 @@ If you made a mistake while manually editing the saved data, a backup save file 
 
 Action | Format
 --------|------------------
-**Add a contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+**Add a contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`
 **List all contacts** | `list`
-**Edit a contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+**Edit a contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [t/TAG]…​`
 **Find a contact by keywords** | `find KEYWORD [MORE_KEYWORDS]`
 **Delete a contact** | `delete INDEX`
-**Assign date to contact** | `contacted INDEX d/DATE n/description`
+**Assign date to contact** | `contacted INDEX d/DATE des/description`
 **Display contacts within DAYS** | `within DAYS`
 **Display contacts after DAYS** | `after DAYS`
-**Add a non-recurring reminder** | `remind INDEX r/REMINDER d/DATE`
+**Display birthdays occurring today** | `birthdays`
+**Add a non-recurring reminder** | `remind INDEX r/REMINDER rd/DATE`
 **View reminders of a contact** | `reminder INDEX`
-**View reminders on a date** | `reminders [d/DAY]`
+**View reminders on a date** | `reminders [rd/DATE]`
 **Delete a reminder** | `forget INDEX r/REMINDER`
 **Edit tags** | `tag INDEX add t/TAG` <br> `tag INDEX delete t/TAG`
 **Show all tags** | `tags`
 **Find contacts by tags** | `#`
 **Exit the program** | `exit`
 **Help** | `help`
-**Add automatic reminders** | `[coming in v1.3]`
