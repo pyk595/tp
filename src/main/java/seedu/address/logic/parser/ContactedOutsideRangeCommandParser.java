@@ -2,16 +2,14 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.logic.commands.ContactedWithinRangeCommand;
+import seedu.address.logic.commands.ContactedOutsideRangeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.PersonWithinDateRangePredicate;
+import seedu.address.model.person.PersonOutsideDateRangePredicate;
 
 /**
- * Parses input arguments and creates a new ContactedWithinRangeCommand object
+ * Parses input arguments and creates a new ContactedOutsideRangeCommand object
  */
-public class ContactedWithinRangeCommandParser implements Parser<ContactedWithinRangeCommand> {
-
-
+public class ContactedOutsideRangeCommandParser implements Parser<ContactedOutsideRangeCommand> {
     /**
      * Parses {@code userInput} into a command and returns it.
      *
@@ -19,13 +17,13 @@ public class ContactedWithinRangeCommandParser implements Parser<ContactedWithin
      * @throws ParseException if {@code userInput} does not conform the expected format.
      */
     @Override
-    public ContactedWithinRangeCommand parse(String userInput) throws ParseException {
+    public ContactedOutsideRangeCommand parse(String userInput) throws ParseException {
         try {
             int days = ParserUtil.parseDays(userInput);
-            return new ContactedWithinRangeCommand(new PersonWithinDateRangePredicate(days));
+            return new ContactedOutsideRangeCommand(new PersonOutsideDateRangePredicate(days));
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ContactedWithinRangeCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ContactedOutsideRangeCommand.MESSAGE_USAGE), pe);
 
         }
     }

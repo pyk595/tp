@@ -3,9 +3,9 @@ package seedu.address.model.person;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Person}'s latest {@code ContactedInfo} is within a given range.
+ * Tests that a {@code Person}'s latest {@code ContactedInfo} is outside a given range.
  */
-public class PersonWithinDateRangePredicate implements Predicate<Person> {
+public class PersonOutsideDateRangePredicate implements Predicate<Person> {
     private final int numberOfDays;
 
     /**
@@ -13,7 +13,7 @@ public class PersonWithinDateRangePredicate implements Predicate<Person> {
      *
      * @param days the number of days used as a range for this predicate.
      */
-    public PersonWithinDateRangePredicate(int days) {
+    public PersonOutsideDateRangePredicate(int days) {
         assert days >= 0 : "days should not be less than 0";
         numberOfDays = days;
     }
@@ -26,19 +26,19 @@ public class PersonWithinDateRangePredicate implements Predicate<Person> {
      */
     @Override
     public boolean test(Person person) {
-        return person.getContactedDateRange() <= numberOfDays;
+        return person.getContactedDateRange() > numberOfDays;
     }
 
     /**
-     * Returns true if this {@code PersonWithinDateRangePredicate} object is equal to the given {@code Object}.
+     * Returns true if this {@code PersonOutsideDateRangePredicate} object is equal to the given {@code Object}.
      *
      * @param other the other {@code Object} to verify the equality.
-     * @return true if this {@code PersonWithinDateRangePredicate} object is equal to the given {@code Object}.
+     * @return true if this {@code PersonOutsideDateRangePredicate} object is equal to the given {@code Object}.
      */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PersonWithinDateRangePredicate // instanceof handles nulls
-                && numberOfDays == (((PersonWithinDateRangePredicate) other).numberOfDays)); // state check
+                || (other instanceof PersonOutsideDateRangePredicate // instanceof handles nulls
+                && numberOfDays == (((PersonOutsideDateRangePredicate) other).numberOfDays)); // state check
     }
 }

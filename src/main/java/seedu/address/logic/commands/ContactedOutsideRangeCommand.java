@@ -5,30 +5,29 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.PersonWithinDateRangePredicate;
+import seedu.address.model.person.PersonOutsideDateRangePredicate;
 
 /**
- * List all persons contacted within a designated number of days.
+ * List all persons contacted outside of the designated number of days.
  */
-public class ContactedWithinRangeCommand extends Command {
+public class ContactedOutsideRangeCommand extends Command {
 
-    public static final String COMMAND_WORD = "within";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts contacted within "
+    public static final String COMMAND_WORD = "after";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts contacted outside "
             + "the specified range of days and displays them as a list with index numbers.\n"
             + "Parameters: number of days (Positive integer or 0)\n"
             + "Example: " + COMMAND_WORD + " 5";
-    private final PersonWithinDateRangePredicate predicate;
+    private final PersonOutsideDateRangePredicate predicate;
 
     /**
      * Constructs a {@code ContactedWithinRangeCommand} object with the given {@code PersonWithinDateRangePredicate}.
      *
      * @param predicate the predicate for the command execution in the context of {@code ContactedWithinRangeCommand}.
      */
-    public ContactedWithinRangeCommand(PersonWithinDateRangePredicate predicate) {
+    public ContactedOutsideRangeCommand(PersonOutsideDateRangePredicate predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;
     }
-
     /**
      * Executes the command and returns the result message.
      *
@@ -47,7 +46,7 @@ public class ContactedWithinRangeCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return (other == this) // short circuit if same object
-                || (other instanceof ContactedWithinRangeCommand // instanceof handles nulls
-                && predicate.equals(((ContactedWithinRangeCommand) other).predicate)); // state check
+                || (other instanceof ContactedOutsideRangeCommand // instanceof handles nulls
+                && predicate.equals(((ContactedOutsideRangeCommand) other).predicate)); // state check
     }
 }
