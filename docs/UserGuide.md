@@ -185,15 +185,15 @@ Format: `within d/DAYS`
 Example:
 * `within d/12`
 
-### Displaying contacted contacts later than DAYS: `later`
+### Displaying contacts contacted more than a specified number of days ago: `after`
 
-Display contacts that needs to be contacts after DAYS.
+Display contacts that have been previously contacts after a specified number of DAYS.
 
-Format: `later d/DAYS`
+Format: `later DAYS`
 * DAYS must be a positive integer.
 
 Example:
-* `later d/12`
+* `later 12`
 
 ### Adding a non-recurring reminder to a contact: `remind`
 
