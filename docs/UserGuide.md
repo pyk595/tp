@@ -219,11 +219,11 @@ Example:
 
 Display contacts that have been previously contacts after a specified number of DAYS.
 
-Format: `later DAYS`
+Format: `after DAYS`
 * DAYS must be a positive integer.
 
 Example:
-* `later 12`
+* `after 12`
 
 ### Adding a non-recurring reminder to a contact: `remind`
 
