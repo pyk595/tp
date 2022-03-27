@@ -321,8 +321,8 @@ Action | Format
 **Find a contact by keywords** | `find KEYWORD [MORE_KEYWORDS]`
 **Delete a contact** | `delete INDEX`
 **Assign date to contact** | `contacted INDEX d/DATE n/description`
-**Display contacts within DAYS** | `within d/DAYS`
-**Display contacts after DAYS** | `later d/DAYS`
+**Display contacts within DAYS** | `within DAYS`
+**Display contacts after DAYS** | `after DAYS`
 **Add a non-recurring reminder** | `remind INDEX r/REMINDER d/DATE`
 **View reminders of a contact** | `reminder INDEX`
 **View reminders on a date** | `reminders [d/DAY]`
