@@ -15,6 +15,7 @@ Bold words refer to commands to be performed by users.
 Words in quotations are files, file type or dependencies.
 
 ----
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 
@@ -44,6 +45,8 @@ Words in quotations are files, file type or dependencies.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Quick Start
 
 1. Ensure you have "Java JDK 11" or above installed in your Computer.
@@ -63,6 +66,7 @@ Words in quotations are files, file type or dependencies.
 8. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -88,19 +92,17 @@ Words in quotations are files, file type or dependencies.
 
 * Dates should be in "YYYY-MM-DD" format, unless stated otherwise. Single digits should be zero padded.<br>
   e.g. `2022-05-17`, `2021-01-01` and `2011-10-10` are in the correct format, while `2022-5-17` and `2021-1-1` are in the wrong format.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
-  ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
+  
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a contact: `add`
 
 Adds a contact to the application.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDATE [t/TAG]…​`
-* `BIRTHDATE` is in "DD-MM-YYYY" format.
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`
+* `BIRTH_DATE` is in "DD-MM-YYYY" format.
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:**
@@ -121,7 +123,7 @@ Format: `list`
 
 Edits an existing contact in the application.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDATE]
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE]
 [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
@@ -131,11 +133,13 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDATE]
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
-* `BIRTHDATE` is in "YYYY-MM-DD" format.
+* `BIRTH_DATE` is in "YYYY-MM-DD" format.
 
 Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+<div style="page-break-after: always;"></div>
 
 ### Finding contacts by name: `find`
 
@@ -310,27 +314,28 @@ If you made a mistake while manually editing the saved data, a backup save file 
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
-| Action                                | Format                                                                                |
-|---------------------------------------|---------------------------------------------------------------------------------------|
+| Action                                | Format                                                                                   |
+|---------------------------------------|------------------------------------------------------------------------------------------|
 | **Add a contact**                     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`                  |
-| **List all contacts**                 | `list`                                                                                |
+| **List all contacts**                 | `list`                                                                                   |
 | **Edit a contact**                    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [t/TAG]…​` |
-| **Find a contact by keywords**        | `find KEYWORD [MORE_KEYWORDS]`                                                        |
-| **Delete a contact**                  | `delete INDEX`                                                                        |
-| **Add a tag**                         | `tag INDEX t/TAG`                                                                     |
-| **Delete a tag**                      | `untag INDEX t/TAG`                                                                   |
-| **Show all tags**                     | `tags`                                                                                |
-| **Find contacts by tags**             | `#`                                                                                   |
-| **Assign date to contact**            | `contacted INDEX d/DATE des/description`                                              |
-| **Display contacts within DAYS**      | `within DAYS`                                                                         |
-| **Display contacts after DAYS**       | `after DAYS`                                                                          |
-| **Display birthdays occurring today** | `birthdays`                                                                           |
-| **Add a non-recurring reminder**      | `remind INDEX r/REMINDER rd/DATE`                                                     |
-| **View reminders of a contact**       | `reminder INDEX`                                                                      |
-| **View reminders on a date**          | `reminders [rd/DATE]`                                                                 |
-| **Delete a reminder**                 | `forget INDEX r/REMINDER`                                                             |
-| **Exit the program**                  | `exit`                                                                                |
-| **Help**                              | `help`                                                                                |
+| **Find a contact by keywords**        | `find KEYWORD [MORE_KEYWORDS]`                                                           |
+| **Delete a contact**                  | `delete INDEX`                                                                           |
+| **Add a tag**                         | `tag INDEX t/TAG`                                                                        |
+| **Delete a tag**                      | `untag INDEX t/TAG`                                                                      |
+| **Show all tags**                     | `tags`                                                                                   |
+| **Find contacts by tags**             | `#`                                                                                      |
+| **Assign date to contact**            | `contacted INDEX d/DATE des/description`                                                 |
+| **Display contacts within DAYS**      | `within DAYS`                                                                            |
+| **Display contacts after DAYS**       | `after DAYS`                                                                             |
+| **Display birthdays occurring today** | `birthdays`                                                                              |
+| **Add a non-recurring reminder**      | `remind INDEX r/REMINDER rd/DATE`                                                        |
+| **View reminders of a contact**       | `reminder INDEX`                                                                         |
+| **View reminders on a date**          | `reminders [rd/DATE]`                                                                    |
+| **Delete a reminder**                 | `forget INDEX r/REMINDER`                                                                |
+| **Exit the program**                  | `exit`                                                                                   |
+| **Help**                              | `help`                                                                                   |
