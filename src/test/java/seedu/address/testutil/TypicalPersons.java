@@ -50,7 +50,7 @@ public class TypicalPersons {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withBirthDate("2000-01-01")
             .addContactedInfo("2020-03-02 Meetup", "2021-01-01 Wedding")
-      .withReminders(new Reminder(new ReminderDescription("Meeting"),
+            .withReminders(new Reminder(new ReminderDescription("Meeting"),
                     new ReminderDate(LocalDate.of(2022, 1, 1))))
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
