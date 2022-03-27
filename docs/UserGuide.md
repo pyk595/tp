@@ -92,7 +92,7 @@ Words in quotations are files, file type or dependencies.
 
 * Dates should be in "YYYY-MM-DD" format, unless stated otherwise. Single digits should be zero padded.<br>
   e.g. `2022-05-17`, `2021-01-01` and `2011-10-10` are in the correct format, while `2022-5-17` and `2021-1-1` are in the wrong format.
-  
+
 </div>
 
 <div style="page-break-after: always;"></div>
