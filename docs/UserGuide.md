@@ -155,10 +155,10 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in the application.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Assigning dates to a contact: `contacted`
+### Assigning a recently contacted date to a contact: `contacted`
 
 Manually logs the date of the most recent interaction with the contact.
 
@@ -168,15 +168,42 @@ Format: `contacted INDEX d/DATE n/description`
 Example:
 * `contacted 23 d/28-07-2022 n/Sign Contract`
 
-### Displaying contacted contacts within DAYS: `within`
+### Deleting a recently contacted date to from contact: `unlog`
 
-Display contacts that needs to be contacts within DAYS.
+Deletes the specified recently contacted date from a specified contact.
 
-Format: `within d/DAYS`
+Format: `unlog INDEX del/INDEX`
+
+* First `INDEX` signifies the specified contact.
+* The first index refers to the index number shown in the displayed person list.
+* Second `INDEX` signifies the contacted date to delete.
+* The second index refers to the index number shown in the person's displayed recently contacted date list.
+* both indexes **must be a positive integer** 1, 2, 3, …​
+
+Example:
+* `unlog 2 del/6`
+
+### Deleting a recently contacted date to from contact: `logs`
+
+Display all recently contacted date for a specified contact.
+Format: `logs INDEX`
+yep
+* `INDEX` signifies the specified contact.
+* The index refers to the index number shown in the displayed person list.
+* both indexes **must be a positive integer** 1, 2, 3, …​
+
+Example:
+* `logs 2`
+
+### Displaying contacts that were contacted within days: `within`
+
+Display contacts that were contacted within specified range of days.
+
+Format: `within DAYS`
 * DAYS must be a positive integer.
 
 Example:
-* `within d/12`
+* `within 12`
 
 ### Displaying contacted contacts later than DAYS: `later`
 
@@ -210,7 +237,7 @@ Example:
 
 ### Viewing contacts by reminder: `reminders`
 
-Displays all contact with a reminder with the specified date.
+Displays all contacts with a reminder with the specified date.
 
 Format: `reminders [d/DATE]`
 * Reminder dates are in `DD-MM-YYYY` format.
