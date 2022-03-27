@@ -15,7 +15,7 @@ import seedu.address.model.tag.ReadOnlyUniqueTagList;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS_WITH_BIRTHDAY_TODAY = person -> person.isBirthdayToday();
+    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS_WITH_BIRTHDAY_TODAY = Person::isBirthdayToday;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
