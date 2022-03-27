@@ -1,8 +1,18 @@
 # User Guide
 
-Automated Insurance Assistant (AIA) is **a desktop app for managing contacts, optimised for use via a Command Line
-Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AIA can
-handle all your contact management processes, making sure you always have a snapshot of your clients’ profiles on hand.
+Automated Insurance Assistant (AIA) is a desktop application that aims to serve as an easy alternative to a customer relationship management system for Insurance Agents to manage their client contacts.
+Insurance agents can use this application to keep track of client meetings and important dates of each client.
+
+Usage of this application is optimised for use via a Command Line Interface (CLI) while still displaying information to users in an intuitive manner, through a Graphical User Interface (GUI). 
+If you can type fast, AIA can reduce the amount of administrative work you need to do for each client.
+
+This user guide offers the following to insurance agents or other users trying to learn how to use the application:
+- A quick start to running the application
+- All available features
+- Examples on how to use each feature
+
+Bold words refer to commands to be performed by users.
+Words in quotations are files, file type or dependencies.
 
 ----
 
@@ -36,15 +46,15 @@ handle all your contact management processes, making sure you always have a snap
 
 ## Quick Start
 
-1. Ensure you have `Java JDK 11` or above installed in your Computer.
+1. Ensure you have "Java JDK 11" or above installed in your Computer.
 
-2. Download the latest `jar` file, `AIA.jar` from [here](https://github.com/AY2122S2-CS2103T-T17-3/tp/releases).
+2. Download the latest "jar" file, "AIA.jar" from [here](https://github.com/AY2122S2-CS2103T-T17-3/tp/releases).
 
-3. Move the `jar` file to an empty folder in where you want to store the `jar` file and the contacts.
+3. Move the "jar" file to an empty folder in where you want to store the "jar" file and the contacts.
 
 4. Open a shell application (Command Prompt or Terminal etc.) and navigate to the folder created in step 3.
 
-5. Run the `jar` file with the `java -jar` command in the shell application to run the application, e.g. `java -jar AIA.jar`.
+5. Run the "jar" file with the **java -jar** command in the shell application to run the application, e.g. **java -jar AIA.jar**.
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.
 
@@ -60,7 +70,7 @@ handle all your contact management processes, making sure you always have a snap
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the information to be supplied by the user.<br>
+* Markup words in `UPPER_CASE` are the information to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is an information which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -206,15 +216,15 @@ Format: `within DAYS`
 Example:
 * `within 12` lists all contacts that were last contacted in the past 12 days.
 
-### Displaying contacted contacts later than DAYS: `later`
+### Displaying contacts contacted more than a specified number of days ago: `after`
 
-Display contacts that needs to be contacts after DAYS.
+Display contacts that have been previously contacts after a specified number of DAYS.
 
-Format: `later d/DAYS`
+Format: `after DAYS`
 * DAYS must be a positive integer.
 
 Example:
-* `later d/12`
+* `after 12`
 
 ### Adding a reminder to a contact: `remind`
 
@@ -296,26 +306,8 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Adding automatic recurring reminders `[coming in v1.3]`
-
-_Create a repeating reminder that has a variable repeating period._
-
---------------------------------------------------------------------------------------------------------------------
-
-## Interesting Features
-
-1. Automatic reminders
-    1. Upon opening the application, the application will list a collection of events happening on that day, in
-       chronological order.
-    1. Alternatively, users can type refresh to check if an event is happening on the current date.
-1. Find User
-    1. Users can find a contact based on their client name (partial name works)
-1. In-app help
-    1. Users can receive help via pop up boxes
-1. Upon clicking a contact, the command bar populate with the proper command syntax based on the selected contact
-1. Saving of data is done automatically
+The application's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+If you made a mistake while manually editing the saved data, a backup save file would be generated in the same folder.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -324,21 +316,21 @@ _Create a repeating reminder that has a variable repeating period._
 
 Action | Format
 --------|------------------
-**Add a contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+**Add a contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`
 **List all contacts** | `list`
-**Edit a contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+**Edit a contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [t/TAG]…​`
 **Find a contact by keywords** | `find KEYWORD [MORE_KEYWORDS]`
 **Delete a contact** | `delete INDEX`
-**Assign date to contact** | `contacted INDEX d/DATE n/description`
-**Display contacts within DAYS** | `within d/DAYS`
-**Display contacts after DAYS** | `later d/DAYS`
-**Add a non-recurring reminder** | `remind INDEX r/REMINDER d/DATE`
+**Assign date to contact** | `contacted INDEX d/DATE des/description`
+**Display contacts within DAYS** | `within DAYS`
+**Display contacts after DAYS** | `after DAYS`
+**Display birthdays occurring today** | `birthdays`
+**Add a non-recurring reminder** | `remind INDEX r/REMINDER rd/DATE`
 **View reminders of a contact** | `reminder INDEX`
-**View reminders on a date** | `reminders [d/DAY]`
+**View reminders on a date** | `reminders [rd/DATE]`
 **Delete a reminder** | `forget INDEX r/REMINDER`
 **Edit tags** | `tag INDEX add t/TAG` <br> `tag INDEX delete t/TAG`
 **Show all tags** | `tags`
 **Find contacts by tags** | `#`
 **Exit the program** | `exit`
 **Help** | `help`
-**Add automatic reminders** | `[coming in v1.3]`
