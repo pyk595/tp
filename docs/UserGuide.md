@@ -11,6 +11,8 @@ This user guide offers the following to insurance agents or other users trying t
 - All available features
 - Examples on how to use each feature
 
+
+
 ----
 
 ## Table of Contents
@@ -275,26 +277,8 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Adding automatic recurring reminders `[coming in v1.3]`
-
-_Create a repeating reminder that has a variable repeating period._
-
---------------------------------------------------------------------------------------------------------------------
-
-## Interesting Features
-
-1. Automatic reminders
-    1. Upon opening the application, the application will list a collection of events happening on that day, in
-       chronological order.
-    1. Alternatively, users can type refresh to check if an event is happening on the current date.
-1. Find User
-    1. Users can find a contact based on their client name (partial name works)
-1. In-app help
-    1. Users can receive help via pop up boxes
-1. Upon clicking a contact, the command bar populate with the proper command syntax based on the selected contact
-1. Saving of data is done automatically
+The application's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+If you made a mistake while manually editing the saved data, a backup save file would be generated in the same folder.
 
 
 --------------------------------------------------------------------------------------------------------------------
