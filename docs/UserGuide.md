@@ -3,7 +3,7 @@
 Automated Insurance Assistant (AIA) is a desktop application that aims to serve as an easy alternative to a customer relationship management system for Insurance Agents to manage their client contacts.
 Insurance agents can use this application to keep track of client meetings and important dates of each client.
 
-Usage of this application is optimised for use via a Command Line Interface (CLI) while still displaying information to users in an intuitive manner, through a Graphical User Interface (GUI). 
+Usage of this application is optimised for use via a Command Line Interface (CLI) while still displaying information to users in an intuitive manner, through a Graphical User Interface (GUI).
 If you can type fast, AIA can reduce the amount of administrative work you need to do for each client.
 
 This user guide offers the following to insurance agents or other users trying to learn how to use the application:
@@ -20,26 +20,26 @@ Words in quotations are files, file type or dependencies.
 
 * [Quick Start](#quick-start)
 * [Features](#features)
-  * [Adding a contact](#adding-a-contact-add)
-  * [Listing all contacts](#listing-all-contacts--list)
-  * [Editing a contact](#editing-a-contact--edit)
-  * [Finding contacts by name](#finding-contacts-by-name-find)
-  * [Deleting a contact](#deleting-a-contact--delete)
-  * [Assigning dates to contact](#assigning-dates-to-a-contact-contacted)
-  * [Displaying contacted contacts within DAYS](#displaying-contacted-contacts-within-days-within)
-  * [Displaying contacted contacts after DAYS](#displaying-contacted-contacts-later-than-days-later)
-  * [Adding a non-recurring reminder to a contact](#adding-a-non-recurring-reminder-to-a-contact-remind)
-  * [Viewing reminders of a contact](#viewing-reminders-of-a-contact-reminder)
-  * [Viewing contacts by reminder](#viewing-contacts-by-reminder-reminders)
-  * [Deleting a reminder](#deleting-a-reminder-forget)
-  * [Adding a tag](#adding-a-tag-tag)
-  * [Deleting a tag](#deleting-a-tag-untag)
-  * [Showing all available tags](#showing-all-available-tags-tags)
-  * [Find contacts with tag](#finding-contacts-with-tag-)
-  * [Exiting the program](#exiting-the-program--exit)
-  * [Saving the date](#saving-the-data)
-  * [Adding automatic recurring reminders](#adding-automatic-recurring-reminders-coming-in-v13)
-* [Interesting Features](#interesting-features)
+  - [Adding a contact: `add`](#adding-a-contact-add)
+  - [Listing all contacts: `list`](#listing-all-contacts-list)
+  - [Editing a contact: `edit`](#editing-a-contact-edit)
+  - [Finding contacts by name: `find`](#finding-contacts-by-name-find)
+  - [Deleting a contact: `delete`](#deleting-a-contact-delete)
+  - [Adding a tag: `tag`](#adding-a-tag-tag)
+  - [Deleting a tag: `untag`](#deleting-a-tag-untag)
+  - [Listing all available tags: `tags`](#listing-all-available-tags-tags)
+  - [Finding contacts with tag: `#`](#finding-contacts-with-tag-)
+  - [Assigning a recently contacted date to a contact: `contacted`](#assigning-a-recently-contacted-date-to-a-contact-contacted)
+  - [Deleting a recently contacted date from a contact: `unlog`](#deleting-a-recently-contacted-date-from-a-contact-unlog)
+  - [Listing all recently contacted dates of a contact: `logs`](#listing-all-recently-contacted-dates-of-a-contact-logs)
+  - [Listing contacts that were contacted within days: `within`](#listing-contacts-that-were-contacted-within-days-within)
+  - [Displaying contacts contacted more than a specified number of days ago: `after`](#displaying-contacts-contacted-more-than-a-specified-number-of-days-ago-after)
+  - [Adding a reminder to a contact: `remind`](#adding-a-reminder-to-a-contact-remind)
+  - [Listing reminders of a contact: `reminder`](#listing-reminders-of-a-contact-reminder)
+  - [Viewing contacts by reminder: `reminders`](#viewing-contacts-by-reminder-reminders)
+  - [Deleting a reminder: `forget`](#deleting-a-reminder-forget)
+  - [Exiting the program: `exit`](#exiting-the-program-exit)
+  - [Saving the data](#saving-the-data)
 * [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -111,13 +111,13 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/1970-01-01` adds the contact with only the compulsory information provided.
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/1970-01-01 t/Interviewee t/students` adds the contact with the compulsory information provided and the optional information.
 
-### Listing all contacts : `list`
+### Listing all contacts: `list`
 
 Shows a list of all contacts in the application.
 
 Format: `list`
 
-### Editing a contact : `edit`
+### Editing a contact: `edit`
 
 Edits an existing contact in the application.
 
@@ -154,7 +154,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
-### Deleting a contact : `delete`
+### Deleting a contact: `delete`
 
 Deletes the specified contact from the application.
 
@@ -167,6 +167,39 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the application.
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
+
+### Adding a tag: `tag`
+
+Adds a tag to an existing contact, as specified by the index.
+
+Format: `tag INDEX t/TAG`
+
+Example:
+* `tag 27 t/client` adds the "client" tag to the 27th contact in the display contact list.
+
+### Deleting a tag: `untag`
+
+Deletes a tag from an existing contact, as specified by the index.
+
+Format: `untag INDEX t/TAG`
+
+Example:
+* `untag 27 t/colleague` deletes the "colleague" tag from the 27th contact in the display contact list.
+
+### Listing all available tags: `tags`
+
+Lists all the available tags assigned to the contacts, in alphabetical order.
+
+Format: `tags`
+
+### Finding contacts with tag: `#`
+
+Finds all the contacts with the specified tag assigned to them.
+
+Format: `#TAG`
+
+Example:
+* `#Friends` finds all the contacts that are tagged to "friends".
 
 ### Assigning a recently contacted date to a contact: `contacted`
 
@@ -236,7 +269,6 @@ Format: `remind INDEX r/REMINDER rd/DATE`
 Example:
 * `remind 13 r/dinner rd/2022-09-11`
 
-
 ### Listing reminders of a contact: `reminder`
 
 Lists all reminders under a contact as specified by index.
@@ -265,40 +297,7 @@ Format: `forget INDEX r/REMINDER`
 Example:
 * `forget 5 r/Dinner outing`
 
-### Adding a tag: `tag`
-
-Adds a tag to an existing contact, as specified by the index.
-
-Format: `tag INDEX t/TAG`
-
-Example:
-* `tag 27 t/client` adds the "client" tag to the 27th contact in the display contact list.
-
-### Deleting a tag: `untag`
-
-Deletes a tag from an existing contact, as specified by the index.
-
-Format: `untag INDEX t/TAG`
-
-Example:
-* `untag 27 t/colleague` deletes the "colleague" tag from the 27th contact in the display contact list.
-
-### Listing all available tags: `tags`
-
-Lists all the available tags assigned to the contacts, in alphabetical order.
-
-Format: `tags`
-
-### Finding contacts with tag: `#`
-
-Finds all the contacts with the specified tag assigned to them.
-
-Format: `#TAG`
-
-Example:
-* `#Friends` finds all the contacts that are tagged to "friends".
-
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -314,23 +313,24 @@ If you made a mistake while manually editing the saved data, a backup save file 
 
 ## Command summary
 
-Action | Format
---------|------------------
-**Add a contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`
-**List all contacts** | `list`
-**Edit a contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [t/TAG]…​`
-**Find a contact by keywords** | `find KEYWORD [MORE_KEYWORDS]`
-**Delete a contact** | `delete INDEX`
-**Assign date to contact** | `contacted INDEX d/DATE des/description`
-**Display contacts within DAYS** | `within DAYS`
-**Display contacts after DAYS** | `after DAYS`
-**Display birthdays occurring today** | `birthdays`
-**Add a non-recurring reminder** | `remind INDEX r/REMINDER rd/DATE`
-**View reminders of a contact** | `reminder INDEX`
-**View reminders on a date** | `reminders [rd/DATE]`
-**Delete a reminder** | `forget INDEX r/REMINDER`
-**Edit tags** | `tag INDEX add t/TAG` <br> `tag INDEX delete t/TAG`
-**Show all tags** | `tags`
-**Find contacts by tags** | `#`
-**Exit the program** | `exit`
-**Help** | `help`
+| Action                                | Format                                                                                |
+|---------------------------------------|---------------------------------------------------------------------------------------|
+| **Add a contact**                     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`                  |
+| **List all contacts**                 | `list`                                                                                |
+| **Edit a contact**                    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [t/TAG]…​` |
+| **Find a contact by keywords**        | `find KEYWORD [MORE_KEYWORDS]`                                                        |
+| **Delete a contact**                  | `delete INDEX`                                                                        |
+| **Add a tag**                         | `tag INDEX t/TAG`                                                                     |
+| **Delete a tag**                      | `untag INDEX t/TAG`                                                                   |
+| **Show all tags**                     | `tags`                                                                                |
+| **Find contacts by tags**             | `#`                                                                                   |
+| **Assign date to contact**            | `contacted INDEX d/DATE des/description`                                              |
+| **Display contacts within DAYS**      | `within DAYS`                                                                         |
+| **Display contacts after DAYS**       | `after DAYS`                                                                          |
+| **Display birthdays occurring today** | `birthdays`                                                                           |
+| **Add a non-recurring reminder**      | `remind INDEX r/REMINDER rd/DATE`                                                     |
+| **View reminders of a contact**       | `reminder INDEX`                                                                      |
+| **View reminders on a date**          | `reminders [rd/DATE]`                                                                 |
+| **Delete a reminder**                 | `forget INDEX r/REMINDER`                                                             |
+| **Exit the program**                  | `exit`                                                                                |
+| **Help**                              | `help`                                                                                |
