@@ -11,8 +11,8 @@ import seedu.address.model.description.Description;
  */
 public class ContactedInfo implements Comparable<ContactedInfo> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Only 1 date and description should be given, both fields are needed as well, "
-            + RecentDate.MESSAGE_CONSTRAINTS + " and " + Description.MESSAGE_CONSTRAINTS;
+            "You should provide a valid date and description.\n"
+            + RecentDate.MESSAGE_CONSTRAINTS + " and should not be in the future.\n" + Description.MESSAGE_CONSTRAINTS;
 
     private final Description description;
     private final RecentDate recentDate;
@@ -47,7 +47,9 @@ public class ContactedInfo implements Comparable<ContactedInfo> {
      * @return true if a given string is a valid contacted information.
      */
     public static boolean isValidContactedInfo(String dateTest, String descriptionTest) {
-        return DocumentedDate.isValidDate(dateTest) && Description.isValidDescription(descriptionTest);
+        return DocumentedDate.isValidDate(dateTest)
+                && Description.isValidDescription(descriptionTest)
+                && RecentDate.isValidRecentDate(dateTest);
     }
 
     /**
@@ -59,8 +61,15 @@ public class ContactedInfo implements Comparable<ContactedInfo> {
         return recentDate;
     }
 
+    /**
+     * Returns the number of days passed since the saved ContactedDate.
+     *
+     * @return an integer representing the number of days passed.
+     */
     public Integer getDaysPassed() {
-        return recentDate.getDaysPassed();
+        int daysPassed = recentDate.getDaysPassed();
+        assert daysPassed >= 0 : "Days passed should not be less than 0";
+        return daysPassed;
     }
 
     /**
