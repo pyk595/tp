@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
@@ -44,7 +43,8 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddReminderCommand.MESSAGE_USAGE), pe);
         }
 
         reminderDescription = ParserUtil.parseReminderDescription(

@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DESCRIPTION;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddReminderCommand;
 import seedu.address.logic.commands.DeleteReminderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.date.ReminderDate;
@@ -49,7 +48,7 @@ public class DeleteReminderCommandParser implements Parser<DeleteReminderCommand
                     argMultimap.getValue(PREFIX_REMINDER_DATE).get());
         } catch (seedu.address.logic.parser.exceptions.ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddReminderCommand.MESSAGE_USAGE), pe);
+                    DeleteReminderCommand.MESSAGE_USAGE), pe);
         }
 
         return new DeleteReminderCommand(index, reminderDescription, reminderDate);

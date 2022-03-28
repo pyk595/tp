@@ -51,4 +51,18 @@ public class ListContactRemindersCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, personSpecified.getName(), output.toString()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ListContactRemindersCommand)) {
+            return false;
+        }
+
+        ListContactRemindersCommand listContactRemindersCommand = (ListContactRemindersCommand) other;
+        return this.index.equals(listContactRemindersCommand.index);
+    }
 }

@@ -58,4 +58,18 @@ public class ListDateRemindersCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, reminderDate.toString(), output.toString()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ListDateRemindersCommand)) {
+            return false;
+        }
+
+        ListDateRemindersCommand listDateRemindersCommand = (ListDateRemindersCommand) other;
+        return this.reminderDate.equals(listDateRemindersCommand.reminderDate);
+    }
 }
