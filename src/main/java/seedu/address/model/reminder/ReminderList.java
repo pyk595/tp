@@ -2,7 +2,7 @@ package seedu.address.model.reminder;
 
 import java.util.PriorityQueue;
 
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.date.ReminderDate;
 
 /**
@@ -80,7 +80,8 @@ public class ReminderList {
      * @param reminderDate
      * @return the Reminder found. If there is no matching searches, returns null.
      */
-    public Reminder find(ReminderDescription reminderDescription, ReminderDate reminderDate) throws CommandException {
+    public Reminder find(ReminderDescription reminderDescription, ReminderDate reminderDate)
+            throws IllegalValueException {
         Reminder reminderFound = null;
         PriorityQueue<Reminder> reminderListCopy = new PriorityQueue<Reminder>(this.reminderPriorityQueue);
 
@@ -96,7 +97,7 @@ public class ReminderList {
                 && reminderFound.getReminderDate().equals(reminderDate)) {
             return reminderFound;
         } else {
-            throw new CommandException(String.format("There is no reminder %1$s happening on %2$s.",
+            throw new IllegalValueException(String.format("There is no reminder %1$s happening on %2$s.",
                     reminderDescription, reminderDate));
         }
     }
@@ -108,12 +109,29 @@ public class ReminderList {
      * @return a ReminderList with Reminder objects happening on the same date as the provided date.
      */
     public ReminderList sameDateAs(ReminderDate reminderDate) {
-        ReminderList newReminderList = new ReminderList(this);
-        newReminderList.reminderPriorityQueue.stream().filter(reminder -> reminder.isSameDateAs(reminderDate));
+        ReminderList newReminderList = new ReminderList();
+        reminderPriorityQueue.forEach(reminder -> {
+            if (reminder.isSameDateAs(reminderDate)) {
+                newReminderList.add(reminder);
+            }
+        });
         return newReminderList;
     }
 
     public PriorityQueue<Reminder> getPriorityQueue() {
         return this.reminderPriorityQueue;
+    }
+
+    /**
+     * Converts the given {@code ReminderList} to output format
+     */
+    public String toOutputFormat() {
+        StringBuilder output = new StringBuilder();
+        int counter = 1;
+        for (Reminder reminder : reminderPriorityQueue) {
+            output.append(String.format("%1$d. %2$s\n", counter, reminder.toString()));
+            counter++;
+        }
+        return output.toString();
     }
 }

@@ -32,12 +32,14 @@ public class ListDateRemindersCommand extends Command {
      * Creates a ListDateRemindersCommand to list the reminders.
      */
     public ListDateRemindersCommand(ReminderDate reminderDate) {
+        requireNonNull(reminderDate);
         this.reminderDate = reminderDate;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         StringBuilder output = new StringBuilder();
         int counter = 1;
         ObservableList<Person> personList = FXCollections.observableArrayList(model.getAddressBook().getPersonList());

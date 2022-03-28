@@ -11,6 +11,7 @@ import java.util.Set;
 
 import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.date.BirthDate;
+import seedu.address.model.date.ReminderDate;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
@@ -40,8 +41,7 @@ public class Person {
      * @param email of the person
      * @param address of the person
      * @param birthDate of the person
-     * @param contactedDate last contacted date with this person
-     * @param contactedDesc last contacted description with this person
+     * @param contactedInfoList of the person
      * @param tags of the person
      * @param reminderList associated with this person
      */

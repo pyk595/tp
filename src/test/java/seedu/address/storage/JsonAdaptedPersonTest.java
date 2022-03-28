@@ -30,7 +30,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_RECENT_DATE = "hello world";
     private static final String INVALID_TAG = "#friend";
     private static final List<JsonAdaptedReminder> INVALID_REMINDER = new ArrayList<>(Arrays
-            .asList(new JsonAdaptedReminder( "meeting!", "2022-03-15")));
+            .asList(new JsonAdaptedReminder("meeting!", "2022-03-15")));
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();

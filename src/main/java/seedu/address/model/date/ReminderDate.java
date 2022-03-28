@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class ReminderDate extends DocumentedDate implements Comparable<ReminderDate> {
+
     private static final DateTimeFormatter FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public final String value;
 
@@ -30,6 +31,11 @@ public class ReminderDate extends DocumentedDate implements Comparable<ReminderD
 
     @Override
     public int compareTo(ReminderDate reminderDate) {
+
+        if (reminderDate == null) {
+            throw new NullPointerException("Reminder date compared is null.");
+        }
+
         if (super.getDate().isBefore(reminderDate.getDate())) {
             return -1;
         } else if (super.getDate().isAfter(reminderDate.getDate())) {
@@ -37,5 +43,21 @@ public class ReminderDate extends DocumentedDate implements Comparable<ReminderD
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // short circuit if same object
+        if (object == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(object instanceof ReminderDate)) {
+            return false;
+        }
+
+        // state check
+        return value.equals(((ReminderDate) object).value);
     }
 }

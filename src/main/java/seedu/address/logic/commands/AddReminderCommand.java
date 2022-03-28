@@ -32,8 +32,8 @@ public class AddReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "remind";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to an existing contact, "
-            + "as specified by the index number used in the displayed person list. The reminder will be replace "
-            + "any existing reminder. If a date is not specified, it will register today as the reminder date.\n"
+            + "as specified by the index number used in the displayed person list. "
+            + "If a date is not specified, it will register today as the reminder date.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_REMINDER_DESCRIPTION + "REMINDER "
             + "[" + PREFIX_REMINDER_DATE + "DATE]\n"

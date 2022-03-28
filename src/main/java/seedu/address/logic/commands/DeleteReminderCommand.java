@@ -10,6 +10,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contactedinfo.ContactedInfo;
@@ -78,7 +79,7 @@ public class DeleteReminderCommand extends Command {
 
         try {
             reminderToDelete = reminderList.find(reminderDescription, reminderDate);
-        } catch (CommandException commandException) {
+        } catch (IllegalValueException illegalValueException) {
             throw new CommandException(String.format("There is no reminder named %1$s happening on %2$s",
                     reminderDescription, reminderDate));
         }

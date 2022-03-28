@@ -2,8 +2,6 @@ package seedu.address.model.reminder;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
-
 import seedu.address.model.date.ReminderDate;
 
 /**
@@ -12,8 +10,6 @@ import seedu.address.model.date.ReminderDate;
 public class Reminder implements Comparable<Reminder> {
 
     public static final String MESSAGE_CONSTRAINTS = "Reminder descriptions should be alphanumeric";
-    private static final Reminder EMPTY_REMINDER = new Reminder(new ReminderDescription("Default reminder"),
-            new ReminderDate(LocalDate.now()));
 
     private final ReminderDescription reminderDescription;
     private final ReminderDate date;
