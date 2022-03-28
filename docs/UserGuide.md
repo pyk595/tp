@@ -1,4 +1,7 @@
-# User Guide
+---
+layout: page
+title: User Guide
+---
 
 Automated Insurance Assistant (AIA) is a desktop application that aims to serve as an easy alternative to a customer relationship management system for Insurance Agents to manage their client contacts.
 Insurance agents can use this application to keep track of client meetings and important dates of each client.
@@ -116,11 +119,16 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/1970-01-01` adds the contact with only the compulsory information provided.
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/1970-01-01 t/Interviewee t/students` adds the contact with the compulsory information provided and the optional information.
 
+[Return to Table of Contents](#table-of-contents)
+
 ### Listing all contacts: `list`
 
 Shows a list of all contacts in the application.
 
 Format: `list`
+
+[Return to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ### Editing a contact: `edit`
 
@@ -141,6 +149,7 @@ Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+[Return to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ### Finding contacts by name: `find`
@@ -160,6 +169,8 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
+[Return to Table of Contents](#table-of-contents)
+
 ### Deleting a contact: `delete`
 
 Deletes the specified contact from the application.
@@ -172,6 +183,8 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the application.
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
+[Return to Table of Contents](#table-of-contents)
+
 ### Adding a tag: `tag`
 
 Adds a tag to an existing contact, as specified by the index.
@@ -180,6 +193,8 @@ Format: `tag INDEX t/TAG`
 
 Example:
 * `tag 27 t/client` adds the "client" tag to the 27th contact in the display contact list.
+
+[Return to Table of Contents](#table-of-contents)
 
 ### Deleting a tag: `untag`
 
@@ -190,11 +205,15 @@ Format: `untag INDEX t/TAG`
 Example:
 * `untag 27 t/colleague` deletes the "colleague" tag from the 27th contact in the display contact list.
 
+[Return to Table of Contents](#table-of-contents)
+
 ### Listing all available tags: `tags`
 
 Lists all the available tags assigned to the contacts, in alphabetical order.
 
 Format: `tags`
+
+[Return to Table of Contents](#table-of-contents)
 
 ### Finding contacts with tag: `#`
 
@@ -205,6 +224,8 @@ Format: `#TAG`
 Example:
 * `#Friends` finds all the contacts that are tagged to "friends".
 
+[Return to Table of Contents](#table-of-contents)
+
 ### Assigning a recently contacted date to a contact: `contacted`
 
 Manually logs the date of the most recent interaction with the contact.
@@ -214,6 +235,8 @@ Format: `contacted INDEX d/DATE des/description`
 
 Example:
 * `contacted 23 d/2022-02-11 des/Signed contract` manually logs the following interaction to the 23rd person in the displayed contact list, `Signed contract` on `2022-02-11`.
+
+[Return to Table of Contents](#table-of-contents)
 
 ### Deleting a recently contacted date from a contact: `unlog`
 
@@ -229,6 +252,8 @@ Format: `unlog INDEX del/INDEX`
 Example:
 * `unlog 2 del/6` deletes the 6th recently contacted date from the 2nd contact in the displayed contact list.
 
+[Return to Table of Contents](#table-of-contents)
+
 ### Listing all recently contacted dates of a contact: `logs`
 
 Lists all recently contacted dates for a specified contact.
@@ -240,6 +265,8 @@ Format: `logs INDEX`
 Example:
 * `logs 2` lists all recently contacted dates for the 2nd contact in the display contact list.
 
+[Return to Table of Contents](#table-of-contents)
+
 ### Listing contacts that were contacted within days: `within`
 
 Lists all contacts that were contacted within specified range of days.
@@ -249,6 +276,8 @@ Format: `within DAYS`
 
 Example:
 * `within 12` lists all contacts that were last contacted in the past 12 days.
+
+[Return to Table of Contents](#table-of-contents)
 
 ### Displaying contacts contacted more than a specified number of days ago: `after`
 
@@ -260,6 +289,8 @@ Format: `after DAYS`
 Example:
 * `after 12`
 
+[Return to Table of Contents](#table-of-contents)
+
 ### Adding a reminder to a contact: `remind`
 
 Adds a reminder for a contact.
@@ -270,6 +301,8 @@ Format: `remind INDEX r/REMINDER rd/DATE`
 Example:
 * `remind 13 r/dinner rd/2022-09-11`
 
+[Return to Table of Contents](#table-of-contents)
+
 ### Listing reminders of a contact: `reminder`
 
 Lists all reminders under a contact as specified by index.
@@ -278,6 +311,9 @@ Format: `reminder INDEX`
 
 Example:
 * `reminder 7`
+
+[Return to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ### Viewing contacts by reminder: `reminders`
 
@@ -289,6 +325,8 @@ Format: `reminders [d/DATE]`
 Example:
 * `reminders d/2023-01-01`
 
+[Return to Table of Contents](#table-of-contents)
+
 ### Deleting a reminder: `forget`
 
 Deletes the specified reminder of a contact as specified by the index.
@@ -298,17 +336,22 @@ Format: `forget INDEX r/REMINDER`
 Example:
 * `forget 5 r/Dinner outing`
 
+[Return to Table of Contents](#table-of-contents)
+
 ### Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
+[Return to Table of Contents](#table-of-contents)
+
 ### Saving the data
 
 The application's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 If you made a mistake while manually editing the saved data, a backup save file would be generated in the same folder.
 
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -336,3 +379,5 @@ If you made a mistake while manually editing the saved data, a backup save file 
 | **Delete a reminder**                 | `forget INDEX r/REMINDER`                                                                |
 | **Exit the program**                  | `exit`                                                                                   |
 | **Help**                              | `help`                                                                                   |
+
+[Return to Table of Contents](#table-of-contents)
