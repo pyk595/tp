@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -39,8 +38,8 @@ public class ListDateRemindersCommandTest {
 
     @Test
     public void equals() {
-        ReminderDate reminderDateFirst = new ReminderDate(LocalDate.of(2020, 1 ,1));
-        ReminderDate reminderDateSecond = new ReminderDate(LocalDate.of(2021, 1 ,1));
+        ReminderDate reminderDateFirst = new ReminderDate(LocalDate.of(2020, 1 , 1));
+        ReminderDate reminderDateSecond = new ReminderDate(LocalDate.of(2021, 1 , 1));
 
         ListDateRemindersCommand listContactReminderCommandFirst = new ListDateRemindersCommand(reminderDateFirst);
         ListDateRemindersCommand listContactReminderCommandSecond = new ListDateRemindersCommand(reminderDateSecond);
