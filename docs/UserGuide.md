@@ -12,7 +12,7 @@ This user guide offers the following to insurance agents or other users trying t
 - Examples on how to use each feature
 
 Bold words refer to commands to be performed by users.
-Words in quotations are files, file type or dependencies.
+Words in quotations are files, file types or dependencies.
 
 ----
 <div style="page-break-after: always;"></div>
@@ -74,7 +74,7 @@ Words in quotations are files, file type or dependencies.
 
 **:information_source: Notes about the command format:**<br>
 
-* Markup words in `UPPER_CASE` are the information to be supplied by the user.<br>
+* Markup words in `UPPER_CASE` are the information to be entered by the user.<br>
   e.g. in `add n/NAME`, `NAME` is an information which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -83,15 +83,18 @@ Words in quotations are files, file type or dependencies.
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters can be in any order.<br>
+* User input can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
-  the parameter will be taken.<br>
+* If an input is expected only once in for a specific command, but you specified it multiple times, only the last occurrence of
+  the input will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Dates should be in "YYYY-MM-DD" format, unless stated otherwise. Single digits should be zero padded.<br>
   e.g. `2022-05-17`, `2021-01-01` and `2011-10-10` are in the correct format, while `2022-5-17` and `2021-1-1` are in the wrong format.
+* `INDEX` used in the different commands refer to the index number shown in the displayed person list.
+  
+  ❗The `INDEX` must be a positive integer i.e. 1,2,3,...
 
 </div>
 
@@ -102,7 +105,7 @@ Words in quotations are files, file type or dependencies.
 Adds a contact to the application.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`
-* `BIRTH_DATE` is in "DD-MM-YYYY" format.
+* `BIRTH_DATE` should be in the specified date format.
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:**
@@ -126,14 +129,13 @@ Edits an existing contact in the application.
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE]
 [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
-  The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
-* `BIRTH_DATE` is in "YYYY-MM-DD" format.
+* `BIRTH_DATE` should be in the specified date format.
 
 Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -165,8 +167,6 @@ Deletes the specified contact from the application.
 Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the application.
@@ -210,7 +210,7 @@ Example:
 Manually logs the date of the most recent interaction with the contact.
 
 Format: `contacted INDEX d/DATE des/description`
-* `DATE` is in `YYYY-MM-DD` format.
+* `DATE` should be in the specified date format.
 
 Example:
 * `contacted 23 d/2022-02-11 des/Signed contract` manually logs the following interaction to the 23rd person in the displayed contact list, `Signed contract` on `2022-02-11`.
@@ -225,7 +225,6 @@ Format: `unlog INDEX del/INDEX`
 * The first index refers to the index number shown in the displayed contact list.
 * Second `INDEX` signifies the contacted date to delete.
 * The second index refers to the index number shown in the contact's displayed recently contacted date list.
-* both indexes **must be a positive integer** 1, 2, 3, …​
 
 Example:
 * `unlog 2 del/6` deletes the 6th recently contacted date from the 2nd contact in the displayed contact list.
@@ -237,8 +236,6 @@ Lists all recently contacted dates for a specified contact.
 Format: `logs INDEX`
 
 * `INDEX` signifies the specified contact.
-* The index refers to the index number shown in the displayed contact list.
-* both indexes **must be a positive integer** 1, 2, 3, …​
 
 Example:
 * `logs 2` lists all recently contacted dates for the 2nd contact in the display contact list.
@@ -268,7 +265,7 @@ Example:
 Adds a reminder for a contact.
 
 Format: `remind INDEX r/REMINDER rd/DATE`
-* `DATE` is in `YYYY-MM-DD` format.
+* `DATE` should be in the specified date format.
 
 Example:
 * `remind 13 r/dinner rd/2022-09-11`
@@ -287,7 +284,7 @@ Example:
 Displays all contacts with a reminder with the specified date.
 
 Format: `reminders [d/DATE]`
-* `DATE` is in `YYYY-MM-DD` format.
+* `DATE` should be in the specified date format.
 
 Example:
 * `reminders d/2023-01-01`
@@ -320,9 +317,9 @@ If you made a mistake while manually editing the saved data, a backup save file 
 
 | Action                                | Format                                                                                   |
 |---------------------------------------|------------------------------------------------------------------------------------------|
-| **Add a contact**                     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`                  |
+| **Add a contact**                     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`                     |
 | **List all contacts**                 | `list`                                                                                   |
-| **Edit a contact**                    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [t/TAG]…​` |
+| **Edit a contact**                    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [t/TAG]…​`    |
 | **Find a contact by keywords**        | `find KEYWORD [MORE_KEYWORDS]`                                                           |
 | **Delete a contact**                  | `delete INDEX`                                                                           |
 | **Add a tag**                         | `tag INDEX t/TAG`                                                                        |
