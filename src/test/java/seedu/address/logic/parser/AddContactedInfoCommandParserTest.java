@@ -29,40 +29,24 @@ public class AddContactedInfoCommandParserTest {
         // basic format
         AddContactedInfoCommand expectedCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON,
                 new ContactedInfo(RecentDate.parse(nonEmptyDate), new Description(nonEmptyDesc)));
-        assertParseSuccess(parser,
-                INDEX_FIRST_PERSON.getOneBased()
-                + RECENT_DATE_EMPTY
-                + nonEmptyDate
-                + RECENT_DESC_EMPTY
-                + nonEmptyDesc, expectedCommand);
+        assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased() + validDate + validDesc, expectedCommand);
 
         // trailing and leading whitespaces
         expectedCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON,
                 new ContactedInfo(RecentDate.parse(nonEmptyDate), new Description(nonEmptyDesc)));
         assertParseSuccess(parser,
-                " \n \t  "
-                + INDEX_FIRST_PERSON.getOneBased()
-                + " "
-                + PREFIX_CONTACTED_DATE
-                + nonEmptyDate
-                + " "
-                + PREFIX_CONTACTED_DESC
-                + nonEmptyDesc
-                + " \n \t  ", expectedCommand);
+                " \n \t  " + INDEX_FIRST_PERSON.getOneBased() + validDate + validDesc + " \n \t  ",
+                expectedCommand);
 
         // leading spaces
         expectedCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON,
                 new ContactedInfo(RecentDate.parse(nonEmptyDate), new Description(nonEmptyDesc)));
-        assertParseSuccess(parser,
-                " \n \t  "
+        assertParseSuccess(
+                parser,
+                "\n \t "
                 + INDEX_FIRST_PERSON.getOneBased()
-                + " \n \t  "
-                + PREFIX_CONTACTED_DATE
-                + nonEmptyDate
-                + " \n \t  "
-                + PREFIX_CONTACTED_DESC
-                + nonEmptyDesc
-                + " \n \t  ", expectedCommand);
+                + " \n \t" + validDate + " \n \t" + validDesc + " \n \t",
+                expectedCommand);
     }
 
     @Test
@@ -121,28 +105,30 @@ public class AddContactedInfoCommandParserTest {
         // two same dates
         AddContactedInfoCommand expectedCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON,
                 new ContactedInfo(RecentDate.parse(firstDate), new Description(nonEmptyDesc)));
-        assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased()
-                + RECENT_DATE_EMPTY + firstDate
-                + RECENT_DATE_EMPTY + firstDate
-                + RECENT_DESC_EMPTY + nonEmptyDesc, expectedCommand);
+        assertParseSuccess(parser,
+                INDEX_FIRST_PERSON.getOneBased()
+                + RECENT_DATE_EMPTY + firstDate + RECENT_DATE_EMPTY + firstDate
+                + validDesc,
+                expectedCommand);
 
         // two different dates
         expectedCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON,
                 new ContactedInfo(RecentDate.parse(secondDate), new Description(nonEmptyDesc)));
-        assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased()
-                + RECENT_DATE_EMPTY + firstDate
-                + RECENT_DATE_EMPTY + secondDate
-                + RECENT_DESC_EMPTY + nonEmptyDesc, expectedCommand);
+        assertParseSuccess(parser,
+                INDEX_FIRST_PERSON.getOneBased()
+                + RECENT_DATE_EMPTY + firstDate + RECENT_DATE_EMPTY + secondDate
+                + validDesc,
+                expectedCommand);
 
 
         // three different dates
         expectedCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON,
                 new ContactedInfo(RecentDate.parse(thirdDate), new Description(nonEmptyDesc)));
-        assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased()
-                + RECENT_DATE_EMPTY + firstDate
-                + RECENT_DATE_EMPTY + secondDate
-                + RECENT_DATE_EMPTY + thirdDate
-                + RECENT_DESC_EMPTY + nonEmptyDesc, expectedCommand);
+        assertParseSuccess(parser,
+                INDEX_FIRST_PERSON.getOneBased()
+                + RECENT_DATE_EMPTY + firstDate + RECENT_DATE_EMPTY + secondDate + RECENT_DATE_EMPTY + thirdDate
+                + validDesc,
+                expectedCommand);
     }
 
     @Test
@@ -156,26 +142,29 @@ public class AddContactedInfoCommandParserTest {
                 new ContactedInfo(RecentDate.parse(nonEmptyDate), new Description(firstDesc)));
         assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased()
                 + RECENT_DATE_EMPTY + nonEmptyDate
-                + RECENT_DESC_EMPTY + firstDesc
-                + RECENT_DESC_EMPTY + firstDesc, expectedCommand);
+                + RECENT_DESC_EMPTY + firstDesc + RECENT_DESC_EMPTY + firstDesc,
+                expectedCommand);
 
         // two different dates
         expectedCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON,
                 new ContactedInfo(RecentDate.parse(nonEmptyDate), new Description(secondDesc)));
-        assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased()
+        assertParseSuccess(
+                parser,
+                INDEX_FIRST_PERSON.getOneBased()
                 + RECENT_DATE_EMPTY + nonEmptyDate
-                + RECENT_DESC_EMPTY + firstDesc
-                + RECENT_DESC_EMPTY + secondDesc, expectedCommand);
+                + RECENT_DESC_EMPTY + firstDesc + RECENT_DESC_EMPTY + secondDesc,
+                expectedCommand);
 
 
         // three different dates
         expectedCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON,
                 new ContactedInfo(RecentDate.parse(nonEmptyDate), new Description(thirdDesc)));
-        assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased()
+        assertParseSuccess(
+                parser,
+                INDEX_FIRST_PERSON.getOneBased()
                 + RECENT_DATE_EMPTY + nonEmptyDate
-                + RECENT_DESC_EMPTY + firstDesc
-                + RECENT_DESC_EMPTY + secondDesc
-                + RECENT_DESC_EMPTY + thirdDesc, expectedCommand);
+                + RECENT_DESC_EMPTY + firstDesc + RECENT_DESC_EMPTY + secondDesc + RECENT_DESC_EMPTY + thirdDesc,
+                expectedCommand);
     }
 
     @Test
@@ -191,31 +180,32 @@ public class AddContactedInfoCommandParserTest {
         // two same date and desc
         AddContactedInfoCommand expectedCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON,
                 new ContactedInfo(RecentDate.parse(firstDate), new Description(firstDesc)));
-        assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased()
-                + RECENT_DATE_EMPTY + firstDate
-                + RECENT_DATE_EMPTY + firstDate
-                + RECENT_DESC_EMPTY + firstDesc
-                + RECENT_DESC_EMPTY + firstDesc, expectedCommand);
+        assertParseSuccess(
+                parser,
+                INDEX_FIRST_PERSON.getOneBased()
+                + RECENT_DATE_EMPTY + firstDate + RECENT_DATE_EMPTY + firstDate
+                + RECENT_DESC_EMPTY + firstDesc + RECENT_DESC_EMPTY + firstDesc,
+                expectedCommand);
 
         // two different dates
         expectedCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON,
                 new ContactedInfo(RecentDate.parse(secondDate), new Description(secondDesc)));
-        assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased()
-                + RECENT_DATE_EMPTY + firstDate
-                + RECENT_DATE_EMPTY + secondDate
-                + RECENT_DESC_EMPTY + firstDesc
-                + RECENT_DESC_EMPTY + secondDesc, expectedCommand);
+        assertParseSuccess(
+                parser,
+                INDEX_FIRST_PERSON.getOneBased()
+                + RECENT_DATE_EMPTY + firstDate + RECENT_DATE_EMPTY + secondDate
+                + RECENT_DESC_EMPTY + firstDesc + RECENT_DESC_EMPTY + secondDesc,
+                expectedCommand);
 
 
         // three different dates
         expectedCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON,
                 new ContactedInfo(RecentDate.parse(thirdDate), new Description(thirdDesc)));
-        assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased()
-                + RECENT_DATE_EMPTY + firstDate
-                + RECENT_DATE_EMPTY + secondDate
-                + RECENT_DATE_EMPTY + thirdDate
-                + RECENT_DESC_EMPTY + firstDesc
-                + RECENT_DESC_EMPTY + secondDesc
-                + RECENT_DESC_EMPTY + thirdDesc, expectedCommand);
+        assertParseSuccess(
+                parser,
+                INDEX_FIRST_PERSON.getOneBased()
+                + RECENT_DATE_EMPTY + firstDate + RECENT_DATE_EMPTY + secondDate + RECENT_DATE_EMPTY + thirdDate
+                + RECENT_DESC_EMPTY + firstDesc + RECENT_DESC_EMPTY + secondDesc + RECENT_DESC_EMPTY + thirdDesc,
+                expectedCommand);
     }
 }
