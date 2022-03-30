@@ -36,7 +36,7 @@ public class ListContactRemindersCommandTest {
     public void execute_validIndex_success() {
         Model modelExpected = new ModelManager(model.getAddressBook(), new UserPrefs());
         Person expectedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        String messageBody = expectedPerson.getReminderList().toOutputFormat();
+        String messageBody = expectedPerson.getReminderList().toString();
         String messageExpected = String.format(ListContactRemindersCommand.MESSAGE_SUCCESS,
                 expectedPerson.getName(), messageBody);
         assertCommandSuccess(new ListContactRemindersCommand(INDEX_FIRST_PERSON), model,

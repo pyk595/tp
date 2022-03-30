@@ -114,8 +114,10 @@ public class PersonBuilder {
      * Sets the {@code ReminderList} of the {@code Person} that we are building.
      */
     public PersonBuilder withReminders(Reminder ... reminders) {
+        ReminderList reminderList = new ReminderList();
+
         for (Reminder reminder : reminders) {
-            this.reminderList.add(reminder);
+            reminderList.add(reminder);
         }
         return this;
     }
@@ -137,8 +139,8 @@ public class PersonBuilder {
      * @param reminder the reminder to delete from the ReminderList
      * @return this {@code PersonBuilder}
      */
-    public PersonBuilder deleteReminder(Reminder reminder) {
-        this.reminderList.delete(reminder);
+    public PersonBuilder deleteReminder(Index index) {
+        this.reminderList.delete(index);
         return this;
     }
 

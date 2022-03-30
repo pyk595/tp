@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ListDateRemindersCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.date.ReminderDate;
 
 public class ListDateRemindersCommandParserTest {
@@ -33,5 +34,13 @@ public class ListDateRemindersCommandParserTest {
         ListDateRemindersCommand expectedCommandNoDate = new ListDateRemindersCommand(
                 new ReminderDate(LocalDate.now()));
         assertParseSuccess(commandParser, validReminderDate, expectedCommand);
+    }
+
+    @Test
+    public void parse_invalidInputs_throwIllegalArgumentException() {
+        // random string
+        assertThrows(ParseException.class, () -> commandParser.parse("test"));
+        assertThrows(ParseException.class, () -> commandParser.parse("1"));
+        assertThrows(ParseException.class, () -> commandParser.parse("test123!"));
     }
 }

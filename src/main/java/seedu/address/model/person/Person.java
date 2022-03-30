@@ -38,6 +38,7 @@ public class Person {
 
     /**
      * Every field must be present and not null. A constructor including the reminder.
+     *
      * @param name of the person
      * @param phone number of the person
      * @param email of the person
@@ -251,5 +252,22 @@ public class Person {
      */
     public boolean containsReminder(Reminder reminder) {
         return this.reminderList.containsReminder(reminder);
+    }
+
+    /**
+     * Gets the size of the {@code ReminderList}
+     */
+    public int getReminderListSize() {
+        return this.reminderList.getSize();
+    }
+
+    /**
+     * Retrieves the {@code Reminder} based on the {@code Index} given.
+     *
+     * @param reminderIndex the index of the {@code Reminder}
+     * @return the {@code reminder} object
+     */
+    public Reminder getReminder(Index reminderIndex) {
+        return this.reminderList.get(reminderIndex);
     }
 }

@@ -45,9 +45,9 @@ public class ListContactRemindersCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personSpecified = model.getFilteredPersonList().get(index.getZeroBased());
+        Person personSpecified = model.getFilteredPerson(index);
         ReminderList reminderList = personSpecified.getReminderList();
-        String output = reminderList.toOutputFormat();
+        String output = reminderList.toString();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, personSpecified.getName(), output.toString()));
     }

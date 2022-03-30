@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.date.ReminderDate;
 
 public class ReminderListTest {
@@ -66,6 +66,7 @@ public class ReminderListTest {
 
     @Test
     public void delete_validReminder_success() {
+        Index index = Index.fromOneBased(1);
         Reminder reminder = new Reminder(new ReminderDescription("test"),
                 new ReminderDate(LocalDate.of(2022, 1, 1)));
 
@@ -73,31 +74,11 @@ public class ReminderListTest {
         reminderList.add(reminder);
         assertTrue(reminderList.containsReminder(reminder));
 
-        reminderList.delete(reminder);
+        reminderList.delete(index);
         assertFalse(reminderList.containsReminder(reminder));
 
-        reminderList.delete(reminder);
+        reminderList.delete(index);
         assertFalse(reminderList.containsReminder(reminder));
-    }
-
-    @Test
-    public void find_validReminder_success() throws IllegalValueException {
-        Reminder reminder = new Reminder(new ReminderDescription("test"),
-                new ReminderDate(LocalDate.of(2022, 1, 1)));
-
-        ReminderList reminderList = new ReminderList();
-        reminderList.add(reminder);
-        assertTrue(reminderList.containsReminder(reminder));
-
-        assertTrue(reminderList.find(new ReminderDescription("test"),
-                new ReminderDate(LocalDate.of(2022, 1, 1))).equals(reminder));
-
-        assertThrows(IllegalValueException.class, () -> reminderList.find(new ReminderDescription("other"),
-                new ReminderDate(LocalDate.of(2021, 1, 1))));
-        assertThrows(IllegalValueException.class, () -> reminderList.find(null,
-                new ReminderDate(LocalDate.of(2021, 1, 1))));
-        assertThrows(IllegalValueException.class, () -> reminderList.find(new ReminderDescription("other"), null));
-        assertThrows(IllegalValueException.class, () -> reminderList.find(null, null));
     }
 
     @Test

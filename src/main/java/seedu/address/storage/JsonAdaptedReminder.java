@@ -9,17 +9,18 @@ import seedu.address.model.date.ReminderDate;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDescription;
 
+/**
+ *  * Jackson-friendly version of {@link Reminder}.
+ */
 public class JsonAdaptedReminder {
     private final String description;
     private final String date;
 
     /**
      * Constructs a {@code JsonAdaptedReminder} with the given {@code description} and {@code date}.
-     *
      */
     @JsonCreator
-    public JsonAdaptedReminder(@JsonProperty("description") String description,
-                                    @JsonProperty("date") String date) {
+    public JsonAdaptedReminder(@JsonProperty("description") String description, @JsonProperty("date") String date) {
         this.date = date;
         this.description = description;
     }

@@ -1,5 +1,7 @@
 package seedu.address.model.date;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -31,18 +33,9 @@ public class ReminderDate extends DocumentedDate implements Comparable<ReminderD
 
     @Override
     public int compareTo(ReminderDate reminderDate) {
+        requireNonNull(reminderDate);
 
-        if (reminderDate == null) {
-            throw new NullPointerException("Reminder date compared is null.");
-        }
-
-        if (super.getDate().isBefore(reminderDate.getDate())) {
-            return -1;
-        } else if (super.getDate().isAfter(reminderDate.getDate())) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return super.getDate().compareTo(reminderDate.getDate());
     }
 
     @Override

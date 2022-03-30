@@ -3,8 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
 
+import java.util.List;
+
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.date.ReminderDate;
@@ -39,10 +40,9 @@ public class ListDateRemindersCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         StringBuilder output = new StringBuilder();
         int counter = 1;
-        ObservableList<Person> personList = FXCollections.observableArrayList(model.getAddressBook().getPersonList());
+        List<Person> personList = FXCollections.observableArrayList(model.getFilteredPersonList());
 
         for (Person person : personList) {
 

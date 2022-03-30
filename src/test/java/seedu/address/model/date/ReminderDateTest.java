@@ -29,12 +29,13 @@ public class ReminderDateTest {
         ReminderDate reminderDateThird = new ReminderDate(LocalDate.of(2022, 1, 1));
 
         // different dates
-        assertEquals(-1, reminderDateFirst.compareTo(reminderDateSecond));
-        assertEquals(-1, reminderDateSecond.compareTo(reminderDateThird));
-        assertEquals(-1, reminderDateFirst.compareTo(reminderDateThird));
-        assertEquals(1, reminderDateThird.compareTo(reminderDateSecond));
-        assertEquals(1, reminderDateThird.compareTo(reminderDateFirst));
-        assertEquals(1, reminderDateSecond.compareTo(reminderDateFirst));
+        assertTrue(reminderDateFirst.compareTo(reminderDateSecond) < 0);
+        assertTrue(reminderDateSecond.compareTo(reminderDateThird) < 0);
+        assertTrue(reminderDateFirst.compareTo(reminderDateThird) < 0);
+
+        assertTrue(reminderDateThird.compareTo(reminderDateSecond) > 0);
+        assertTrue(reminderDateThird.compareTo(reminderDateFirst) > 0);
+        assertTrue(reminderDateSecond.compareTo(reminderDateFirst) > 0);
 
         // same dates
         assertEquals(0, reminderDateFirst.compareTo(reminderDateFirst));

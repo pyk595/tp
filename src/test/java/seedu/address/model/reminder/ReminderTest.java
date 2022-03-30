@@ -58,16 +58,17 @@ public class ReminderTest {
                 new ReminderDate(LocalDate.of(2022, 1, 1)));
 
         // Different dates and descriptions
-        assertEquals(-1, firstReminder.compareTo(secondReminder));
-        assertEquals(-1, firstReminder.compareTo(thirdReminder));
-        assertEquals(-1, firstReminder.compareTo(fourthReminder));
-        assertEquals(-1, secondReminder.compareTo(thirdReminder));
-        assertEquals(-1, secondReminder.compareTo(fourthReminder));
-        assertEquals(1, fourthReminder.compareTo(secondReminder));
-        assertEquals(1, fourthReminder.compareTo(firstReminder));
-        assertEquals(1, thirdReminder.compareTo(secondReminder));
-        assertEquals(1, thirdReminder.compareTo(firstReminder));
-        assertEquals(1, secondReminder.compareTo(firstReminder));
+        assertTrue(firstReminder.compareTo(secondReminder) < 0);
+        assertTrue(firstReminder.compareTo(thirdReminder) < 0);
+        assertTrue(firstReminder.compareTo(fourthReminder) < 0);
+        assertTrue(secondReminder.compareTo(thirdReminder) < 0);
+        assertTrue(secondReminder.compareTo(fourthReminder) < 0);
+
+        assertTrue(fourthReminder.compareTo(secondReminder) > 0);
+        assertTrue(fourthReminder.compareTo(firstReminder) > 0);
+        assertTrue(thirdReminder.compareTo(secondReminder) > 0);
+        assertTrue(thirdReminder.compareTo(firstReminder) > 0);
+        assertTrue(secondReminder.compareTo(firstReminder) > 0);
 
         // Same date and different descriptions
         assertEquals(-1, thirdReminder.compareTo(fourthReminder));

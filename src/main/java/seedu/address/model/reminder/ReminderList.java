@@ -2,7 +2,7 @@ package seedu.address.model.reminder;
 
 import java.util.PriorityQueue;
 
-import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.date.ReminderDate;
 
 /**
@@ -65,41 +65,13 @@ public class ReminderList {
     /**
      * Deletes a Reminder object from the current list.
      *
-     * @param reminder to be deleted.
+     * @param index of the {@code Reminder}to be deleted.
      * @return the updated ReminderList
      */
-    public ReminderList delete(Reminder reminder) {
+    public ReminderList delete(Index index) {
+        Reminder reminder = get(index);
         this.reminderPriorityQueue.remove(reminder);
         return this;
-    }
-
-    /**
-     * Finds a Reminder object to the current list.
-     *
-     * @param reminderDescription to search.
-     * @param reminderDate
-     * @return the Reminder found. If there is no matching searches, returns null.
-     */
-    public Reminder find(ReminderDescription reminderDescription, ReminderDate reminderDate)
-            throws IllegalValueException {
-        Reminder reminderFound = null;
-        PriorityQueue<Reminder> reminderListCopy = new PriorityQueue<Reminder>(this.reminderPriorityQueue);
-
-        while (!reminderListCopy.isEmpty()) {
-            reminderFound = reminderListCopy.poll();
-            if (reminderFound.getDescription().equals(reminderDescription)
-                    && reminderFound.getReminderDate().equals(reminderDate)) {
-                break;
-            }
-        }
-
-        if (reminderFound.getDescription().equals(reminderDescription)
-                && reminderFound.getReminderDate().equals(reminderDate)) {
-            return reminderFound;
-        } else {
-            throw new IllegalValueException(String.format("There is no reminder %1$s happening on %2$s.",
-                    reminderDescription, reminderDate));
-        }
     }
 
     /**
@@ -122,10 +94,8 @@ public class ReminderList {
         return this.reminderPriorityQueue;
     }
 
-    /**
-     * Converts the given {@code ReminderList} to output format
-     */
-    public String toOutputFormat() {
+    @Override
+    public String toString() {
         StringBuilder output = new StringBuilder();
         int counter = 1;
         for (Reminder reminder : reminderPriorityQueue) {
@@ -133,5 +103,38 @@ public class ReminderList {
             counter++;
         }
         return output.toString();
+    }
+
+    /**
+     * Checks if the {@code ReminderList} is empty.
+     */
+    public boolean isEmpty() {
+        return reminderPriorityQueue.isEmpty();
+    }
+
+    /**
+     * Gets the size of the {@code ReminderList}
+     */
+    public int getSize() {
+        return reminderPriorityQueue.size();
+    }
+
+    /**
+     * Retrieves the {@code Reminder} based on the {@code Index} given.
+     *
+     * @param reminderIndex the index of the {@code reminder}
+     * @return the {@code reminder} object
+     */
+    public Reminder get(Index reminderIndex) {
+        int count = reminderIndex.getOneBased();
+        ReminderList copy = getCopy();
+        Reminder reminder = null;
+
+        while (count != 0) {
+            reminder = copy.reminderPriorityQueue.poll();
+            count--;
+        }
+
+        return reminder;
     }
 }

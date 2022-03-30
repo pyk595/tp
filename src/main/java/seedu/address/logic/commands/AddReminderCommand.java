@@ -95,9 +95,9 @@ public class AddReminderCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = model.getFilteredPerson(index);
 
-        if (personToEdit.getReminderList().containsReminder(reminder)) {
+        if (personToEdit.containsReminder(reminder)) {
             throw new CommandException(String.format(ReminderList.MESSAGE_DUPLICATE_REMINDER, reminder));
         }
         Person editedPerson = createPersonWithAddedReminder(personToEdit, this.reminder);
