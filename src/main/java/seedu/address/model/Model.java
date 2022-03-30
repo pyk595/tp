@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.ReadOnlyUniqueTagList;
 
@@ -14,7 +15,7 @@ import seedu.address.model.tag.ReadOnlyUniqueTagList;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS_WITH_BIRTHDAY_TODAY = person -> person.isBirthdayToday();
+    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS_WITH_BIRTHDAY_TODAY = Person::isBirthdayToday;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -85,6 +86,14 @@ public interface Model {
      * Returns the number of persons with the filtered predicate.
      */
     int getFilteredPersonListSize();
+
+    /**
+     * Returns the {@code Person} at the given index.
+     *
+     * @param index the {@code Index} used to identify the person.
+     * @return the {@code Person} at the given index.
+     */
+    Person getFilteredPerson(Index index);
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

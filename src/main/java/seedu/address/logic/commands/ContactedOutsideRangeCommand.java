@@ -5,35 +5,34 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.PersonWithinDateRangePredicate;
+import seedu.address.model.person.PersonOutsideDateRangePredicate;
 
 /**
- * List all persons contacted within a designated number of days.
+ * List all persons contacted outside of the designated number of days.
  */
-public class ContactedWithinRangeCommand extends Command {
+public class ContactedOutsideRangeCommand extends Command {
 
-    public static final String COMMAND_WORD = "within";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts contacted within "
+    public static final String COMMAND_WORD = "after";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts contacted outside "
             + "the specified range of days and displays them as a list with index numbers.\n"
             + "Parameters: number of days (Positive integer or 0)\n"
             + "Example: " + COMMAND_WORD + " 5";
-    private final PersonWithinDateRangePredicate predicate;
+    private final PersonOutsideDateRangePredicate predicate;
 
     /**
-     * Constructs a {@code ContactedWithinRangeCommand} object with the given {@code PersonWithinDateRangePredicate}.
+     * Constructs a {@code ContactedOutsideRangeCommand} object with the given {@code PersonOutsideDateRangePredicate}.
      *
-     * @param predicate the predicate for the command execution in the context of {@code ContactedWithinRangeCommand}.
+     * @param predicate the predicate for the command execution in the context of {@code ContactedOutsideRangeCommand}.
      */
-    public ContactedWithinRangeCommand(PersonWithinDateRangePredicate predicate) {
+    public ContactedOutsideRangeCommand(PersonOutsideDateRangePredicate predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;
     }
-
     /**
-     * Executes the command and returns the {@code CommandResult}.
+     * Executes the command and returns the {@code CommandResult}
      *
      * @param model {@code Model} which the command should operate on.
-     * @return {@code CommandResult} of the operation result for display.
+     * @return {@code CommandResult} of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
     @Override
@@ -51,10 +50,10 @@ public class ContactedWithinRangeCommand extends Command {
             return true;
         }
         // instanceof handles nulls
-        if (!(other instanceof ContactedWithinRangeCommand)) {
+        if (!(other instanceof ContactedOutsideRangeCommand)) {
             return false;
         }
         // state check
-        return predicate.equals(((ContactedWithinRangeCommand) other).predicate);
+        return predicate.equals(((ContactedOutsideRangeCommand) other).predicate);
     }
 }

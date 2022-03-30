@@ -1,5 +1,6 @@
 package seedu.address.model.date;
 
+import static java.time.temporal.ChronoUnit.DAYS;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
@@ -36,12 +37,12 @@ public class RecentDate extends DocumentedDate implements Comparable<RecentDate>
     }
 
     /**
-     * Returns today's date in String format.
-     *
-     * @return today's date in String format.
+     * Returns true if a given string can be converted to a date
+     * that has either occurred today or in the past.
      */
-    public static String defaultRecentDateInStr() {
-        return LocalDate.now().format(FORMATTER_INPUT);
+    public static boolean isValidRecentDate(String test) {
+        LocalDate testDate = LocalDate.parse(test);
+        return DAYS.between(testDate, LocalDate.now()) >= 0;
     }
 
     /**

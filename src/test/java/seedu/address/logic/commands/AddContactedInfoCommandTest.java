@@ -48,6 +48,29 @@ public class AddContactedInfoCommandTest {
     }
 
     @Test
+    public void execute_duplicateContactedInfo_throwsCommandException() {
+        // same contacted information
+        ContactedInfo contactedInfo = new ContactedInfo(RecentDate.parse("2020-02-02"), new Description("Wedding"));
+        Person personToAddTag = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        // Alice must already have the contacted information
+        assertTrue(personToAddTag.containsContactedInfo(contactedInfo));
+
+        AddContactedInfoCommand addContactedInfoCommand = new AddContactedInfoCommand(
+                INDEX_FIRST_PERSON, contactedInfo);
+        String expectedMessage = String.format(
+                AddContactedInfoCommand.MESSAGE_DUPLICATE_CONTACTED_INFO, contactedInfo.toString());
+        assertCommandFailure(addContactedInfoCommand, model, expectedMessage);
+
+        // case sensitivity test
+        contactedInfo = new ContactedInfo(RecentDate.parse("2020-02-02"), new Description("WedDiNg"));
+        addContactedInfoCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON, contactedInfo);
+        expectedMessage = String.format(
+                AddContactedInfoCommand.MESSAGE_DUPLICATE_CONTACTED_INFO, contactedInfo.toString());
+        assertCommandFailure(addContactedInfoCommand, model, expectedMessage);
+    }
+
+    @Test
     public void execute_invalidIndex_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getAddressBook().getPersonList().size() + 10);
 

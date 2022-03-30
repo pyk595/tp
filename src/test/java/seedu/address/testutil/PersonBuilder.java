@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.date.BirthDate;
 import seedu.address.model.person.Address;
@@ -166,10 +167,10 @@ public class PersonBuilder {
      * @return this {@code PersonBuilder}.
      */
     public PersonBuilder addContactedInfo(String ... contactedInfo) {
-        ArrayList<ContactedInfo> newArrLst = new ArrayList<>(this.contactedInfo);
-        newArrLst.addAll(SampleDataUtil.getContactedInfoList(contactedInfo));
-        Collections.sort(newArrLst);
-        this.contactedInfo = newArrLst;
+        ArrayList<ContactedInfo> contactedInfoList = new ArrayList<>(this.contactedInfo);
+        contactedInfoList.addAll(SampleDataUtil.getContactedInfoList(contactedInfo));
+        Collections.sort(contactedInfoList);
+        this.contactedInfo = contactedInfoList;
         return this;
     }
 
@@ -178,16 +179,14 @@ public class PersonBuilder {
      * deletes them from the contacted information list of {@code Person}
      * that we are building.
      *
-     * @param indexToDel the index of the contacted information to delete from the list.
+     * @param contactedInfoIndex the index of the contacted information to delete from the list.
      * @return this {@code PersonBuilder}.
      */
-    public PersonBuilder deleteContactedInfo(Integer ... indexToDel) {
-        ArrayList<ContactedInfo> newArrLst = new ArrayList<>(contactedInfo);
-
-        for (Integer index: indexToDel) {
-            newArrLst.remove(indexToDel);
-        }
-        this.contactedInfo = newArrLst;
+    public PersonBuilder deleteContactedInfo(Index contactedInfoIndex) {
+        ArrayList<ContactedInfo> contactedInfoList = new ArrayList<>(contactedInfo);
+        int index = contactedInfoIndex.getZeroBased();
+        contactedInfoList.remove(index);
+        this.contactedInfo = contactedInfoList;
 
         return this;
     }
@@ -198,10 +197,10 @@ public class PersonBuilder {
      * @return this {@code PersonBuilder}.
      */
     public PersonBuilder addDefaultContactedInfo() {
-        ArrayList<ContactedInfo> newArrLst = new ArrayList<>(this.contactedInfo);
-        newArrLst.add(ContactedInfo.getDefaultContactedInfo());
-        Collections.sort(newArrLst);
-        this.contactedInfo = newArrLst;
+        ArrayList<ContactedInfo> contactedInfoList = new ArrayList<>(this.contactedInfo);
+        contactedInfoList.add(ContactedInfo.getDefaultContactedInfo());
+        Collections.sort(contactedInfoList);
+        this.contactedInfo = contactedInfoList;
         return this;
     }
 

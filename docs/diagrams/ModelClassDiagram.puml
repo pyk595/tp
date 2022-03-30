@@ -8,6 +8,10 @@ Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
+
+Class UniqueTagList
+Class "<<interface>>\nReadOnlyUniqueTagList" as ReadOnlyUniqueTagList
+
 Class AddressBook
 Class ModelManager
 Class UserPrefs
@@ -19,7 +23,7 @@ Class Email
 Class Name
 Class Phone
 Class Tag
-
+Class ContactedInfo
 }
 
 Class HiddenOutside #FFFFFF
@@ -28,20 +32,25 @@ HiddenOutside ..> Model
 AddressBook .up.|> ReadOnlyAddressBook
 
 ModelManager .up.|> Model
+Model ..> ReadOnlyUniqueTagList
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+ModelManager --> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+AddressBook *--> "1" UniqueTagList
 AddressBook *--> "1" UniquePersonList
+UniqueTagList .up.|> ReadOnlyUniqueTagList
 UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "*" ContactedInfo
 
+AddressBook -[hidden]left-> ReadOnlyUniqueTagList
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email

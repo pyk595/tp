@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -9,6 +10,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.date.BirthDate;
 import seedu.address.model.reminder.Reminder;
@@ -81,8 +84,48 @@ public class Person {
         return Collections.unmodifiableList(contactedInfoList);
     }
 
+    /**
+     * Returns the string representation of the list of {@code ContactedInfo}
+     * tethered to the {@code Person}.
+     *
+     * @return String representing the ContactedInfoList.
+     */
+    public String getContactedInfoListToString() {
+        if (contactedInfoList.isEmpty()) {
+            return Messages.MESSAGE_EMPTY_CONTACTED_INFORMATION;
+        }
+        StringBuilder output = new StringBuilder();
+        for (int i = 1; i <= contactedInfoList.size(); i++) {
+            ContactedInfo contactedInfo = contactedInfoList.get(i - 1);
+            output.append(String.format("%1$d. %2$s\n", i, contactedInfo.toString()));
+        }
+        return output.toString();
+    }
+
+    public ContactedInfo getContactedInfoEntry(Index index) {
+        return contactedInfoList.get(index.getZeroBased());
+    }
+
     public int getContactedInfoListSize() {
         return Collections.unmodifiableList(contactedInfoList).size();
+    }
+
+    /**
+     * Returns true if contacted information list contains parsed {@code ContactedInfo} object.
+     *
+     * @param contactedInfo object for check.
+     * @return true if contacted information list contains parsed {@code ContactedInfo} object.
+     */
+    public boolean containsContactedInfo(ContactedInfo contactedInfo) {
+        ArrayList<ContactedInfo> list = new ArrayList<>(contactedInfoList);
+
+        for (ContactedInfo contact : list) {
+            if (contact.equals(contactedInfo)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public Optional<ContactedInfo> getLatestContactedInfoEntry() {
@@ -134,6 +177,15 @@ public class Person {
     public boolean hasTag(Tag tag) {
         return (tag != null)
                 && this.tags.contains(tag);
+    }
+
+    /**
+     * Returns true if this {@code Person} has an empty {@code contactedInfoList}.
+     *
+     * @return true if {@code contactedInfoList} is empty.
+     */
+    public boolean isContactedInfoListEmpty() {
+        return getContactedInfoList().isEmpty();
     }
 
     /**

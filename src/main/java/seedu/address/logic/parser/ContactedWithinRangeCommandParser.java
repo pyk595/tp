@@ -6,14 +6,17 @@ import seedu.address.logic.commands.ContactedWithinRangeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PersonWithinDateRangePredicate;
 
+/**
+ * Parses input arguments and creates a new {@code ContactedWithinRangeCommand} object
+ */
 public class ContactedWithinRangeCommandParser implements Parser<ContactedWithinRangeCommand> {
 
 
     /**
      * Parses {@code userInput} into a command and returns it.
      *
-     * @param userInput the number of days represented in String format
-     * @throws ParseException if {@code userInput} does not conform the expected format
+     * @param userInput the number of days represented in String format.
+     * @throws ParseException if {@code userInput} does not conform the expected format.
      */
     @Override
     public ContactedWithinRangeCommand parse(String userInput) throws ParseException {
