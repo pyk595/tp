@@ -19,7 +19,7 @@ Class Email
 Class Name
 Class Phone
 Class Tag
-
+Class ContactedInfo
 }
 
 Class HiddenOutside #FFFFFF
@@ -41,6 +41,7 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "*" ContactedInfo
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address

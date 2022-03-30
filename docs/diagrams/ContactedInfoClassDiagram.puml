@@ -1,0 +1,33 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+Package "ContactedInfo Class Diagram" <<Rectangle>>{
+
+class ContactedInfo {
+    +getRecentDate() : RecentDate
+    +getDescription() : Description
+    +getDefaultContactedInfo() : ContactedInfo
+    +isValidContactedInfo(String : dateTest, String : descriptionTest) : boolean
+    +getDaysPassed() : Integer
+}
+
+class RecentDate {
+    -value : String
+    +defaultRecentDateInStr() : String
+    +parse(String : parsedDate) : RecentDate
+    +isValidRecentDate(String : test) : boolean
+}
+
+class Description {
+    +defaultDesc() : Description
+    +isValidDescription(String : test) : boolean
+}
+
+class String
+class LocalDate
+
+ContactedInfo *--> "1" Description
+ContactedInfo *--> "1" RecentDate
+Description *--> "value 1" String
+RecentDate *--> "date 1" LocalDate
+@enduml
