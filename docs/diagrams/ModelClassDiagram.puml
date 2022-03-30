@@ -23,7 +23,7 @@ Class Email
 Class Name
 Class Phone
 Class Tag
-
+Class ContactedInfo
 }
 
 Class HiddenOutside #FFFFFF
@@ -48,6 +48,7 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "*" ContactedInfo
 
 AddressBook -[hidden]left-> ReadOnlyUniqueTagList
 Name -[hidden]right-> Phone

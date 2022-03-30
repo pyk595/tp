@@ -20,6 +20,7 @@ import seedu.address.model.person.Person;
 public class AddContactedInfoCommand extends Command {
 
     public static final String MESSAGE_ADD_CONTACTEDINFO_SUCCESS = "Added Contacted Info to Person: %1$s";
+    public static final String MESSAGE_DUPLICATE_CONTACTED_INFO = "Contacted list already contains: %1$s";
 
     public static final String COMMAND_WORD = "contacted";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -67,6 +68,10 @@ public class AddContactedInfoCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+
+        if (personToEdit.containsContactedInfo(contactedInfo)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_CONTACTED_INFO, contactedInfo.toString()));
+        }
         ArrayList<ContactedInfo> updatedContactedInfo = new ArrayList<>(personToEdit.getContactedInfoList());
         updatedContactedInfo.add(contactedInfo);
         Collections.sort(updatedContactedInfo);

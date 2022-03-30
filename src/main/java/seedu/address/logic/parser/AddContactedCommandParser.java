@@ -42,7 +42,6 @@ public class AddContactedCommandParser implements Parser<AddContactedInfoCommand
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddContactedInfoCommand.MESSAGE_USAGE), ive);
         }
-
         ContactedInfo contactedInfo = ParserUtil.parseContactedInfo(
                 argMultimap.getValue(PREFIX_CONTACTED_DATE).get(),
                 argMultimap.getValue(PREFIX_CONTACTED_DESC).get());

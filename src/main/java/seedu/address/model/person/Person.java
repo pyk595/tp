@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -98,6 +99,24 @@ public class Person {
 
     public int getContactedInfoListSize() {
         return Collections.unmodifiableList(contactedInfoList).size();
+    }
+
+    /**
+     * Returns true if contacted information list contains parsed {@code ContactedInfo} object.
+     *
+     * @param contactedInfo object for check.
+     * @return true if contacted information list contains parsed {@code ContactedInfo} object.
+     */
+    public boolean containsContactedInfo(ContactedInfo contactedInfo) {
+        ArrayList<ContactedInfo> list = new ArrayList<>(contactedInfoList);
+
+        for (ContactedInfo contact : list) {
+            if (contact.equals(contactedInfo)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public Optional<ContactedInfo> getLatestContactedInfoEntry() {
