@@ -81,10 +81,10 @@ Words in quotations are files, file types or dependencies.
   e.g. in `add n/NAME`, `NAME` is an information which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/Client` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Client`, `t/Client t/Premium_Member` etc.
 
 * User input can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -105,7 +105,10 @@ Words in quotations are files, file types or dependencies.
 
 ### Adding a contact: `add`
 
-Adds a contact to the application.
+Adds a contact to the application. 
+
+* Upon adding a person, a default recently interacted date and description would be automatically generated.
+  * The default date would be the day the contact was added, and default description would be "First Interaction".
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`
 * `BIRTH_DATE` should be in the specified date format.
@@ -117,7 +120,7 @@ A person can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/1970-01-01` adds the contact with only the compulsory information provided.
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/1970-01-01 t/Interviewee t/students` adds the contact with the compulsory information provided and the optional information.
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/1970-01-01 t/Client t/Basic_Member` adds the contact with the compulsory information provided and the optional information.
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -203,7 +206,7 @@ Deletes a tag from an existing contact, as specified by the index.
 Format: `untag INDEX t/TAG`
 
 Example:
-* `untag 27 t/colleague` deletes the "colleague" tag from the 27th contact in the display contact list.
+* `untag 27 t/client` deletes the "client" tag from the 27th contact in the display contact list.
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -222,13 +225,13 @@ Finds all the contacts with the specified tag assigned to them.
 Format: `#TAG`
 
 Example:
-* `#Friends` finds all the contacts that are tagged to "friends".
+* `#client` finds all the contacts that are tagged to "client".
 
 [Return to Table of Contents](#table-of-contents)
 
 ### Assigning a recently contacted date to a contact: `contacted`
 
-Manually logs the date of the most recent interaction with the contact.
+Manually logs the date of the most recent interaction with the contact, along with a short description of the purpose of interaction.
 
 Format: `contacted INDEX d/DATE des/description`
 * `DATE` should be in the specified date format.
@@ -244,10 +247,10 @@ Deletes the specified recently contacted date from a specified contact.
 
 Format: `unlog INDEX del/INDEX`
 
-* First `INDEX` signifies the specified contact.
-* The first index refers to the index number shown in the displayed contact list.
-* Second `INDEX` signifies the contacted date to delete.
-* The second index refers to the index number shown in the contact's displayed recently contacted date list.
+* `INDEX` signifies the specified contact.
+* `INDEX` refers to the index number shown in the displayed contact list.
+* `del/INDEX` signifies the contacted date to delete.
+* `del/INDEX` refers to the index number shown in the contact's displayed recently contacted date list.
 
 Example:
 * `unlog 2 del/6` deletes the 6th recently contacted date from the 2nd contact in the displayed contact list.
@@ -295,11 +298,14 @@ Example:
 
 Adds a reminder for a contact.
 
+* `INDEX` signifies the specified contact.
+* `INDEX` refers to the index number shown in the displayed contact list.
+
 Format: `remind INDEX r/REMINDER rd/DATE`
 * `DATE` should be in the specified date format.
 
 Example:
-* `remind 13 r/dinner rd/2022-09-11`
+* `remind 13 r/phone call rd/2022-09-11`
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -334,7 +340,7 @@ Deletes the specified reminder of a contact as specified by the index.
 Format: `forget INDEX r/REMINDER`
 
 Example:
-* `forget 5 r/Dinner outing`
+* `forget 5 r/Discussion of contract`
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -358,26 +364,28 @@ If you made a mistake while manually editing the saved data, a backup save file 
 
 ## Command summary
 
-| Action                                | Format                                                                                   |
-|---------------------------------------|------------------------------------------------------------------------------------------|
-| **Add a contact**                     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`                     |
-| **List all contacts**                 | `list`                                                                                   |
-| **Edit a contact**                    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [t/TAG]…​`    |
-| **Find a contact by keywords**        | `find KEYWORD [MORE_KEYWORDS]`                                                           |
-| **Delete a contact**                  | `delete INDEX`                                                                           |
-| **Add a tag**                         | `tag INDEX t/TAG`                                                                        |
-| **Delete a tag**                      | `untag INDEX t/TAG`                                                                      |
-| **Show all tags**                     | `tags`                                                                                   |
-| **Find contacts by tags**             | `#`                                                                                      |
-| **Assign date to contact**            | `contacted INDEX d/DATE des/description`                                                 |
-| **Display contacts within DAYS**      | `within DAYS`                                                                            |
-| **Display contacts after DAYS**       | `after DAYS`                                                                             |
-| **Display birthdays occurring today** | `birthdays`                                                                              |
-| **Add a non-recurring reminder**      | `remind INDEX r/REMINDER rd/DATE`                                                        |
-| **View reminders of a contact**       | `reminder INDEX`                                                                         |
-| **View reminders on a date**          | `reminders [rd/DATE]`                                                                    |
-| **Delete a reminder**                 | `forget INDEX r/REMINDER`                                                                |
-| **Exit the program**                  | `exit`                                                                                   |
-| **Help**                              | `help`                                                                                   |
+| Action                                              | Format                                                                                |
+|-----------------------------------------------------|---------------------------------------------------------------------------------------|
+| **Add a contact**                                   | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`                  |
+| **List all contacts**                               | `list`                                                                                |
+| **Edit a contact**                                  | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [t/TAG]…​` |
+| **Find a contact by keywords**                      | `find KEYWORD [MORE_KEYWORDS]`                                                        |
+| **Delete a contact**                                | `delete INDEX`                                                                        |
+| **Add a tag**                                       | `tag INDEX t/TAG`                                                                     |
+| **Delete a tag**                                    | `untag INDEX t/TAG`                                                                   |
+| **Show all tags**                                   | `tags`                                                                                |
+| **Find contacts by tags**                           | `#`                                                                                   |
+| **Assign date to contact**                          | `contacted INDEX d/DATE des/description`                                              |
+| **Delete a recently contacted date from a contact** | `unlog INDEX del/INDEX`                                                               |
+| **List all recently contacted date of a contact**   | `logs INDEX`                                                                          |
+| **Display contacts within DAYS**                    | `within DAYS`                                                                         |
+| **Display contacts after DAYS**                     | `after DAYS`                                                                          |
+| **Display birthdays occurring today**               | `birthdays`                                                                           |
+| **Add a non-recurring reminder**                    | `remind INDEX r/REMINDER rd/DATE`                                                     |
+| **View reminders of a contact**                     | `reminder INDEX`                                                                      |
+| **View reminders on a date**                        | `reminders [rd/DATE]`                                                                 |
+| **Delete a reminder**                               | `forget INDEX r/REMINDER`                                                             |
+| **Exit the program**                                | `exit`                                                                                |
+| **Help**                                            | `help`                                                                                |
 
 [Return to Table of Contents](#table-of-contents)
