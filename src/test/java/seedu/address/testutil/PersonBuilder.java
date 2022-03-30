@@ -136,7 +136,7 @@ public class PersonBuilder {
     /**
      * Deletes the {@code Reminder} from the {@code Person} that we are building.
      *
-     * @param reminder the reminder to delete from the ReminderList
+     * @param index of the reminder to delete from the ReminderList
      * @return this {@code PersonBuilder}
      */
     public PersonBuilder deleteReminder(Index index) {
