@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -11,6 +12,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -18,7 +21,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.date.ReminderDate;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderDescription;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.testutil.PersonBuilder;
 
 public class DeleteReminderCommandTest {
@@ -38,7 +45,13 @@ public class DeleteReminderCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Index validReminderIndex = Index.fromOneBased(1);
+        Reminder validReminder = new Reminder(new ReminderDescription("test"),
+                new ReminderDate(LocalDate.of(2022, 1, 1)));
+        ReminderList validReminderList = new ReminderList();
+        validReminderList.add(validReminder);
 
+        AddReminderCommand addReminderCommand = new AddReminderCommand(INDEX_SECOND_PERSON, validReminder);
+        assertDoesNotThrow(() -> addReminderCommand.execute(model));
         Person personToDeleteReminder = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
 
         assert personToDeleteReminder.getReminderListSize() >= validReminderIndex.getOneBased();
@@ -61,6 +74,13 @@ public class DeleteReminderCommandTest {
     @Test
     public void execute_invalidReminderIndexUnfilteredList_throwsCommandException() {
         Index invalidReminderIndex = Index.fromOneBased(1000);
+        Reminder validReminder = new Reminder(new ReminderDescription("test"),
+                new ReminderDate(LocalDate.of(2022, 1, 1)));
+        ReminderList validReminderList = new ReminderList();
+        validReminderList.add(validReminder);
+
+        AddReminderCommand addReminderCommand = new AddReminderCommand(INDEX_THIRD_PERSON, validReminder);
+        assertDoesNotThrow(() -> addReminderCommand.execute(model));
 
         Person personToDeleteReminder = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
 
@@ -89,6 +109,13 @@ public class DeleteReminderCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Index validReminderIndex = Index.fromOneBased(1);
+        Reminder validReminder = new Reminder(new ReminderDescription("test"),
+                new ReminderDate(LocalDate.of(2022, 1, 1)));
+        ReminderList validReminderList = new ReminderList();
+        validReminderList.add(validReminder);
+
+        AddReminderCommand addReminderCommand = new AddReminderCommand(INDEX_FIRST_PERSON, validReminder);
+        assertDoesNotThrow(() -> addReminderCommand.execute(model));
 
         Person personToDeleteReminder = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person personExpected = new PersonBuilder(personToDeleteReminder).deleteReminder(validReminderIndex).build();
@@ -110,6 +137,13 @@ public class DeleteReminderCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Index invalidReminderIndex = Index.fromOneBased(1000);
+        Reminder validReminder = new Reminder(new ReminderDescription("test"),
+                new ReminderDate(LocalDate.of(2022, 1, 1)));
+        ReminderList validReminderList = new ReminderList();
+        validReminderList.add(validReminder);
+
+        AddReminderCommand addReminderCommand = new AddReminderCommand(INDEX_FIRST_PERSON, validReminder);
+        assertDoesNotThrow(() -> addReminderCommand.execute(model));
 
         Person personToDeleteReminder = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
