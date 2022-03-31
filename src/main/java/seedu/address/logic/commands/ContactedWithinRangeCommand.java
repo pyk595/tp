@@ -13,9 +13,9 @@ import seedu.address.model.person.PersonWithinDateRangePredicate;
 public class ContactedWithinRangeCommand extends Command {
 
     public static final String COMMAND_WORD = "within";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts contacted within "
-            + "the specified range of days and displays them as a list with index numbers.\n"
-            + "Parameters: number of days (Positive integer or 0)\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons contacted within "
+            + "the specified range of days and displays them as a list with index numbers.\n\n"
+            + "Parameters: number of days (Positive integer or 0)\n\n"
             + "Example: " + COMMAND_WORD + " 5";
     private final PersonWithinDateRangePredicate predicate;
 

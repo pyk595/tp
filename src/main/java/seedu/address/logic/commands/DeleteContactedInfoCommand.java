@@ -30,12 +30,12 @@ public class DeleteContactedInfoCommand extends Command {
     public static final String COMMAND_WORD = "unlog";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a contacted information from an existing contact, \n"
-            + "as specified by the index number used in the displayed person list.\n"
-            + "The log will be deleted only if "
-            + "the contacted information list is not empty.\n"
+            + ": Deletes a specified interaction record from an existing contact, "
+            + "as specified by the index number used in the displayed person list.\n\n"
+            + "The interaction record will be deleted only if "
+            + "there are interaction records.\n\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_DELETE_CONTACTED_INFO + "INDEX\n"
+            + PREFIX_DELETE_CONTACTED_INFO + "INDEX\n\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_DELETE_CONTACTED_INFO + "1";
 

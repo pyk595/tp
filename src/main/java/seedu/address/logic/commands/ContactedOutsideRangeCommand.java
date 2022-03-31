@@ -13,9 +13,9 @@ import seedu.address.model.person.PersonOutsideDateRangePredicate;
 public class ContactedOutsideRangeCommand extends Command {
 
     public static final String COMMAND_WORD = "after";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts contacted outside "
-            + "the specified range of days and displays them as a list with index numbers.\n"
-            + "Parameters: number of days (Positive integer or 0)\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons contacted outside "
+            + "the specified range of days and displays them as a list with index numbers.\n\n"
+            + "Parameters: number of days (Positive integer or 0)\n\n"
             + "Example: " + COMMAND_WORD + " 5";
     private final PersonOutsideDateRangePredicate predicate;
 

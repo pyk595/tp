@@ -30,7 +30,7 @@ public class AddCommand extends Command {
             + PREFIX_BIRTH_DATE + "BIRTHDATE "
             + PREFIX_CONTACTED_DATE + "CONTACTED_DATE "
             + PREFIX_CONTACTED_DESC + "DESC "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]...\n\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
