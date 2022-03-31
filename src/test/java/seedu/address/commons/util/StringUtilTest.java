@@ -45,6 +45,7 @@ public class StringUtilTest {
         assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
     }
 
+    //---------------- Tests for isUnsignedInteger --------------------------------------
     @Test
     public void isUnsignedInteger() {
 
@@ -78,6 +79,77 @@ public class StringUtilTest {
         assertTrue(StringUtil.isUnsignedInteger("10"));
     }
 
+    //---------------- Tests for isValidDescriptionLength --------------------------------------
+
+    /*
+     * Invalid equivalence partitions: null, Strings more than 280
+     * Valid equivalence partitions: String length of 0 to 280
+     */
+    @Test
+    public void isValidDescriptionLength() {
+        assertThrows(NullPointerException.class, ()-> StringUtil.isValidDescriptionLength(null));
+
+        //EP: 280 characters
+        assertTrue(StringUtil.isValidDescriptionLength("aaaaaaaaaaaaaaaa  "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaa"));
+
+        //EP: 281 characters
+        assertFalse(StringUtil.isValidDescriptionLength("aaaaaaaaaaaaaaaa  "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaa"));
+
+        //EP: 279 characters
+        assertTrue(StringUtil.isValidDescriptionLength("aaaaaaaaaaaaaaaa  "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaaaaaaaaaaaa "
+                + "aaaaaa"));
+
+        //EP: 0 characters, valid because we don't have a lower bound
+        assertTrue(StringUtil.isValidDescriptionLength(""));
+
+    }
 
     //---------------- Tests for containsWordIgnoreCase --------------------------------------
 

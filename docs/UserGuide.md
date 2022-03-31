@@ -105,7 +105,7 @@ e.g. "exe" refers to the executable file type used on windows.
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Dates should be in "YYYY-MM-DD" format, unless stated otherwise. Single digits should be zero padded.<br>
-  e.g. `2022-05-17`, `2021-01-01` and `2011-10-10` are in the correct format, while `2022-5-17` and `2021-1-1` are in the wrong format.
+  e.g. `2022-05-17`, `2021-01-01` and `2011-10-10` are in the correct format with zero padding, while `2022-5-17` and `2021-1-1` are in the wrong format as they do not have a zero padding for single digit months and/or days.
 * `INDEX` used in the different commands refer to the index number shown in the displayed person list.
 
   ❗The `INDEX` must be a positive integer i.e. 1,2,3,...
