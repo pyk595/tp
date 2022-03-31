@@ -3,33 +3,59 @@ package seedu.address.model.date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.date.RecentDate.isValidRecentDate;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
 
 class RecentDateTest {
     private static final DateTimeFormatter FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private LocalDate test;
+    private LocalDate tomorrow;
+    private String testString;
+    private String tomorrowString;
 
+    @BeforeEach
+    public void setUp() {
+        test = LocalDate.now();
+        tomorrow = LocalDate.now().plusDays(1);
+        testString = test.format(FORMATTER_INPUT);
+        tomorrowString = tomorrow.format(FORMATTER_INPUT);
+    }
     @Test
     public void parse_validString_success() {
-        assertEquals("1 JANUARY 2020", BirthDate.parse("2020-01-01").toString());
+        assertEquals("01 Jan 2020", RecentDate.parse("2020-01-01").toString());
     }
 
     @Test
     public void parse_invalidString_failure() {
-        assertThrows(DateTimeParseException.class, ()->BirthDate.parse("hello"));
+        assertThrows(IllegalArgumentException.class, ()->RecentDate.parse("hello"));
+    }
+
+    @Test
+    public void isValidRecentDate_variousInput() {
+        assertTrue(isValidRecentDate(testString));
+        assertFalse(isValidRecentDate(tomorrowString));
+        LocalDate yesterday = test.minusDays(1);
+        String yesterdayString = yesterday.format(FORMATTER_INPUT);
+        assertTrue(isValidRecentDate(yesterdayString));
+        LocalDate future = test.plusMonths(1);
+        String futureString = future.format(FORMATTER_INPUT);
+        assertFalse(isValidRecentDate(futureString));
+        LocalDate nextYear = test.plusYears(1);
+        String nextYearString = nextYear.format(FORMATTER_INPUT);
+        assertFalse(isValidRecentDate(nextYearString));
+
     }
 
     @Test
     public void equals() {
-        LocalDate test = LocalDate.now();
-        LocalDate tomorrow = LocalDate.now().plusDays(1);
         RecentDate testRecentDate = new RecentDate(test);
         RecentDate nextDay = new RecentDate(tomorrow);
         String testString = test.format(FORMATTER_INPUT);

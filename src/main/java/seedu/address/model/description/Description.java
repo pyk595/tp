@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.description;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -35,7 +35,7 @@ public class Description {
      * Returns defulat description
      */
     public static Description defaultDesc() {
-        return new Description("Get Contact Information");
+        return new Description("First Interaction");
     }
 
     /**
@@ -58,7 +58,7 @@ public class Description {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Description // instanceof handles nulls
-                && value.equals(((Description) other).value)); // state check
+                && value.equalsIgnoreCase(((Description) other).value)); // state check
     }
 
     @Override

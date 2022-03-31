@@ -270,26 +270,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list all contacts (UC03).
-2. Address Book shows a list of contacts (UC03).
-3. User requests to delete a specific contact in the list.
-4. Address Book deletes the contact.
+1. User lists all contacts (UC03).
+2. User requests to delete a specific contact in the list.
+3. Address Book deletes the contact.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 2a. The given contact is invalid.
 
-    * 1a1. AddressBook shows an error message.
+    * 2a1. AddressBook shows an error message.
 
       Use case ends.
-
-* 3a. The given contact is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
 
 **Use case: UC05 - Find contact by keyword**
 
@@ -343,7 +336,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC07 - List all contacts in Address Book within a designated time frame**
+**Use case: UC07 - Show all contacted information for a specified contact**
+
+**MSS**
+
+1. User request to list all contacted information for a specified contact.
+2. Address Book shows all contacted information for the specified contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No index specifying a specific contact is given.
+
+    * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1b. The given index specifying a specific contact is invalid.
+
+    * 1b1. Address Book shows an error message.
+
+      Use case ends.
+
+**Use case: UC08 - List all contacts in Address Book within a designated time frame**
 
 **MSS**
 
@@ -354,19 +370,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. No date is given.
+* 1a. No client was contacted within/outside the designated number of days.
 
     * 1a1. Address Book shows an error message.
 
       Use case ends.
 
-* 1b. No client was contacted within/outside the designated number of days.
-
-    * 1b1. Address Book shows an error message.
-
-      Use case ends.
-
-**Use case: UC08 - Set reminder**
+**Use case: UC09 - Set reminder**
 
 **MSS**
 
@@ -383,7 +393,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC09 - View reminders of a contact**
+**Use case: UC10 - View reminders of a contact**
 
 **MSS**
 
@@ -406,7 +416,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use Case: UC10 - View reminders on a date**
+**Use Case: UC11 - View reminders on a date**
 
 **MSS**
 
@@ -423,32 +433,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC11 - Delete a reminder**
+**Use case: UC12 - Delete a reminder**
 
 **MSS**
 
-1. User requests to view reminders of a specific contact (UC09).
-2. Address Book shows reminders of the specified contact (UC09).
-3. User requests to delete a reminder for a specified contact.
-4. Address Book deletes a reminder for the specified contact.
+1. User views reminders of a specific contact (UC09).
+2. User requests to delete a reminder for a specified contact.
+3. Address Book deletes a reminder for the specified contact.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. The given reminder is invalid.
+* 2a. The given reminder is invalid.
 
-    * 3a1. Address Book shows an error message.
-
-      Use case ends.
-
-* 3b. The given contact is invalid.
-
-    * 3b1. Address Book shows an error message.
+    * 2a1. Address Book shows an error message.
 
       Use case ends.
 
-**Use case: UC12 - Show all tags**
+* 2b. The given contact is invalid.
+
+    * 2b1. Address Book shows an error message.
+
+      Use case ends.
+
+**Use case: UC13 - Show all tags**
 
 **MSS**
 
@@ -459,36 +468,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given input is invalid.
+* 1a. There is no tags in Address Book.
 
-    * 1a1. Address Book shows an error message.
+    * 1a1. Address Book shows a message, stating that there is no tags.
 
       Use case ends.
 
-**Use case: UC13 - Show all contacts that are tagged to a tag**
+**Use case: UC14 - Show all contacts that are tagged to a tag**
 
 **MSS**
 
-1. User requests to view all tags (UC12).
-2. Address Book shows all existing tags (UC12).
-3. User requests to view all contacts that are tagged to the specified tag.
-4. Address Book shows all contacts that are tagged to the specified tag, if any.
+1. User views all tags (UC13).
+2. User requests to view all contacts that are tagged to the specified tag.
+3. Address Book shows all contacts that are tagged to the specified tag, if any.
 
 **Extensions**
 
-* 1a. There is no tag.
+* 2a. The given tag is invalid.
 
-    * 1a1. Address Book shows an error message.
-
-      Use case ends.
-
-* 3a. The given tag is invalid.
-
-    * 3a1. Address Book shows an error message.
+    * 2a1. Address Book shows an error message.
 
       Use case ends.
 
-**Use case: UC14 - Add a tag to a contact**
+**Use case: UC15 - Add a tag to a contact**
 
 **MSS**
 
@@ -517,7 +519,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC15 - Delete a tag from a contact**
+**Use case: UC16 - Delete a tag from a contact**
 
 **MSS**
 
@@ -546,20 +548,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-*{More to be added}*
+**Use case: UC16 - Show all birthdays today**
 
+**MSS**
+1. User requests to view all birthdays occurring today.
+2. Address Book shows all persons with birthdays today.
+
+    Use case ends.
+
+**Extensions**
+* 1a. No birthdays occur today.
+
+    * 1a1. Address Book shows message stating that there are 0 persons with birthdays today.
+
+      Use case ends.
 ### Non-Functional Requirements
 
 1.  Should work on any **mainstream OS** as long as it has Java `11` or
     above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
     should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should not be bigger than 100MB.
 5.  A user should not be required to use an installer to run the **application**.
 6.  A new user should know how to use or where to look for function guides within one day.
 7.  An advanced user should be able to edit and replace the dataset manually.
-8.  The **application** GUI should work well for standard screen resolutions 1920x1080 and higher, 
+8.  The **application** GUI should work well for standard screen resolutions 1920x1080 and higher,
     and for screen scales of 100% and 125%.
 9.  The **application** should respond to user input within 2 seconds.
 10. The **application** is not required to support printing or use with other 3rd party software.
@@ -591,7 +605,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file
+
+        Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -621,8 +637,17 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
+    1. Remove addressbook.json and the data directory
+    1. Run the jar file
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+        Expected: The application will automatically generate a data directory and populate addressbook.json with sample data.
+
+1. Dealing with corrupted data files
+    1. Remove some lines from addressbook.json
+    1. Run the jar file
+
+        Expected: The application will make a copy of the current addressbook.json in backup.json and continue running with an empty addressbook.json. If changes are made, addressbook.json will be overwritten.
+
 
 1. _{ more test cases …​ }_

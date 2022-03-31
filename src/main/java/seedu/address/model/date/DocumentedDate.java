@@ -4,6 +4,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
@@ -11,6 +12,7 @@ import java.time.format.DateTimeParseException;
  */
 public class DocumentedDate {
     public static final String MESSAGE_CONSTRAINTS = "Dates should be in the format of YYYY-MM-DD";
+    private static final DateTimeFormatter FORMATTER_OUTPUT = DateTimeFormatter.ofPattern("dd MMM yyyy");
     private LocalDate date;
 
     /**
@@ -78,10 +80,7 @@ public class DocumentedDate {
      */
     @Override
     public String toString() {
-        return String.format("%d %s %d",
-                date.getDayOfMonth(),
-                date.getMonth(),
-                date.getYear());
+        return date.format(FORMATTER_OUTPUT);
     }
 
 }

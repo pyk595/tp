@@ -23,7 +23,7 @@ class AddTagCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE);
 
-    private AddTagCommandParser parser = new AddTagCommandParser();
+    private final AddTagCommandParser parser = new AddTagCommandParser();
 
     @Test
     public void parse_noTag_failure() {
@@ -69,7 +69,7 @@ class AddTagCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        // vanilla
+        // basic format
         AddTagCommand expectedCommand = new AddTagCommand(INDEX_FIRST_PERSON, new Tag(VALID_TAG_FRIEND));
         assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased() + TAG_EMPTY + VALID_TAG_FRIEND, expectedCommand);
 

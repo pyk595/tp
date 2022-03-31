@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,33 +11,32 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.date.BirthDate;
 import seedu.address.model.date.DocumentedDate;
-import seedu.address.model.date.RecentDate;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
  */
 class JsonAdaptedPerson {
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
     private final String phone;
     private final String email;
     private final String address;
-    private final String recentDate;
-    private final String description;
     private final String birthDate;
 
+    private final List<JsonAdaptedContactedInfo> contactedInfo = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedReminder> reminders = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -45,17 +45,22 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("birthDate") String birthDate,
-            @JsonProperty("date") String recentDate, @JsonProperty("description") String description,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("contactedInfo") List<JsonAdaptedContactedInfo> contactedInfo,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("reminders") List<JsonAdaptedReminder> reminders) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.birthDate = birthDate;
-        this.recentDate = recentDate;
-        this.description = description;
+        if (contactedInfo != null) {
+            this.contactedInfo.addAll(contactedInfo);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (reminders != null) {
+            this.reminders.addAll(reminders);
         }
     }
 
@@ -67,11 +72,17 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        recentDate = source.getContactedDate().value;
-        description = source.getContactedDesc().value;
         birthDate = source.getBirthDate().value;
+        contactedInfo.addAll(source.getContactedInfoList().stream()
+                .map(JsonAdaptedContactedInfo::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        reminders.addAll(source.getReminderList()
+                .getPriorityQueue()
+                .stream()
+                .map(JsonAdaptedReminder::new)
                 .collect(Collectors.toList()));
     }
 
@@ -84,6 +95,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<ContactedInfo> personContactedInfo = new ArrayList<>();
+        for (JsonAdaptedContactedInfo eachContactedInfo : contactedInfo) {
+            personContactedInfo.add(eachContactedInfo.toModelType());
         }
 
         if (name == null) {
@@ -127,25 +143,19 @@ class JsonAdaptedPerson {
         }
         final BirthDate modelBirthDate = BirthDate.parse(birthDate);
 
-        if (recentDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                                                            RecentDate.class.getSimpleName()));
-        }
-        if (!DocumentedDate.isValidDate(recentDate)) {
-            throw new IllegalValueException(DocumentedDate.MESSAGE_CONSTRAINTS);
-        }
-        final RecentDate modelDate = RecentDate.parse(recentDate);
-
-        if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Description.class.getSimpleName()));
-        }
-        final Description modelDescription = new Description(description);
+        final ArrayList<ContactedInfo> modelContactedInfo = new ArrayList<>(personContactedInfo);
+        Collections.sort(modelContactedInfo);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        final ReminderList modelReminderList = new ReminderList();
+
+        for (JsonAdaptedReminder jsonAdaptedReminder : reminders) {
+            modelReminderList.add(jsonAdaptedReminder.toModelType());
+        }
+
         return new Person(modelName, modelPhone, modelEmail,
-                modelAddress, modelBirthDate, modelDate, modelDescription, modelTags);
+                modelAddress, modelBirthDate, modelContactedInfo, modelTags, modelReminderList);
     }
 
 }

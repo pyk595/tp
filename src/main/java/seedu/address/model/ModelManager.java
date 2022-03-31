@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.ReadOnlyUniqueTagList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -111,6 +113,16 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public ReadOnlyUniqueTagList getUniqueTagList() {
+        return addressBook.getUniqueTagList();
+    }
+
+    @Override
+    public int getNumberOfUniqueTags() {
+        return addressBook.getNumberOfUniqueTags();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -120,6 +132,16 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public Person getFilteredPerson(Index index) {
+        return filteredPersons.get(index.getZeroBased());
+    }
+
+    @Override
+    public int getFilteredPersonListSize() {
+        return filteredPersons.size();
     }
 
     @Override

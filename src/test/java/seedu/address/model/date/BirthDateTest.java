@@ -18,7 +18,7 @@ class BirthDateTest {
 
     @Test
     public void parse_validString_success() {
-        assertEquals("1 JANUARY 2020", BirthDate.parse("2020-01-01").toString());
+        assertEquals("01 Jan 2020", BirthDate.parse("2020-01-01").toString());
     }
 
     @Test

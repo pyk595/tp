@@ -7,6 +7,7 @@
     "birthDate": "2000-01-01",
     "date": "2020-02-02",
     "description": "meetup",
+    "reminders": [],
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -15,6 +16,7 @@
     "address": "4th street",
     "birthDate": "2000-01-01",
     "date": "2020-02-02",
-    "description": "meetup"
+    "description": "meetup",
+    "reminders": []
   } ]
 }
