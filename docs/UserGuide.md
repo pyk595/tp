@@ -394,11 +394,11 @@ If you made a mistake while manually editing the saved data, a backup save file 
 | **Delete a tag**                                         | `untag INDEX t/TAG`                                                                   |
 | **Show all tags**                                        | `tags`                                                                                |
 | **Find contacts by tags**                                | `#`                                                                                   |
-| **Record an interaction with a contact**                 | `contacted INDEX d/DATE des/description`                                              |
+| **Record an interaction with a contact**                 | `log INDEX d/DATE des/description`                                                    |
 | **Delete a recorded interaction with a contact**         | `unlog INDEX del/INDEX`                                                               |
 | **View all recorded interactions with a contact**        | `logs INDEX`                                                                          |
-| **View people contacted within DAYS**                    | `within DAYS`                                                                         |
-| **View people you have contacted more than DAYS ago**    | `after DAYS`                                                                          |
+| **View contacts contacted within DAYS**                  | `within DAYS`                                                                         |
+| **View contacts you have contacted more than DAYS ago**  | `after DAYS`                                                                          |
 | **View birthdays occurring today**                       | `birthdays`                                                                           |
 | **Add a reminder**                                       | `remind INDEX r/REMINDER rd/DATE`                                                     |
 | **View reminders of a contact**                          | `reminder INDEX`                                                                      |
