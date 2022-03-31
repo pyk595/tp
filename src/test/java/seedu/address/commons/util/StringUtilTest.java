@@ -106,11 +106,11 @@ public class StringUtilTest {
                 + "aaaaaaaaaaaaaaaa "
                 + "aaaaaaaaaaaaaaaa "
                 + "aaaaaaaaaaaaaaaa "
-                + "aaaaaaa"));
+                + "a good."));
 
         //EP: 281 characters
         assertFalse(StringUtil.isValidDescriptionLength("aaaaaaaaaaaaaaaa  "
-                + "aaaaaaaaaaaaaaaa "
+                + "delete a lot aaa "
                 + "aaaaaaaaaaaaaaaa "
                 + "aaaaaaaaaaaaaaaa "
                 + "aaaaaaaaaaaaaaaa "
