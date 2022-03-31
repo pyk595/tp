@@ -43,7 +43,7 @@ e.g. "exe" refers to the executable file type used on windows.
   - [Deleting a tag: `untag`](#deleting-a-tag-untag)
   - [Viewiing all available tags: `tags`](#viewing-all-available-tags-tags)
   - [Finding contacts with tag: `#`](#finding-contacts-with-tag-)
-  - [Adding interaction records with a contact: `contacted`](#adding-interaction-records-with-a-contact-contacted)
+  - [Adding interaction records with a contact: `log`](#adding-interaction-records-with-a-contact-log)
   - [Deleting a recent interaction record with a contact: `unlog`](#deleting-a-recent-interaction-record-with-a-contact-unlog)
   - [Viewing all recent interactions with a contact: `logs`](#viewing-all-recent-interactions-with-a-contact-logs)
   - [Viewing contacts that were contacted within days: `within`](#viewing-contacts-that-were-contacted-within-days-within)
@@ -240,15 +240,15 @@ Example:
 
 [Return to Table of Contents](#table-of-contents)
 
-### Adding interaction records with a contact: `contacted`
+### Adding interaction records with a contact: `log`
 
-After meeting a client, you might want to write a note about the client, along with the meeting date. By using the `contacted` command, you can manually save your interaction with the person in the form of a note accompanied by a date.
+After meeting a client, you might want to write a note about the client, along with the meeting date. By using the `log` command, you can manually save your interaction with the person in the form of a note accompanied by a date.
 
-Format: `contacted INDEX d/DATE des/description`
+Format: `log INDEX d/DATE des/description`
 * `DATE` should be in the specified date format.
 
 Example:
-* `contacted 23 d/2022-02-11 des/Signed contract` manually logs the following interaction with the 23rd person in the displayed contact list, `Signed contract` on `2022-02-11`.
+* `log 23 d/2022-02-11 des/Signed contract` manually logs the following interaction with the 23rd person in the displayed contact list, `Signed contract` on `2022-02-11`.
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -394,11 +394,11 @@ If you made a mistake while manually editing the saved data, a backup save file 
 | **Delete a tag**                                         | `untag INDEX t/TAG`                                                                   |
 | **Show all tags**                                        | `tags`                                                                                |
 | **Find contacts by tags**                                | `#`                                                                                   |
-| **Record an interaction with a contact**                 | `contacted INDEX d/DATE des/description`                                              |
+| **Record an interaction with a contact**                 | `log INDEX d/DATE des/description`                                                    |
 | **Delete a recorded interaction with a contact**         | `unlog INDEX del/INDEX`                                                               |
 | **View all recorded interactions with a contact**        | `logs INDEX`                                                                          |
-| **View people contacted within DAYS**                    | `within DAYS`                                                                         |
-| **View people you have contacted more than DAYS** ago    | `after DAYS`                                                                          |
+| **View contacts contacted within DAYS**                  | `within DAYS`                                                                         |
+| **View contacts you have contacted more than DAYS ago**  | `after DAYS`                                                                          |
 | **View birthdays occurring today**                       | `birthdays`                                                                           |
 | **Add a reminder**                                       | `remind INDEX r/REMINDER rd/DATE`                                                     |
 | **View reminders of a contact**                          | `reminder INDEX`                                                                      |
