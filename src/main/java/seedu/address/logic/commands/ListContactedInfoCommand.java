@@ -19,7 +19,7 @@ public class ListContactedInfoCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists all interaction records for a specified contact. \n\n"
             + "Parameters: "
-            + "INDEX\n\n"
+            + "INDEX (Must be a positive integer)\n\n"
             + "Example: " + COMMAND_WORD + " "
             + "3";
 

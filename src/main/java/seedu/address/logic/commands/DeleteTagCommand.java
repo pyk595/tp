@@ -31,7 +31,7 @@ public class DeleteTagCommand extends Command {
     public static final String COMMAND_WORD = "untag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a tag from the tags of an existing contact, "
-            + "as specified by the index number used in the displayed person list. The tag will be deleted only if "
+            + "as specified by the index number used in the displayed contact list. The tag will be deleted only if "
             + "the tag is valid and is tagged to the contact (case-insensitive).\n\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]\n\n"
