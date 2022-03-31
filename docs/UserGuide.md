@@ -106,7 +106,7 @@ e.g. "exe" refers to the executable file type used on windows.
 
 * Dates should be in "YYYY-MM-DD" format, unless stated otherwise. Single digits should be zero padded.<br>
   e.g. `2022-05-17`, `2021-01-01` and `2011-10-10` are in the correct format with zero padding, while `2022-5-17` and `2021-1-1` are in the wrong format as they do not have a zero padding for single digit months and/or days.
-* `INDEX` used in the different commands refer to the index number shown in the displayed person list.
+* `INDEX` used in the different commands refer to the index number shown in the displayed contact list.
 
   ❗The `INDEX` must be a positive integer i.e. 1,2,3,...
 
