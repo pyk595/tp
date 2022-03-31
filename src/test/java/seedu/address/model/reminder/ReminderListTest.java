@@ -74,11 +74,13 @@ public class ReminderListTest {
         reminderList.add(reminder);
         assertTrue(reminderList.containsReminder(reminder));
 
-        reminderList.delete(index);
-        assertFalse(reminderList.containsReminder(reminder));
+        ReminderList deletedReminderList = reminderList.delete(index);
+        assertTrue(reminderList.containsReminder(reminder));
+        assertFalse(deletedReminderList.containsReminder(reminder));
 
-        reminderList.delete(index);
-        assertFalse(reminderList.containsReminder(reminder));
+        deletedReminderList = reminderList.delete(index);
+        assertTrue(reminderList.containsReminder(reminder));
+        assertFalse(deletedReminderList.containsReminder(reminder));
     }
 
     @Test

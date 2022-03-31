@@ -33,13 +33,13 @@ public class AddReminderCommand extends Command {
     public static final String COMMAND_WORD = "remind";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to an existing contact, "
             + "as specified by the index number used in the displayed person list. "
-            + "If a date is not specified, it will register today as the reminder date.\n"
+            + "If a date is not specified, it will register today as the reminder date.\n\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_REMINDER_DESCRIPTION + "REMINDER "
-            + "[" + PREFIX_REMINDER_DATE + "DATE]\n"
+            + "[" + PREFIX_REMINDER_DATE + "DATE]\n\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_REMINDER_DESCRIPTION + "meeting "
-            + PREFIX_REMINDER_DATE + new DocumentedDate(LocalDate.of(2022, 01, 01)).toString();
+            + PREFIX_REMINDER_DATE + new DocumentedDate(LocalDate.of(2022, 1, 1));
     public static final String MESSAGE_ADD_REMINDER_SUCCESS = "Added reminder %1$s for %2$s";
 
     private final Index index;
@@ -60,8 +60,10 @@ public class AddReminderCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of personToEdit {@code Person}
+     * Creates a {@code Person} with the details of personToEdit {@code Person}
      * added with reminderToAdd {@code Reminder}.
+     *
+     * @return the modified {@code Person}
      */
     private static Person createPersonWithAddedReminder(Person personToEdit, Reminder reminderToAdd) {
         requireNonNull(personToEdit);
@@ -100,6 +102,7 @@ public class AddReminderCommand extends Command {
         if (personToEdit.containsReminder(reminder)) {
             throw new CommandException(String.format(ReminderList.MESSAGE_DUPLICATE_REMINDER, reminder));
         }
+
         Person editedPerson = createPersonWithAddedReminder(personToEdit, this.reminder);
 
         model.setPerson(personToEdit, editedPerson);

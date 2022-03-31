@@ -15,6 +15,7 @@ public class ListContactRemindersCommandParser implements Parser<ListContactRemi
     /**
      * Parses the given {@code String} of arguments in the context of the ListContactRemindersCommand
      * and returns a ListContactRemindersCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListContactRemindersCommand parse(String args) throws ParseException {

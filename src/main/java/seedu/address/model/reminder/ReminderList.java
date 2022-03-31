@@ -7,8 +7,8 @@ import seedu.address.model.date.ReminderDate;
 
 /**
  * Represents a list of reminders.
- * The list is ordered by ReminderDate, in the event where two or more reminders share the same ReminderDate, they will
- * be sorted according to their ReminderDescription.
+ * The list is ordered by {@code ReminderDate}, in the event where two or more reminders share the same
+ * {@code ReminderDate}, they will be sorted according to their {@code ReminderDescription}.
  */
 public class ReminderList {
 
@@ -50,7 +50,7 @@ public class ReminderList {
     }
 
     /**
-     * Adds a Reminder object to the current list.
+     * Adds a {@code Reminder} object to the current {@code ReminderList}.
      *
      * @param reminder to be added.
      */
@@ -59,26 +59,28 @@ public class ReminderList {
             return;
         }
 
-        this.reminderPriorityQueue.add(reminder);
+        reminderPriorityQueue.add(reminder);
     }
 
     /**
-     * Deletes a Reminder object from the current list.
+     * Deletes a {@code Reminder} object from the current {@code ReminderList}.
      *
      * @param index of the {@code Reminder}to be deleted.
-     * @return the updated ReminderList
+     * @return the updated {@code ReminderList}
      */
     public ReminderList delete(Index index) {
         Reminder reminder = get(index);
-        this.reminderPriorityQueue.remove(reminder);
-        return this;
+        ReminderList reminderListCopy = getCopy();
+        reminderListCopy.reminderPriorityQueue.remove(reminder);
+        return reminderListCopy;
     }
 
     /**
-     * Finds all the Reminder objects with the same ReminderDate as the parameter.
+     * Finds all the {@code Reminder} objects with the same {@code ReminderDate} as the parameter.
      *
      * @param reminderDate to check for
-     * @return a ReminderList with Reminder objects happening on the same date as the provided date.
+     * @return a {@code ReminderList} with {@code Reminder} objects happening on the same date as the provided
+     * {@code ReminderDate}.
      */
     public ReminderList sameDateAs(ReminderDate reminderDate) {
         ReminderList newReminderList = new ReminderList();
@@ -90,8 +92,13 @@ public class ReminderList {
         return newReminderList;
     }
 
+    /**
+     * Retrieves the {@code PriorityQueue} of the {@code ReminderList}.
+     *
+     * @return a copy of the {@code PriorityQueue}
+     */
     public PriorityQueue<Reminder> getPriorityQueue() {
-        return this.reminderPriorityQueue;
+        return new PriorityQueue<Reminder>(reminderPriorityQueue);
     }
 
     @Override
@@ -107,13 +114,17 @@ public class ReminderList {
 
     /**
      * Checks if the {@code ReminderList} is empty.
+     *
+     * @return true if the {@code ReminderList} is empty, false otherwise.
      */
     public boolean isEmpty() {
         return reminderPriorityQueue.isEmpty();
     }
 
     /**
-     * Gets the size of the {@code ReminderList}
+     * Gets the size of the {@code ReminderList}.
+     *
+     * @return the size of hte {@code ReminderList}
      */
     public int getSize() {
         return reminderPriorityQueue.size();
@@ -122,7 +133,7 @@ public class ReminderList {
     /**
      * Retrieves the {@code Reminder} based on the {@code Index} given.
      *
-     * @param reminderIndex the index of the {@code reminder}
+     * @param reminderIndex of the {@code reminder}
      * @return the {@code reminder} object
      */
     public Reminder get(Index reminderIndex) {

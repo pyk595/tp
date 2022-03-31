@@ -255,7 +255,9 @@ public class Person {
     }
 
     /**
-     * Gets the size of the {@code ReminderList}
+     * Gets the size of the {@code ReminderList}.
+     *
+     * @return the size of the {@code ReminderList}
      */
     public int getReminderListSize() {
         return this.reminderList.getSize();

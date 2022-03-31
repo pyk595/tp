@@ -28,9 +28,9 @@ public class DeleteReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "forget";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a reminder from an existing contact, "
-            + "as specified by the index number used in the displayed person list.\n"
+            + "as specified by the index number used in the displayed contact list.\n\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_DELETE_REMINDER + "REMINDER_INDEX\n"
+            + PREFIX_DELETE_REMINDER + "REMINDER_INDEX\n\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_DELETE_REMINDER + "1";
     public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Deleted reminder number %1$s for %2$s.";
@@ -41,7 +41,7 @@ public class DeleteReminderCommand extends Command {
     private final Index reminderIndex;
 
     /**
-     * Creates an DeleteReminderCommand to delete the specified {@code ReminderDescription} from the
+     * Creates an DeleteReminderCommand to delete the specified {@code Reminder} using the {@code Index} from the
      * specified {@code Person}
      *
      * @param index of the person
@@ -75,6 +75,25 @@ public class DeleteReminderCommand extends Command {
             throw new CommandException(String.format(MESSAGE_INVALID_REMINDER_INDEX));
         }
 
+        ReminderList updatedReminderList = reminderList.delete(reminderIndex);
+        Person updatedPerson = createEditedPerson(personToDelete, updatedReminderList);
+
+        model.setPerson(personToDelete, updatedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        return new CommandResult(String.format(MESSAGE_DELETE_REMINDER_SUCCESS, reminderIndex.getOneBased(),
+                personToDelete.getName()));
+    }
+
+    /**
+     * Creates a {@code Person} with the details of {@code personToDelete}
+     * edited with {@code ReminderList}.
+     *
+     * @return the modified {@code Person}
+     */
+    private static Person createEditedPerson(Person personToDelete, ReminderList reminderList) {
+        requireNonNull(personToDelete);
+
         Name updatedName = personToDelete.getName();
         Phone updatedPhone = personToDelete.getPhone();
         Email updatedEmail = personToDelete.getEmail();
@@ -82,15 +101,9 @@ public class DeleteReminderCommand extends Command {
         BirthDate updatedBirthDate = personToDelete.getBirthDate();
         List<ContactedInfo> updatedContactedInfo = personToDelete.getContactedInfoList();
         Set<Tag> updatedTags = personToDelete.getTags();
-        ReminderList updatedReminderList = reminderList.delete(reminderIndex);
-        Person updatedPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthDate,
-                updatedContactedInfo, updatedTags, updatedReminderList);
 
-        model.setPerson(personToDelete, updatedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
-        return new CommandResult(String.format(MESSAGE_DELETE_REMINDER_SUCCESS, reminderIndex.getOneBased(),
-                updatedName));
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedBirthDate, updatedContactedInfo, updatedTags, reminderList);
     }
 
     @Override

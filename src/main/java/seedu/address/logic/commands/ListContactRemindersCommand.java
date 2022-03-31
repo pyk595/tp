@@ -18,11 +18,11 @@ public class ListContactRemindersCommand extends Command {
 
     public static final String COMMAND_WORD = "reminder";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all reminders for a specified contact. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all reminders for a specified contact.\n\n"
             + "Parameters: "
-            + "INDEX\n"
+            + "INDEX\n\n"
             + "Example: " + COMMAND_WORD + " "
-            + "3\n";
+            + "3";
 
     public static final String MESSAGE_SUCCESS = "Listed all reminders for %1$s:\n%2$s";
 
@@ -47,9 +47,8 @@ public class ListContactRemindersCommand extends Command {
 
         Person personSpecified = model.getFilteredPerson(index);
         ReminderList reminderList = personSpecified.getReminderList();
-        String output = reminderList.toString();
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personSpecified.getName(), output.toString()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personSpecified.getName(), reminderList));
     }
 
     @Override

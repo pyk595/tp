@@ -22,6 +22,7 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddReminderCommand
      * and returns a AddReminderCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddReminderCommand parse(String args) throws ParseException {
@@ -57,7 +58,9 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * Checks if the {@code Prefix} are present
+     *
+     * @return true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

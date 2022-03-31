@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
 
 import java.util.List;
 
-import javafx.collections.FXCollections;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.date.ReminderDate;
@@ -19,11 +18,11 @@ import seedu.address.model.reminder.ReminderList;
 public class ListDateRemindersCommand extends Command {
     public static final String COMMAND_WORD = "reminders";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all reminders on the specified date. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all reminders on the specified date.\n\n"
             + "Parameters: "
-            + PREFIX_REMINDER_DATE + "DATE\n"
+            + PREFIX_REMINDER_DATE + "DATE\n\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_REMINDER_DATE + "2022-03-15\n";
+            + PREFIX_REMINDER_DATE + "2022-03-15";
 
     public static final String MESSAGE_SUCCESS = "Listed all reminders on the date %1$s:\n %2$s";
 
@@ -42,7 +41,7 @@ public class ListDateRemindersCommand extends Command {
         requireNonNull(model);
         StringBuilder output = new StringBuilder();
         int counter = 1;
-        List<Person> personList = FXCollections.observableArrayList(model.getFilteredPersonList());
+        List<Person> personList = model.getFilteredPersonList();
 
         for (Person person : personList) {
 

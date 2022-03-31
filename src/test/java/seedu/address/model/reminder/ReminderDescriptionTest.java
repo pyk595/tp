@@ -77,13 +77,13 @@ public class ReminderDescriptionTest {
         ReminderDescription reminderDescriptionThird = new ReminderDescription("FiRsT");
 
         // same upper and lower casing
-        assertTrue(reminderDescriptionFirst.equalsIgnoreCase(reminderDescriptionFirst));
-        assertTrue(reminderDescriptionSecond.equalsIgnoreCase(reminderDescriptionSecond));
-        assertTrue(reminderDescriptionThird.equalsIgnoreCase(reminderDescriptionThird));
+        assertTrue(reminderDescriptionFirst.equals(reminderDescriptionFirst));
+        assertTrue(reminderDescriptionSecond.equals(reminderDescriptionSecond));
+        assertTrue(reminderDescriptionThird.equals(reminderDescriptionThird));
 
         // different upper and lower casing
-        assertTrue(reminderDescriptionFirst.equalsIgnoreCase(reminderDescriptionSecond));
-        assertTrue(reminderDescriptionFirst.equalsIgnoreCase(reminderDescriptionThird));
-        assertTrue(reminderDescriptionSecond.equalsIgnoreCase(reminderDescriptionThird));
+        assertTrue(reminderDescriptionFirst.equals(reminderDescriptionSecond));
+        assertTrue(reminderDescriptionFirst.equals(reminderDescriptionThird));
+        assertTrue(reminderDescriptionSecond.equals(reminderDescriptionThird));
     }
 }

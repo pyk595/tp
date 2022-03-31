@@ -35,7 +35,7 @@ public class ListDateRemindersCommandParser implements Parser<ListDateRemindersC
                     ListDateRemindersCommand.MESSAGE_USAGE));
         }
 
-        if (argMultimap.getValue(PREFIX_REMINDER_DATE).isEmpty()) {
+        if (argMultimap.getValue(PREFIX_REMINDER_DATE).get().isEmpty()) {
             reminderDate = new ReminderDate(LocalDate.now());
         } else {
             try {
@@ -50,7 +50,9 @@ public class ListDateRemindersCommandParser implements Parser<ListDateRemindersC
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * Checks if the {@code Prefix} are present.
+     *
+     * @return true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

@@ -29,7 +29,9 @@ public class Reminder implements Comparable<Reminder> {
     }
 
     /**
-     * Returns true if the reminder date is on the specified date.
+     * Checks if the {@code ReminderDate} is on the specified {@code ReminderDate}.
+     *
+     * @return true if the {@code ReminderDate} is on the specified {@code ReminderDate}, false otherwise.
      */
     public boolean isSameDateAs(ReminderDate reminderDate) {
         return this.date.compareTo(reminderDate) == 0;
@@ -53,7 +55,9 @@ public class Reminder implements Comparable<Reminder> {
     }
 
     /**
-     * Gets the {@code ReminderDescription}
+     * Gets the {@code ReminderDescription}.
+     *
+     * @return the {@code ReminderDescription}
      */
     public ReminderDescription getDescription() {
         return reminderDescription;
@@ -65,7 +69,9 @@ public class Reminder implements Comparable<Reminder> {
     }
 
     /**
-     * Gets the {@code ReminderDate}
+     * Gets the {@code ReminderDate}.
+     *
+     * @return the {@code ReminderDate}
      */
     public ReminderDate getReminderDate() {
         return this.date;
