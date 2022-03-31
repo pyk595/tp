@@ -14,6 +14,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.date.BirthDate;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 
@@ -37,6 +38,15 @@ public class Person {
 
     /**
      * Every field must be present and not null. A constructor including the reminder.
+     *
+     * @param name of the person
+     * @param phone number of the person
+     * @param email of the person
+     * @param address of the person
+     * @param birthDate of the person
+     * @param contactedInfoList of the person
+     * @param tags of the person
+     * @param reminderList associated with this person
      */
     public Person(Name name, Phone phone, Email email, Address address, BirthDate birthDate,
                   List<ContactedInfo> contactedInfoList, Set<Tag> tags, ReminderList reminderList) {
@@ -143,7 +153,7 @@ public class Person {
     }
 
     public ReminderList getReminderList() {
-        return reminderList;
+        return reminderList.getCopy();
     }
 
     /**
@@ -234,4 +244,32 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Checks if the {@code ReminderList} contains the {@code Reminder} object.
+     *
+     * @param reminder to be checked
+     * @return true if the {@code ReminderList} contains the {@code Reminder}, false otherwise
+     */
+    public boolean containsReminder(Reminder reminder) {
+        return this.reminderList.containsReminder(reminder);
+    }
+
+    /**
+     * Gets the size of the {@code ReminderList}.
+     *
+     * @return the size of the {@code ReminderList}
+     */
+    public int getReminderListSize() {
+        return this.reminderList.getSize();
+    }
+
+    /**
+     * Retrieves the {@code Reminder} based on the {@code Index} given.
+     *
+     * @param reminderIndex the index of the {@code Reminder}
+     * @return the {@code reminder} object
+     */
+    public Reminder getReminder(Index reminderIndex) {
+        return this.reminderList.get(reminderIndex);
+    }
 }

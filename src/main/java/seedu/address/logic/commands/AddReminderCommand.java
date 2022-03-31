@@ -32,14 +32,14 @@ public class AddReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "remind";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to an existing contact, "
-            + "as specified by the index number used in the displayed person list. The reminder will be replace "
-            + "any existing reminder. If a date is not specified, it will register today as the reminder date.\n"
+            + "as specified by the index number used in the displayed person list. "
+            + "If a date is not specified, it will register today as the reminder date.\n\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_REMINDER_DESCRIPTION + "REMINDER "
-            + "[" + PREFIX_REMINDER_DATE + "DATE]\n"
+            + "[" + PREFIX_REMINDER_DATE + "DATE]\n\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_REMINDER_DESCRIPTION + "meeting "
-            + PREFIX_REMINDER_DATE + new DocumentedDate(LocalDate.of(2022, 01, 01)).toString();
+            + PREFIX_REMINDER_DATE + new DocumentedDate(LocalDate.of(2022, 1, 1));
     public static final String MESSAGE_ADD_REMINDER_SUCCESS = "Added reminder %1$s for %2$s";
 
     private final Index index;
@@ -60,11 +60,13 @@ public class AddReminderCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of personToEdit {@code Person}
+     * Creates a {@code Person} with the details of personToEdit {@code Person}
      * added with reminderToAdd {@code Reminder}.
+     *
+     * @return the modified {@code Person}
      */
     private static Person createPersonWithAddedReminder(Person personToEdit, Reminder reminderToAdd) {
-        assert personToEdit != null;
+        requireNonNull(personToEdit);
 
         Name updatedName = personToEdit.getName();
         Phone updatedPhone = personToEdit.getPhone();
@@ -81,8 +83,7 @@ public class AddReminderCommand extends Command {
     }
 
     /**
-     * Adds a reminder to an existing person in the address book, if the reminder does not exist.
-     * If there is an existing reminder, the newly added reminder will replace the previous one.
+     * Adds a reminder to an existing person in the address book.
      *
      * @param model {@code Model} which the command should operate on.
      * @return the command result after the command execution.
@@ -96,7 +97,11 @@ public class AddReminderCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = model.getFilteredPerson(index);
+
+        if (personToEdit.containsReminder(reminder)) {
+            throw new CommandException(String.format(ReminderList.MESSAGE_DUPLICATE_REMINDER, reminder));
+        }
 
         Person editedPerson = createPersonWithAddedReminder(personToEdit, this.reminder);
 
@@ -104,5 +109,20 @@ public class AddReminderCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_ADD_REMINDER_SUCCESS, this.reminder, editedPerson.getName()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AddReminderCommand)) {
+            return false;
+        }
+
+        AddReminderCommand addReminderCommand = (AddReminderCommand) other;
+        return this.index.equals(addReminderCommand.index)
+                && this.reminder.equals(addReminderCommand.reminder);
     }
 }

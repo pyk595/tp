@@ -30,7 +30,9 @@ public class ReminderDescription implements Comparable<ReminderDescription> {
     }
 
     /**
-     * Returns true if a given string is a valid description.
+     * Checks if the given {@code String} is a valid {@code ReminderDescription}.
+     *
+     * @return true if a given {@code String} is a valid {@code ReminderDescription}, false otherwise.
      */
     public static boolean isValidDescription(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -46,7 +48,7 @@ public class ReminderDescription implements Comparable<ReminderDescription> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ReminderDescription // instanceof handles nulls
-                && description.equals(((ReminderDescription) other).description)); // state check
+                && description.equalsIgnoreCase(((ReminderDescription) other).description)); // state check
     }
 
     @Override
@@ -56,6 +58,6 @@ public class ReminderDescription implements Comparable<ReminderDescription> {
 
     @Override
     public int compareTo(ReminderDescription otherReminderDescription) {
-        return this.description.compareTo(otherReminderDescription.description);
+        return this.description.compareToIgnoreCase(otherReminderDescription.description);
     }
 }

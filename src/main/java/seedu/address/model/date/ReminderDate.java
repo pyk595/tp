@@ -1,8 +1,15 @@
 package seedu.address.model.date;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class ReminderDate extends DocumentedDate implements Comparable<ReminderDate> {
+
+    private static final DateTimeFormatter FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public final String value;
+
     /**
      * Constructs a {@code DocumentedDate}.
      *
@@ -10,6 +17,7 @@ public class ReminderDate extends DocumentedDate implements Comparable<ReminderD
      */
     public ReminderDate(LocalDate date) {
         super(date);
+        value = date.format(FORMATTER_INPUT);
     }
 
     /**
@@ -25,12 +33,24 @@ public class ReminderDate extends DocumentedDate implements Comparable<ReminderD
 
     @Override
     public int compareTo(ReminderDate reminderDate) {
-        if (super.getDate().isBefore(reminderDate.getDate())) {
-            return -1;
-        } else if (super.getDate().isAfter(reminderDate.getDate())) {
-            return 1;
-        } else {
-            return 0;
+        requireNonNull(reminderDate);
+
+        return super.getDate().compareTo(reminderDate.getDate());
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // short circuit if same object
+        if (object == this) {
+            return true;
         }
+
+        // instanceof handles nulls
+        if (!(object instanceof ReminderDate)) {
+            return false;
+        }
+
+        // state check
+        return value.equals(((ReminderDate) object).value);
     }
 }

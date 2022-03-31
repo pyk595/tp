@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_DATE;
@@ -23,6 +22,7 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddReminderCommand
      * and returns a AddReminderCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddReminderCommand parse(String args) throws ParseException {
@@ -44,7 +44,8 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddReminderCommand.MESSAGE_USAGE), pe);
         }
 
         reminderDescription = ParserUtil.parseReminderDescription(
@@ -57,7 +58,9 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * Checks if the {@code Prefix} are present
+     *
+     * @return true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
