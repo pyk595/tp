@@ -289,7 +289,7 @@ Format: `logs INDEX`
 * `INDEX` signifies the specified contact.
 
 Example:
-* `logs 1` lists all recorded interactions with the 2nd contact in the displayed contact list.
+* `logs 1` lists all recorded interactions with the 1st contact in the displayed contact list.
   > <img src="images/userguideimages/LogsCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
@@ -343,7 +343,7 @@ Sometimes, certain clients require more attention. You can view all reminders of
 Format: `reminder INDEX`
 
 Example:
-* `reminder 1`shows you a list of tasks you need to do for the 7th person along with their corresponding deadlines.
+* `reminder 1` shows you a list of tasks you need to do for the 1st person along with their corresponding deadlines.
   > <img src="images/userguideimages/ReminderCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
@@ -357,7 +357,7 @@ Format: `reminders [d/DATE]`
 * `DATE` should be in the specified date format.
 
 Example:
-* `reminders d/2022-04-01` shows all reminders for 1 Jan 2023.
+* `reminders d/2022-04-01` shows all reminders for 1 Apr 2022.
   > <img src="images/userguideimages/RemindersCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
