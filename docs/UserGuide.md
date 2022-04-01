@@ -131,7 +131,9 @@ A person can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/1970-01-01` adds the contact with only the compulsory information provided.
+  > <img src="images/userguideimages/AddCommandWithoutTag.png" alt="Ui" height="563"/>
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/1970-01-01 t/Client t/BasicMember` adds the contact with the compulsory information provided and the optional information.
+  > <img src="images/userguideimages/AddCommandWithTag.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -140,6 +142,7 @@ Examples:
 When you want to look through your whole clientele, `list` will show all the people saved in the application.
 
 Format: `list`
+> <img src="images/userguideimages/ListCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
@@ -160,8 +163,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE]
 * `BIRTH_DATE` should be in the specified date format.
 
 Examples:
-* `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+* `edit 7 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+  > <img src="images/userguideimages/EditCommandWithoutTag.png" alt="Ui" height="563"/>
 * `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+  > <img src="images/userguideimages/EditCommandWithTag.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
@@ -181,7 +186,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `john` and `John Doe`
+  > <img src="images/userguideimages/FindCommand.png" alt="Ui" height="563"/>
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
+  > <img src="images/userguideimages/FindCommandMultiple.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -206,7 +213,8 @@ Suppose you want to catalogue a contact with a specific category like "client", 
 Format: `tag INDEX t/TAG`
 
 Example:
-* `tag 27 t/client` adds the "client" tag to the 27th contact in the display contact list.
+* `tag 7 t/client` adds the "client" tag to the 27th contact in the display contact list.
+  > <img src="images/userguideimages/TagCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -217,8 +225,8 @@ If a contact is no longer a client, and you wish to remove the tag, you can simp
 Format: `untag INDEX t/TAG`
 
 Example:
-* `untag 27 t/client` deletes the "client" tag from the 27th contact in the display contact list.
-
+* `untag 7 t/client` deletes the "client" tag from the 27th contact in the display contact list.
+  > <img src="images/userguideimages/UntagCommand.png" alt="Ui" height="563"/>
 [Return to Table of Contents](#table-of-contents)
 
 ### Viewing all available tags: `tags`
@@ -226,6 +234,7 @@ Example:
 If you forget what tags you have currently, you can list all the tags used in the application, in alphabetical order.
 
 Format: `tags`
+> <img src="images/userguideimages/TagsCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -237,6 +246,7 @@ Format: `#TAG`
 
 Example:
 * `#client` finds all the contacts that are tagged to "client".
+  > <img src="images/userguideimages/HashtagTag.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -248,7 +258,8 @@ Format: `log INDEX d/DATE des/description`
 * `DATE` should be in the specified date format.
 
 Example:
-* `log 23 d/2022-02-11 des/Signed contract` manually logs the following interaction with the 23rd person in the displayed contact list, `Signed contract` on `2022-02-11`.
+* `log 6 d/2022-02-11 des/Signed contract` manually logs the following interaction with the 23rd person in the displayed contact list, `Signed contract` on `2022-02-11`.
+  > <img src="images/userguideimages/LogCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -264,7 +275,8 @@ Format: `unlog INDEX del/INDEX`
 * `del/INDEX` refers to the index number shown in the contact's displayed list of interaction records.
 
 Example:
-* `unlog 2 del/6` deletes the 6th interaction record from the 2nd contact in the displayed contact list.
+* `unlog 2 del/1` deletes the 6th interaction record from the 2nd contact in the displayed contact list.
+  > <img src="images/userguideimages/UnlogCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -277,7 +289,8 @@ Format: `logs INDEX`
 * `INDEX` signifies the specified contact.
 
 Example:
-* `logs 2` lists all recorded interactions with the 2nd contact in the displayed contact list.
+* `logs 1` lists all recorded interactions with the 2nd contact in the displayed contact list.
+  > <img src="images/userguideimages/LogsCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -290,6 +303,7 @@ Format: `within DAYS`
 
 Example:
 * `within 12` shows a list of people that were last contacted within the past 12 days.
+  > <img src="images/userguideimages/WithinCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -302,6 +316,7 @@ Format: `after DAYS`
 
 Example:
 * `after 50` shows a list of people that were last contacted more than 50 days ago.
+  > <img src="images/userguideimages/AfterCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -316,7 +331,8 @@ Format: `remind INDEX r/REMINDER rd/DATE`
 * `DATE` should be in the specified date format.
 
 Example:
-* `remind 13 r/phone call rd/2022-09-11` sets up a reminder for you to make a phone call to the 13th person on 11 Sep 2022.
+* `remind 7 r/Meeting rd/2022-11-11` sets up a reminder for you to make a phone call to the 13th person on 11 Sep 2022.
+  > <img src="images/userguideimages/RemindCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -328,6 +344,7 @@ Format: `reminder INDEX`
 
 Example:
 * `reminder 7`shows you a list of tasks you need to do for the 7th person along with their corresponding deadlines.
+  > <img src="images/userguideimages/ReminderCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
@@ -340,7 +357,8 @@ Format: `reminders [d/DATE]`
 * `DATE` should be in the specified date format.
 
 Example:
-* `reminders d/2023-01-01` shows all reminders for 1 Jan 2023.
+* `reminders d/2022-11-11` shows all reminders for 1 Jan 2023.
+  > <img src="images/userguideimages/RemindersCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
 
