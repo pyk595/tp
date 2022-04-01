@@ -213,7 +213,7 @@ Suppose you want to catalogue a contact with a specific category like "client", 
 Format: `tag INDEX t/TAG`
 
 Example:
-* `tag 7 t/client` adds the "client" tag to the 27th contact in the display contact list.
+* `tag 7 t/client` adds the "client" tag to the 7th contact in the display contact list.
   > <img src="images/userguideimages/TagCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
@@ -225,7 +225,7 @@ If a contact is no longer a client, and you wish to remove the tag, you can simp
 Format: `untag INDEX t/TAG`
 
 Example:
-* `untag 7 t/client` deletes the "client" tag from the 27th contact in the display contact list.
+* `untag 7 t/client` deletes the "client" tag from the 7th contact in the display contact list.
   > <img src="images/userguideimages/UntagCommand.png" alt="Ui" height="563"/>
 [Return to Table of Contents](#table-of-contents)
 
@@ -258,7 +258,7 @@ Format: `log INDEX d/DATE des/description`
 * `DATE` should be in the specified date format.
 
 Example:
-* `log 6 d/2022-02-11 des/Signed contract` manually logs the following interaction with the 23rd person in the displayed contact list, `Signed contract` on `2022-02-11`.
+* `log 6 d/2022-02-11 des/Signed contract` manually logs the following interaction with the 6th person in the displayed contact list, `Signed contract` on `2022-02-11`.
   > <img src="images/userguideimages/LogCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
@@ -275,7 +275,7 @@ Format: `unlog INDEX del/INDEX`
 * `del/INDEX` refers to the index number shown in the contact's displayed list of interaction records.
 
 Example:
-* `unlog 2 del/1` deletes the 6th interaction record from the 2nd contact in the displayed contact list.
+* `unlog 2 del/1` deletes the 1th interaction record from the 2nd contact in the displayed contact list.
   > <img src="images/userguideimages/UnlogCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
