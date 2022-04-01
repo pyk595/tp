@@ -185,7 +185,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
+* `find John` returns `john tan` and `John Doe`
   > <img src="images/userguideimages/FindCommand.png" alt="Ui" height="563"/>
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   > <img src="images/userguideimages/FindCommandMultiple.png" alt="Ui" height="563"/>
@@ -331,7 +331,7 @@ Format: `remind INDEX r/REMINDER rd/DATE`
 * `DATE` should be in the specified date format.
 
 Example:
-* `remind 7 r/Meeting rd/2022-11-11` sets up a reminder for you to make a phone call to the 13th person on 11 Sep 2022.
+* `remind 1 r/sign contract rd/2022-04-02` sets up a reminder for you to make a phone call to the 13th person on 11 Sep 2022.
   > <img src="images/userguideimages/RemindCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
@@ -343,7 +343,7 @@ Sometimes, certain clients require more attention. You can view all reminders of
 Format: `reminder INDEX`
 
 Example:
-* `reminder 7`shows you a list of tasks you need to do for the 7th person along with their corresponding deadlines.
+* `reminder 1`shows you a list of tasks you need to do for the 7th person along with their corresponding deadlines.
   > <img src="images/userguideimages/ReminderCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
@@ -357,7 +357,7 @@ Format: `reminders [d/DATE]`
 * `DATE` should be in the specified date format.
 
 Example:
-* `reminders d/2022-11-11` shows all reminders for 1 Jan 2023.
+* `reminders d/2022-04-01` shows all reminders for 1 Jan 2023.
   > <img src="images/userguideimages/RemindersCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
@@ -367,6 +367,7 @@ Example:
 As an insurance agent, it is important to keep track of your clients' birthdays. We strongly suggest you to use the `birthdays` command once a day to make sure you do not miss out on your valued clients' birthdays.
 
 Format: `birthdays`
+> <img src="images/userguideimages/BirthdayCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -377,8 +378,8 @@ If a reminder is no longer necessary, you can delete the specific reminder to ma
 Format: `forget INDEX del/INDEX`
 
 Example:
-* `forget 5 del/1` helps you delete the first reminder on the 5th person's list.
-
+* `forget 1 del/1` helps you delete the first reminder on the 5th person's list.
+  > <img src="images/userguideimages/ForgetCommand.png" alt="Ui" height="563"/>
 [Return to Table of Contents](#table-of-contents)
 
 ### Exiting the program: `exit`
