@@ -331,7 +331,7 @@ Format: `remind INDEX r/REMINDER rd/DATE`
 * `DATE` should be in the specified date format.
 
 Example:
-* `remind 1 r/sign contract rd/2022-04-02` sets up a reminder for you to make a phone call to the 13th person on 11 Sep 2022.
+* `remind 1 r/sign contract rd/2022-04-02` sets up a reminder for you to make a phone call to the 1st person on 2 April 2022.
   > <img src="images/userguideimages/RemindCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
@@ -378,7 +378,7 @@ If a reminder is no longer necessary, you can delete the specific reminder to ma
 Format: `forget INDEX del/INDEX`
 
 Example:
-* `forget 1 del/1` helps you delete the first reminder on the 5th person's list.
+* `forget 1 del/1` helps you delete the first reminder on the 1st person's list.
   > <img src="images/userguideimages/ForgetCommand.png" alt="Ui" height="563"/>
 [Return to Table of Contents](#table-of-contents)
 
