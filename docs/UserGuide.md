@@ -275,7 +275,7 @@ Format: `unlog INDEX del/INDEX`
 * `del/INDEX` refers to the index number shown in the contact's displayed list of interaction records.
 
 Example:
-* `unlog 2 del/1` deletes the 1th interaction record from the 2nd contact in the displayed contact list.
+* `unlog 2 del/1` deletes the 1st interaction record from the 2nd contact in the displayed contact list.
   > <img src="images/userguideimages/UnlogCommand.png" alt="Ui" height="563"/>
 
 [Return to Table of Contents](#table-of-contents)
