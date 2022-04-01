@@ -13,6 +13,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -106,6 +107,40 @@ public class PersonBuilder {
         Set<Tag> newSet = new HashSet<>(this.tags);
         newSet.removeAll(SampleDataUtil.getTagSet(tags));
         this.tags = newSet;
+        return this;
+    }
+
+    /**
+     * Sets the {@code ReminderList} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withReminders(Reminder ... reminders) {
+        ReminderList reminderList = new ReminderList();
+
+        for (Reminder reminder : reminders) {
+            reminderList.add(reminder);
+        }
+        return this;
+    }
+
+    /**
+     * Adds the {@code Reminder} to the {@code Person} that we are building.
+     *
+     * @param reminder the reminder to add to the ReminderList
+     * @return this {@code PersonBuilder}
+     */
+    public PersonBuilder addReminder(Reminder reminder) {
+        this.reminderList.add(reminder);
+        return this;
+    }
+
+    /**
+     * Deletes the {@code Reminder} from the {@code Person} that we are building.
+     *
+     * @param index of the reminder to delete from the ReminderList
+     * @return this {@code PersonBuilder}
+     */
+    public PersonBuilder deleteReminder(Index index) {
+        this.reminderList.delete(index);
         return this;
     }
 

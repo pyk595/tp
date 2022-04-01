@@ -5,6 +5,10 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "reminders": [{
+      "date": "2022-02-02",
+      "description": "Meeting"
+    }],
     "birthDate": "2000-01-01",
     "contactedInfo" : [
       {
@@ -18,6 +22,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
+    "reminders": [],
     "birthDate": "2000-01-01",
     "contactedInfo" : [ {
       "date" : "2021-01-01",
@@ -32,6 +37,8 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "birthDate": "2003-01-03",
+    "reminders": [],
     "birthDate": "2000-01-01",
     "contactedInfo" : [ {
       "date" : "2021-01-01",
@@ -46,6 +53,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
+    "reminders": [],
     "birthDate": "2000-01-01",
     "contactedInfo" : [ {
       "date" : "2021-01-01",
@@ -60,6 +68,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
+    "reminders": [],
     "birthDate": "2000-01-01",
     "contactedInfo" : [ {
       "date" : "2021-01-01",
@@ -74,6 +83,7 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
+    "reminders": [],
     "birthDate": "2000-01-01",
     "contactedInfo" : [ {
       "date" : "2021-01-01",
@@ -88,6 +98,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
+    "reminders": [],
     "birthDate": "2000-01-01",
     "contactedInfo" : [ {
       "date" : "2021-01-01",

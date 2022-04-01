@@ -36,6 +36,7 @@ class JsonAdaptedPerson {
 
     private final List<JsonAdaptedContactedInfo> contactedInfo = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedReminder> reminders = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -45,7 +46,8 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("birthDate") String birthDate,
             @JsonProperty("contactedInfo") List<JsonAdaptedContactedInfo> contactedInfo,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("reminders") List<JsonAdaptedReminder> reminders) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -56,6 +58,9 @@ class JsonAdaptedPerson {
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (reminders != null) {
+            this.reminders.addAll(reminders);
         }
     }
 
@@ -73,6 +78,11 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        reminders.addAll(source.getReminderList()
+                .getPriorityQueue()
+                .stream()
+                .map(JsonAdaptedReminder::new)
                 .collect(Collectors.toList()));
     }
 
@@ -139,6 +149,10 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final ReminderList modelReminderList = new ReminderList();
+
+        for (JsonAdaptedReminder jsonAdaptedReminder : reminders) {
+            modelReminderList.add(jsonAdaptedReminder.toModelType());
+        }
 
         return new Person(modelName, modelPhone, modelEmail,
                 modelAddress, modelBirthDate, modelContactedInfo, modelTags, modelReminderList);

@@ -189,7 +189,7 @@ public class ParserUtil {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         if (!ReminderDescription.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ReminderDescription.MESSAGE_CONSTRAINTS);
         }
         return new ReminderDescription(trimmedDescription);
     }

@@ -30,7 +30,9 @@ public class AddContactedInfoCommand extends Command {
             + "Existing date will be overwritten by the input.\n\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "d/ [DATE] "
-            + "des/ [DESCRIPTION]\n\n"
+            + "des/ [DESCRIPTION]"
+            + "\nDate must be in the YYYY-MM-DD format while Description must not exceed 280 characters"
+            + "\n\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "d/ 2020-02-02 "
             + "des/ meetup.";

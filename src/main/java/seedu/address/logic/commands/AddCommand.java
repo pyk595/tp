@@ -22,6 +22,7 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Saves a person as a contact. "
+            + "Dates must be in the YYYY-MM-DD format."
             + "\n\nParameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
