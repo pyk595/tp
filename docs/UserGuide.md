@@ -41,7 +41,7 @@ e.g. "exe" refers to the executable file type used on windows.
   - [Deleting a contact: `delete`](#deleting-a-contact-delete)
   - [Adding a tag: `tag`](#adding-a-tag-tag)
   - [Deleting a tag: `untag`](#deleting-a-tag-untag)
-  - [Viewiing all available tags: `tags`](#viewing-all-available-tags-tags)
+  - [Viewing all available tags: `tags`](#viewing-all-available-tags-tags)
   - [Finding contacts with tag: `#`](#finding-contacts-with-tag-)
   - [Adding interaction records with a contact: `log`](#adding-interaction-records-with-a-contact-log)
   - [Deleting a recent interaction record with a contact: `unlog`](#deleting-a-recent-interaction-record-with-a-contact-unlog)
@@ -412,7 +412,7 @@ If you made a mistake while manually editing the saved data, a backup save file 
 | **Add a tag**                                            | `tag INDEX t/TAG`                                                                     |
 | **Delete a tag**                                         | `untag INDEX t/TAG`                                                                   |
 | **Show all tags**                                        | `tags`                                                                                |
-| **Find contacts by tags**                                | `#`                                                                                   |
+| **Find contacts by tags**                                | `#TAG`                                                                                |
 | **Record an interaction with a contact**                 | `log INDEX d/DATE des/description`                                                    |
 | **Delete a recorded interaction with a contact**         | `unlog INDEX del/INDEX`                                                               |
 | **View all recorded interactions with a contact**        | `logs INDEX`                                                                          |
