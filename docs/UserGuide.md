@@ -131,9 +131,9 @@ A person can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/1970-01-01` adds the contact with only the compulsory information provided.
-  > <img src="images/userguideimages/AddCommandWithoutTag.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/AddCommandWithoutTag.png" alt="Ui"/>
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/1970-01-01 t/Client t/BasicMember` adds the contact with the compulsory information provided and the optional information.
-  > <img src="images/userguideimages/AddCommandWithTag.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/AddCommandWithTag.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -142,7 +142,7 @@ Examples:
 When you want to look through your whole clientele, `list` will show all the people saved in the application.
 
 Format: `list`
-> <img src="images/userguideimages/ListCommand.png" alt="Ui" height="563"/>
+> <img src="images/userguideimages/ListCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
@@ -164,9 +164,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE]
 
 Examples:
 * `edit 7 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-  > <img src="images/userguideimages/EditCommandWithoutTag.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/EditCommandWithoutTag.png" alt="Ui"/>
 * `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-  > <img src="images/userguideimages/EditCommandWithTag.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/EditCommandWithTag.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
@@ -186,9 +186,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `john tan` and `John Doe`
-  > <img src="images/userguideimages/FindCommand.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/FindCommand.png" alt="Ui"/>
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  > <img src="images/userguideimages/FindCommandMultiple.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/FindCommandMultiple.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -214,7 +214,7 @@ Format: `tag INDEX t/TAG`
 
 Example:
 * `tag 7 t/client` adds the "client" tag to the 7th contact in the display contact list.
-  > <img src="images/userguideimages/TagCommand.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/TagCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -226,7 +226,7 @@ Format: `untag INDEX t/TAG`
 
 Example:
 * `untag 7 t/client` deletes the "client" tag from the 7th contact in the display contact list.
-  > <img src="images/userguideimages/UntagCommand.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/UntagCommand.png" alt="Ui"/>
 [Return to Table of Contents](#table-of-contents)
 
 ### Viewing all available tags: `tags`
@@ -234,7 +234,7 @@ Example:
 If you forget what tags you have currently, you can list all the tags used in the application, in alphabetical order.
 
 Format: `tags`
-> <img src="images/userguideimages/TagsCommand.png" alt="Ui" height="563"/>
+> <img src="images/userguideimages/TagsCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -246,7 +246,7 @@ Format: `#TAG`
 
 Example:
 * `#client` finds all the contacts that are tagged to "client".
-  > <img src="images/userguideimages/HashtagTag.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/HashtagTag.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -259,7 +259,21 @@ Format: `log INDEX d/DATE des/description`
 
 Example:
 * `log 6 d/2022-02-11 des/Signed contract` manually logs the following interaction with the 6th person in the displayed contact list, `Signed contract` on `2022-02-11`.
-  > <img src="images/userguideimages/LogCommand.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/LogCommand.png" alt="Ui"/>
+
+[Return to Table of Contents](#table-of-contents)
+
+### Viewing all recent interactions with a contact: `logs`
+
+If you want to review your interaction history with a contact, you can use `logs` to list all saved interaction records for the specified contact.
+
+Format: `logs INDEX`
+
+* `INDEX` signifies the specified contact.
+
+Example:
+* `logs 1` lists all recorded interactions with the 1st contact in the displayed contact list.
+  > <img src="images/userguideimages/LogsCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -276,21 +290,7 @@ Format: `unlog INDEX del/INDEX`
 
 Example:
 * `unlog 2 del/1` deletes the 1st interaction record from the 2nd contact in the displayed contact list.
-  > <img src="images/userguideimages/UnlogCommand.png" alt="Ui" height="563"/>
-
-[Return to Table of Contents](#table-of-contents)
-
-### Viewing all recent interactions with a contact: `logs`
-
-If you want to review your interaction history with a contact, you can use `logs` to list all saved interaction records for the specified contact.
-
-Format: `logs INDEX`
-
-* `INDEX` signifies the specified contact.
-
-Example:
-* `logs 1` lists all recorded interactions with the 1st contact in the displayed contact list.
-  > <img src="images/userguideimages/LogsCommand.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/UnlogCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -303,7 +303,7 @@ Format: `within DAYS`
 
 Example:
 * `within 12` shows a list of people that were last contacted within the past 12 days.
-  > <img src="images/userguideimages/WithinCommand.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/WithinCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -316,7 +316,7 @@ Format: `after DAYS`
 
 Example:
 * `after 50` shows a list of people that were last contacted more than 50 days ago.
-  > <img src="images/userguideimages/AfterCommand.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/AfterCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -332,7 +332,7 @@ Format: `remind INDEX r/REMINDER rd/DATE`
 
 Example:
 * `remind 1 r/sign contract rd/2022-04-02` sets up a reminder for you to make a phone call to the 1st person on 2 April 2022.
-  > <img src="images/userguideimages/RemindCommand.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/RemindCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -344,7 +344,7 @@ Format: `reminder INDEX`
 
 Example:
 * `reminder 1` shows you a list of tasks you need to do for the 1st person along with their corresponding deadlines.
-  > <img src="images/userguideimages/ReminderCommand.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/ReminderCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
@@ -358,7 +358,7 @@ Format: `reminders [d/DATE]`
 
 Example:
 * `reminders d/2022-04-01` shows all reminders for 1 Apr 2022.
-  > <img src="images/userguideimages/RemindersCommand.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/RemindersCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -367,7 +367,7 @@ Example:
 As an insurance agent, it is important to keep track of your clients' birthdays. We strongly suggest you to use the `birthdays` command once a day to make sure you do not miss out on your valued clients' birthdays.
 
 Format: `birthdays`
-> <img src="images/userguideimages/BirthdayCommand.png" alt="Ui" height="563"/>
+> <img src="images/userguideimages/BirthdayCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -379,7 +379,7 @@ Format: `forget INDEX del/INDEX`
 
 Example:
 * `forget 1 del/1` helps you delete the first reminder on the 1st person's list.
-  > <img src="images/userguideimages/ForgetCommand.png" alt="Ui" height="563"/>
+  > <img src="images/userguideimages/ForgetCommand.png" alt="Ui"/>
 [Return to Table of Contents](#table-of-contents)
 
 ### Exiting the program: `exit`
