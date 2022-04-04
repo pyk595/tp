@@ -197,14 +197,14 @@ the occurrence frequency of each unique tag. For example, if a `Tag` with a `tag
 Adds the `Tag` objects in `Set<Tag>` to the `HashMap`. For each `Tag` object, if it is not in the `HashMap`, then it
 will be added to the `HashMap` with an initial value of 1. Otherwise, the value of the `Tag` object will be incremented
 by one. The sequence diagram of this operation is shown below.<br><br>
-<img src="images/AddTagsSequenceDiagram.png" width="450" />
+  <img src="images/AddTagsSequenceDiagram.png" width="450" />
 
 
 * `removeTags(Set<Tag> tagsToRemove)`<br>
 Removes the `Tag` objects in `Set<Tag>` from the `HashMap`. For each `Tag` object, if it is in the `HashMap` with a
 value of 1, then it will be removed from the `HashMap`. Otherwise, if it is in the `HashMap` with a value of more than
 1, the value of the `Tag` object will be decremented by one. The sequence diagram of this operation is shown below.<br><br>
-<img src="images/RemoveTagsSequenceDiagram.png" width="450" />
+  <img src="images/RemoveTagsSequenceDiagram.png" width="450" />
 
 
 * `removeAndAddTags(Set<Tag> tagsToRemove, Set<Tag> tagsToAdd)`<br>
