@@ -154,6 +154,79 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Tagging feature
+
+#### Implementation
+
+As mentioned in [Model component](#model-component), the tagging feature is not implemented using the "more OOP" way.
+
+Each `Person` object contains its own set of `Tag` objects, and the `Tag` objects is not referenced and stored by other
+`Person` objects, even if the same `Tag` is used multiple `Person` objects. However, there is a data structure in
+`AddressBook`, `UniqueTagList` to keep track of every unique `Tag` objects used in the _application_, in order to
+implement the command to list all existing tags. The class diagram below shows how the tagging feature is implemented
+in the Model component.
+
+<img src="images/TagClassDiagram.png" width="450" />
+
+##### Tag
+
+`Tag` objects have the following characteristics:
+
+* A `Tag` object only has one public data member (final), `tagName` of `String` object, representing the name of the `Tag`, which can be used to distinguish itself from other `Tag` object.
+* The name of the `Tag`, `tagName` needs to be alphanumeric (only letters and numerals are allowed).
+* Any two `Tag` objects are not unique if and only if their `tagName` are equal, ignoring case differences.
+* `Tag` objects can be sorted, and the sorted order is the natural ordering of their `tagName`, ignoring case differences.
+
+##### ReadOnlyUniqueTagList
+
+`ReadOnlyUniqueTagList` is an interface that specifies the behaviour of a read-only `UniqueTagList`. It is designed to
+protect the data integrity of `UniqueTagList`, as `UniqueTagList` should only be modifiable by the `AddressBook` object
+and not by other objects at runtime. Therefore, `UniqueTagList` only exists in `AddressBook` and returns a copy of
+`UniqueTagList` as `ReadOnlyUniqueTagList` type, in `AddressBook#getUniqueTagList()`, when requested, so that the
+original copy of `UniqueTagList` is unmodifiable by other classes.
+
+##### UniqueTagList
+
+Due to the nature of the tagging feature implementation, `UniqueTagList` is implemented such that all unique tags used
+are stored and maintained in a `HashMap<Tag, Integer>`, where the key set is the set of unique tags, and the value is
+the occurrence frequency of each unique tag. For example, if a `Tag` with a `tagName` of "friends" is used twice in the
+`AddressBook`, then the value of the `Tag` will be 2. This implementation requires the value of all the keys in the
+`HashMap` to be more than 0, otherwise the key should be removed. `UniqueTagList` implements the following operations.
+
+* `addTags(Set<Tag> tagsToAdd)`<br>
+Adds the `Tag` objects in `Set<Tag>` to the `HashMap`. For each `Tag` object, if it is not in the `HashMap`, then it
+will be added to the `HashMap` with an initial value of 1. Otherwise, the value of the `Tag` object will be incremented
+by one.
+
+
+* `removeTags(Set<Tag> tagsToRemove)`<br>
+Removes the `Tag` objects in `Set<Tag>` from the `HashMap`. For each `Tag` object, if it is in the `HashMap` with a
+value of 1, then it will be removed from the `HashMap`. Otherwise, if it is in the `HashMap` with a value of more than
+1, the value of the `Tag` object will be decremented by one.
+
+
+* `removeAndAddTags(Set<Tag> tagsToRemove, Set<Tag> tagsToAdd)`<br>
+Performs `removeTags(Set<Tag> tagsToRemove)` and `addTags(Set<Tag> tagsToAdd)` sequentially.
+
+
+* `clearTags()`<br>
+Clears all the mappings in the `HashMap`.
+
+
+* `getUniqueTagList()`<br>
+Returns a sorted list of unique tags that exists in the `UniqueTagList`.
+
+
+* `getUniqueTagListSize()`<br>
+Returns the number of unique tags in the `UniqueTagList`.
+
+The correctness of `UniqueTagList` in `AddressBook` is guaranteed by the immutability of the `Person` model that
+contains `Tag`. Any changes to the `UniquePersonList` in `AddressBook` or any changes to any `Person` in `AddressBook`
+can only be done through `AddressBook`. Therefore, in an event that the `Person` model becomes mutable, this
+implementation of `UniqueTagList` may fail and needs to be revised.
+
+#### Design Consideration
+
 *{More to be added}*
 
 
