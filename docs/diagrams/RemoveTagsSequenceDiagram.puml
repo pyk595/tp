@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+mainframe **sd** Remove tagsToRemove from UniqueTagList
+hide footbox
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+Participant ":UniqueTagList" as UniqueTagList
+Participant "tagFrequencyMap:HashMap" as HashMap
+
+activate UniqueTagList
+
+loop for each tag in tagsToRemove
+    UniqueTagList -> HashMap : get(tag)
+    activate HashMap
+
+    HashMap --> UniqueTagList : count
+    deactivate HashMap
+
+    alt count == 1
+        UniqueTagList -> HashMap : remove(tag)
+        activate HashMap
+
+        HashMap --> UniqueTagList
+        deactivate HashMap
+    else count > 1
+        UniqueTagList -> HashMap : put(tag, count - 1)
+        activate HashMap
+
+        HashMap --> UniqueTagList
+        deactivate HashMap
+    end
+
+end
+
+deactivate UniqueTagList
+
+@enduml

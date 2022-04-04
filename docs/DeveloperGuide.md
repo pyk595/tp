@@ -196,13 +196,15 @@ the occurrence frequency of each unique tag. For example, if a `Tag` with a `tag
 * `addTags(Set<Tag> tagsToAdd)`<br>
 Adds the `Tag` objects in `Set<Tag>` to the `HashMap`. For each `Tag` object, if it is not in the `HashMap`, then it
 will be added to the `HashMap` with an initial value of 1. Otherwise, the value of the `Tag` object will be incremented
-by one.
+by one. The sequence diagram of this operation is shown below.<br><br>
+<img src="images/AddTagsSequenceDiagram.png" width="450" />
 
 
 * `removeTags(Set<Tag> tagsToRemove)`<br>
 Removes the `Tag` objects in `Set<Tag>` from the `HashMap`. For each `Tag` object, if it is in the `HashMap` with a
 value of 1, then it will be removed from the `HashMap`. Otherwise, if it is in the `HashMap` with a value of more than
-1, the value of the `Tag` object will be decremented by one.
+1, the value of the `Tag` object will be decremented by one. The sequence diagram of this operation is shown below.<br><br>
+<img src="images/RemoveTagsSequenceDiagram.png" width="450" />
 
 
 * `removeAndAddTags(Set<Tag> tagsToRemove, Set<Tag> tagsToAdd)`<br>
@@ -224,6 +226,16 @@ The correctness of `UniqueTagList` in `AddressBook` is guaranteed by the immutab
 contains `Tag`. Any changes to the `UniquePersonList` in `AddressBook` or any changes to any `Person` in `AddressBook`
 can only be done through `AddressBook`. Therefore, in an event that the `Person` model becomes mutable, this
 implementation of `UniqueTagList` may fail and needs to be revised.
+
+For example, during every command that modifies the existing data in `AddressBook`, the method `AddressBook#setPerson(p, q)`
+will be called. Apart from making changes to the `UniquePersonList`, this method call will also update the `UniqueTagList`,
+as shown in the sequence diagram below.
+
+<img src="images/setPersonSequenceDiagram.png" width="450" />
+
+`UniqueTagList#addTags(Set<Tag> tagsToAdd)` or `UniqueTagList#removeTags(Set<Tag> tagsToRemove)` will be called directly
+by `AddressBook` in situations where new data is being added to the `AddressBook` or existing data is being removed
+from the `AddressBook` respectively.
 
 #### Design Consideration
 

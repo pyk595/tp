@@ -1,0 +1,62 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+Actor Model as Model
+Participant ":AddressBook" as AddressBook
+Participant "p:Person" as PersonP
+Participant "q:Person" as PersonQ
+Participant ":UniqueTagList" as UniqueTagList
+
+Model -> AddressBook : setPerson(p, q)
+activate AddressBook
+
+'Person P getTags
+AddressBook -> PersonP : getTags()
+activate PersonP
+
+PersonP --> AddressBook : tagsToRemove
+deactivate PersonP
+
+'Person Q getTags()
+AddressBook -> PersonQ : getTags()
+activate PersonQ
+
+PersonQ --> AddressBook : tagsToAdd
+deactivate PersonQ
+
+AddressBook -> UniqueTagList : removeAndAddTags(tagsToRemove, tagsToAdd)
+activate UniqueTagList
+
+UniqueTagList -> UniqueTagList : removeTags(tagsToRemove)
+activate UniqueTagList
+ref over UniqueTagList
+Remove tagsToRemove from UniqueTagList
+end ref
+UniqueTagList --> UniqueTagList
+deactivate UniqueTagList
+
+UniqueTagList -> UniqueTagList : addTags(tagsToAdd)
+activate UniqueTagList
+ref over UniqueTagList
+Add tagsToAdd to UniqueTagList
+end ref
+UniqueTagList --> UniqueTagList
+deactivate UniqueTagList
+
+UniqueTagList --> AddressBook
+deactivate UniqueTagList
+
+AddressBook --> Model
+deactivate AddressBook
+
+@enduml
