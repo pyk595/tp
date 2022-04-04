@@ -181,7 +181,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Persons matching at least one keyword will be returned.
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -281,12 +281,13 @@ Example:
 
 Suppose you made a mistake while recording your interaction. You can easily `unlog` the saved interaction record from the specified contact.
 
-Format: `unlog INDEX del/INDEX`
+Format: `unlog INDEX del/RECORD_INDEX`
 
 * `INDEX` signifies the specified contact.
 * `INDEX` refers to the index number shown in the displayed contact list.
-* `del/INDEX` signifies the interaction record to delete.
-* `del/INDEX` refers to the index number shown in the contact's displayed list of interaction records.
+* `RECORD_INDEX` signifies the interaction record to delete.
+* `RECORD_INDEX` refers to the index number shown in the contact's displayed list of interaction records.
+*  Both `INDEX` and `RECORD_INDEX` have to follow the requirements stated in [Features](#features)
 
 Example:
 * `unlog 2 del/1` deletes the 1st interaction record from the 2nd contact in the displayed contact list.
@@ -299,7 +300,7 @@ Example:
 Occasionally, it might be hard to remember if you met someone recently. The `within` command allows you to show all contacts that you had interacted with within a specified range of days.
 
 Format: `within DAYS`
-* DAYS must be a positive integer.
+* DAYS must be a positive integer or 0.
 
 Example:
 * `within 12` shows a list of people that were last contacted within the past 12 days.
@@ -312,7 +313,7 @@ Example:
 When cold calling for new potential clients, you can consider looking through your old contacts instead. You can display a list of people that you have not been in contact with for more than a specified number of DAYS.
 
 Format: `after DAYS`
-* DAYS must be a positive integer.
+* DAYS must be a positive integer or 0.
 
 Example:
 * `after 50` shows a list of people that were last contacted more than 50 days ago.
