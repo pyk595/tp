@@ -48,7 +48,15 @@ public class Email {
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        } else {
+            String[] spliced = test.split("@");
+            System.out.println("spliced 0: " + spliced[0]);
+            System.out.println("spliced 0: " + spliced[1]);
+            System.out.println(spliced.length);
+            return spliced[1].contains(".");
+        }
     }
 
     @Override
