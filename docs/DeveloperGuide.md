@@ -231,16 +231,13 @@ For example, during every command that modifies the existing data in `AddressBoo
 will be called. Apart from making changes to the `UniquePersonList`, this method call will also update the `UniqueTagList`,
 as shown in the sequence diagram below.
 
-<img src="images/setPersonSequenceDiagram.png" width="500" />
+<img src="images/SetPersonSequenceDiagram.png" width="500" />
 
 `UniqueTagList#addTags(Set<Tag> tagsToAdd)` or `UniqueTagList#removeTags(Set<Tag> tagsToRemove)` will be called directly
 by `AddressBook` in situations where new data is being added to the `AddressBook` or existing data is being removed
 from the `AddressBook` respectively.
 
 #### Design Consideration
-
-*{More to be added}*
-
 
 --------------------------------------------------------------------------------------------------------------------
 
