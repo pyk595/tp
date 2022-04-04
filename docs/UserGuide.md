@@ -354,11 +354,11 @@ Example:
 
 If you just want to look at the tasks you need to do by a specific date, you can display all reminders due by a specified date.
 
-Format: `reminders [d/DATE]`
+Format: `reminders [rd/DATE]`
 * `DATE` should be in the specified date format.
 
 Example:
-* `reminders d/2022-04-01` shows all reminders for 1 Apr 2022.
+* `reminders rd/2022-04-01` shows all reminders for 1 Apr 2022.
   > <img src="images/userguideimages/RemindersCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
