@@ -3,7 +3,6 @@ package seedu.address.model.date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.date.RecentDate.isValidRecentDate;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
@@ -18,15 +17,12 @@ class RecentDateTest {
     private static final DateTimeFormatter FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private LocalDate test;
     private LocalDate tomorrow;
-    private String testString;
-    private String tomorrowString;
+
 
     @BeforeEach
     public void setUp() {
         test = LocalDate.now();
         tomorrow = LocalDate.now().plusDays(1);
-        testString = test.format(FORMATTER_INPUT);
-        tomorrowString = tomorrow.format(FORMATTER_INPUT);
     }
     @Test
     public void parse_validString_success() {
@@ -36,22 +32,6 @@ class RecentDateTest {
     @Test
     public void parse_invalidString_failure() {
         assertThrows(IllegalArgumentException.class, ()->RecentDate.parse("hello"));
-    }
-
-    @Test
-    public void isValidRecentDate_variousInput() {
-        assertTrue(isValidRecentDate(testString));
-        assertFalse(isValidRecentDate(tomorrowString));
-        LocalDate yesterday = test.minusDays(1);
-        String yesterdayString = yesterday.format(FORMATTER_INPUT);
-        assertTrue(isValidRecentDate(yesterdayString));
-        LocalDate future = test.plusMonths(1);
-        String futureString = future.format(FORMATTER_INPUT);
-        assertFalse(isValidRecentDate(futureString));
-        LocalDate nextYear = test.plusYears(1);
-        String nextYearString = nextYear.format(FORMATTER_INPUT);
-        assertFalse(isValidRecentDate(nextYearString));
-
     }
 
     @Test

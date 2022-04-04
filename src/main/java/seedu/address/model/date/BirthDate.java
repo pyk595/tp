@@ -1,5 +1,7 @@
 package seedu.address.model.date;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -25,6 +27,7 @@ public class BirthDate extends DocumentedDate {
      * @return A non null {@code BirthDate}.
      */
     public static BirthDate parse(String parsedDate) {
+        checkArgument(isValidDate(parsedDate));
         LocalDate date = LocalDate.parse(parsedDate);
         return new BirthDate(date);
     }

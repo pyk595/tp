@@ -7,7 +7,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +22,7 @@ class BirthDateTest {
 
     @Test
     public void parse_invalidString_failure() {
-        assertThrows(DateTimeParseException.class, ()->BirthDate.parse("hello"));
+        assertThrows(IllegalArgumentException.class, ()->BirthDate.parse("hello"));
     }
 
     @Test

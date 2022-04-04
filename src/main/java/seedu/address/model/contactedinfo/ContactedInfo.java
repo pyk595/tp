@@ -2,6 +2,8 @@ package seedu.address.model.contactedinfo;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.date.DocumentedDate;
 import seedu.address.model.date.RecentDate;
 import seedu.address.model.description.Description;
@@ -11,8 +13,8 @@ import seedu.address.model.description.Description;
  */
 public class ContactedInfo implements Comparable<ContactedInfo> {
     public static final String MESSAGE_CONSTRAINTS =
-            "You should provide a valid date and description.\n"
-            + RecentDate.MESSAGE_CONSTRAINTS + " and should not be in the future.\n" + Description.MESSAGE_CONSTRAINTS;
+            "You should provide a valid date and description.\n\n"
+            + RecentDate.MESSAGE_CONSTRAINTS + "\n\n" + Description.MESSAGE_CONSTRAINTS;
 
     private final Description description;
     private final RecentDate recentDate;
@@ -47,9 +49,15 @@ public class ContactedInfo implements Comparable<ContactedInfo> {
      * @return true if a given string is a valid contacted information.
      */
     public static boolean isValidContactedInfo(String dateTest, String descriptionTest) {
-        return DocumentedDate.isValidDate(dateTest)
-                && Description.isValidDescription(descriptionTest)
-                && RecentDate.isValidRecentDate(dateTest);
+        if (DocumentedDate.isValidDate(dateTest) && Description.isValidDescription(descriptionTest)) {
+            try {
+                ParserUtil.parseRecentDate(dateTest);
+                return true;
+            } catch (ParseException pe) {
+                return false;
+            }
+        }
+        return false;
     }
 
     /**

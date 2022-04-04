@@ -157,6 +157,25 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String} date into a {@code RecentDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static RecentDate parseRecentDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!DocumentedDate.isValidDate(trimmedDate)) {
+            throw new ParseException(DocumentedDate.MESSAGE_CONSTRAINTS);
+        }
+        RecentDate newRecentDate = RecentDate.parse(trimmedDate);
+        if (newRecentDate.getDaysPassed() < 0) {
+            throw new ParseException(RecentDate.MESSAGE_CONSTRAINTS);
+        }
+        return newRecentDate;
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *

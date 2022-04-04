@@ -1,13 +1,13 @@
 package seedu.address.model.date;
 
-import static java.time.temporal.ChronoUnit.DAYS;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class RecentDate extends DocumentedDate implements Comparable<RecentDate> {
-
+    public static final String MESSAGE_CONSTRAINTS = "Recent dates should be in the format of YYYY-MM-DD "
+            + "and cannot be in the future.";
     private static final DateTimeFormatter FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public final String value;
@@ -34,15 +34,6 @@ public class RecentDate extends DocumentedDate implements Comparable<RecentDate>
         checkArgument(isValidDate(parsedDate));
         LocalDate date = LocalDate.parse(parsedDate);
         return new RecentDate(date);
-    }
-
-    /**
-     * Returns true if a given string can be converted to a date
-     * that has either occurred today or in the past.
-     */
-    public static boolean isValidRecentDate(String test) {
-        LocalDate testDate = LocalDate.parse(test);
-        return DAYS.between(testDate, LocalDate.now()) >= 0;
     }
 
     /**

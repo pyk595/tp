@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_NUMBER_OF_DAYS;
 import static seedu.address.logic.parser.ParserUtil.parseBirthDate;
+import static seedu.address.logic.parser.ParserUtil.parseRecentDate;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -19,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.date.BirthDate;
+import seedu.address.model.date.RecentDate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -197,8 +199,35 @@ public class ParserUtilTest {
     public void parseBirthDate_futureDate_throwsParseException() {
         LocalDate tomorrow = LocalDate.now().plusDays(1);
         String tomorrowString = tomorrow.format(FORMATTER_INPUT);
-        assertThrows(ParseException.class, ()->parseBirthDate(tomorrowString));
+        assertThrows(ParseException.class, ()->parseRecentDate(tomorrowString));
     }
+
+    @Test
+    public void parseRecentDate_validBirthDate_returnsBirthDate() throws ParseException {
+        String expectedInput = "2000-01-01";
+        LocalDate expectedDate = LocalDate.parse(expectedInput);
+        RecentDate expectedRecentDate = new RecentDate(expectedDate);
+        assertEquals(expectedRecentDate, parseRecentDate(expectedInput));
+    }
+
+    // boundary value: current date is a valid recent date
+    @Test
+    public void parseRecentDate_currentDate_returnsBirthDate() throws ParseException {
+        LocalDate today = LocalDate.now();
+        String todayString = today.format(FORMATTER_INPUT);
+        RecentDate expectedRecentDate = new RecentDate(today);
+        assertEquals(expectedRecentDate, parseRecentDate(todayString));
+    }
+
+    // boundary value: one day in the future is not acceptable because it has not occurred
+    @Test
+    public void parseRecentDate_futureDate_throwsParseException() {
+        LocalDate tomorrow = LocalDate.now().plusDays(1);
+        String tomorrowString = tomorrow.format(FORMATTER_INPUT);
+        assertThrows(ParseException.class, ()->parseRecentDate(tomorrowString));
+    }
+
+
 
     @Test
     public void parseTag_null_throwsNullPointerException() {
