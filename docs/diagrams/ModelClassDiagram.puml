@@ -19,11 +19,13 @@ Class UserPrefs
 Class UniquePersonList
 Class Person
 Class Address
+Class BirthDate
 Class Email
 Class Name
 Class Phone
 Class Tag
 Class ContactedInfo
+Class Reminder
 }
 
 Class HiddenOutside #FFFFFF
@@ -42,18 +44,21 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniqueTagList
 AddressBook *--> "1" UniquePersonList
 UniqueTagList .up.|> ReadOnlyUniqueTagList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+UniquePersonList --> "\n\n\n   all\n  ~*" Person
+Person *--> "1" Name
+Person *--> "1" Phone
+Person *--> "1" Email
+Person *--> "       1" BirthDate
+Person *--> "1" Address
 Person *--> "*" Tag
 Person *--> "*" ContactedInfo
+Person *--> "*" Reminder
 
 AddressBook -[hidden]left-> ReadOnlyUniqueTagList
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+
+ModelManager -->"filtered   \n           ~*" Person
 @enduml
