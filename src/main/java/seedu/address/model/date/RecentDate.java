@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class RecentDate extends DocumentedDate implements Comparable<RecentDate> {
-    public static final String MESSAGE_CONSTRAINTS = "Recent dates should be in the format of YYYY-MM-DD "
+    public static final String MESSAGE_CONSTRAINTS = "Dates should be in the format of YYYY-MM-DD "
             + "and cannot be in the future.";
     private static final DateTimeFormatter FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
