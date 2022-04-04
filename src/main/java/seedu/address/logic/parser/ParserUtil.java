@@ -149,7 +149,11 @@ public class ParserUtil {
         if (!DocumentedDate.isValidDate(trimmedDate)) {
             throw new ParseException(DocumentedDate.MESSAGE_CONSTRAINTS);
         }
-        return BirthDate.parse(trimmedDate);
+        BirthDate newBirthDate = BirthDate.parse(trimmedDate);
+        if (newBirthDate.getDaysPassed() < 0) {
+            throw new ParseException(BirthDate.MESSAGE_CONSTRAINTS);
+        }
+        return newBirthDate;
     }
 
     /**

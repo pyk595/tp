@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_NUMBER_OF_DAYS;
+import static seedu.address.logic.parser.ParserUtil.parseBirthDate;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -15,6 +18,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.date.BirthDate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -22,6 +26,8 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
+    private static final DateTimeFormatter FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
@@ -167,6 +173,31 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseBirthDate_validBirthDate_returnsBirthDate() throws ParseException {
+        String expectedInput = "2000-01-01";
+        LocalDate expectedDate = LocalDate.parse(expectedInput);
+        BirthDate expectedBirthDate = new BirthDate(expectedDate);
+        assertEquals(expectedBirthDate, parseBirthDate(expectedInput));
+    }
+
+    // boundary value: current date is a valid birth date
+    @Test
+    public void parseBirthDate_currentDate_returnsBirthDate() throws ParseException {
+        LocalDate today = LocalDate.now();
+        String todayString = today.format(FORMATTER_INPUT);
+        BirthDate expectedBirthDate = new BirthDate(today);
+        assertEquals(expectedBirthDate, parseBirthDate(todayString));
+    }
+
+    // boundary value: one day in the future is not acceptable because it has not occurred
+    @Test
+    public void parseBirthDate_futureDate_throwsParseException() {
+        LocalDate tomorrow = LocalDate.now().plusDays(1);
+        String tomorrowString = tomorrow.format(FORMATTER_INPUT);
+        assertThrows(ParseException.class, ()->parseBirthDate(tomorrowString));
     }
 
     @Test
