@@ -51,7 +51,8 @@ public class Email {
         if (!test.matches(VALIDATION_REGEX)) {
             return false;
         } else {
-            String[] spliced = test.split("@");
+            assert test.contains("@") :"email string does not have the '@' symbol";
+            String[] spliced = test.split("@",2);
             return spliced[1].contains(".");
         }
     }
