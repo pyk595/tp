@@ -52,9 +52,6 @@ public class Email {
             return false;
         } else {
             String[] spliced = test.split("@");
-            System.out.println("spliced 0: " + spliced[0]);
-            System.out.println("spliced 0: " + spliced[1]);
-            System.out.println(spliced.length);
             return spliced[1].contains(".");
         }
     }
