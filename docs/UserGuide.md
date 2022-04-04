@@ -376,7 +376,13 @@ Format: `birthdays`
 
 If a reminder is no longer necessary, you can delete the specific reminder to make your reminder list cleaner and shorter.
 
-Format: `forget INDEX del/INDEX`
+Format: `forget INDEX del/REMINDER_INDEX`
+
+* `INDEX` signifies the specified contact.
+* `INDEX` refers to the index number shown in the displayed contact list.
+* `REMINDER_INDEX` signifies the reminder to delete.
+* `REMINDER_INDEX` refers to the index number shown in the contact's displayed list of reminders.
+*  Both `INDEX` and `REMINDER_INDEX` have to follow the requirements stated in [Features](#features)
 
 Example:
 * `forget 1 del/1` helps you delete the first reminder on the 1st person's list.
@@ -415,7 +421,7 @@ If you made a mistake while manually editing the saved data, a backup save file 
 | **Show all tags**                                        | `tags`                                                                                |
 | **Find contacts by tags**                                | `#TAG`                                                                                |
 | **Record an interaction with a contact**                 | `log INDEX d/DATE des/description`                                                    |
-| **Delete a recorded interaction with a contact**         | `unlog INDEX del/INDEX`                                                               |
+| **Delete a recorded interaction with a contact**         | `unlog INDEX del/RECORD_INDEX`                                                               |
 | **View all recorded interactions with a contact**        | `logs INDEX`                                                                          |
 | **View contacts contacted within DAYS**                  | `within DAYS`                                                                         |
 | **View contacts you have contacted more than DAYS ago**  | `after DAYS`                                                                          |
@@ -423,7 +429,7 @@ If you made a mistake while manually editing the saved data, a backup save file 
 | **Add a reminder**                                       | `remind INDEX r/REMINDER rd/DATE`                                                     |
 | **View reminders of a contact**                          | `reminder INDEX`                                                                      |
 | **View reminders on a date**                             | `reminders [rd/DATE]`                                                                 |
-| **Delete a reminder**                                    | `forget INDEX del/INDEX`                                                              |
+| **Delete a reminder**                                    | `forget INDEX del/REMINDER_INDEX`                                                              |
 | **Exit the program**                                     | `exit`                                                                                |
 | **Help**                                                 | `help`                                                                                |
 
