@@ -49,15 +49,15 @@ public class ContactedInfo implements Comparable<ContactedInfo> {
      * @return true if a given string is a valid contacted information.
      */
     public static boolean isValidContactedInfo(String dateTest, String descriptionTest) {
-        if (DocumentedDate.isValidDate(dateTest) && Description.isValidDescription(descriptionTest)) {
-            try {
-                ParserUtil.parseRecentDate(dateTest);
-                return true;
-            } catch (ParseException pe) {
-                return false;
-            }
+        if (!DocumentedDate.isValidDate(dateTest) || !Description.isValidDescription(descriptionTest)) {
+            return false;
         }
-        return false;
+        try {
+            ParserUtil.parseRecentDate(dateTest);
+            return true;
+        } catch (ParseException pe) {
+            return false;
+        }
     }
 
     /**
