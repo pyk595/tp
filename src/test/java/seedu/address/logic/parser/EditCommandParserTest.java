@@ -39,7 +39,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.date.BirthDate;
+import seedu.address.model.date.DocumentedDate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -92,7 +92,7 @@ public class EditCommandParserTest {
         // invalid email
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS);
         // invalid birth date
-        assertParseFailure(parser, "1" + INVALID_BIRTH_DATE_DESC, BirthDate.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_BIRTH_DATE_DESC, DocumentedDate.MESSAGE_CONSTRAINTS);
         // invalid address
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS);
         // invalid tag

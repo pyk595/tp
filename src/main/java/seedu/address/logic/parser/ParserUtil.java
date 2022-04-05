@@ -132,7 +132,7 @@ public class ParserUtil {
             throw new ParseException(ContactedInfo.MESSAGE_CONSTRAINTS);
         }
 
-        RecentDate recentDate = RecentDate.parse(trimmedDate);
+        RecentDate recentDate = parseRecentDate(trimmedDate);
         Description desc = new Description(trimmedDescription);
         return new ContactedInfo(recentDate, desc);
     }
@@ -149,7 +149,30 @@ public class ParserUtil {
         if (!DocumentedDate.isValidDate(trimmedDate)) {
             throw new ParseException(DocumentedDate.MESSAGE_CONSTRAINTS);
         }
-        return BirthDate.parse(trimmedDate);
+        BirthDate newBirthDate = BirthDate.parse(trimmedDate);
+        if (newBirthDate.getDaysPassed() < 0) {
+            throw new ParseException(BirthDate.MESSAGE_CONSTRAINTS);
+        }
+        return newBirthDate;
+    }
+
+    /**
+     * Parses a {@code String} date into a {@code RecentDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static RecentDate parseRecentDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!DocumentedDate.isValidDate(trimmedDate)) {
+            throw new ParseException(DocumentedDate.MESSAGE_CONSTRAINTS);
+        }
+        RecentDate newRecentDate = RecentDate.parse(trimmedDate);
+        if (newRecentDate.getDaysPassed() < 0) {
+            throw new ParseException(RecentDate.MESSAGE_CONSTRAINTS);
+        }
+        return newRecentDate;
     }
 
     /**
