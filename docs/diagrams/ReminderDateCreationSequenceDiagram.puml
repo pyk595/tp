@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-mainframe **sd** Create RecentDate Objects
+mainframe **sd** Create ReminderDate Objects
 hide footbox
 
 skinparam Sequence {
@@ -13,10 +13,10 @@ skinparam Sequence {
 }
 Participant "<<Class>>\nParserUtil" as util
 Participant "<<Class>>\nDocumentedDate" as dd
-Participant "rd:RecentDate" as rd
+Participant "rd:ReminderDate" as rd
 
 
-->util: parseRecentDate(validDate)
+->util: parseReminderDate(validDate)
 activate util
 
 util -> dd: isValidDate(trimmedDate)
@@ -25,7 +25,7 @@ dd --> util
 deactivate dd
 
 Create rd
-util -> rd: RecentDate.parse(trimmedDate)
+util -> rd: ReminderDate.parse(trimmedDate)
 activate rd
 
 rd --> util: rd
