@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-mainframe **sd** Create BirthDate Objects
+mainframe **sd** Create BirthDate Object
 hide footbox
 
 skinparam Sequence {
@@ -25,13 +25,13 @@ dd --> util
 deactivate dd
 
 Create bd
-util -> bd: BirthDate.parse(trimmedDate)
+util -> bd: parse(trimmedDate)
 activate bd
 
 bd --> util: bd
 deactivate bd
 
-util -> bd: bd.getDaysPassed()
+util -> bd: getDaysPassed()
 activate bd
 bd --> util
 deactivate bd

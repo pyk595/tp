@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-mainframe **sd** Create ReminderDate Objects
+mainframe **sd** Create ReminderDate Object
 hide footbox
 
 skinparam Sequence {
@@ -25,13 +25,13 @@ dd --> util
 deactivate dd
 
 Create rd
-util -> rd: ReminderDate.parse(trimmedDate)
+util -> rd: parse(trimmedDate)
 activate rd
 
 rd --> util: rd
 deactivate rd
 
-util -> rd: rd.getDaysPassed()
+util -> rd: getDaysPassed()
 activate rd
 rd --> util
 deactivate rd

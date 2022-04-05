@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-mainframe **sd** Create RecentDate Objects
+mainframe **sd** Create RecentDate Object
 hide footbox
 
 skinparam Sequence {
@@ -25,13 +25,13 @@ dd --> util
 deactivate dd
 
 Create rd
-util -> rd: RecentDate.parse(trimmedDate)
+util -> rd: parse(trimmedDate)
 activate rd
 
 rd --> util: rd
 deactivate rd
 
-util -> rd: rd.getDaysPassed()
+util -> rd: getDaysPassed()
 activate rd
 rd --> util
 deactivate rd
