@@ -124,14 +124,7 @@ The `Model` component,
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 ### Storage component
 
@@ -154,8 +147,114 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-*{More to be added}*
+### Tagging feature
 
+#### Implementation
+
+Each `Person` object contains its own set of `Tag` objects, and the `Tag` objects are not referenced and stored by other
+`Person` objects, even if the same `Tag` is used by multiple `Person` objects. However, there is a data structure in
+`AddressBook`, `UniqueTagList` to keep track of every unique `Tag` objects used in the _application_, in order to
+implement the command to list all existing tags. The class diagram below shows how the tagging feature is implemented
+in the Model component.
+
+<img src="images/TagClassDiagram.png" width="450" />
+
+##### Tag
+
+`Tag` objects have the following characteristics:
+
+* A `Tag` object only has one public data member (final), `tagName` of `String` object, representing the name of the `Tag`, which can be used to distinguish itself from other `Tag` object.
+* The name of the `Tag`, `tagName` needs to be alphanumeric (only letters and numerals are allowed).
+* Any two `Tag` objects are not unique if and only if their `tagName` are equal, ignoring case differences.
+* `Tag` objects can be sorted, and the sorted order is the natural ordering of their `tagName`, ignoring case differences.
+
+##### ReadOnlyUniqueTagList
+
+`ReadOnlyUniqueTagList` is an interface that specifies the behaviour of a read-only `UniqueTagList`. It is designed to
+protect the data integrity of `UniqueTagList`, as `UniqueTagList` should only be modifiable by the `AddressBook` object
+and not by other objects at runtime. Therefore, `UniqueTagList` only exists in `AddressBook` and returns a copy of
+`UniqueTagList` as `ReadOnlyUniqueTagList` type, in `AddressBook#getUniqueTagList()`, when requested, so that the
+original copy of `UniqueTagList` is unmodifiable by other classes.
+
+##### UniqueTagList
+
+Due to the nature of the tagging feature implementation, `UniqueTagList` is implemented such that all unique tags used
+are stored and maintained in a `HashMap<Tag, Integer>`, where the key set is the set of unique tags, and the value is
+the occurrence frequency of each unique tag. For example, if a `Tag` with a `tagName` of "friends" is used twice in the
+`AddressBook`, then the value of the `Tag` will be 2. This implementation requires the value of all the keys in the
+`HashMap` to be more than 0, otherwise the key should be removed. `UniqueTagList` implements the following operations.
+
+* `addTags(Set<Tag> tagsToAdd)`<br>
+Adds the `Tag` objects in `Set<Tag>` to the `HashMap`. For each `Tag` object, if it is not in the `HashMap`, then it
+will be added to the `HashMap` with an initial value of 1. Otherwise, the value of the `Tag` object will be incremented
+by one. The sequence diagram of this operation is shown below.<br><br>
+  <img src="images/AddTagsSequenceDiagram.png" width="450" />
+
+
+* `removeTags(Set<Tag> tagsToRemove)`<br>
+Removes the `Tag` objects in `Set<Tag>` from the `HashMap`. For each `Tag` object, if it is in the `HashMap` with a
+value of 1, then it will be removed from the `HashMap`. Otherwise, if it is in the `HashMap` with a value of more than
+1, the value of the `Tag` object will be decremented by one. The sequence diagram of this operation is shown below.<br><br>
+  <img src="images/RemoveTagsSequenceDiagram.png" width="450" />
+
+
+* `removeAndAddTags(Set<Tag> tagsToRemove, Set<Tag> tagsToAdd)`<br>
+Performs `removeTags(Set<Tag> tagsToRemove)` and `addTags(Set<Tag> tagsToAdd)` sequentially.
+
+
+* `clearTags()`<br>
+Clears all the mappings in the `HashMap`.
+
+
+* `getUniqueTagList()`<br>
+Returns a sorted list of unique tags that exists in the `UniqueTagList`.
+
+
+* `getUniqueTagListSize()`<br>
+Returns the number of unique tags in the `UniqueTagList`.
+
+The correctness of `UniqueTagList` in `AddressBook` is guaranteed by the immutability of the `Person` model that
+contains `Tag`. Any changes to the `UniquePersonList` in `AddressBook` or any changes to any `Person` in `AddressBook`
+can only be done through `AddressBook`. Therefore, in an event that the `Person` model becomes mutable, this
+implementation of `UniqueTagList` may fail and needs to be revised.
+
+For example, during every command that modifies the existing data in `AddressBook`, the method `AddressBook#setPerson(p, q)`
+will be called. Apart from making changes to the `UniquePersonList`, this method call will also update the `UniqueTagList`,
+as shown in the sequence diagram below.
+
+<img src="images/SetPersonSequenceDiagram.png" width="500" />
+
+`UniqueTagList#addTags(Set<Tag> tagsToAdd)` or `UniqueTagList#removeTags(Set<Tag> tagsToRemove)` will be called directly
+by `AddressBook` in situations where new data is being added to the `AddressBook` or existing data is being removed
+from the `AddressBook` respectively.
+
+#### Design Consideration
+
+##### Aspect: How tags are assigned to `Person`
+
+* Alternative 1 (current implementation): A new tag is instantiated everytime even though there already exists a tag with
+the same tag name in `UniqueTagList`.<br>
+  * Pros: Easy to implement, less coupling.
+  * Cons: May have performance issues in terms of memory usage.
+
+* Alternative 2: Unique tags are only instantiated once. Adding an existing tag to a person creates a reference to the
+existing tag. The implementation is briefly shown below. <br><br>
+  <img src="images/BetterModelClassDiagram.png" width="450" />
+  * Pros: Better performance in terms of memory usage.
+  * Cons: More difficult to implement, more coupling (between `UniqueTagList` and the instantiation of`Person` etc) required.
+
+##### Aspect: How unique tags are stored in `UniqueTagList` (in the current implementation of tagging system)
+
+* Alternative 1 (current implementation): Unique tags are stored in a `HashMap` as keys, with its frequency of occurrence
+as values.<br>
+  * Pros: Updating `UniqueTagList` takes constant time; the number of occurrence for each unique tag is recorded and
+  can be used.
+  * Cons: Reading the `UniqueTagList` in alphabetical order takes O(n logn) time, incurred by sorting of the tags.
+
+* Alternative 2: Unique tags are stored in a `PriorityQueue`.<br>
+  * Pros: Reading the `UniqueTagList` in alphabetical order just takes O(n) time.
+  * Cons: Updating `UniqueTagList` takes O(logn) time every time; requires additional data structure to maintain
+  `UniqueTagList` accurately.
 
 --------------------------------------------------------------------------------------------------------------------
 

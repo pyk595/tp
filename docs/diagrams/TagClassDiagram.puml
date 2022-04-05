@@ -1,0 +1,44 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+Package "Model (focus on Tag implementation)" <<Rectangle>>{
+interface ReadOnlyUniqueTagList <<interface>> {
+getUniqueTagList() : List<Tag>
+getUniqueTagListSize() : int
+}
+
+class UniqueTagList {
++addTags(Set<Tag>) : void
++removeTags(Set<Tag>) : void
++removeAndAddTags(Set<Tag>, Set<Tag>) : void
++clearTags() : void
++getUniqueTagList() : List<Tag>
++getUniqueTagListSize() : int
+}
+
+class AddressBook {
++getUniqueTagList() : ReadOnlyUniqueTagList
++getNumberOfUniqueTags() : int
+}
+
+class HashMap<Tag, Integer>
+class String
+
+class Tag
+class UniquePersonList
+class Person
+
+}
+
+UniqueTagList .up.|> ReadOnlyUniqueTagList
+UniqueTagList *-down-> "1" HashMap
+AddressBook *--> "1" UniqueTagList
+
+HashMap -right-> "*" Tag
+Tag *--> "1" String
+
+AddressBook *--> "1" UniquePersonList
+UniquePersonList --> "*" Person
+Person *-left-> "*" Tag
+@enduml
