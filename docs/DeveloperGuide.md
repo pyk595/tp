@@ -239,6 +239,30 @@ from the `AddressBook` respectively.
 
 #### Design Consideration
 
+##### Aspect: How tags are assigned to `Person`
+
+* Alternative 1 (current implementation): A new tag is instantiated everytime even though there already exists a tag with
+the same tag name in `UniqueTagList`.<br>
+  * Pros: Easy to implement, less coupling.
+  * Cons: May have performance issues in terms of memory usage.
+
+* Alternative 2: Unique tags are only instantiated once. Adding an existing tag to a person creates a reference to the
+existing tag.<br>
+  * Pros: Better performance in terms of memory usage.
+  * Cons: More difficult to implement, more coupling (between `UniqueTagList` and the instantiation of`Person` etc) required.
+
+##### Aspect: How unique tags are stored in `UniqueTagList` (in the current implementation of tagging system)
+
+* Alternative 1 (current implementation): Unique tags are stored in a `HashMap` as keys, with its frequency of occurrence
+as values.
+  * Pros: Updating `UniqueTagList` takes constant time; the number of occurrence for each unique tag is recorded and
+  can be used.
+  * Cons: Reading the `UniqueTagList` in alphabetical order takes O(n logn) time, incurred by sorting of the tags.
+* Alternative 2: Unique tags are stored in a `PriorityQueue`.
+  * Pros: Reading the `UniqueTagList` in alphabetical order just takes O(n) time.
+  * Cons: Updating `UniqueTagList` takes O(logn) time every time; requires additional data structure to maintain
+  `UniqueTagList` accurately.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
