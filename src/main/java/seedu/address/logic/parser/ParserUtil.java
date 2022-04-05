@@ -132,7 +132,7 @@ public class ParserUtil {
             throw new ParseException(ContactedInfo.MESSAGE_CONSTRAINTS);
         }
 
-        RecentDate recentDate = RecentDate.parse(trimmedDate);
+        RecentDate recentDate = parseRecentDate(trimmedDate);
         Description desc = new Description(trimmedDescription);
         return new ContactedInfo(recentDate, desc);
     }
