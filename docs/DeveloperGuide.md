@@ -151,8 +151,8 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-Each `Person` object contains its own set of `Tag` objects, and the `Tag` objects is not referenced and stored by other
-`Person` objects, even if the same `Tag` is used multiple `Person` objects. However, there is a data structure in
+Each `Person` object contains its own set of `Tag` objects, and the `Tag` objects are not referenced and stored by other
+`Person` objects, even if the same `Tag` is used by multiple `Person` objects. However, there is a data structure in
 `AddressBook`, `UniqueTagList` to keep track of every unique `Tag` objects used in the _application_, in order to
 implement the command to list all existing tags. The class diagram below shows how the tagging feature is implemented
 in the Model component.
