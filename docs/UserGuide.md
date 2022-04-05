@@ -106,6 +106,9 @@ e.g. "exe" refers to the executable file type used on windows.
 
 * Dates should be in "YYYY-MM-DD" format, unless stated otherwise. Single digits should be zero padded.<br>
   e.g. `2022-05-17`, `2021-01-01` and `2011-10-10` are in the correct format with zero padding, while `2022-5-17` and `2021-1-1` are in the wrong format as they do not have a zero padding for single digit months and/or days.
+
+* <a name="a-tag-name" />Tag names should be alphanumeric. In other words, it should only contain letters (a-z, A-Z) and numbers (0-9). Spaces are not allowed.
+
 * `INDEX` used in the different commands refer to the index number shown in the displayed contact list.
 
   ❗The `INDEX` must be a positive integer i.e. 1,2,3,...
@@ -123,6 +126,7 @@ When you meet a new potential client and you managed to get their contact inform
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`
 * `BIRTH_DATE` should be in the specified date format.
+* `TAG` should be in the [specified format](#a-tag-name).
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:**
@@ -157,6 +161,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE]
 * Edits the person at the specified `INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* `TAG` should be in the [specified format](#a-tag-name).
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
@@ -211,6 +216,7 @@ Examples:
 Suppose you want to catalogue a contact with a specific category like "client", you can `tag` the contact to a category, as specified by the index.
 
 Format: `tag INDEX t/TAG`
+* `TAG` should be in the [specified format](#a-tag-name).
 
 Example:
 * `tag 7 t/client` adds the "client" tag to the 7th contact in the display contact list.
@@ -223,6 +229,7 @@ Example:
 If a contact is no longer a client, and you wish to remove the tag, you can simply `untag` contact from the cateogory, as specified by the index.
 
 Format: `untag INDEX t/TAG`
+* `TAG` should be in the [specified format](#a-tag-name).
 
 Example:
 * `untag 7 t/client` deletes the "client" tag from the 7th contact in the display contact list.
@@ -243,6 +250,7 @@ Format: `tags`
 If you want to focus on a specific category, you can find all the contacts with the specified tag assigned to them.
 
 Format: `#TAG`
+* `TAG` should be in the [specified format](#a-tag-name).
 
 Example:
 * `#client` finds all the contacts that are tagged to "client".
