@@ -254,11 +254,12 @@ existing tag.<br>
 ##### Aspect: How unique tags are stored in `UniqueTagList` (in the current implementation of tagging system)
 
 * Alternative 1 (current implementation): Unique tags are stored in a `HashMap` as keys, with its frequency of occurrence
-as values.
+as values.<br>
   * Pros: Updating `UniqueTagList` takes constant time; the number of occurrence for each unique tag is recorded and
   can be used.
   * Cons: Reading the `UniqueTagList` in alphabetical order takes O(n logn) time, incurred by sorting of the tags.
-* Alternative 2: Unique tags are stored in a `PriorityQueue`.
+
+* Alternative 2: Unique tags are stored in a `PriorityQueue`.<br>
   * Pros: Reading the `UniqueTagList` in alphabetical order just takes O(n) time.
   * Cons: Updating `UniqueTagList` takes O(logn) time every time; requires additional data structure to maintain
   `UniqueTagList` accurately.
