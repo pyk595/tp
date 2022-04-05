@@ -30,32 +30,8 @@ e.g. "exe" refers to the executable file type used on windows.
 ----
 <div style="page-break-after: always;"></div>
 
-## Table of Contents
-
-* [Quick Start](#quick-start)
-* [Features](#features)
-  - [Adding a contact: `add`](#adding-a-contact-add)
-  - [Viewing all contacts: `list`](#viewing-all-contacts-list)
-  - [Editing a contact: `edit`](#editing-a-contact-edit)
-  - [Finding contacts by name: `find`](#finding-contacts-by-name-find)
-  - [Deleting a contact: `delete`](#deleting-a-contact-delete)
-  - [Adding a tag: `tag`](#adding-a-tag-tag)
-  - [Deleting a tag: `untag`](#deleting-a-tag-untag)
-  - [Viewing all available tags: `tags`](#viewing-all-available-tags-tags)
-  - [Finding contacts with tag: `#`](#finding-contacts-with-tag-)
-  - [Adding interaction records with a contact: `log`](#adding-interaction-records-with-a-contact-log)
-  - [Deleting a recent interaction record with a contact: `unlog`](#deleting-a-recent-interaction-record-with-a-contact-unlog)
-  - [Viewing all recent interactions with a contact: `logs`](#viewing-all-recent-interactions-with-a-contact-logs)
-  - [Viewing contacts that were contacted within days: `within`](#viewing-contacts-that-were-contacted-within-days-within)
-  - [Viewing contacts contacted more than a specified number of days ago: `after`](#viewing-contacts-contacted-more-than-a-specified-number-of-days-ago-after)
-  - [Adding a reminder to a contact: `remind`](#adding-a-reminder-to-a-contact-remind)
-  - [Viewing reminders of a contact: `reminder`](#viewing-reminders-of-a-contact-reminder)
-  - [Viewing reminders by date: `reminders`](#viewing-reminders-by-date-reminders)
-  - [Show all birthdays today: `birthdays`](#show-all-birthdays-today-birthdays)
-  - [Deleting a reminder: `forget`](#deleting-a-reminder-forget)
-  - [Exiting the program: `exit`](#exiting-the-program-exit)
-  - [Saving the data](#saving-the-data)
-* [Command Summary](#command-summary)
+* Table of Contents
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
