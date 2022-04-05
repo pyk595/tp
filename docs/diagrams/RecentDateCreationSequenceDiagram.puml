@@ -13,10 +13,10 @@ skinparam Sequence {
 }
 Participant "<<Class>>\nParserUtil" as util
 Participant "<<Class>>\nDocumentedDate" as dd
-Participant "bd:BirthDate" as bd
+Participant "rd:RecentDate" as rd
 
 
-->util: parseBirthDate(validDate)
+->util: parseRecentDate(validDate)
 activate util
 
 util -> dd: isValidDate(trimmedDate)
@@ -24,19 +24,19 @@ activate dd
 dd --> util
 deactivate dd
 
-Create bd
-util -> bd: BirthDate.parse(trimmedDate)
-activate bd
+Create rd
+util -> rd: RecentDate.parse(trimmedDate)
+activate rd
 
-bd --> util: bd
-deactivate bd
+rd --> util: rd
+deactivate rd
 
-util -> bd: bd.getDaysPassed()
-activate bd
-bd --> util
-deactivate bd
+util -> rd: rd.getDaysPassed()
+activate rd
+rd --> util
+deactivate rd
 
-<--util: bd
+<--util: rd
 deactivate util
 
 @enduml
