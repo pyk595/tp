@@ -104,7 +104,6 @@ When you meet a new potential client and you managed to get their contact inform
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`
 * `BIRTH_DATE` should be in the [specified date format](#a-date-format).
 * `TAG` should be in the [specified format](#a-tag-name).
-* `INDEX` must be in the [specified format](#a-index).
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:**
@@ -196,8 +195,8 @@ Examples:
 Suppose you want to catalogue a contact with a specific category like "client", you can `tag` the contact to a category, as specified by the index.
 
 Format: `tag INDEX t/TAG`
-* `TAG` should be in the [specified format](#a-tag-name).
 * `INDEX` must be in the [specified format](#a-index).
+* `TAG` should be in the [specified format](#a-tag-name).
 
 Example:
 * `tag 7 t/client` adds the "client" tag to the 7th contact in the display contact list.
@@ -210,8 +209,8 @@ Example:
 If a contact is no longer a client, and you wish to remove the tag, you can simply `untag` contact from the cateogory, as specified by the index.
 
 Format: `untag INDEX t/TAG`
-* `TAG` should be in the [specified format](#a-tag-name).
 * `INDEX` must be in the [specified format](#a-index).
+* `TAG` should be in the [specified format](#a-tag-name).
 
 Example:
 * `untag 7 t/client` deletes the "client" tag from the 7th contact in the display contact list.
@@ -245,8 +244,8 @@ Example:
 After meeting a client, you might want to write a note about the client, along with the meeting date. By using the `log` command, you can manually save your interaction with the person in the form of a note accompanied by a date.
 
 Format: `log INDEX d/DATE des/description`
-* `DATE` should be in the [specified date format](#a-date-format).
 * `INDEX` must be in the [specified format](#a-index).
+* `DATE` should be in the [specified date format](#a-date-format).
 
 Example:
 * `log 6 d/2022-02-11 des/Signed contract` manually logs the following interaction with the 6th person in the displayed contact list, `Signed contract` on `2022-02-11`.
@@ -321,8 +320,8 @@ It is hard to keep track of everything all at once. Add a reminder for a client 
 * `INDEX` refers to the index number shown in the displayed contact list.
 
 Format: `remind INDEX r/REMINDER rd/DATE`
-* `DATE` should be in the [specified date format](#a-date-format).
 * `INDEX` must be in the [specified format](#a-index).
+* `DATE` should be in the [specified date format](#a-date-format).
 
 Example:
 * `remind 1 r/sign contract rd/2022-04-02` sets up a reminder for you to make a phone call to the 1st person on 2 April 2022.
@@ -424,7 +423,7 @@ If you made a mistake while manually editing the saved data, a backup save file 
 | **View birthdays occurring today**                       | `birthdays`                                                                           |
 | **Add a reminder**                                       | `remind INDEX r/REMINDER rd/DATE`                                                     |
 | **View reminders of a contact**                          | `reminder INDEX`                                                                      |
-| **View reminders on a date**                             | `reminders [rd/DATE]`                                                                 |
+| **View reminders on a date**                             | `reminders rd/[DATE]`                                                                 |
 | **Delete a reminder**                                    | `forget INDEX del/REMINDER_INDEX`                                                              |
 | **Exit the program**                                     | `exit`                                                                                |
 | **Help**                                                 | `help`                                                                                |
