@@ -256,7 +256,75 @@ as values.<br>
   * Cons: Updating `UniqueTagList` takes O(logn) time every time; requires additional data structure to maintain
   `UniqueTagList` accurately.
 
---------------------------------------------------------------------------------------------------------------------
+### Date Features
+
+#### Implementation
+
+As seen in the [`Model` component](#model-component), Each `Person` object contains its own `BirthDate` object,
+a `ContactedInfoList` and a `ReminderList`. The `ContactedInfoList` stores `ContactedInfo` objects, 
+while the `ReminderList` stores `Reminder` objects. A `ContactedInfo` object has a `RecentDate` object, 
+and a `Reminder` object has a `ReminderDate` object. As `BirthDate` objects, `RecentDate` objects and `ReminderDate` 
+objects need to be displayed in the same format for consistency, we have a `DocumentedDate` parent class to ensure that 
+the three “date” type objects will use the same `toString` method in `DocumentedDate` to allow users to display the 
+dates in the same format, as seen in the class diagram below.
+
+<img src="images/DocumentedDateClassDiagram.png" width="450" />
+
+Despite inheriting from the `DocumentedDate` parent class, these 3 “date” type objects have different behaviours. 
+A `BirthDate` object needs to be recurring, to check if the person’s birthday is occurring on the same day despite 
+being saved in a past year. A `RecentDate` needs to be a date that occurs in the past, and a `ReminderDate` needs to be 
+a date that has not yet occurred. To model this more concretely, we implement some checks using the `ParserUtil` class.
+
+
+The three "date" type objects, are primarily created using static methods in the `ParserUtil` class. 
+However, there are public constructors to create each `BirthDate`, `RecentDate` and `ReminderDate` object. This is to 
+enable better testability.
+
+<img src="images/BirthDateCreationSequenceDiagram.png" width="450" />
+
+ As seen in the sequence diagram above, which shows the process of creating a `BirthDate` object.
+ `ParserUtil#parseBirthDate(validDate)` is called, with the user supplying a `validDate` in the form of a String.
+The method will process the `validDate` into a `String` called `trimmedDate` and call 
+ `DocumentedDate#isValidDate(trimmedDate)` to check if it is a valid date. if the `trimmedDate` is indeed a valid date,
+it will then be used to create a new `BirthDate` object. After that, a final check is done using the `getDaysPassed()` 
+ method, before `ParserUtil` returns the newly created `BirthDate` object. For `BirthDate` objects, the check using the 
+ `getDaysPassed()` method has to ensure that `BirthDate` objects are not created using dates in the future, 
+ i.e. either past dates or the current date.
+
+As the `RecentDate` and `ReminderDate` objects have similar requirements to the `BirthDate` objects, the process of 
+creating these objects are the same as the `BirthDate` objects. For better comparison, let us examine one more sequence
+diagram for the creation of a `ReminderDate` object.
+
+<img src="images/ReminderDateCreationSequenceDiagram.png" width="450" />
+
+As seen above, the process exactly mirrors that of the `BirthDate` object. However, the biggest difference is that the
+check using `getDaysPassed()` must make sure that `ReminderDate` objects cannot be created with a date that has passed.
+This is because the function of the reminder is to ensure that users can keep track of tasks that have not yet been done
+or important events that are upcoming.
+
+The `RecentDate` objects are much more similar to the `BirthDate` objects as they have the same requirement of not being
+able to be created using a date in the future. The rationale is because `RecentDate` keep track of the user's 
+interaction with clients and contacts, and the user must have interacted with the contact before they save the 
+interaction record in the application. 
+
+#### Design Consideration
+
+##### Aspect: How date type objects are created
+
+* Alternative 1 (current implementation): "Date" type objects extend `DocumentedDate`.<br>
+    * Pros: We can use polymorphism to modify certain behaviour of each specific child class (i.e. Allowing `BirthDate` 
+      objects to be read as recurring dates when necessary.)
+    * Less bug prone as each child class is independent of each other.
+    * Cons: More overhead as more classes are required, possibly more coupling if code is not written with 
+      Liskov Substitution Principle in mind.
+   
+ 
+* Alternative 2: Use `DocumentedDate`, but use other components to differentiate (i.e. `enum` types)
+    * Pros: We can standardise all formatting and behaviour strictly, and only use type specific methods
+    when necessary. (i.e. Since `BirthDate` and `RecentDate` objects check for past and current dates only, 
+      we do not have duplicated code)
+    * Cons: More checks are required within each method, may potentially violate Single Responsibility Principle and
+    code quality due to the different types of checks required.
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -686,6 +754,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Application**: The Automated Insurance Assistant Application
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **MSS**: Main Success Scenario that describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
+* **ContactedInfo**: The type of object that interaction records are saved as.
+* **RecentDate**: The type of date object used to save dates for a given interaction record.
 
 --------------------------------------------------------------------------------------------------------------------
 
