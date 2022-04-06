@@ -130,7 +130,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="150" />
+<img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -140,7 +140,7 @@ The `Storage` component,
 In the event that data saved in the saved json file is corrupted, the `Storage component` will make a copy of the
 existing json file.
 
-<img src="images/ReadAddressBookSequenceDiagram.png" width="550" />
+<img src="images/ReadAddressBookSequenceDiagram.png" width="350" />
 
 After the `MainApp` calls `JsonAddressBookStorage#readAddressBook()`, if the data is corrupted, `JsonAddressBookStorage`
 will call the `backup()` method and make a copy of the `addressbook.json`. The copied file will be saved in the `data`
