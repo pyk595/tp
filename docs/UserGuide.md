@@ -347,8 +347,9 @@ Example:
 
 If you just want to look at the tasks you need to do by a specific date, you can display all reminders due by a specified date.
 
-Format: `reminders [rd/DATE]`
+Format: `reminders rd/[DATE]`
 * `DATE` should be in the [specified date format](#a-date-format).
+* `reminders rd/` will display reminders for the current date.
 
 
 Example:
