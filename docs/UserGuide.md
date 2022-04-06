@@ -85,7 +85,7 @@ e.g. "exe" refers to the executable file type used on windows.
 
 * <a name="a-tag-name" />Tag names should be alphanumeric. In other words, it should only contain letters (a-z, A-Z) and numbers (0-9). Spaces are not allowed.
 
-* `INDEX` used in the different commands refer to the index number shown in the displayed contact list.
+* <a name="a-index" />`INDEX` used in the different commands refer to the index number shown in the displayed contact list.
 
   ❗The `INDEX` must be a positive integer i.e. 1,2,3,...
 
@@ -103,6 +103,7 @@ When you meet a new potential client and you managed to get their contact inform
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`
 * `BIRTH_DATE` should be in the [specified date format](#a-date-format).
 * `TAG` should be in the [specified format](#a-tag-name).
+* `INDEX` must be in the [specified format](#a-index).
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:**
@@ -135,6 +136,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE]
 [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`.
+* `INDEX` must be in the [specified format](#a-index).
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * `BIRTH_DATE` should be in the [specified date format](#a-date-format).
@@ -180,6 +182,7 @@ If a contact entry is no longer relevant, you can `delete` the specified contact
 Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
+* `INDEX` must be in the [specified format](#a-index).
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the application.
@@ -193,6 +196,7 @@ Suppose you want to catalogue a contact with a specific category like "client", 
 
 Format: `tag INDEX t/TAG`
 * `TAG` should be in the [specified format](#a-tag-name).
+* `INDEX` must be in the [specified format](#a-index).
 
 Example:
 * `tag 7 t/client` adds the "client" tag to the 7th contact in the display contact list.
@@ -206,6 +210,7 @@ If a contact is no longer a client, and you wish to remove the tag, you can simp
 
 Format: `untag INDEX t/TAG`
 * `TAG` should be in the [specified format](#a-tag-name).
+* `INDEX` must be in the [specified format](#a-index).
 
 Example:
 * `untag 7 t/client` deletes the "client" tag from the 7th contact in the display contact list.
@@ -240,6 +245,7 @@ After meeting a client, you might want to write a note about the client, along w
 
 Format: `log INDEX d/DATE des/description`
 * `DATE` should be in the [specified date format](#a-date-format).
+* `INDEX` must be in the [specified format](#a-index).
 
 Example:
 * `log 6 d/2022-02-11 des/Signed contract` manually logs the following interaction with the 6th person in the displayed contact list, `Signed contract` on `2022-02-11`.
@@ -254,6 +260,7 @@ If you want to review your interaction history with a contact, you can use `logs
 Format: `logs INDEX`
 
 * `INDEX` signifies the specified contact.
+* `INDEX` must be in the [specified format](#a-index).
 
 Example:
 * `logs 1` lists all recorded interactions with the 1st contact in the displayed contact list.
@@ -271,7 +278,7 @@ Format: `unlog INDEX del/RECORD_INDEX`
 * `INDEX` refers to the index number shown in the displayed contact list.
 * `RECORD_INDEX` signifies the interaction record to delete.
 * `RECORD_INDEX` refers to the index number shown in the contact's displayed list of interaction records.
-*  Both `INDEX` and `RECORD_INDEX` have to follow the requirements stated in [Features](#features)
+*  Both `INDEX` and `RECORD_INDEX` must be in the [specified format](#a-index) for `INDEX`.
 
 Example:
 * `unlog 2 del/1` deletes the 1st interaction record from the 2nd contact in the displayed contact list.
@@ -314,6 +321,7 @@ It is hard to keep track of everything all at once. Add a reminder for a client 
 
 Format: `remind INDEX r/REMINDER rd/DATE`
 * `DATE` should be in the [specified date format](#a-date-format).
+* `INDEX` must be in the [specified format](#a-index).
 
 Example:
 * `remind 1 r/sign contract rd/2022-04-02` sets up a reminder for you to make a phone call to the 1st person on 2 April 2022.
@@ -326,6 +334,7 @@ Example:
 Sometimes, certain clients require more attention. You can view all reminders of tasks you need to do for these specific clients.
 
 Format: `reminder INDEX`
+* `INDEX` must be in the [specified format](#a-index).
 
 Example:
 * `reminder 1` shows you a list of tasks you need to do for the 1st person along with their corresponding deadlines.
@@ -367,7 +376,7 @@ Format: `forget INDEX del/REMINDER_INDEX`
 * `INDEX` refers to the index number shown in the displayed contact list.
 * `REMINDER_INDEX` signifies the reminder to delete.
 * `REMINDER_INDEX` refers to the index number shown in the contact's displayed list of reminders.
-*  Both `INDEX` and `REMINDER_INDEX` have to follow the requirements stated in [Features](#features)
+*  Both `INDEX` and `REMINDER_INDEX`  must be in the [specified format](#a-index) for `INDEX`.
 
 Example:
 * `forget 1 del/1` helps you delete the first reminder on the 1st person's list.
