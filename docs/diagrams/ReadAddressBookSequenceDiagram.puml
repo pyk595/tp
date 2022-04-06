@@ -18,9 +18,10 @@ main -> storage: readAddressBook()
 
 
 opt corrupted data
-storage -> storage: backup()
+storage --> main: JsonSerializableAddressBook
 end
 
-storage --> main: Optional
+storage -> storage: backup()
+
 
 @enduml
