@@ -137,7 +137,7 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-In the event that data saved in the saved json file is corrupted, the `Storage component` will make a copy of the
+In the event that data saved in the saved json file is corrupted, the `Storage` component will make a copy of the
 existing json file.
 
 <img src="images/ReadAddressBookSequenceDiagram.png" width="350" />
@@ -273,8 +273,8 @@ as values.<br>
 
 #### Implementation
 
-As seen in the [`Model` component](#model-component), Each `Person` object contains its own `BirthDate` object,
-a `ContactedInfoList` and a `ReminderList`. The `ContactedInfoList` stores `ContactedInfo` objects, 
+As seen in the [`Model` component](#model-component), each `Person` object contains its own `BirthDate` object,
+a list of `ContactedInfo` and a `ReminderList`. The list of `ContactedInfo` stores `ContactedInfo` objects, 
 while the `ReminderList` stores `Reminder` objects. A `ContactedInfo` object has a `RecentDate` object, 
 and a `Reminder` object has a `ReminderDate` object. As `BirthDate` objects, `RecentDate` objects and `ReminderDate` 
 objects need to be displayed in the same format for consistency, we have a `DocumentedDate` parent class to ensure that 
@@ -286,7 +286,8 @@ dates in the same format, as seen in the class diagram below.
 ##### Documented Date
 
 `DocumentedDate` objects have the following characteristics:
-* A `DocumentedDate` object has a private `LocalDate` member to allow the application to easily display a formatted date.
+* A `DocumentedDate` object has a private `LocalDate` member to allow the application to easily store and display a 
+  formatted date.
 * A `DateTimeFormatter` constant is included as a member so that developers can tweak how the formatted date is shown
 to the users.
 
@@ -307,8 +308,8 @@ enable better testability.
 
  As seen in the sequence diagram above, which shows the process of creating a `BirthDate` object.
  `ParserUtil#parseBirthDate(validDate)` is called, with the user supplying a `validDate` in the form of a String.
-The method will process the `validDate` into a `String` called `trimmedDate` and call 
- `DocumentedDate#isValidDate(trimmedDate)` to check if it is a valid date. if the `trimmedDate` is indeed a valid date,
+The method will trim the `validDate` into a `String` called `trimmedDate` and call 
+ `DocumentedDate#isValidDate(trimmedDate)` to check if it is in a valid date format. if the `trimmedDate` is indeed a valid date,
 it will then be used to create a new `BirthDate` object. After that, a final check is done using the `getDaysPassed()` 
  method, before `ParserUtil` returns the newly created `BirthDate` object. For `BirthDate` objects, the check using the 
  `getDaysPassed()` method has to ensure that `BirthDate` objects are not created using dates in the future, 
@@ -339,14 +340,14 @@ when used, instead of an invalid or unexpected entry.
 ##### Aspect: How date type objects are created
 
 * Alternative 1 (current implementation): "Date" type objects extend `DocumentedDate`.<br>
-    * Pros: We can use polymorphism to modify certain behaviour of each specific child class (i.e. Allowing `BirthDate` 
+    * Pros: We can modify certain behaviour of each specific child class (i.e. allowing `BirthDate` 
       objects to be read as recurring dates when necessary.)
-    * Less bug prone as each child class is independent of each other.
-    * Cons: More overhead as more classes are required, possibly more coupling if code is not written with 
-      Liskov Substitution Principle in mind.
+        * Less duplicated bugs as each child class is independent of each other.
+        * Less duplicated code as the parent class can hold common methods.
+    * Cons: More overhead as more classes are required.
    
  
-* Alternative 2: Use `DocumentedDate`, but use other components to differentiate (i.e. `enum` types)
+* Alternative 2: Use `DocumentedDate` for all dates and differentiate using `enum` types
     * Pros: We can standardise all formatting and behaviour strictly, and only use type specific methods
     when necessary. (i.e. Since `BirthDate` and `RecentDate` objects check for past and current dates only, 
       we do not need to have duplicated code)
@@ -356,16 +357,16 @@ when used, instead of an invalid or unexpected entry.
 ##### Aspect: How to store dates
 * Alternative 1 (current implementation): `DocumentedDate` objects use a `LocalDate` object to store dates.<br>
     * Pros: We can encapsulate the processes of date manipulation and comparison.
-    * We can leverage on Java being a strongly typed language to ensure that input and output are less prone to errors.
+        * We can leverage on Java being a strongly typed language to ensure that input and output are less prone to errors.
     * Cons: Users are restricted in the way they input dates.
 
 
 * Alternative 2: Use a `String` to store dates
     * Pros: More flexibility in terms of user input and input manipulation by the system.
     * Cons: More processes are required to parse and check for invalid inputs.
-    * Users might be able to abuse the system by parsing a `String` with a long length, which might slow down the system 
-      when the system is running more processes while parsing.
-    * Handling of behaviour for specific date types in terms of comparing dates may require more work.
+        * Users might be able to abuse the system by parsing a `String` with a long length, which might slow down the system 
+            when the system is running more processes while parsing.
+        * Handling of behaviour for specific date types in terms of comparing dates may require more work.
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
