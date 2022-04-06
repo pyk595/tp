@@ -137,6 +137,19 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+In the event that data saved in the saved json file is corrupted, the `Storage component` will make a copy of the
+existing json file.
+
+<img src="images/ReadAddressBookSequenceDiagram.png" width="550" />
+
+After the `MainApp` calls `JsonAddressBookStorage#readAddressBook()`, if the data is corrupted, `JsonAddressBookStorage`
+will call the `backup()` method and make a copy of the `addressbook.json`. The copied file will be saved in the `data`
+directory in a file called `backup.json`.
+
+Users will still be able to use all features available, but the existing `addressbook.json` will be overwritten.
+After closing the application, users are able to go into the `data` directory and rectify the problem in `backup.json`
+before copying the information into `addressbook.json`.
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
@@ -306,6 +319,10 @@ The `RecentDate` objects are much more similar to the `BirthDate` objects as the
 able to be created using a date in the future. The rationale is because `RecentDate` keep track of the user's 
 interaction with clients and contacts, and the user must have interacted with the contact before they save the 
 interaction record in the application. 
+
+Having two levels of checks ensure that when the working "date" type objects are less bug prone due when using the specific
+"date" type object for their designated usages. This makes features such as `after` or `within` return valid entries
+when used, instead of an invalid or unexpected entry.
 
 #### Design Consideration
 

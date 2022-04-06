@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+mainframe **sd** Read addressbook.json
+hide footbox
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+Participant "MainApp" as main
+Participant "JsonAddressBookStorage" as storage
+
+main -> storage: readAddressBook()
+
+
+opt corrupted data
+storage -> storage: backup()
+end
+
+storage --> main: Optional
+
+@enduml
