@@ -125,12 +125,8 @@ When you meet a new potential client and you managed to get their contact inform
   * The default date would be the day the contact was added, and default description would be "First Interaction".
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`
-<<<<<<< HEAD
 * `BIRTH_DATE` should be in the [specified date format](#a-date-format).
-=======
-* `BIRTH_DATE` should be in the specified date format.
 * `TAG` should be in the [specified format](#a-tag-name).
->>>>>>> master
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:**
