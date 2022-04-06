@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ListDateRemindersCommand;
@@ -15,8 +16,14 @@ import seedu.address.model.date.ReminderDate;
 public class ListDateRemindersCommandParserTest {
     private static final String EMPTY_REMINDER_DATE = " " + PREFIX_REMINDER_DATE;
     private final ListDateRemindersCommandParser commandParser = new ListDateRemindersCommandParser();
-    private final String sampleReminderDate = "2020-01-01";
-    private final String validReminderDate = EMPTY_REMINDER_DATE + " " + sampleReminderDate;
+    private LocalDate sampleReminderDate;
+    private String validReminderDate;
+
+    @BeforeEach
+    public void setUp() {
+        sampleReminderDate = LocalDate.now().plusDays(1);
+        validReminderDate = EMPTY_REMINDER_DATE + " " + sampleReminderDate;
+    }
 
     @Test
     public void parse_nullInput_throwNullPointerException() {
@@ -27,7 +34,7 @@ public class ListDateRemindersCommandParserTest {
     public void parse_validInputs_success() {
         // with date
         ListDateRemindersCommand expectedCommand = new ListDateRemindersCommand(
-                new ReminderDate(LocalDate.of(2020, 1, 1)));
+                new ReminderDate(LocalDate.now().plusDays(1)));
         assertParseSuccess(commandParser, validReminderDate, expectedCommand);
 
         // no date

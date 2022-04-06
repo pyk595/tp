@@ -19,6 +19,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.tag.Tag;
 
@@ -226,9 +227,17 @@ public class ParserUtil {
     public static ReminderDate parseReminderDate(String reminderDate) throws ParseException {
         requireNonNull(reminderDate);
         String trimmedDate = reminderDate.trim();
+
         if (!ReminderDate.isValidDate(trimmedDate)) {
             throw new ParseException(DocumentedDate.MESSAGE_CONSTRAINTS);
         }
-        return ReminderDate.parse(trimmedDate);
+
+        ReminderDate parsedDate = ReminderDate.parse(reminderDate);
+
+        if (parsedDate.getDaysPassed() > 0) {
+            throw new ParseException(ReminderDate.MESSAGE_CONSTRAINTS);
+        }
+
+        return parsedDate;
     }
 }

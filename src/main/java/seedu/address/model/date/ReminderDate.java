@@ -1,13 +1,16 @@
 package seedu.address.model.date;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class ReminderDate extends DocumentedDate implements Comparable<ReminderDate> {
 
-    private static final DateTimeFormatter FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final String MESSAGE_CONSTRAINTS = "Reminder Dates cannot be in the past!";
+    private static final DateTimeFormatter FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
     public final String value;
 
     /**
@@ -27,6 +30,7 @@ public class ReminderDate extends DocumentedDate implements Comparable<ReminderD
      * @return A non null {@code ReminderDate}.
      */
     public static ReminderDate parse(String parsedDate) {
+        checkArgument(isValidDate(parsedDate));
         LocalDate date = LocalDate.parse(parsedDate);
         return new ReminderDate(date);
     }

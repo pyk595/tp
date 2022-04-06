@@ -18,8 +18,8 @@ public class ReminderDateTest {
     }
 
     @Test
-    public void parse_invalidInput_throwsDateTimeParseException() {
-        assertThrows(DateTimeParseException.class, () -> ReminderDate.parse("test"));
+    public void parse_invalidInput_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> ReminderDate.parse("test"));
     }
 
     @Test

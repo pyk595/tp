@@ -17,7 +17,7 @@ public class JsonAdaptedReminder {
     private final String date;
 
     /**
-     * Constructs a {@code JsonAdaptedReminder} with the given {@code description} and {@code date}.
+     * Constructs a {@code JsonAdaptedReminder} with the given {@code ReminderDescription} and {@code ReminderDate}.
      */
     @JsonCreator
     public JsonAdaptedReminder(@JsonProperty("description") String description, @JsonProperty("date") String date) {
@@ -34,9 +34,9 @@ public class JsonAdaptedReminder {
     }
 
     /**
-     * Converts this Jackson-friendly adapted {@code Reminder} object into the model's {@code ContactedInfo} object.
+     * Converts this Jackson-friendly adapted {@code Reminder} object into the model's {@code Reminder} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted contacted info.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted reminder.
      */
     public Reminder toModelType() throws IllegalValueException {
         if (!ReminderDate.isValidDate(date) || !(ReminderDescription.isValidDescription(description))) {

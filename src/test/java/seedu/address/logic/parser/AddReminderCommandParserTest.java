@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -27,9 +28,15 @@ public class AddReminderCommandParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE);
     private final AddReminderCommandParser commandParser = new AddReminderCommandParser();
     private final String sampleReminderDescription = "test";
-    private final String sampleReminderDate = "2020-01-01";
     private final String validReminderDescription = EMPTY_REMINDER_DESCRIPTION + " " + sampleReminderDescription;
-    private final String validReminderDate = EMPTY_REMINDER_DATE + " " + sampleReminderDate;
+    private LocalDate sampleReminderDate;
+    private String validReminderDate;
+
+    @BeforeEach
+    public void setUp() {
+        sampleReminderDate = LocalDate.now().plusDays(1);
+        validReminderDate = EMPTY_REMINDER_DATE + " " + sampleReminderDate;
+    }
 
     @Test
     public void parse_nullInput_throwNullPointerException() {
@@ -67,7 +74,7 @@ public class AddReminderCommandParserTest {
                 + validReminderDate;
 
         AddReminderCommand expectedCommand = new AddReminderCommand(INDEX_FIRST_PERSON,
-                new Reminder(new ReminderDescription("test"), new ReminderDate(LocalDate.of(2020, 1, 1))));
+                new Reminder(new ReminderDescription("test"), new ReminderDate(LocalDate.now().plusDays(1))));
         assertParseSuccess(commandParser, userInput, expectedCommand);
     }
 }
