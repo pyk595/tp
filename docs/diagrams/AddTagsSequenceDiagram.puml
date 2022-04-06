@@ -1,0 +1,51 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+mainframe **sd** Add tagsToAdd to UniqueTagList
+hide footbox
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+Participant ":UniqueTagList" as UniqueTagList
+Participant "tagFrequencyMap:HashMap" as HashMap
+
+activate UniqueTagList
+
+loop for each tag in tagsToAdd
+    UniqueTagList -> HashMap : containsKey(tag)
+    activate HashMap
+
+    HashMap --> UniqueTagList
+    deactivate HashMap
+
+    alt tag exists in tagFrequencyMap
+        UniqueTagList -> HashMap : get(tag)
+        activate HashMap
+
+        HashMap --> UniqueTagList : count
+        deactivate HashMap
+
+        UniqueTagList -> HashMap : put(tag, count + 1)
+        activate HashMap
+
+        HashMap --> UniqueTagList
+        deactivate HashMap
+    else else
+        UniqueTagList -> HashMap : put(tag, 1)
+        activate HashMap
+
+        HashMap --> UniqueTagList
+        deactivate HashMap
+    end
+
+end
+
+deactivate UniqueTagList
+
+@enduml

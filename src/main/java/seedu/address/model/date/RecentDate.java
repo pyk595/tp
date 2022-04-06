@@ -1,14 +1,16 @@
 package seedu.address.model.date;
 
-import static java.time.temporal.ChronoUnit.DAYS;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class RecentDate extends DocumentedDate implements Comparable<RecentDate> {
-
-    private static final DateTimeFormatter FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final String MESSAGE_CONSTRAINTS = DocumentedDate.MESSAGE_CONSTRAINTS
+            + " and cannot be in the future.";
+    private static final DateTimeFormatter FORMATTER_INPUT =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
 
     public final String value;
     private LocalDate date;
@@ -37,15 +39,6 @@ public class RecentDate extends DocumentedDate implements Comparable<RecentDate>
     }
 
     /**
-     * Returns true if a given string can be converted to a date
-     * that has either occurred today or in the past.
-     */
-    public static boolean isValidRecentDate(String test) {
-        LocalDate testDate = LocalDate.parse(test);
-        return DAYS.between(testDate, LocalDate.now()) >= 0;
-    }
-
-    /**
      * Returns today's date
      *
      * @return today's date {@code RecentDate}.
@@ -58,11 +51,12 @@ public class RecentDate extends DocumentedDate implements Comparable<RecentDate>
      * compare two {@code RecentDate} objects
      *
      * @param rd RecentDate object to compare to.
-     * @return an integer corresponding to which date comes first.
+     * @return an integer representing whether the given {@code RecentDate}
+     * is greater than, equal to or less than the current {@code RecentDate}
      */
     @Override
     public int compareTo(RecentDate rd) {
-        return date.compareTo(rd.date) * -1;
+        return rd.date.compareTo(date);
     }
 
     @Override

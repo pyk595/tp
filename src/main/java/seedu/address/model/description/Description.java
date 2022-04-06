@@ -3,6 +3,8 @@ package seedu.address.model.description;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.commons.util.StringUtil;
+
 /**
  * Represents a Person's description in the Contacted Date region.
  * Guarantees: immutable; is always valid
@@ -10,7 +12,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Description can take any values, and it should not be blank";
+            "Description can take any values, but must be within 280 characters and should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -32,14 +34,18 @@ public class Description {
     }
 
     /**
-     * Returns defulat description
+     * Returns a {@code Description} containing the string "First Interaction".
+     *
+     * @return a default {@code Description}.
      */
     public static Description defaultDesc() {
         return new Description("First Interaction");
     }
 
     /**
-     * Returns String representation of description.
+     * Returns the String representation of the {@code Description}.
+     *
+     * @return the {@code Description} in String.
      */
     @Override
     public String toString() {
@@ -47,10 +53,15 @@ public class Description {
     }
 
     /**
-     * Returns true if a given string is a valid description.
+     * Checks if the parsed String is a valid input.
+     *
+     * @return true if the input String matches the validation regex
+     * and if the length of the String does not exceed 280 characters,
+     * otherwise false.
      */
     public static boolean isValidDescription(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX)
+                && StringUtil.isValidDescriptionLength(test);
     }
 
 
