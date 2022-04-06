@@ -283,6 +283,16 @@ dates in the same format, as seen in the class diagram below.
 
 <img src="images/DocumentedDateClassDiagram.png" width="450" />
 
+##### Documented Date
+
+`DocumentedDate` objects have the following characteristics:
+* A `DocumentedDate` object has a private `LocalDate` member to allow the application to easily display a formatted date.
+* A `DateTimeFormatter` constant is included as a member so that developers can tweak how the formatted date is shown
+to the users.
+
+
+##### Documented Date Child Classes
+
 Despite inheriting from the `DocumentedDate` parent class, these 3 “date” type objects have different behaviours. 
 A `BirthDate` object needs to be recurring, to check if the person’s birthday is occurring on the same day despite 
 being saved in a past year. A `RecentDate` needs to be a date that occurs in the past, and a `ReminderDate` needs to be 
@@ -342,6 +352,20 @@ when used, instead of an invalid or unexpected entry.
       we do not need to have duplicated code)
     * Cons: More checks are required within each method, may potentially violate Single Responsibility Principle and
     code quality due to the different types of checks required.
+
+##### Aspect: How to store dates
+* Alternative 1 (current implementation): `DocumentedDate` objects use a `LocalDate` object to store dates.<br>
+    * Pros: We can encapsulate the processes of date manipulation and comparison.
+    * We can leverage on Java being a strongly typed language to ensure that input and output are less prone to errors.
+    * Cons: Users are restricted in the way they input dates.
+
+
+* Alternative 2: Use a `String` to store dates
+    * Pros: More flexibility in terms of user input and input manipulation by the system.
+    * Cons: More processes are required to parse and check for invalid inputs.
+    * Users might be able to abuse the system by parsing a `String` with a long length, which might slow down the system 
+      when the system is running more processes while parsing.
+    * Handling of behaviour for specific date types in terms of comparing dates may require more work.
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
