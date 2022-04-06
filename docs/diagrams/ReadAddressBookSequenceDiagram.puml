@@ -17,11 +17,11 @@ Participant "JsonAddressBookStorage" as storage
 main -> storage: readAddressBook()
 
 
-opt read successfully
+alt read successfully
 storage --> main: JsonSerializableAddressBook
-end
-
+else else
 storage -> storage: backup()
+end
 
 
 @enduml
