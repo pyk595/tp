@@ -322,7 +322,7 @@ interaction record in the application.
 * Alternative 2: Use `DocumentedDate`, but use other components to differentiate (i.e. `enum` types)
     * Pros: We can standardise all formatting and behaviour strictly, and only use type specific methods
     when necessary. (i.e. Since `BirthDate` and `RecentDate` objects check for past and current dates only, 
-      we do not have duplicated code)
+      we do not need to have duplicated code)
     * Cons: More checks are required within each method, may potentially violate Single Responsibility Principle and
     code quality due to the different types of checks required.
 
