@@ -161,11 +161,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE]
 * Edits the person at the specified `INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* `BIRTH_DATE` should be in the [specified date format](#a-date-format).
 * `TAG` should be in the [specified format](#a-tag-name).
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
-* `BIRTH_DATE` should be in the [specified date format](#a-date-format).
 
 Examples:
 * `edit 7 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
