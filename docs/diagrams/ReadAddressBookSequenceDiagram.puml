@@ -17,7 +17,7 @@ Participant "JsonAddressBookStorage" as storage
 main -> storage: readAddressBook()
 
 
-opt corrupted data
+opt read successfully
 storage --> main: JsonSerializableAddressBook
 end
 
