@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/class-diagram
+hide circle
+skinparam classAttributeIconSize 0
+
+package date <<rectangle>> {
+class " DocumentedDate " as dd
+class " ReminderDate " as rd
+class " RecentDate " as rcd
+class " BirthDate " as bd
+}
+
+class dd {
+- LocalDate
+# getDate(): LocalDate
++ {static} isValidDate(): boolean
++ getDaysPassed(): int
++ toString()
+}
+
+class bd {
++ {static} parse(String): BirthDate
++ isToday(): boolean
+}
+
+class rcd {
++ {static} parse(String): RecentDate
+}
+
+class rd {
++ {static} parse(String): ReminderDate
+}
+dd <|-- rcd
+dd <|-- bd
+dd <|-- rd
+
+
+bd <-[hidden]right- rd
+rd <-[hidden]right- rcd
+
+@enduml

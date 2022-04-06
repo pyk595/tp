@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+mainframe **sd** Create BirthDate Object
+hide footbox
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+Participant "<<Class>>\nParserUtil" as util
+Participant "<<Class>>\nDocumentedDate" as dd
+Participant "bd:BirthDate" as bd
+
+
+->util: parseBirthDate(validDate)
+activate util
+
+util -> dd: isValidDate(trimmedDate)
+activate dd
+dd --> util
+deactivate dd
+
+Create bd
+util -> bd: parse(trimmedDate)
+activate bd
+
+bd --> util: bd
+deactivate bd
+
+util -> bd: getDaysPassed()
+activate bd
+bd --> util
+deactivate bd
+
+<--util: bd
+deactivate util
+
+@enduml

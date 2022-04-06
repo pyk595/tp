@@ -38,7 +38,7 @@ import static seedu.address.testutil.TypicalPersons.DAVID;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.date.BirthDate;
+import seedu.address.model.date.DocumentedDate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -178,7 +178,7 @@ public class AddCommandParserTest {
                 parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_BIRTH_DATE_DESC
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                BirthDate.MESSAGE_CONSTRAINTS
+                DocumentedDate.MESSAGE_CONSTRAINTS
         );
 
         // invalid tag
