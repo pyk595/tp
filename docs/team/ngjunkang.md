@@ -35,7 +35,7 @@ Given below are my contributions to the project.
     * Updated the Quick Start and Features section of User Guide: [\#98](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/98), [\#103](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/103)
     * Added in-page hyperlinks for date format in User Guide: [\#177](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/177)
     * Updated the deprecated links in Developer Guide to point to the project repository: [\#183](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/183)
-    * Ran platform smoke test of all releases.
+    * Ran platform smoke tests of all releases.
 
 * **Community**:
     * Reported bugs and suggestions for other teams (examples: [1](https://github.com/ngjunkang/ped/issues))
