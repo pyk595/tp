@@ -129,7 +129,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 <div markdown="span" class="alert alert-info">
-    :information_source: **Note:** The class diagram of `Tag`-related classes is detailed in the
+    :information_source: **Note:** The structure of `Tag`-related classes is detailed in the class diagram in the
     <a href="#tagging-feature"> implementation section </a>
     of tagging feature.
 </div>
