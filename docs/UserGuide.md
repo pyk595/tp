@@ -20,7 +20,9 @@ This user guide offers the following to insurance agents or other users trying t
 ## Table of Contents
 
 * Table of Contents
-  {:toc}
+{:toc}
+  
+<div style="page-break-after: always;"></div>
 
 ### Use of in-text formatting
 Bold words refer to commands to be performed by users.
@@ -32,8 +34,6 @@ Words in quotations are files, file types or dependencies.
 
 e.g. "exe" refers to the executable file type used on windows.
 
-----
-<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
