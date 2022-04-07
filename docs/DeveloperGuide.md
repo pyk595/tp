@@ -128,6 +128,12 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
+<div markdown="span" class="alert alert-info">
+    :information_source: **Note:** The class diagram of `Tag`-related classes is detailed in the
+    <a href="#tagging-feature"> implementation section </a>
+    of tagging feature.
+</div>
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-T17-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
