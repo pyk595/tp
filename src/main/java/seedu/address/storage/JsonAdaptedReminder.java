@@ -43,7 +43,7 @@ public class JsonAdaptedReminder {
             throw new IllegalValueException(Reminder.MESSAGE_CONSTRAINTS);
         }
 
-        ReminderDate reminderDate = ParserUtil.parseReminderDate(date);
+        ReminderDate reminderDate = ParserUtil.parseSavedReminderDate(date);
         ReminderDescription reminderDescription = ParserUtil.parseReminderDescription(description);
 
         return new Reminder(reminderDescription, reminderDate);
