@@ -28,12 +28,12 @@ Words in quotations are files, file types or dependencies.
 e.g. "exe" refers to the executable file type used on windows.
 
 ---
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 
 * Table of Contents
 {:toc}
-
-<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
