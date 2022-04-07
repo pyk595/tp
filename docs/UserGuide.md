@@ -397,6 +397,8 @@ Format: `exit`
 The application's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 If you made a mistake while manually editing the saved data, a backup save file would be generated in the same folder.
 
+❗If you already have a backup data file present, it will be overwritten.
+
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
