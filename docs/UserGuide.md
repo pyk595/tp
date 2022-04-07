@@ -377,7 +377,7 @@ Format: `forget INDEX del/REMINDER_INDEX`
 * `INDEX` refers to the index number shown in the displayed contact list.
 * `REMINDER_INDEX` signifies the reminder to delete.
 * `REMINDER_INDEX` refers to the index number shown in the contact's displayed list of reminders.
-*  Both `INDEX` and `REMINDER_INDEX`  must be in the [specified format](#a-index) for `INDEX`.
+*  Both `INDEX` and `REMINDER_INDEX` must be in the [specified format](#a-index) for `INDEX`.
 
 Example:
 * `forget 1 del/1` helps you delete the first reminder on the 1st person's list.

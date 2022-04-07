@@ -75,6 +75,9 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      * @throws IOException if the designated file paths are invalid.
      */
     public void backupFiles() throws IOException {
+        if (Files.exists(BACKUP_PATH)) {
+            Files.delete(BACKUP_PATH);
+        }
         Files.copy(getAddressBookFilePath(), BACKUP_PATH);
     }
 
