@@ -21,7 +21,7 @@ This user guide offers the following to insurance agents or other users trying t
 
 * Table of Contents
   {:toc}
-  
+
 ### Use of in-text formatting
 Bold words refer to commands to be performed by users.
 
