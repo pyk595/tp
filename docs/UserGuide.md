@@ -21,7 +21,7 @@ This user guide offers the following to insurance agents or other users trying t
 
 * Table of Contents
 {:toc}
-  
+
 <div style="page-break-after: always;"></div>
 
 ### Use of in-text formatting
