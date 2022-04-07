@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -29,10 +31,12 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_NUMBER_OF_DAYS = "Input number of days given is not a valid number";
+    private static final Logger logger = LogsCenter.getLogger(ParserUtil.class);
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -218,17 +222,49 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String reminderDate} into a {@code ReminderDescription}.
+     * Parses a {@code String reminderDate} into a {@code ReminderDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code description} is invalid.
+     * @throws ParseException if the given {@code reminderDate} is invalid.
      */
     public static ReminderDate parseReminderDate(String reminderDate) throws ParseException {
         requireNonNull(reminderDate);
         String trimmedDate = reminderDate.trim();
+
         if (!ReminderDate.isValidDate(trimmedDate)) {
             throw new ParseException(DocumentedDate.MESSAGE_CONSTRAINTS);
         }
-        return ReminderDate.parse(trimmedDate);
+
+        ReminderDate parsedDate = ReminderDate.parse(reminderDate);
+
+        if (parsedDate.getDaysPassed() > 0) {
+            throw new ParseException(ReminderDate.MESSAGE_CONSTRAINTS);
+        }
+
+        return parsedDate;
+    }
+
+    /**
+     * Parses a {@code String reminderDate} into a {@code ReminderDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param reminderDate the string to be read
+     * @return the parsed {@code reminderDate} object
+     * @throws ParseException if the {@code Reminder} has a {@code ReminderDate} that has passed.
+     */
+    public static ReminderDate parseSavedReminderDate(String reminderDate) throws ParseException {
+        if (!DocumentedDate.isValidDate(reminderDate)) {
+            throw new ParseException(DocumentedDate.MESSAGE_CONSTRAINTS);
+        }
+        try {
+            ReminderDate savedReminderDate = parseReminderDate(reminderDate);
+            return savedReminderDate;
+        } catch (ParseException pe) {
+            logger.warning("Reminder is saved with a past date in save file. "
+                    + "If that is not intended, please change it!");
+            ReminderDate savedReminderDate = ReminderDate.parse(reminderDate);
+            return savedReminderDate;
+        }
+
     }
 }

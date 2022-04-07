@@ -10,7 +10,7 @@ import seedu.address.model.date.ReminderDate;
 public class Reminder implements Comparable<Reminder> {
 
     public static final String MESSAGE_CONSTRAINTS = "Reminder descriptions should be alphanumeric, reminder dates "
-            + "should be in YYYY-MM-DD format, with zero-padding.";
+            + "should be in YYYY-MM-DD format, with zero-padding, and it should not be in the past.";
 
     private final ReminderDescription reminderDescription;
     private final ReminderDate date;

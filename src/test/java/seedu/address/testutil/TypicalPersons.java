@@ -44,44 +44,44 @@ public class TypicalPersons {
             .withBirthDate("2000-01-01")
             .addContactedInfo("2020-02-02 Wedding")
             .withReminders(new Reminder(new ReminderDescription("Meeting"),
-                    new ReminderDate(LocalDate.of(2022, 1, 1))))
+                    new ReminderDate(LocalDate.of(2025, 1, 1))))
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withBirthDate("2000-01-01")
             .addContactedInfo("2020-03-02 Meetup", "2021-01-01 Wedding")
             .withReminders(new Reminder(new ReminderDescription("Meeting"),
-                    new ReminderDate(LocalDate.of(2022, 1, 1))))
+                    new ReminderDate(LocalDate.of(2025, 1, 1))))
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withBirthDate("2000-01-01")
             .withReminders(new Reminder(new ReminderDescription("Meeting"),
-                    new ReminderDate(LocalDate.of(2022, 1, 1))))
+                    new ReminderDate(LocalDate.of(2025, 1, 1))))
             .addContactedInfo("2020-03-02 Meetup", "2021-01-01 Wedding").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
             .withBirthDate("2000-01-01")
             .withReminders(new Reminder(new ReminderDescription("Meeting"),
-                    new ReminderDate(LocalDate.of(2022, 1, 1))))
+                    new ReminderDate(LocalDate.of(2025, 1, 1))))
             .addContactedInfo("2020-03-02 Meetup", "2021-01-01 Wedding").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
             .withBirthDate("2000-01-01")
             .withReminders(new Reminder(new ReminderDescription("Meeting"),
-                    new ReminderDate(LocalDate.of(2022, 1, 1))))
+                    new ReminderDate(LocalDate.of(2025, 1, 1))))
             .addContactedInfo("2020-03-02 Meetup", "2021-01-01 Wedding").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
             .withBirthDate("2000-01-01")
             .withReminders(new Reminder(new ReminderDescription("Meeting"),
-                    new ReminderDate(LocalDate.of(2022, 1, 1))))
+                    new ReminderDate(LocalDate.of(2025, 1, 1))))
             .addContactedInfo("2020-03-02 Meetup", "2021-01-01 Wedding").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
             .withBirthDate("2000-01-01")
             .withReminders(new Reminder(new ReminderDescription("Meeting"),
-                    new ReminderDate(LocalDate.of(2022, 1, 1))))
+                    new ReminderDate(LocalDate.of(2025, 1, 1))))
             .addContactedInfo("2020-03-02 Meetup", "2021-01-01 Wedding").build();
 
     // Manually added
