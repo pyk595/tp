@@ -63,7 +63,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
             try {
                 backupFiles();
             } catch (IOException ioe) {
-                logger.info(FILE_OPS_ERROR_MESSAGE + BACKUP_PATH);
+                logger.warning(FILE_OPS_ERROR_MESSAGE + BACKUP_PATH);
             }
             throw new DataConversionException(ive);
         }
@@ -75,6 +75,9 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      * @throws IOException if the designated file paths are invalid.
      */
     public void backupFiles() throws IOException {
+        if (Files.exists(BACKUP_PATH)) {
+            Files.delete(BACKUP_PATH);
+        }
         Files.copy(getAddressBookFilePath(), BACKUP_PATH);
     }
 

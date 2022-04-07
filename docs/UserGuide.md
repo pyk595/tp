@@ -377,7 +377,7 @@ Format: `forget INDEX del/REMINDER_INDEX`
 * `INDEX` refers to the index number shown in the displayed contact list.
 * `REMINDER_INDEX` signifies the reminder to delete.
 * `REMINDER_INDEX` refers to the index number shown in the contact's displayed list of reminders.
-*  Both `INDEX` and `REMINDER_INDEX`  must be in the [specified format](#a-index) for `INDEX`.
+*  Both `INDEX` and `REMINDER_INDEX` must be in the [specified format](#a-index) for `INDEX`.
 
 Example:
 * `forget 1 del/1` helps you delete the first reminder on the 1st person's list.
@@ -396,6 +396,8 @@ Format: `exit`
 
 The application's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 If you made a mistake while manually editing the saved data, a backup save file would be generated in the same folder.
+
+❗If you already have a backup data file present, it will be overwritten.
 
 [Return to Table of Contents](#table-of-contents)
 
