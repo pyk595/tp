@@ -63,7 +63,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
             try {
                 backupFiles();
             } catch (IOException ioe) {
-                logger.info(FILE_OPS_ERROR_MESSAGE + BACKUP_PATH);
+                logger.warning(FILE_OPS_ERROR_MESSAGE + BACKUP_PATH);
             }
             throw new DataConversionException(ive);
         }
