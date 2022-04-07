@@ -137,7 +137,7 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-In the event that data saved in the saved json file is corrupted, the `Storage` component will make a copy of the
+In the event that data saved in the json file is corrupted, the `Storage` component will make a copy of the
 existing json file.
 
 <img src="images/ReadAddressBookSequenceDiagram.png" width="350" />
@@ -295,6 +295,7 @@ to the users.
 ##### Documented Date Child Classes
 
 Despite inheriting from the `DocumentedDate` parent class, these 3 “date” type objects have different behaviours.
+
 A `BirthDate` object needs to be recurring, to check if the person’s birthday is occurring on the same day despite
 being saved in a past year. A `RecentDate` needs to be a date that occurs in the past, and a `ReminderDate` needs to be
 a date that has not yet occurred. To model this more concretely, we implement some checks using the `ParserUtil` class.
@@ -306,16 +307,16 @@ enable better testability.
 
 <img src="images/BirthDateCreationSequenceDiagram.png" width="450" />
 
- As seen in the sequence diagram above, which shows the process of creating a `BirthDate` object.
+ As seen in the sequence diagram above, which shows the process of creating a `BirthDate` object,
  `ParserUtil#parseBirthDate(validDate)` is called, with the user supplying a `validDate` in the form of a String.
 The method will trim the `validDate` into a `String` called `trimmedDate` and call
- `DocumentedDate#isValidDate(trimmedDate)` to check if it is in a valid date format. if the `trimmedDate` is indeed a valid date,
+ `DocumentedDate#isValidDate(trimmedDate)` to check if it is in a valid date format. If the `trimmedDate` is indeed a valid date,
 it will then be used to create a new `BirthDate` object. After that, a final check is done using the `getDaysPassed()`
  method, before `ParserUtil` returns the newly created `BirthDate` object. For `BirthDate` objects, the check using the
  `getDaysPassed()` method has to ensure that `BirthDate` objects are not created using dates in the future,
  i.e. either past dates or the current date.
 
-As the `RecentDate` and `ReminderDate` objects have similar requirements to the `BirthDate` objects, the process of
+As both `RecentDate` and `ReminderDate` objects have similar requirements to the `BirthDate` objects, the process of
 creating these objects are the same as the `BirthDate` objects. For better comparison, let us examine one more sequence
 diagram for the creation of a `ReminderDate` object.
 
@@ -323,15 +324,15 @@ diagram for the creation of a `ReminderDate` object.
 
 As seen above, the process exactly mirrors that of the `BirthDate` object. However, the biggest difference is that the
 check using `getDaysPassed()` must make sure that `ReminderDate` objects cannot be created with a date that has passed.
-This is because the function of the reminder is to ensure that users can keep track of tasks that have not yet been done
+This is because the purpose of the reminder is to ensure that users can keep track of tasks that have not yet been done
 or important events that are upcoming.
 
-The `RecentDate` objects are much more similar to the `BirthDate` objects as they have the same requirement of not being
-able to be created using a date in the future. The rationale is because `RecentDate` keep track of the user's
-interaction with clients and contacts, and the user must have interacted with the contact before they save the
-interaction record in the application.
+The `RecentDate` objects are much more similar to the `BirthDate` objects when compared to `ReminderDate` objects,
+as they have the same requirement of not being able to be created using a date in the future. This is because
+`RecentDate` objects keep track of the user's interactions with clients and contacts, and the user must have had an
+interaction with the contact before they save the interaction record in the application.
 
-Having two levels of checks ensure that when the working "date" type objects are less bug prone due when using the specific
+Having two levels of checks ensures that the working "date" type objects are less bug prone, when using the specific
 "date" type object for their designated usages. This makes features such as `after` or `within` return valid entries
 when used, instead of an invalid or unexpected entry.
 
@@ -357,7 +358,8 @@ when used, instead of an invalid or unexpected entry.
 ##### Aspect: How to store dates
 * Alternative 1 (current implementation): `DocumentedDate` objects use a `LocalDate` object to store dates.<br>
     * Pros: We can encapsulate the processes of date manipulation and comparison.
-        * We can leverage on Java being a strongly typed language to ensure that input and output are less prone to errors.
+        * We can leverage on Java being a strongly typed language to ensure that inputs and outputs are less prone
+          to errors.
     * Cons: Users are restricted in the way they input dates.
 
 
@@ -365,7 +367,7 @@ when used, instead of an invalid or unexpected entry.
     * Pros: More flexibility in terms of user input and input manipulation by the system.
     * Cons: More processes are required to parse and check for invalid inputs.
         * Users might be able to abuse the system by parsing a `String` with a long length, which might slow down the system
-            when the system is running more processes while parsing.
+            when the system is running other process concurrently.
         * Handling of behaviour for specific date types in terms of comparing dates may require more work.
 
 ## **Documentation, logging, testing, configuration, dev-ops**
