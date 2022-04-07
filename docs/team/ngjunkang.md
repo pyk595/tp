@@ -31,7 +31,7 @@ Given below are my contributions to the project.
     * PRs reviewed (with non-trivial review comments): [\#45](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/45), [\#92](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/92), [\#93](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/93), [\#179](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/179)
     * Held debugging sessions on Zoom to help teammates debug in a pair programming configuration.
     * Updated Gradle configuration: [\#77](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/77), [\#126](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/126)
-    * Updated all Use Cases in Developer Guide: [#\81](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/81)
+    * Updated all Use Cases in Developer Guide: [\#81](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/81)
     * Updated the Quick Start and Features section of User Guide: [\#98](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/98), [\#103](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/103)
     * Added in-page hyperlinks for date format in User Guide: [\#177](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/177)
     * Updated the deprecated links in Developer Guide to point to the project repository: [\#183](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/183)
