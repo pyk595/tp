@@ -40,7 +40,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the details of the person identified "
             + "by the index number used in the displayed contact list. "
-            + "Existing values will be overwritten by the input values."
+            + "Existing values will be overwritten by the input values. "
             + "Dates must be in the YYYY-MM-DD format"
             + "\n\n"
             + "Parameters: INDEX (must be a positive integer) "
