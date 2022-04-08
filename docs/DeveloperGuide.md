@@ -275,106 +275,6 @@ as values.<br>
   * Cons: Updating `UniqueTagList` takes O(logn) time every time; requires additional data structure to maintain
   `UniqueTagList` accurately.
 
-### Recently Contacted Information feature
-
-#### Implementation
-
-Each `Person` object contains its own list of `ContactedInfo` objects. These objects are stored in a List in each `Person` object.
-The class diagram below shows how the recently contacted information feature is implemented in the Model component.
-
-<img src="images/ModelContactedInfo.png" width="300" />
-
-##### ContactedInfo
-
-A `ContactedInfo` object contains the information regarding recent interactions for a specific client.
-
-The sequence diagram below shows how the add recently contacted information feature is parsed.
-
-<img src="images/AddContactedInfoCommandParserSeqDiagram.png" width="650" />
-
-The class diagaram below shows how ContactedInfo is implemented.
-
-<img src="images/ContactedInfo.png" width="550" />
-
-`ContactedInfo` objects have the following characteristics:
-
-* A `ContactedInfo` object has two private data members (final), `recentDate` of `RecentDate` object representing that date of interaction,
-and `description` of `Description` object, representing the description of the interaction. Both objects would distinguish one ContactedInfo object from another.
-* Any two `ContactedInfo` objects are not unique if both `description` and `recentDate` is equal.
-* `ContactedInfo` objects can be sorted, and the sorted order is the reverse ordering of the `RecentDate`.
-
-###### RecentDate
-
-`RecentDate` is an object that stores information regarding the interaction date for `ContactedInfo`. `RecentDate` object inherits from `DocumentedDate` object.
-The sequence diagram below shows the creation of a RecentDate object.
-
-<img src="images/RecentDateCreationSequenceDiagram.png" width="650" />
-
-`RecentDate` objects have the following characteristics:
-
-* A `RecentDate` object has two private data members (final), `date` representing the date of interaction as a `LocalDate` object,
-and `value` of `String` format representing the date in `YYYY-MM-DD` form.
-* input to create a `recentDate`object needs to be the correct format (`YYYY-MM-DD`).
-* Any two `recentDate` objects are not unique if both `recentDate` represents the same date.
-* `recentDate` objects can be sorted, and the sorted order is the reverse ordering of their `LocalDate`.
-
-`RecentDate` implements the following operations.
-
-* `parse(String parsedDate)`<br>
-  Creates a new `RecentDate` using a String. String has to have the format `YYYY-MM-DD`.
-
-* `defaultRecentDate()`<br>
-  Returns today's date as a `RecentDate` object.
-
-###### Description
-
-`Description` object represents the description of the recent interaction. Description gets invoked in the ParserUtil parseContactedInfo method.
-The sequence diagram below shows what happens when a Description object is instantiated.
-
-<img src="images/DescriptionSeqDiagram.png" width="450" />
-
-`Description` objects have the following characteristics:
-
-* `Description` needs to be alphanumeric (only letters and numerals are allowed), and should not exceed 280 characters.
-* Contains one public data member (final) `value` of `String` object, representing the description of the `Description` object,
-which can be used to distinguish itself from other `Description` object.
-
-`Description` implements the following operations.
-
-* `parse(String parsedDate)`<br>
-  Creates a new `RecentDate` using a String. String has to have the format `YYYY-MM-DD`.
-
-* `defaultDesc()`<br>
-  Returns a `Description` object containing the String with the description being "First Interaction".
-
-* `isValidDescription(String test)` <br>
-  Checks if the parsed String is a valid input. Returns true if the input String is alphanumeric and does not exceed 280 characters,
-  otherwise false.
-
-#### Design Consideration
-
-##### Aspect: How Recent Interaction feature data is handled
-
-* Alternative 1(current Implementation): ContactedInfo is an object that holds both `Description` and `RecentDate`.
-    * Pros: Easy to handle, more cohesion.
-    * Cons: More checks are needed to ensure that inputs by user is valid.
-
-* Alternative 2: Description and Recent Date objects are seperated.
-    * Pros: Easy to implement.
-    * Cons: More coupling.
-
-##### Aspect: How ContactedInfo is added into `Person`
-
-* Alternative 1(current implementation): Each Person holds a list of ContactedInfo objects. When a ContactedInfo object is instantiated,
-the ContactedInfo gets added into the ContactedInfo list of the specified person.
-    * Pros: Easy to implement, less coupling.
-    * Cons: May have performance issues in terms of memory usage if user keeps adding recently interacted dates.
-
-* Alternative 2: Instead of a ContactedInfo list, a list of pairs is used. the key of the pair is a RecentDate object,
-and the value is a Description object.
-    * Pros: Easy to implement.
-    * Cons: Harder to manage list and output data to reader.
-
 ### Date Features
 
 #### Implementation
@@ -475,6 +375,95 @@ when used, instead of an invalid or unexpected entry.
         * Users might be able to abuse the system by parsing a `String` with a long length, which might slow down the system
             when the system is running other process concurrently.
         * Handling of behaviour for specific date types in terms of comparing dates may require more work.
+
+### Interaction record feature
+
+#### Implementation
+
+Each `Person` object contains its own list of `ContactedInfo` objects. These objects are stored in a List in each `Person` object.
+The class diagram below shows how the recently contacted information feature is implemented in the Model component.
+
+<img src="images/ModelContactedInfo.png" width="300" />
+
+##### ContactedInfo
+
+A `ContactedInfo` object contains the information regarding recent interactions for a specific client.
+
+The sequence diagram below shows how the add recently contacted information feature is parsed.
+
+<img src="images/AddContactedInfoCommandParserSeqDiagram.png" width="650" />
+
+The class diagaram below shows how ContactedInfo is implemented.
+
+<img src="images/ContactedInfo.png" width="550" />
+
+`ContactedInfo` objects have the following characteristics:
+
+* A `ContactedInfo` object has two private data members (final), `recentDate` of `RecentDate` object representing that date of interaction,
+  and `description` of `Description` object, representing the description of the interaction. Both objects would distinguish one ContactedInfo object from another.
+* Any two `ContactedInfo` objects are not unique if both `description` and `recentDate` is equal.
+* `ContactedInfo` objects can be sorted, and the sorted order is the reverse ordering of the `RecentDate`.
+
+###### RecentDate
+
+`RecentDate` is an object that stores information regarding the interaction date for `ContactedInfo`. `RecentDate` object inherits from `DocumentedDate` object.
+The sequence diagram below shows the creation of a RecentDate object.
+
+<img src="images/RecentDateCreationSequenceDiagram.png" width="650" />
+
+`RecentDate` objects have the following characteristics:
+
+* A `RecentDate` object has two private data members (final), `date` representing the date of interaction as a `LocalDate` object,
+  and `value` of `String` format representing the date in `YYYY-MM-DD` form.
+* input to create a `recentDate`object needs to be the correct format (`YYYY-MM-DD`).
+* Any two `recentDate` objects are not unique if both `recentDate` represents the same date.
+* `recentDate` objects can be sorted, and the sorted order is the reverse ordering of their `LocalDate`.
+
+`RecentDate` implements the following operations.
+
+* `parse(String parsedDate)`<br>
+  Creates a new `RecentDate` using a String. String has to have the format `YYYY-MM-DD`.
+
+* `defaultRecentDate()`<br>
+  Returns today's date as a `RecentDate` object.
+
+###### Description
+
+`Description` object represents the description of the recent interaction. Description gets invoked in the ParserUtil parseContactedInfo method.
+The sequence diagram below shows what happens when a Description object is instantiated.
+
+<img src="images/DescriptionSeqDiagram.png" width="450" />
+
+`Description` objects have the following characteristics:
+
+* `Description` needs to be alphanumeric (only letters and numerals are allowed), and should not exceed 280 characters.
+* Contains one public data member (final) `value` of `String` object, representing the description of the `Description` object,
+  which can be used to distinguish itself from other `Description` object.
+
+`Description` implements the following operations.
+
+* `parse(String parsedDate)`<br>
+  Creates a new `RecentDate` using a String. String has to have the format `YYYY-MM-DD`.
+
+* `defaultDesc()`<br>
+  Returns a `Description` object containing the String with the description being "First Interaction".
+
+* `isValidDescription(String test)` <br>
+  Checks if the parsed String is a valid input. Returns true if the input String is alphanumeric and does not exceed 280 characters,
+  otherwise false.
+
+#### Design Consideration
+
+##### Aspect: How Recent Interaction feature data is handled
+
+* Alternative 1(current Implementation): ContactedInfo is an object that holds both `Description` and `RecentDate`.
+    * Pros: Easy to handle, more cohesion. This method introduces more SLAP, thus making it easier to update and maintain code.
+    * Cons: More checks are needed to ensure that inputs by user is valid.
+
+* Alternative 2: Description and Recent Date objects are seperated.
+    * Pros: Easy to implement.
+    * Cons: More coupling. This method would make it harder to maintain and update code. This method does not take
+SLAP into account, making it harder to implement commands related to this feature.
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
