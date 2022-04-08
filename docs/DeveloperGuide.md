@@ -324,18 +324,21 @@ The sequence diagram below shows how the add recently contacted information feat
 
 The class diagaram below shows how ContactedInfo is implemented.
 
-<img src="images/ContactedInfo.png" width="650" />
+<img src="images/ContactedInfo.png" width="550" />
 
 `ContactedInfo` objects have the following characteristics:
 
 * A `ContactedInfo` object has two private data members (final), `recentDate` of `RecentDate` object representing that date of interaction,
 and `description` of `Description` object, representing the description of the interaction. Both objects would distinguish one ContactedInfo object from another.
-* Any two `ContactedInfo` objects are not unique if `description` is equal, ignoring case differences, and `recentDate` is equal.
-* `ContactedInfo` objects can be sorted, and the sorted order is the reverse ordering of their `RecentDate`.
+* Any two `ContactedInfo` objects are not unique if both `description` and `recentDate` is equal.
+* `ContactedInfo` objects can be sorted, and the sorted order is the reverse ordering of the `RecentDate`.
 
 ###### RecentDate
 
 `RecentDate` is an object that stores information regarding the interaction date for `ContactedInfo`. `RecentDate` object inherits from `DocumentedDate` object.
+The sequence diagram below shows the creation of a RecentDate object.
+
+<img src="images/RecentDateCreationSequenceDiagram.png" width="650" />
 
 `RecentDate` objects have the following characteristics:
 
@@ -355,14 +358,15 @@ and `value` of `String` format representing the date in `YYYY-MM-DD` form.
 
 ###### Description
 
-`Description` object represents the description of the recent interaction. Description gets invoked in the ParserUtil parseContactedInfo method<br>
+`Description` object represents the description of the recent interaction. Description gets invoked in the ParserUtil parseContactedInfo method.
+The sequence diagram below shows what happens when a Description object is instantiated.
 
 <img src="images/DescriptionSeqDiagram.png" width="450" />
 
 `Description` objects have the following characteristics:
 
 * `Description` needs to be alphanumeric (only letters and numerals are allowed), and should not exceed 280 characters.
-* Contains one public data member (final) `value` of `String` object, representing the description of the `Description object`, 
+* Contains one public data member (final) `value` of `String` object, representing the description of the `Description` object, 
 which can be used to distinguish itself from other `Description` object.
 
 `Description` implements the following operations.
@@ -379,18 +383,27 @@ which can be used to distinguish itself from other `Description` object.
 
 #### Design Consideration
 
+##### Aspect: How Recent Interaction feature data is handled
+
+* Alternative 1(current Implementation): ContactedInfo is an object that holds both `Description` and `RecentDate`.
+    * Pros: Easy to handle, more cohesion.
+    * Cons: More checks are needed to ensure that inputs by user is valid.
+
+* Alternative 2: Description and Recent Date objects are seperated.
+    * Pros: Easy to implement.
+    * Cons: More coupling.
+
 ##### Aspect: How ContactedInfo is added into `Person`
 
-* Alternative 1 (current implementation): A new tag is instantiated everytime even though there already exists a tag with
-  the same tag name in `UniqueTagList`.<br>
+* Alternative 1(current implementation): Each Person holds a list of ContactedInfo objects. When a ContactedInfo object is instantiated, 
+the ContactedInfo gets added into the ContactedInfo list of the specified person. 
     * Pros: Easy to implement, less coupling.
-    * Cons: May have performance issues in terms of memory usage.
+    * Cons: May have performance issues in terms of memory usage if user keeps adding recently interacted dates.
 
-* Alternative 2: Unique tags are only instantiated once. Adding an existing tag to a person creates a reference to the
-  existing tag. The implementation is briefly shown below. <br><br>
-  <img src="images/BetterModelClassDiagram.png" width="450" />
-    * Pros: Better performance in terms of memory usage.
-    * Cons: More difficult to implement, more coupling (between `UniqueTagList` and the instantiation of`Person` etc) required.
+* Alternative 2: Instead of a ContactedInfo list, a list of pairs is used. the key of the pair is a RecentDate object, 
+and the value is a Description object.
+    * Pros: Easy to implement.
+    * Cons: Harder to manage list and output data to reader.
     
 ### Date Features
 
@@ -894,9 +907,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. No birthdays occur today.
 
     * 1a1. Address Book shows message stating that there are 0 persons with birthdays today.
-
       Use case ends.
-### Non-Functional Requirements
+
+### Non-Functional Requirements <br>
 
 1.  Should work on any **mainstream OS** as long as it has Java `11` or
     above installed.
@@ -912,8 +925,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9.  The **application** should respond to user input within 2 seconds.
 10. The **application** is not required to support printing or use with other 3rd party software.
 11. The **application** is not required to implement undo, redo and data recovery functions on error.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -984,6 +995,3 @@ testers are expected to do more *exploratory* testing.
     1. Run the jar file
 
         Expected: The application will make a copy of the current addressbook.json in backup.json and continue running with an empty addressbook.json. If changes are made, addressbook.json will be overwritten.
-
-
-1. _{ more test cases …​ }_
