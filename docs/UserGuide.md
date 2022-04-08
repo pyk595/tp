@@ -12,7 +12,7 @@ Instead of hiring a secretary to handle day-to-day tasks, AIA can help you achie
 Usage of this application is optimised for use via a Command Line Interface (CLI) while still displaying information to users in an intuitive manner, through a Graphical User Interface (GUI).
 If you can type fast, AIA can significantly reduce the amount of time spent on retrieving saved information for each client that might have been saved on many different sources previously.
 
-This user guide offers the following for insurance agents or other users trying to learn how to use the application:
+This user guide offers the following to insurance agents or other users trying to learn how to use the application:
 - A quick start to running the application
 - All available features
 - Examples on how to use each feature
