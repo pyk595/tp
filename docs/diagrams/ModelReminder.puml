@@ -25,6 +25,6 @@ AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *-down-> "1" ReminderList
 ReminderList --> "*" Reminder
-ReminderDescription -up-> Reminder
-ReminderDate -up-> Reminder
+ReminderDescription *-down-> "1" Reminder
+ReminderDate *-down-> "1" Reminder
 @enduml
