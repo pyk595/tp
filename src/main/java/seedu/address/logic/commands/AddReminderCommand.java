@@ -32,11 +32,10 @@ public class AddReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "remind";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to an existing contact, "
-            + "as specified by the index number used in the displayed person list. "
-            + "If a date is not specified, it will register today as the reminder date.\n\n"
+            + "as specified by the index number used in the displayed person list. \n\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_REMINDER_DESCRIPTION + "REMINDER "
-            + "[" + PREFIX_REMINDER_DATE + "DATE]\n\n"
+            + PREFIX_REMINDER_DATE + "[DATE]\n\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_REMINDER_DESCRIPTION + "meeting "
             + PREFIX_REMINDER_DATE + new DocumentedDate(LocalDate.of(2022, 1, 1));
