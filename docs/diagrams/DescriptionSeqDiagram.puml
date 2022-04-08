@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+mainframe **sd** Description
+hide footbox
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+participant "description:Description" as Description
+
+-> Description : new Description(desc)
+activate Description
+
+Description -> Description : isValidDescription(desc)
+activate Description
+deactivate Description
+
+<-- Description : description
+deactivate Description
+@enduml

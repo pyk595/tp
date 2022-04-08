@@ -258,6 +258,123 @@ as values.<br>
   * Cons: Updating `UniqueTagList` takes O(logn) time every time; requires additional data structure to maintain
   `UniqueTagList` accurately.
 
+#### Design Consideration
+
+##### Aspect: How tags are assigned to `Person`
+
+* Alternative 1 (current implementation): A new tag is instantiated everytime even though there already exists a tag with
+  the same tag name in `UniqueTagList`.<br>
+    * Pros: Easy to implement, less coupling.
+    * Cons: May have performance issues in terms of memory usage.
+
+* Alternative 2: Unique tags are only instantiated once. Adding an existing tag to a person creates a reference to the
+  existing tag. The implementation is briefly shown below. <br><br>
+  <img src="images/BetterModelClassDiagram.png" width="450" />
+    * Pros: Better performance in terms of memory usage.
+    * Cons: More difficult to implement, more coupling (between `UniqueTagList` and the instantiation of`Person` etc) required.
+
+##### Aspect: How unique tags are stored in `UniqueTagList` (in the current implementation of tagging system)
+
+* Alternative 1 (current implementation): Unique tags are stored in a `HashMap` as keys, with its frequency of occurrence
+  as values.<br>
+    * Pros: Updating `UniqueTagList` takes constant time; the number of occurrence for each unique tag is recorded and
+      can be used.
+    * Cons: Reading the `UniqueTagList` in alphabetical order takes O(n logn) time, incurred by sorting of the tags.
+
+* Alternative 2: Unique tags are stored in a `PriorityQueue`.<br>
+    * Pros: Reading the `UniqueTagList` in alphabetical order just takes O(n) time.
+    * Cons: Updating `UniqueTagList` takes O(logn) time every time; requires additional data structure to maintain
+      `UniqueTagList` accurately.
+
+This section describes some noteworthy details on how certain features are implemented.
+
+### Recently Contacted Information feature
+
+#### Implementation
+
+Each `Person` object contains its own list of `ContactedInfo` objects. These objects are stored in a List in each `Person` object. 
+The class diagram below shows how the recently contacted information feature is implemented in the Model component.
+
+<img src="images/ModelContactedInfo.png" width="300" />
+
+##### ContactedInfo
+
+A `ContactedInfo` object contains the information regarding recent interactions for a specific client.
+
+The sequence diagram below shows how the add recently contacted information feature is parsed.
+
+<img src="images/AddContactedInfoCommandParserSeqDiagram.png" width="650" />
+
+The class diagaram below shows how ContactedInfo is implemented.
+
+<img src="images/ContactedInfo.png" width="650" />
+
+`ContactedInfo` objects have the following characteristics:
+
+* A `ContactedInfo` object has two private data members (final), `recentDate` of `RecentDate` object representing that date of interaction,
+and `description` of `Description` object, representing the description of the interaction. Both objects would distinguish one ContactedInfo object from another.
+* Any two `ContactedInfo` objects are not unique if `description` is equal, ignoring case differences, and `recentDate` is equal.
+* `ContactedInfo` objects can be sorted, and the sorted order is the reverse ordering of their `RecentDate`.
+
+###### RecentDate
+
+`RecentDate` is an object that stores information regarding the interaction date for `ContactedInfo`. `RecentDate` object inherits from `DocumentedDate` object.
+
+`RecentDate` objects have the following characteristics:
+
+* A `RecentDate` object has two private data members (final), `date` representing the date of interaction as a `LocalDate` object,
+and `value` of `String` format representing the date in `YYYY-MM-DD` form.
+* input to create a `recentDate`object needs to be the correct format (`YYYY-MM-DD`).
+* Any two `recentDate` objects are not unique if both `recentDate` represents the same date.
+* `recentDate` objects can be sorted, and the sorted order is the reverse ordering of their `LocalDate`.
+
+`RecentDate` implements the following operations.
+
+* `parse(String parsedDate)`<br>
+  Creates a new `RecentDate` using a String. String has to have the format `YYYY-MM-DD`.
+
+* `defaultRecentDate()`<br>
+  Returns today's date as a `RecentDate` object.
+
+###### Description
+
+`Description` object represents the description of the recent interaction. Description gets invoked in the ParserUtil parseContactedInfo method<br>
+
+<img src="images/DescriptionSeqDiagram.png" width="450" />
+
+`Description` objects have the following characteristics:
+
+* `Description` needs to be alphanumeric (only letters and numerals are allowed), and should not exceed 280 characters.
+* Contains one public data member (final) `value` of `String` object, representing the description of the `Description object`, 
+which can be used to distinguish itself from other `Description` object.
+
+`Description` implements the following operations.
+
+* `parse(String parsedDate)`<br>
+  Creates a new `RecentDate` using a String. String has to have the format `YYYY-MM-DD`.
+
+* `defaultDesc()`<br>
+  Returns a `Description` object containing the String with the description being "First Interaction".
+
+* `isValidDescription(String test)` <br>
+  Checks if the parsed String is a valid input. Returns true if the input String is alphanumeric and does not exceed 280 characters,
+  otherwise false.
+
+#### Design Consideration
+
+##### Aspect: How ContactedInfo is added into `Person`
+
+* Alternative 1 (current implementation): A new tag is instantiated everytime even though there already exists a tag with
+  the same tag name in `UniqueTagList`.<br>
+    * Pros: Easy to implement, less coupling.
+    * Cons: May have performance issues in terms of memory usage.
+
+* Alternative 2: Unique tags are only instantiated once. Adding an existing tag to a person creates a reference to the
+  existing tag. The implementation is briefly shown below. <br><br>
+  <img src="images/BetterModelClassDiagram.png" width="450" />
+    * Pros: Better performance in terms of memory usage.
+    * Cons: More difficult to implement, more coupling (between `UniqueTagList` and the instantiation of`Person` etc) required.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
