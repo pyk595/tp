@@ -461,7 +461,7 @@ The sequence diagram below shows what happens when a Description object is insta
     * Pros: Easy to implement.
     * Cons: More coupling. This method would make it harder to maintain and update code. This method does not take
       SLAP into account, making it harder to implement commands related to this feature.
-      
+
 ### Reminder Feature
 
 #### Implementation
@@ -474,7 +474,7 @@ shows how the reminder features are implemented in the `Model` component.
 ##### ReminderList
 
 `ReminderList` is an object that stores `Reminder` objects. `ReminderList` makes use of a `PriorityQueue` to store
-`Reminder` objects, and makes use of the `ReminderDate` to arrange the `Reminder` objects in chronological order. 
+`Reminder` objects, and makes use of the `ReminderDate` to arrange the `Reminder` objects in chronological order.
 
 `ReminderList` has been designed to be immutable. Every addition or deletion of a `Reminder` in the `ReminderList` would
 return a copy of the updated list. The new instance returned would then be used to replace the existing `ReminderList`
@@ -488,30 +488,30 @@ The sequence diagram below shows how `ReminderList` handles a deletion of a `Rem
 ##### Reminder
 
 Each `Reminder` object contains information regarding reminders specific to a saved client, and has the following
-characteristics: 
+characteristics:
 
 * A `Reminder` object stores a private `ReminderDescription` object, and a private `ReminderDate` object.
     * A `ReminderDescription` object stores a private `String` which describes the reminder event.
     * A `ReminderDate` object extends from `DocumentedDate` stores a private `LocalDate` field to capture the date of
     the reminder.
     * Any two `Reminder` objects are not if both `ReminderDescription` and `ReminderDate` are equal.
-    
+
 `Reminder` implements the following method:
 
 * `isSameDateAs(ReminderDate reminderDate)` <br>
     Checks if the `Reminder` object happens on the same date as the given `ReminderDate`.
-  
+
 The class diagram below shows how a `Reminder` object is implemented
 
 <img src="images/Reminder.png"/>
-    
+
 The sequence diagram below shows how a user input to add a reminder is parsed into a `AddReminderCommand`. <br>
 
 <img src="images/AddReminderCommandParserSeqDiagram.png"/>
-  
+
 ##### ReminderDescription
 
-Each `ReminderDescription` object stores information pertaining to the description of reminders. 
+Each `ReminderDescription` object stores information pertaining to the description of reminders.
 
 `ReminderDescription` objects have the following characteristics:
 
@@ -532,11 +532,11 @@ a date which happens in the past, as reminders are supposed to remind users of u
 
 `ReminderDate` objects have the following characteristics:
 
-* A `ReminderDate` object has a private `DateTimeFormatter` that provides the format in which a date is to be printed. 
+* A `ReminderDate` object has a private `DateTimeFormatter` that provides the format in which a date is to be printed.
   Developers are able to conveniently alter this field to change the output format of the date.
-* A `ReminderDate` object has a private `String` which stores the displayed value of a date provided by the 
+* A `ReminderDate` object has a private `String` which stores the displayed value of a date provided by the
   `DateTimeFormatter`.
-  
+
 `ReminderDate` implements the following method:
 
 * `parse(String parsedDate)`
@@ -551,7 +551,7 @@ a date which happens in the past, as reminders are supposed to remind users of u
   * Pros: This method applies SLAP, which increases the readability of the code, and makes the updating and debugging
     process simpler.
   * Cons: Requires more checks on user input to make sure that legal arguments are being passed to the methods.
-    
+
 * Alternative 2: `Reminder` stores the description and date of reminders as two primitives, i.e. `String` and
   `LocalDate`.
   * Pros: Implementation of `Reminder` is easier
