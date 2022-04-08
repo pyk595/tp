@@ -376,6 +376,92 @@ when used, instead of an invalid or unexpected entry.
             when the system is running other process concurrently.
         * Handling of behaviour for specific date types in terms of comparing dates may require more work.
 
+### Interaction record feature
+
+#### Implementation
+
+Each `Person` object contains its own `List` of `ContactedInfo` objects. The class diagram below shows how
+the recently contacted information feature is implemented in the Model component.
+
+<img src="images/ModelContactedInfo.png" width="300" />
+
+##### ContactedInfo
+
+A `ContactedInfo` object contains the information regarding recent interactions for a specific client.
+
+The sequence diagram below shows how the add recently contacted information feature is parsed.
+
+<img src="images/AddContactedInfoCommandParserSeqDiagram.png" width="650" />
+
+The class diagram below shows how ContactedInfo is implemented.
+
+<img src="images/ContactedInfo.png" width="550" />
+
+`ContactedInfo` objects have the following characteristics:
+
+* A `ContactedInfo` object has two private data members (final), `recentDate` of `RecentDate` object representing that date of interaction,
+  and `description` of `Description` object, representing the description of the interaction. Both objects would distinguish one ContactedInfo object from another.
+* Any two `ContactedInfo` objects are not unique if both `description` and `recentDate` is equal.
+* `ContactedInfo` objects can be sorted, and the sorted order is the reverse ordering of the `RecentDate`.
+
+###### RecentDate
+
+`RecentDate` is an object that stores information regarding the interaction date for `ContactedInfo`. `RecentDate` object inherits from `DocumentedDate` object.
+
+`RecentDate` objects have the following characteristics:
+
+* A `RecentDate` object has two private data members (final), `date` representing the date of interaction as a `LocalDate` object,
+  and `value` of `String` format representing the date in `YYYY-MM-DD` form.
+* input to create a `recentDate`object needs to be the correct format (`YYYY-MM-DD`).
+* Any two `recentDate` objects are not unique if both `recentDate` represents the same date.
+* `recentDate` objects can be sorted, and the sorted order is the reverse ordering of their `LocalDate`.
+
+`RecentDate` implements the following operations.
+
+* `parse(String parsedDate)`<br>
+  Creates a new `RecentDate` using a String. String has to have the format `YYYY-MM-DD`.
+
+* `defaultRecentDate()`<br>
+  Returns today's date as a `RecentDate` object.
+
+###### Description
+
+`Description` object represents the description of the recent interaction. Description gets invoked in the ParserUtil parseContactedInfo method.
+The sequence diagram below shows what happens when a Description object is instantiated.
+
+<img src="images/DescriptionSeqDiagram.png" width="450" />
+
+`Description` objects have the following characteristics:
+
+* `Description` needs to be alphanumeric (only letters and numerals are allowed), and should not exceed 280 characters.
+* Contains one public data member (final) `value` of `String` object, representing the description of the `Description` object,
+  which can be used to distinguish itself from other `Description` object.
+
+`Description` implements the following operations.
+
+* `parse(String parsedDate)`<br>
+  Creates a new `RecentDate` using a String. String has to have the format `YYYY-MM-DD`.
+
+* `defaultDesc()`<br>
+  Returns a `Description` object containing the String with the description being "First Interaction".
+
+* `isValidDescription(String test)` <br>
+  Checks if the parsed String is a valid input. Returns true if the input String is alphanumeric and does not exceed 280 characters,
+  otherwise false.
+
+#### Design Consideration
+
+##### Aspect: How Recent Interaction feature data is handled
+
+* Alternative 1 (current Implementation): `ContactedInfo` is an object that holds both `Description` and `RecentDate`.
+    * Pros: Easy to handle, more cohesion. This method introduces more SLAP, thus making it easier to update and maintain code.
+    * Cons: More checks are needed to ensure that inputs by user is valid.
+
+* Alternative 2: `Description` and `RecentDate` objects are seperated.
+    * Pros: Easy to implement.
+    * Cons: More coupling. This method would make it harder to maintain and update code. This method does not take
+      SLAP into account, making it harder to implement commands related to this feature.
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -777,9 +863,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. No birthdays occur today.
 
     * 1a1. Address Book shows message stating that there are 0 persons with birthdays today.
-
       Use case ends.
-### Non-Functional Requirements
+
+### Non-Functional Requirements <br>
 
 1.  Should work on any **mainstream OS** as long as it has Java `11` or
     above installed.
@@ -795,8 +881,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9.  The **application** should respond to user input within 2 seconds.
 10. The **application** is not required to support printing or use with other 3rd party software.
 11. The **application** is not required to implement undo, redo and data recovery functions on error.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -835,8 +919,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -852,8 +934,6 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ### Saving data
 
 1. Dealing with missing data files
@@ -867,6 +947,3 @@ testers are expected to do more *exploratory* testing.
     1. Run the jar file
 
         Expected: The application will make a copy of the current addressbook.json in backup.json and continue running with an empty addressbook.json. If changes are made, addressbook.json will be overwritten.
-
-
-1. _{ more test cases …​ }_
