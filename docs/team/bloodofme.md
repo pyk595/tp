@@ -38,9 +38,9 @@ Given below are my contributions to the project.
   * Contributed to the userguide by adding screenshots [\#132](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/132)
   * Contributed to the userguide by updating examples related to insurance agents [\#115](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/115)
   * Updated userguide based on comments made by test readers [\#165](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/165)
-  
-**Team-based tasks**: 
-* PRs reviewed (with non-trivial review comments): [\#15](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/15), [\#16](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/16), 
+
+**Team-based tasks**:
+* PRs reviewed (with non-trivial review comments): [\#15](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/15), [\#16](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/16),
 [\#19](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/19), [\#20](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/20), [\#21](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/21),
 [\#59](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/59), [\#70](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/70), [\#72](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/72),
 [\#109](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/109), [\#120](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/120), [\#123](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/123),
