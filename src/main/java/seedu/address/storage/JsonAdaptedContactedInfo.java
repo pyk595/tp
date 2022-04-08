@@ -8,6 +8,9 @@ import seedu.address.model.contactedinfo.ContactedInfo;
 import seedu.address.model.date.RecentDate;
 import seedu.address.model.description.Description;
 
+/**
+ * Jackson-friendly version of {@link ContactedInfo}.
+ */
 public class JsonAdaptedContactedInfo {
     private final String description;
     private final String date;
