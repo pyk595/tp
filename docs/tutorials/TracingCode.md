@@ -67,7 +67,7 @@ public interface Logic {
 But apparently, this is an interface, not a concrete implementation.
 That should be fine because the [Architecture section of the Developer Guide](../DeveloperGuide.html#architecture) tells us that components interact through interfaces. Here's the relevant diagram:
 
-<img src="../images/ComponentManagers.png" width="300" />
+<img src="images/ComponentManagers.png" width="300" />
 
 Next, let's find out which statement(s) in the `UI` code is calling this method, thus transferring control from the `UI` to the `Logic`.
 

@@ -1,0 +1,46 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+mainframe **sd** AddContactedInfoCommandParser
+hide footbox
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+participant ":AddContactedInfoCommandParser" as AddContactedInfoCommandParser
+participant "<<Class>>\n:ParserUtil" as ParserUtil
+participant ":Description" as Description
+participant ":ContactedInfo" as ContactedInfo
+
+-> AddContactedInfoCommandParser : parse(arguments)
+
+activate AddContactedInfoCommandParser
+AddContactedInfoCommandParser -> ParserUtil : parseContactedInfo(date, description)
+activate ParserUtil
+
+ParserUtil -> ParserUtil : parseRecentDate(trimmedDate)
+activate ParserUtil
+deactivate ParserUtil
+
+ParserUtil -> ParserUtil : new Description(trimmedDescription)
+activate ParserUtil
+deactivate ParserUtil
+
+Create ContactedInfo
+ParserUtil -> ContactedInfo : new ContactedInfo(recentDate, desc)
+activate ContactedInfo
+
+ContactedInfo --> ParserUtil : ContactedInfo
+deactivate ContactedInfo
+
+ParserUtil --> AddContactedInfoCommandParser : ContactedInfo
+deactivate ParserUtil
+
+<-- AddContactedInfoCommandParser: ContactedInfo
+deactivate AddContactedInfoCommandParser
+@enduml

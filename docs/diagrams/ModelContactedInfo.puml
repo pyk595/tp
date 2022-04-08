@@ -1,0 +1,34 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+Package "Model (focus on ContactedInfo implementation)" <<Rectangle>>{
+
+class AddressBook {
+}
+
+class Person {
++containsContactedInfo(ContactedInfo) : boolean
++getLatestContactedInfoEntry() : Optional<ContactedInfo>
++getContactedInfoList() : List<ContactedInfo>
++getContactedInfoListToString() : String
++ContactedInfo getContactedInfoEntry(Index) : ContactedInfo
++getContactedInfoListSize() : int
++getContactedDateRange() : Integer
++isContactedInfoListEmpty() : boolean
+}
+
+class List<ContactedInfo>
+class ContactedInfo
+class Description
+class RecentDate
+class UniquePersonList
+
+}
+
+AddressBook *--> "1" UniquePersonList
+UniquePersonList --> "~* all" Person
+Person *-down-> "1" List
+List -down-> ContactedInfo
+ContactedInfo *-down-> "1" RecentDate
+ContactedInfo *-down-> "1" Description
+@enduml
