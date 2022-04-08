@@ -128,6 +128,10 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
+<div markdown="span" class="alert alert-info">
+    :information_source: **Note:** The structure of `Tag`-related classes is detailed in the class diagram in the [implementation section](#tagging-feature) of tagging feature.
+</div>
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-T17-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -138,6 +142,19 @@ The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+In the event that data saved in the json file is corrupted, the `Storage` component will make a copy of the
+existing json file.
+
+<img src="images/ReadAddressBookSequenceDiagram.png" width="350" />
+
+After the `MainApp` calls `JsonAddressBookStorage#readAddressBook()`, if the data is corrupted, `JsonAddressBookStorage`
+will call the `backup()` method and make a copy of the `addressbook.json`. The copied file will be saved in the `data`
+directory in a file called `backup.json`.
+
+Users will still be able to use all features available, but the existing `addressbook.json` will be overwritten.
+After closing the application, users are able to go into the `data` directory and rectify the problem in `backup.json`
+before copying the information into `addressbook.json`.
 
 ### Common classes
 
@@ -257,7 +274,7 @@ as values.<br>
   * Pros: Reading the `UniqueTagList` in alphabetical order just takes O(n) time.
   * Cons: Updating `UniqueTagList` takes O(logn) time every time; requires additional data structure to maintain
   `UniqueTagList` accurately.
-
+  
 #### Design Consideration
 
 ##### Aspect: How tags are assigned to `Person`
@@ -374,8 +391,107 @@ which can be used to distinguish itself from other `Description` object.
   <img src="images/BetterModelClassDiagram.png" width="450" />
     * Pros: Better performance in terms of memory usage.
     * Cons: More difficult to implement, more coupling (between `UniqueTagList` and the instantiation of`Person` etc) required.
+    
+### Date Features
 
---------------------------------------------------------------------------------------------------------------------
+#### Implementation
+
+As seen in the [`Model` component](#model-component), each `Person` object contains its own `BirthDate` object,
+a list of `ContactedInfo` and a `ReminderList`. The list of `ContactedInfo` stores `ContactedInfo` objects,
+while the `ReminderList` stores `Reminder` objects. A `ContactedInfo` object has a `RecentDate` object,
+and a `Reminder` object has a `ReminderDate` object. As `BirthDate` objects, `RecentDate` objects and `ReminderDate`
+objects need to be displayed in the same format for consistency, we have a `DocumentedDate` parent class to ensure that
+the three “date” type objects will use the same `toString` method in `DocumentedDate` to allow users to display the
+dates in the same format, as seen in the class diagram below.
+
+<img src="images/DocumentedDateClassDiagram.png" width="450" />
+
+##### Documented Date
+
+`DocumentedDate` objects have the following characteristics:
+* A `DocumentedDate` object has a private `LocalDate` member to allow the application to easily store and display a
+  formatted date.
+* A `DateTimeFormatter` constant is included as a member so that developers can tweak how the formatted date is shown
+to the users.
+
+
+##### Documented Date Child Classes
+
+Despite inheriting from the `DocumentedDate` parent class, these 3 “date” type objects have different behaviours.
+
+A `BirthDate` object needs to be recurring, to check if the person’s birthday is occurring on the same day despite
+being saved in a past year. A `RecentDate` needs to be a date that occurs in the past, and a `ReminderDate` needs to be
+a date that has not yet occurred. To model this more concretely, we implement some checks using the `ParserUtil` class.
+
+
+The three "date" type objects, are primarily created using static methods in the `ParserUtil` class.
+However, there are public constructors to create each `BirthDate`, `RecentDate` and `ReminderDate` object. This is to
+enable better testability.
+
+<img src="images/BirthDateCreationSequenceDiagram.png" width="450" />
+
+ As seen in the sequence diagram above, which shows the process of creating a `BirthDate` object,
+ `ParserUtil#parseBirthDate(validDate)` is called, with the user supplying a `validDate` in the form of a String.
+The method will trim the `validDate` into a `String` called `trimmedDate` and call
+ `DocumentedDate#isValidDate(trimmedDate)` to check if it is in a valid date format. If the `trimmedDate` is indeed a valid date,
+it will then be used to create a new `BirthDate` object. After that, a final check is done using the `getDaysPassed()`
+ method, before `ParserUtil` returns the newly created `BirthDate` object. For `BirthDate` objects, the check using the
+ `getDaysPassed()` method has to ensure that `BirthDate` objects are not created using dates in the future,
+ i.e. either past dates or the current date.
+
+As both `RecentDate` and `ReminderDate` objects have similar requirements to the `BirthDate` objects, the process of
+creating these objects are the same as the `BirthDate` objects. For better comparison, let us examine one more sequence
+diagram for the creation of a `ReminderDate` object.
+
+<img src="images/ReminderDateCreationSequenceDiagram.png" width="450" />
+
+As seen above, the process exactly mirrors that of the `BirthDate` object. However, the biggest difference is that the
+check using `getDaysPassed()` must make sure that `ReminderDate` objects cannot be created with a date that has passed.
+This is because the purpose of the reminder is to ensure that users can keep track of tasks that have not yet been done
+or important events that are upcoming.
+
+The `RecentDate` objects are much more similar to the `BirthDate` objects when compared to `ReminderDate` objects,
+as they have the same requirement of not being able to be created using a date in the future. This is because
+`RecentDate` objects keep track of the user's interactions with clients and contacts, and the user must have had an
+interaction with the contact before they save the interaction record in the application.
+
+Having two levels of checks ensures that the working "date" type objects are less bug prone, when using the specific
+"date" type object for their designated usages. This makes features such as `after` or `within` return valid entries
+when used, instead of an invalid or unexpected entry.
+
+#### Design Consideration
+
+##### Aspect: How date type objects are created
+
+* Alternative 1 (current implementation): "Date" type objects extend `DocumentedDate`.<br>
+    * Pros: We can modify certain behaviour of each specific child class (i.e. allowing `BirthDate`
+      objects to be read as recurring dates when necessary.)
+        * Less duplicated bugs as each child class is independent of each other.
+        * Less duplicated code as the parent class can hold common methods.
+    * Cons: More overhead as more classes are required.
+
+
+* Alternative 2: Use `DocumentedDate` for all dates and differentiate using `enum` types
+    * Pros: We can standardise all formatting and behaviour strictly, and only use type specific methods
+    when necessary. (i.e. Since `BirthDate` and `RecentDate` objects check for past and current dates only,
+      we do not need to have duplicated code)
+    * Cons: More checks are required within each method, may potentially violate Single Responsibility Principle and
+    code quality due to the different types of checks required.
+
+##### Aspect: How to store dates
+* Alternative 1 (current implementation): `DocumentedDate` objects use a `LocalDate` object to store dates.<br>
+    * Pros: We can encapsulate the processes of date manipulation and comparison.
+        * We can leverage on Java being a strongly typed language to ensure that inputs and outputs are less prone
+          to errors.
+    * Cons: Users are restricted in the way they input dates.
+
+
+* Alternative 2: Use a `String` to store dates
+    * Pros: More flexibility in terms of user input and input manipulation by the system.
+    * Cons: More processes are required to parse and check for invalid inputs.
+        * Users might be able to abuse the system by parsing a `String` with a long length, which might slow down the system
+            when the system is running other process concurrently.
+        * Handling of behaviour for specific date types in terms of comparing dates may require more work.
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -805,6 +921,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Application**: The Automated Insurance Assistant Application
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **MSS**: Main Success Scenario that describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
+* **ContactedInfo**: The type of object that interaction records are saved as.
+* **RecentDate**: The type of date object used to save dates for a given interaction record.
 
 --------------------------------------------------------------------------------------------------------------------
 
