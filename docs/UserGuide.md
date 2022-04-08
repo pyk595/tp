@@ -31,31 +31,8 @@ e.g. "exe" refers to the executable file type used on windows.
 <div style="page-break-after: always;"></div>
 
 ## Table of Contents
-
-* [Quick Start](#quick-start)
-* [Features](#features)
-  - [Adding a contact: `add`](#adding-a-contact-add)
-  - [Viewing all contacts: `list`](#viewing-all-contacts-list)
-  - [Editing a contact: `edit`](#editing-a-contact-edit)
-  - [Finding contacts by name: `find`](#finding-contacts-by-name-find)
-  - [Deleting a contact: `delete`](#deleting-a-contact-delete)
-  - [Adding a tag: `tag`](#adding-a-tag-tag)
-  - [Deleting a tag: `untag`](#deleting-a-tag-untag)
-  - [Viewiing all available tags: `tags`](#viewing-all-available-tags-tags)
-  - [Finding contacts with tag: `#`](#finding-contacts-with-tag-)
-  - [Adding interaction records with a contact: `log`](#adding-interaction-records-with-a-contact-log)
-  - [Deleting a recent interaction record with a contact: `unlog`](#deleting-a-recent-interaction-record-with-a-contact-unlog)
-  - [Viewing all recent interactions with a contact: `logs`](#viewing-all-recent-interactions-with-a-contact-logs)
-  - [Viewing contacts that were contacted within days: `within`](#viewing-contacts-that-were-contacted-within-days-within)
-  - [Viewing contacts contacted more than a specified number of days ago: `after`](#viewing-contacts-contacted-more-than-a-specified-number-of-days-ago-after)
-  - [Adding a reminder to a contact: `remind`](#adding-a-reminder-to-a-contact-remind)
-  - [Viewing reminders of a contact: `reminder`](#viewing-reminders-of-a-contact-reminder)
-  - [Viewing reminders by date: `reminders`](#viewing-reminders-by-date-reminders)
-  - [Show all birthdays today: `birthdays`](#show-all-birthdays-today-birthdays)
-  - [Deleting a reminder: `forget`](#deleting-a-reminder-forget)
-  - [Exiting the program: `exit`](#exiting-the-program-exit)
-  - [Saving the data](#saving-the-data)
-* [Command Summary](#command-summary)
+* Table of Contents
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -104,9 +81,12 @@ e.g. "exe" refers to the executable file type used on windows.
   the input will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Dates should be in "YYYY-MM-DD" format, unless stated otherwise. Single digits should be zero padded.<br>
-  e.g. `2022-05-17`, `2021-01-01` and `2011-10-10` are in the correct format, while `2022-5-17` and `2021-1-1` are in the wrong format.
-* `INDEX` used in the different commands refer to the index number shown in the displayed person list.
+* <a name="a-date-format" />Dates should be in "YYYY-MM-DD" format, unless stated otherwise. Single digits should be zero padded.<br>
+  e.g. `2022-05-17`, `2021-01-01` and `2011-10-10` are in the correct format with zero padding, while `2022-5-17` and `2021-1-1` are in the wrong format as they do not have a zero padding for single digit months and/or days.
+
+* <a name="a-tag-name" />Tag names should be alphanumeric. In other words, it should only contain letters (a-z, A-Z) and numbers (0-9). Spaces are not allowed.
+
+* <a name="a-index" />`INDEX` used in the different commands refer to the index number shown in the displayed contact list.
 
   ❗The `INDEX` must be a positive integer i.e. 1,2,3,...
 
@@ -122,7 +102,8 @@ When you meet a new potential client and you managed to get their contact inform
   * The default date would be the day the contact was added, and default description would be "First Interaction".
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`
-* `BIRTH_DATE` should be in the specified date format.
+* `BIRTH_DATE` should be in the [specified date format](#a-date-format).
+* `TAG` should be in the [specified format](#a-tag-name).
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:**
@@ -131,7 +112,9 @@ A person can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/1970-01-01` adds the contact with only the compulsory information provided.
+  > <img src="images/userguideimages/AddCommandWithoutTag.png" alt="Ui"/>
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/1970-01-01 t/Client t/BasicMember` adds the contact with the compulsory information provided and the optional information.
+  > <img src="images/userguideimages/AddCommandWithTag.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -140,6 +123,7 @@ Examples:
 When you want to look through your whole clientele, `list` will show all the people saved in the application.
 
 Format: `list`
+> <img src="images/userguideimages/ListCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
@@ -152,16 +136,20 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE]
 [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`.
+* `INDEX` must be in the [specified format](#a-index).
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* `BIRTH_DATE` should be in the [specified date format](#a-date-format).
+* `TAG` should be in the [specified format](#a-tag-name).
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
-* `BIRTH_DATE` should be in the specified date format.
 
 Examples:
-* `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+* `edit 7 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+  > <img src="images/userguideimages/EditCommandWithoutTag.png" alt="Ui"/>
 * `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+  > <img src="images/userguideimages/EditCommandWithTag.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
@@ -176,12 +164,14 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Persons matching at least one keyword will be returned.
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
+* `find John` returns `john tan` and `John Doe`
+  > <img src="images/userguideimages/FindCommand.png" alt="Ui"/>
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
+  > <img src="images/userguideimages/FindCommandMultiple.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -192,6 +182,7 @@ If a contact entry is no longer relevant, you can `delete` the specified contact
 Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
+* `INDEX` must be in the [specified format](#a-index).
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the application.
@@ -204,9 +195,12 @@ Examples:
 Suppose you want to catalogue a contact with a specific category like "client", you can `tag` the contact to a category, as specified by the index.
 
 Format: `tag INDEX t/TAG`
+* `INDEX` must be in the [specified format](#a-index).
+* `TAG` should be in the [specified format](#a-tag-name).
 
 Example:
-* `tag 27 t/client` adds the "client" tag to the 27th contact in the display contact list.
+* `tag 7 t/client` adds the "client" tag to the 7th contact in the display contact list.
+  > <img src="images/userguideimages/TagCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -215,10 +209,12 @@ Example:
 If a contact is no longer a client, and you wish to remove the tag, you can simply `untag` contact from the cateogory, as specified by the index.
 
 Format: `untag INDEX t/TAG`
+* `INDEX` must be in the [specified format](#a-index).
+* `TAG` should be in the [specified format](#a-tag-name).
 
 Example:
-* `untag 27 t/client` deletes the "client" tag from the 27th contact in the display contact list.
-
+* `untag 7 t/client` deletes the "client" tag from the 7th contact in the display contact list.
+  > <img src="images/userguideimages/UntagCommand.png" alt="Ui"/>
 [Return to Table of Contents](#table-of-contents)
 
 ### Viewing all available tags: `tags`
@@ -226,6 +222,7 @@ Example:
 If you forget what tags you have currently, you can list all the tags used in the application, in alphabetical order.
 
 Format: `tags`
+> <img src="images/userguideimages/TagsCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -234,9 +231,11 @@ Format: `tags`
 If you want to focus on a specific category, you can find all the contacts with the specified tag assigned to them.
 
 Format: `#TAG`
+* `TAG` should be in the [specified format](#a-tag-name).
 
 Example:
 * `#client` finds all the contacts that are tagged to "client".
+  > <img src="images/userguideimages/HashtagTag.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -245,26 +244,12 @@ Example:
 After meeting a client, you might want to write a note about the client, along with the meeting date. By using the `log` command, you can manually save your interaction with the person in the form of a note accompanied by a date.
 
 Format: `log INDEX d/DATE des/description`
-* `DATE` should be in the specified date format.
+* `INDEX` must be in the [specified format](#a-index).
+* `DATE` should be in the [specified date format](#a-date-format).
 
 Example:
-* `log 23 d/2022-02-11 des/Signed contract` manually logs the following interaction with the 23rd person in the displayed contact list, `Signed contract` on `2022-02-11`.
-
-[Return to Table of Contents](#table-of-contents)
-
-### Deleting a recent interaction record with a contact: `unlog`
-
-Suppose you made a mistake while recording your interaction. You can easily `unlog` the saved interaction record from the specified contact.
-
-Format: `unlog INDEX del/INDEX`
-
-* `INDEX` signifies the specified contact.
-* `INDEX` refers to the index number shown in the displayed contact list.
-* `del/INDEX` signifies the interaction record to delete.
-* `del/INDEX` refers to the index number shown in the contact's displayed list of interaction records.
-
-Example:
-* `unlog 2 del/6` deletes the 6th interaction record from the 2nd contact in the displayed contact list.
+* `log 6 d/2022-02-11 des/Signed contract` manually logs the following interaction with the 6th person in the displayed contact list, `Signed contract` on `2022-02-11`.
+  > <img src="images/userguideimages/LogCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -275,9 +260,29 @@ If you want to review your interaction history with a contact, you can use `logs
 Format: `logs INDEX`
 
 * `INDEX` signifies the specified contact.
+* `INDEX` must be in the [specified format](#a-index).
 
 Example:
-* `logs 2` lists all recorded interactions with the 2nd contact in the displayed contact list.
+* `logs 1` lists all recorded interactions with the 1st contact in the displayed contact list.
+  > <img src="images/userguideimages/LogsCommand.png" alt="Ui"/>
+
+[Return to Table of Contents](#table-of-contents)
+
+### Deleting a recent interaction record with a contact: `unlog`
+
+Suppose you made a mistake while recording your interaction. You can easily `unlog` the saved interaction record from the specified contact.
+
+Format: `unlog INDEX del/RECORD_INDEX`
+
+* `INDEX` signifies the specified contact.
+* `INDEX` refers to the index number shown in the displayed contact list.
+* `RECORD_INDEX` signifies the interaction record to delete.
+* `RECORD_INDEX` refers to the index number shown in the contact's displayed list of interaction records.
+*  Both `INDEX` and `RECORD_INDEX` must be in the [specified format](#a-index) for `INDEX`.
+
+Example:
+* `unlog 2 del/1` deletes the 1st interaction record from the 2nd contact in the displayed contact list.
+  > <img src="images/userguideimages/UnlogCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -286,10 +291,11 @@ Example:
 Occasionally, it might be hard to remember if you met someone recently. The `within` command allows you to show all contacts that you had interacted with within a specified range of days.
 
 Format: `within DAYS`
-* DAYS must be a positive integer.
+* DAYS must be a positive integer or 0.
 
 Example:
 * `within 12` shows a list of people that were last contacted within the past 12 days.
+  > <img src="images/userguideimages/WithinCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -298,10 +304,11 @@ Example:
 When cold calling for new potential clients, you can consider looking through your old contacts instead. You can display a list of people that you have not been in contact with for more than a specified number of DAYS.
 
 Format: `after DAYS`
-* DAYS must be a positive integer.
+* DAYS must be a positive integer or 0.
 
 Example:
 * `after 50` shows a list of people that were last contacted more than 50 days ago.
+  > <img src="images/userguideimages/AfterCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -313,10 +320,12 @@ It is hard to keep track of everything all at once. Add a reminder for a client 
 * `INDEX` refers to the index number shown in the displayed contact list.
 
 Format: `remind INDEX r/REMINDER rd/DATE`
-* `DATE` should be in the specified date format.
+* `INDEX` must be in the [specified format](#a-index).
+* `DATE` should be in the [specified date format](#a-date-format).
 
 Example:
-* `remind 13 r/phone call rd/2022-09-11` sets up a reminder for you to make a phone call to the 13th person on 11 Sep 2022.
+* `remind 1 r/sign contract rd/2022-04-02` sets up a reminder for you to make a phone call to the 1st person on 2 April 2022.
+  > <img src="images/userguideimages/RemindCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -325,9 +334,11 @@ Example:
 Sometimes, certain clients require more attention. You can view all reminders of tasks you need to do for these specific clients.
 
 Format: `reminder INDEX`
+* `INDEX` must be in the [specified format](#a-index).
 
 Example:
-* `reminder 7`shows you a list of tasks you need to do for the 7th person along with their corresponding deadlines.
+* `reminder 1` shows you a list of tasks you need to do for the 1st person along with their corresponding deadlines.
+  > <img src="images/userguideimages/ReminderCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
@@ -336,11 +347,14 @@ Example:
 
 If you just want to look at the tasks you need to do by a specific date, you can display all reminders due by a specified date.
 
-Format: `reminders [d/DATE]`
-* `DATE` should be in the specified date format.
+Format: `reminders rd/[DATE]`
+* `DATE` should be in the [specified date format](#a-date-format).
+* `reminders rd/` will display reminders for the current date.
+
 
 Example:
-* `reminders d/2023-01-01` shows all reminders for 1 Jan 2023.
+* `reminders rd/2022-04-01` shows all reminders for 1 Apr 2022.
+  > <img src="images/userguideimages/RemindersCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -349,6 +363,7 @@ Example:
 As an insurance agent, it is important to keep track of your clients' birthdays. We strongly suggest you to use the `birthdays` command once a day to make sure you do not miss out on your valued clients' birthdays.
 
 Format: `birthdays`
+> <img src="images/userguideimages/BirthdayCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -356,11 +371,17 @@ Format: `birthdays`
 
 If a reminder is no longer necessary, you can delete the specific reminder to make your reminder list cleaner and shorter.
 
-Format: `forget INDEX del/INDEX`
+Format: `forget INDEX del/REMINDER_INDEX`
+
+* `INDEX` signifies the specified contact.
+* `INDEX` refers to the index number shown in the displayed contact list.
+* `REMINDER_INDEX` signifies the reminder to delete.
+* `REMINDER_INDEX` refers to the index number shown in the contact's displayed list of reminders.
+*  Both `INDEX` and `REMINDER_INDEX`  must be in the [specified format](#a-index) for `INDEX`.
 
 Example:
-* `forget 5 del/1` helps you delete the first reminder on the 5th person's list.
-
+* `forget 1 del/1` helps you delete the first reminder on the 1st person's list.
+  > <img src="images/userguideimages/ForgetCommand.png" alt="Ui"/>
 [Return to Table of Contents](#table-of-contents)
 
 ### Exiting the program: `exit`
@@ -393,17 +414,17 @@ If you made a mistake while manually editing the saved data, a backup save file 
 | **Add a tag**                                            | `tag INDEX t/TAG`                                                                     |
 | **Delete a tag**                                         | `untag INDEX t/TAG`                                                                   |
 | **Show all tags**                                        | `tags`                                                                                |
-| **Find contacts by tags**                                | `#`                                                                                   |
+| **Find contacts by tags**                                | `#TAG`                                                                                |
 | **Record an interaction with a contact**                 | `log INDEX d/DATE des/description`                                                    |
-| **Delete a recorded interaction with a contact**         | `unlog INDEX del/INDEX`                                                               |
+| **Delete a recorded interaction with a contact**         | `unlog INDEX del/RECORD_INDEX`                                                               |
 | **View all recorded interactions with a contact**        | `logs INDEX`                                                                          |
 | **View contacts contacted within DAYS**                  | `within DAYS`                                                                         |
 | **View contacts you have contacted more than DAYS ago**  | `after DAYS`                                                                          |
 | **View birthdays occurring today**                       | `birthdays`                                                                           |
 | **Add a reminder**                                       | `remind INDEX r/REMINDER rd/DATE`                                                     |
 | **View reminders of a contact**                          | `reminder INDEX`                                                                      |
-| **View reminders on a date**                             | `reminders [rd/DATE]`                                                                 |
-| **Delete a reminder**                                    | `forget INDEX del/INDEX`                                                              |
+| **View reminders on a date**                             | `reminders rd/[DATE]`                                                                 |
+| **Delete a reminder**                                    | `forget INDEX del/REMINDER_INDEX`                                                              |
 | **Exit the program**                                     | `exit`                                                                                |
 | **Help**                                                 | `help`                                                                                |
 

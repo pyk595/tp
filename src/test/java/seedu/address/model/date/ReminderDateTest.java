@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,8 +17,8 @@ public class ReminderDateTest {
     }
 
     @Test
-    public void parse_invalidInput_throwsDateTimeParseException() {
-        assertThrows(DateTimeParseException.class, () -> ReminderDate.parse("test"));
+    public void parse_invalidInput_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> ReminderDate.parse("test"));
     }
 
     @Test

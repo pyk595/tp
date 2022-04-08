@@ -1,10 +1,15 @@
 package seedu.address.model.date;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class BirthDate extends DocumentedDate {
-    private static final DateTimeFormatter FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final String MESSAGE_CONSTRAINTS = "Birth dates cannot be in the future!";
+    private static final DateTimeFormatter FORMATTER_INPUT =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
     public final String value;
 
     /**
@@ -24,6 +29,7 @@ public class BirthDate extends DocumentedDate {
      * @return A non null {@code BirthDate}.
      */
     public static BirthDate parse(String parsedDate) {
+        checkArgument(isValidDate(parsedDate));
         LocalDate date = LocalDate.parse(parsedDate);
         return new BirthDate(date);
     }
