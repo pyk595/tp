@@ -34,7 +34,7 @@ public class AddTagCommand extends Command {
             + "as specified by the index number used in the displayed contact list. The tag will be added only if "
             + "the tag is valid and is not already tagged to the contact (case-insensitive).\n\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TAG + "TAG]\n\n"
+            + PREFIX_TAG + "TAG\n\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_TAG + "friends";
 

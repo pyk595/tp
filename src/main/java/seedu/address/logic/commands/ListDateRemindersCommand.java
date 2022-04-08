@@ -20,7 +20,7 @@ public class ListDateRemindersCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all reminders on the specified date.\n\n"
             + "Parameters: "
-            + PREFIX_REMINDER_DATE + "DATE\n\n"
+            + PREFIX_REMINDER_DATE + "[DATE]\n\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_REMINDER_DATE + "2022-03-15";
 
