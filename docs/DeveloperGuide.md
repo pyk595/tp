@@ -275,36 +275,6 @@ as values.<br>
   * Cons: Updating `UniqueTagList` takes O(logn) time every time; requires additional data structure to maintain
   `UniqueTagList` accurately.
 
-#### Design Consideration
-
-##### Aspect: How tags are assigned to `Person`
-
-* Alternative 1 (current implementation): A new tag is instantiated everytime even though there already exists a tag with
-  the same tag name in `UniqueTagList`.<br>
-    * Pros: Easy to implement, less coupling.
-    * Cons: May have performance issues in terms of memory usage.
-
-* Alternative 2: Unique tags are only instantiated once. Adding an existing tag to a person creates a reference to the
-  existing tag. The implementation is briefly shown below. <br><br>
-  <img src="images/BetterModelClassDiagram.png" width="450" />
-    * Pros: Better performance in terms of memory usage.
-    * Cons: More difficult to implement, more coupling (between `UniqueTagList` and the instantiation of`Person` etc) required.
-
-##### Aspect: How unique tags are stored in `UniqueTagList` (in the current implementation of tagging system)
-
-* Alternative 1 (current implementation): Unique tags are stored in a `HashMap` as keys, with its frequency of occurrence
-  as values.<br>
-    * Pros: Updating `UniqueTagList` takes constant time; the number of occurrence for each unique tag is recorded and
-      can be used.
-    * Cons: Reading the `UniqueTagList` in alphabetical order takes O(n logn) time, incurred by sorting of the tags.
-
-* Alternative 2: Unique tags are stored in a `PriorityQueue`.<br>
-    * Pros: Reading the `UniqueTagList` in alphabetical order just takes O(n) time.
-    * Cons: Updating `UniqueTagList` takes O(logn) time every time; requires additional data structure to maintain
-      `UniqueTagList` accurately.
-
-This section describes some noteworthy details on how certain features are implemented.
-
 ### Recently Contacted Information feature
 
 #### Implementation
