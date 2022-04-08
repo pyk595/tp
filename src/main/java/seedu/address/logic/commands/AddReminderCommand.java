@@ -35,7 +35,7 @@ public class AddReminderCommand extends Command {
             + "as specified by the index number used in the displayed person list. \n\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_REMINDER_DESCRIPTION + "REMINDER "
-            + PREFIX_REMINDER_DATE + "[DATE]\n\n"
+            + PREFIX_REMINDER_DATE + "DATE\n\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_REMINDER_DESCRIPTION + "meeting "
             + PREFIX_REMINDER_DATE + new DocumentedDate(LocalDate.of(2022, 1, 1));
