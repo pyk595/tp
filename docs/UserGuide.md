@@ -60,6 +60,15 @@ e.g. "exe" refers to the executable file type used on Windows.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
+## Overview of the Graphical User Interface (GUI)
+
+Our GUI is designed to be clean and easy to read so that you can start work on your clients right away.
+
+<img src="images/userguideimages/UIMarkup.png" alt="Ui"/>
+
+You can simply type your commands in the command box and upon pressing enter, the result display will show you
+more information on what has been done.
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
