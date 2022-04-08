@@ -461,6 +461,89 @@ The sequence diagram below shows what happens when a Description object is insta
     * Pros: Easy to implement.
     * Cons: More coupling. This method would make it harder to maintain and update code. This method does not take
       SLAP into account, making it harder to implement commands related to this feature.
+      
+### Reminder Feature
+
+#### Implementation
+
+As seen from the `Model`, a `Person` contains a `ReminderList`, which stores `Reminder` objects. 
+
+##### ReminderList
+
+`ReminderList` is an object that stores `Reminder` objects. `ReminderList` makes use of a `PriorityQueue` to store
+`Reminder` objects, and makes use of the `ReminderDate` to arrange the `Reminder` objects in chronological order. 
+
+##### Reminder
+
+Each `Reminder` object contains information regarding reminders specific to a saved client, and has the following
+characteristics: 
+
+* A `Reminder` object stores a private `ReminderDescription` object, and a private `ReminderDate` object.
+    * A `ReminderDescription` object stores a private `String` which describes the reminder event.
+    * A `ReminderDate` object extends from `DocumentedDate` stores a private `LocalDate` field to capture the date of
+    the reminder.
+    * Any two `Reminder` objects are not if both `ReminderDescription` and `ReminderDate` are equal.
+    
+`Reminder` implements the following method:
+
+* `isSameDateAs(ReminderDate reminderDate)` <br>
+    Checks if the `Reminder` object happens on the same date as the given `ReminderDate`.
+  
+The class diagram below shows how a `Reminder` object is implemented
+
+<img src="images/Reminder.png"/>
+    
+The sequence diagram below shows how a user input to add a reminder is parsed into a `AddReminderCommand`. <br>
+
+<img src="images/AddReminderCommandParserSeqDiagram.png"/>
+  
+##### ReminderDescription
+
+Each `ReminderDescription` object stores information pertaining to the description of reminders. 
+
+`ReminderDescription` objects have the following characteristics:
+
+* A `ReminderDescription` object stores a private `String` which describes the reminder event.
+    * The private `String` must be alphanumeric, should not be blank, and should not exceed 280 characters.
+    * This field is also being used to compare with other `ReminderDescription` objects to check if they are identical.
+      For instance, any two `ReminderDescription` objects are equal if they have the same description `String`.
+
+`ReminderDescription` implements the following method:
+
+* `isValidDescription(String description)` <br>
+    Checks if the given `String` is a valid `ReminderDescription`.
+
+##### ReminderDate
+
+Each `ReminderDate` object stores information pertaining to the date of reminders. A `ReminderDate` object cannot have
+a date which happens in the past, as reminders are supposed to remind users of upcoming events.
+
+`ReminderDate` objects have the following characteristics:
+
+* A `ReminderDate` object has a private `DateTimeFormatter` that provides the format in which a date is to be printed. 
+  Developers are able to conveniently alter this field to change the output format of the date.
+* A `ReminderDate` object has a private `String` which stores the displayed value of a date provided by the 
+  `DateTimeFormatter`.
+  
+`ReminderDate` implements the following method:
+
+* `parse(String parsedDate)`
+    Creates a new `ReminderDate` using a `String`. The `String` provided has to be in the format `yyyy-MM-dd`.
+
+#### Design Consideration
+
+##### Aspect: How to store information in Reminder
+
+* Alternative 1 (current implementation): `Reminder` stores the description and date of reminders as two objects, i.e.
+`ReminderDescription` and `ReminderDate`.
+  * Pros: This method applies SLAP, which increases the readability of the code, and makes the updating and debugging
+    process simpler.
+  * Cons: Requires more checks on user input to make sure that legal arguments are being passed to the methods.
+    
+* Alternative 2: `Reminder` stores the description and date of reminders as two primitives, i.e. `String` and
+  `LocalDate`.
+  * Pros: Implementation of `Reminder` is easier
+  * Cons: Harder to debug and update the code.
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
