@@ -274,7 +274,7 @@ as values.<br>
   * Pros: Reading the `UniqueTagList` in alphabetical order just takes O(n) time.
   * Cons: Updating `UniqueTagList` takes O(logn) time every time; requires additional data structure to maintain
   `UniqueTagList` accurately.
-  
+
 #### Design Consideration
 
 ##### Aspect: How tags are assigned to `Person`
@@ -309,7 +309,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-Each `Person` object contains its own list of `ContactedInfo` objects. These objects are stored in a List in each `Person` object. 
+Each `Person` object contains its own list of `ContactedInfo` objects. These objects are stored in a List in each `Person` object.
 The class diagram below shows how the recently contacted information feature is implemented in the Model component.
 
 <img src="images/ModelContactedInfo.png" width="300" />
@@ -366,7 +366,7 @@ The sequence diagram below shows what happens when a Description object is insta
 `Description` objects have the following characteristics:
 
 * `Description` needs to be alphanumeric (only letters and numerals are allowed), and should not exceed 280 characters.
-* Contains one public data member (final) `value` of `String` object, representing the description of the `Description` object, 
+* Contains one public data member (final) `value` of `String` object, representing the description of the `Description` object,
 which can be used to distinguish itself from other `Description` object.
 
 `Description` implements the following operations.
@@ -395,16 +395,16 @@ which can be used to distinguish itself from other `Description` object.
 
 ##### Aspect: How ContactedInfo is added into `Person`
 
-* Alternative 1(current implementation): Each Person holds a list of ContactedInfo objects. When a ContactedInfo object is instantiated, 
-the ContactedInfo gets added into the ContactedInfo list of the specified person. 
+* Alternative 1(current implementation): Each Person holds a list of ContactedInfo objects. When a ContactedInfo object is instantiated,
+the ContactedInfo gets added into the ContactedInfo list of the specified person.
     * Pros: Easy to implement, less coupling.
     * Cons: May have performance issues in terms of memory usage if user keeps adding recently interacted dates.
 
-* Alternative 2: Instead of a ContactedInfo list, a list of pairs is used. the key of the pair is a RecentDate object, 
+* Alternative 2: Instead of a ContactedInfo list, a list of pairs is used. the key of the pair is a RecentDate object,
 and the value is a Description object.
     * Pros: Easy to implement.
     * Cons: Harder to manage list and output data to reader.
-    
+
 ### Date Features
 
 #### Implementation
