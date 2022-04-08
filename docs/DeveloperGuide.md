@@ -380,8 +380,8 @@ when used, instead of an invalid or unexpected entry.
 
 #### Implementation
 
-Each `Person` object contains its own list of `ContactedInfo` objects. These objects are stored in a List in each `Person` object.
-The class diagram below shows how the recently contacted information feature is implemented in the Model component.
+Each `Person` object contains its own list of `ContactedInfo` objects. The class diagram below shows how
+the recently contacted information feature is implemented in the Model component.
 
 <img src="images/ModelContactedInfo.png" width="300" />
 
@@ -393,7 +393,7 @@ The sequence diagram below shows how the add recently contacted information feat
 
 <img src="images/AddContactedInfoCommandParserSeqDiagram.png" width="650" />
 
-The class diagaram below shows how ContactedInfo is implemented.
+The class diagram below shows how ContactedInfo is implemented.
 
 <img src="images/ContactedInfo.png" width="550" />
 
