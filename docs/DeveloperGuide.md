@@ -469,7 +469,7 @@ The sequence diagram below shows what happens when a Description object is insta
 As seen from the `Model`, a `Person` contains a `ReminderList`, which stores `Reminder` objects. The class diagram below
 shows how the reminder features are implemented in the `Model` component.
 
-<img src="images/Reminder.png"/>
+<img src="images/ModelReminder.png"/>
 
 ##### ReminderList
 
