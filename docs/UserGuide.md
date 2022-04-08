@@ -3,10 +3,10 @@ layout: page
 title: User Guide
 ---
 
-Automated Insurance Assistant (AIA) is a desktop application that helps Insurance Agents to manage their client contacts.
-Instead of hiring a secretary to handle day-to-day activities, using AIA can help you achieve the following:
+Automated Insurance Assistant (AIA) is a desktop application that helps insurance agents manage their client contacts.
+Instead of hiring a secretary to handle day-to-day tasks, AIA can help you achieve the following:
 - Catalogue and easily retrieve saved data on clients based on specific categories
-- Keep track of important events and time sensitive tasks to do for each client (e.g. client birthdays)
+- Keep track of important events and time-sensitive to-do tasks for each client (e.g. client birthdays)
 - Keep records of previous interactions with each client
 
 Usage of this application is optimised for use via a Command Line Interface (CLI) while still displaying information to users in an intuitive manner, through a Graphical User Interface (GUI).
@@ -25,7 +25,7 @@ e.g. **cd** will refer to the "change directory" command in CLI.
 
 Words in quotations are files, file types or dependencies.
 
-e.g. "exe" refers to the executable file type used on windows.
+e.g. "exe" refers to the executable file type used on Windows.
 
 ---
 <div style="page-break-after: always;"></div>
@@ -70,7 +70,7 @@ e.g. "exe" refers to the executable file type used on windows.
   e.g. in `add n/NAME`, `NAME` is an information which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/Client` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/Client` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Client`, `t/Client t/PremiumMember` etc.
@@ -97,7 +97,7 @@ e.g. "exe" refers to the executable file type used on windows.
 
 ### Adding a contact: `add`
 
-When you meet a new potential client and you managed to get their contact information, you can `add` them as a contact in the application.
+When you meet a new potential client, and you managed to get their contact information, you can `add` them as a contact in the application.
 
 * Upon adding a person, a default recently interacted date and description would be automatically generated.
   * The default date would be the day the contact was added, and default description would be "First Interaction".
@@ -131,7 +131,8 @@ Format: `list`
 
 ### Editing a contact: `edit`
 
-If you realise you need to change a client's outdated information, you can `edit` an existing contact in the application.
+If you realise a client's information in the application is outdated and needs to be updated, you can update the
+information using the `edit` command.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE]
 [t/TAG]…​`
@@ -207,7 +208,7 @@ Example:
 
 ### Deleting a tag: `untag`
 
-If a contact is no longer a client, and you wish to remove the tag, you can simply `untag` contact from the cateogory, as specified by the index.
+If a contact is no longer a client, and you wish to remove the tag, you can simply `untag` contact from the category, as specified by the index.
 
 Format: `untag INDEX t/TAG`
 * `INDEX` must be in the [specified format](#a-index).
@@ -407,28 +408,28 @@ If you made a mistake while manually editing the saved data, a backup save file 
 
 ## Command summary
 
-| Action                                                   | Format                                                                                |
-|----------------------------------------------------------|---------------------------------------------------------------------------------------|
-| **Add a contact**                                        | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`                  |
-| **View all contacts**                                    | `list`                                                                                |
-| **Edit a contact**                                       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [t/TAG]…​` |
-| **Find a contact by keywords**                           | `find KEYWORD [MORE_KEYWORDS]`                                                        |
-| **Delete a contact**                                     | `delete INDEX`                                                                        |
-| **Add a tag**                                            | `tag INDEX t/TAG`                                                                     |
-| **Delete a tag**                                         | `untag INDEX t/TAG`                                                                   |
-| **Show all tags**                                        | `tags`                                                                                |
-| **Find contacts by tags**                                | `#TAG`                                                                                |
-| **Record an interaction with a contact**                 | `log INDEX d/DATE des/description`                                                    |
-| **Delete a recorded interaction with a contact**         | `unlog INDEX del/RECORD_INDEX`                                                               |
-| **View all recorded interactions with a contact**        | `logs INDEX`                                                                          |
-| **View contacts contacted within DAYS**                  | `within DAYS`                                                                         |
-| **View contacts you have contacted more than DAYS ago**  | `after DAYS`                                                                          |
-| **View birthdays occurring today**                       | `birthdays`                                                                           |
-| **Add a reminder**                                       | `remind INDEX r/REMINDER rd/DATE`                                                     |
-| **View reminders of a contact**                          | `reminder INDEX`                                                                      |
-| **View reminders on a date**                             | `reminders rd/[DATE]`                                                                 |
-| **Delete a reminder**                                    | `forget INDEX del/REMINDER_INDEX`                                                              |
-| **Exit the program**                                     | `exit`                                                                                |
-| **Help**                                                 | `help`                                                                                |
+| Action                                                  | Format                                                                                |
+|---------------------------------------------------------|---------------------------------------------------------------------------------------|
+| **Add a contact**                                       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`                  |
+| **View all contacts**                                   | `list`                                                                                |
+| **Edit a contact**                                      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [t/TAG]…​` |
+| **Find a contact by keywords**                          | `find KEYWORD [MORE_KEYWORDS]`                                                        |
+| **Delete a contact**                                    | `delete INDEX`                                                                        |
+| **Add a tag**                                           | `tag INDEX t/TAG`                                                                     |
+| **Delete a tag**                                        | `untag INDEX t/TAG`                                                                   |
+| **Show all tags**                                       | `tags`                                                                                |
+| **Find contacts by tags**                               | `#TAG`                                                                                |
+| **Record an interaction with a contact**                | `log INDEX d/DATE des/description`                                                    |
+| **Delete a recorded interaction with a contact**        | `unlog INDEX del/RECORD_INDEX`                                                        |
+| **View all recorded interactions with a contact**       | `logs INDEX`                                                                          |
+| **View contacts contacted within DAYS**                 | `within DAYS`                                                                         |
+| **View contacts you have contacted more than DAYS ago** | `after DAYS`                                                                          |
+| **View birthdays occurring today**                      | `birthdays`                                                                           |
+| **Add a reminder**                                      | `remind INDEX r/REMINDER rd/DATE`                                                     |
+| **View reminders of a contact**                         | `reminder INDEX`                                                                      |
+| **View reminders on a date**                            | `reminders rd/[DATE]`                                                                 |
+| **Delete a reminder**                                   | `forget INDEX del/REMINDER_INDEX`                                                     |
+| **Exit the program**                                    | `exit`                                                                                |
+| **Help**                                                | `help`                                                                                |
 
 [Return to Table of Contents](#table-of-contents)
