@@ -407,9 +407,6 @@ The class diagaram below shows how ContactedInfo is implemented.
 ###### RecentDate
 
 `RecentDate` is an object that stores information regarding the interaction date for `ContactedInfo`. `RecentDate` object inherits from `DocumentedDate` object.
-The sequence diagram below shows the creation of a RecentDate object.
-
-<img src="images/RecentDateCreationSequenceDiagram.png" width="650" />
 
 `RecentDate` objects have the following characteristics:
 
@@ -456,14 +453,14 @@ The sequence diagram below shows what happens when a Description object is insta
 
 ##### Aspect: How Recent Interaction feature data is handled
 
-* Alternative 1(current Implementation): ContactedInfo is an object that holds both `Description` and `RecentDate`.
+* Alternative 1 (current Implementation): `ContactedInfo` is an object that holds both `Description` and `RecentDate`.
     * Pros: Easy to handle, more cohesion. This method introduces more SLAP, thus making it easier to update and maintain code.
     * Cons: More checks are needed to ensure that inputs by user is valid.
 
-* Alternative 2: Description and Recent Date objects are seperated.
+* Alternative 2: `Description` and `RecentDate` objects are seperated.
     * Pros: Easy to implement.
     * Cons: More coupling. This method would make it harder to maintain and update code. This method does not take
-SLAP into account, making it harder to implement commands related to this feature.
+      SLAP into account, making it harder to implement commands related to this feature.
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -922,8 +919,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -938,8 +933,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
