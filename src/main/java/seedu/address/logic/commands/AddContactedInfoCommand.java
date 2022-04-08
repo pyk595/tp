@@ -97,7 +97,7 @@ public class AddContactedInfoCommand extends Command {
     }
 
     /**
-     * Adds a {ContectInfo} to a ContactedInfo ArrayList by creating a new {@code ArrayList} (immutable).
+     * Adds a {ContactedInfo} to a ContactedInfo ArrayList by creating a new {@code ArrayList} (immutable).
      *
      * @param contactedInfoList the info ArrayList to add a {@code ContactedInfo} to.
      * @param infoToAdd the {@code ContactedInfo} to be added.
