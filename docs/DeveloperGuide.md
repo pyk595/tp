@@ -940,7 +940,7 @@ testers are expected to do more *exploratory* testing.
         - Prefixes with no fields (e.g. `n/` except tag)<br>
 
         Expected: Invalid command message. Error details shown in the status message. Status bar remains the same.
-    
+
 #### Deleting a person
 
 1. Deleting a contact while all contacts are being shown
@@ -975,10 +975,10 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `edit 1 t/`<br>
        Expected: Tags of the contact is removed.
-       
+
     1. Test case: `edit 0 n/name`<br>
        Expected: No contact is edited. Error details shown in the status message. Status bar remains the same.
-       
+
     1. Other incorrect edit commands to try: `edit`, `edit x n/name`, `...` (where x is larger than the contact list size)<br>
        Expected: Similar to previous.
 
@@ -989,7 +989,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: At least one contact with a birthday today in the contact list.
 
     1. Test case: `birthdays`<br>
-       Expected: Contacts with birthdays today are shown in contact list. 
+       Expected: Contacts with birthdays today are shown in contact list.
        Number of contacts listed is shown in the status message.
 
     1. Test case: no birthdays shown<br>
@@ -1026,7 +1026,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `untag 1 t/someTag`<br>
        Expected: First contact is no longer tagged to `someTag`. Details of the contact shown in the status message.
-       
+
     1. Test case: `untag 1 t/some tag`<br>
        Expected: Contact is not changed. Error details shown in the status message. Status bar remains the same.
 
@@ -1060,7 +1060,7 @@ testers are expected to do more *exploratory* testing.
        Prerequisite: No contact with the `hello` tag in the contact list.<br>
        Command: `#hello`<br>
        Expected: No contact shown in contact list. `0 persons listed` shown in the status message.
-       
+
 ### Interaction records related tests
 
 #### Adding an interaction record
