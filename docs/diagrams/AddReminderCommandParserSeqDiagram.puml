@@ -33,6 +33,10 @@ ReminderDescription --> ParserUtil : ReminderDescription
 deactivate ReminderDescription
 
 ParserUtil --> AddReminderCommandParser : ReminderDescription
+deactivate ParserUtil
+
+AddReminderCommandParser -> ParserUtil : parseReminderDate(reminderDate)
+activate ParserUtil
 
 create ReminderDate
 ParserUtil -> ReminderDate : new ReminderDate(reminderDate)

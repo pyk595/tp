@@ -15,7 +15,7 @@ skinparam Sequence {
 participant "reminderList\n:ReminderList" as ReminderList
 participant "reminder\n:Reminder" as Reminder
 participant "reminderListCopy\n:ReminderList" as ReminderListCopy
-participant "reminderPriorityQueue\n:PriorityQueue<Reminder>" as PriorityQueue
+participant "reminderPriorityQueueCopy\n:PriorityQueue<Reminder>" as PriorityQueueCopy
 
 -> ReminderList : delete(index)
 
@@ -30,24 +30,28 @@ deactivate Reminder
 
 create ReminderListCopy
 ReminderList -> ReminderListCopy : getCopy()
-
 activate ReminderListCopy
-ReminderListCopy --> ReminderList : ReminderListCopy
 
-ReminderList -> ReminderListCopy : ReminderListCopy.reminderPriorityQueue.remove(reminder)
+create PriorityQueueCopy
+ReminderListCopy -> PriorityQueueCopy : new PriorityQueue(this.reminderPriorityQueue)
+activate PriorityQueueCopy
 
-ReminderListCopy -> PriorityQueue : reminderPriorityQueue.remove(reminder)
-
-activate PriorityQueue
-
-PriorityQueue -> PriorityQueue : remove(reminder)
-activate PriorityQueue
-deactivate PriorityQueue
-
-PriorityQueue --> ReminderListCopy
-deactivate PriorityQueue
+PriorityQueueCopy --> ReminderListCopy : reminderPriorityQueueCopy
+deactivate PriorityQueueCopy
 
 ReminderListCopy --> ReminderList : ReminderListCopy
+deactivate ReminderListCopy
+
+ReminderList -> PriorityQueueCopy : reminderPriorityQueue.remove(reminder)
+activate PriorityQueueCopy
+
+PriorityQueueCopy -> PriorityQueueCopy : remove(reminder)
+activate PriorityQueueCopy
+deactivate PriorityQueueCopy
+
+PriorityQueueCopy --> ReminderList : reminderPriorityQueueCopy
+deactivate PriorityQueueCopy
+
 deactivate ReminderListCopy
 
 <-- ReminderList : ReminderListCopy
