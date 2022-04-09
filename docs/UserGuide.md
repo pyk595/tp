@@ -410,6 +410,7 @@ Format: `forget INDEX del/REMINDER_INDEX`
 Example:
 * `forget 1 del/1` helps you delete the first reminder on the 1st person's list.
   > <img src="images/userguideimages/ForgetCommand.png" alt="Ui"/>
+
 [Return to Table of Contents](#table-of-contents)
 
 ### Exiting the program: `exit`
@@ -436,26 +437,26 @@ If you made a mistake while manually editing the saved data, a backup save file 
 
 | Action                                                  | Format                                                                                |
 |---------------------------------------------------------|---------------------------------------------------------------------------------------|
-| **Add a contact**                                       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`                  |
-| **View all contacts**                                   | `list`                                                                                |
-| **Edit a contact**                                      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [t/TAG]…​` |
-| **Find a contact by keywords**                          | `find KEYWORD [MORE_KEYWORDS]`                                                        |
-| **Delete a contact**                                    | `delete INDEX`                                                                        |
-| **Add a tag**                                           | `tag INDEX t/TAG`                                                                     |
-| **Delete a tag**                                        | `untag INDEX t/TAG`                                                                   |
-| **Show all tags**                                       | `tags`                                                                                |
-| **Find contacts by tags**                               | `#TAG`                                                                                |
-| **Record an interaction with a contact**                | `log INDEX d/DATE des/description`                                                    |
-| **Delete a recorded interaction with a contact**        | `unlog INDEX del/RECORD_INDEX`                                                        |
-| **View all recorded interactions with a contact**       | `logs INDEX`                                                                          |
-| **View contacts contacted within DAYS**                 | `within DAYS`                                                                         |
-| **View contacts you have contacted more than DAYS ago** | `after DAYS`                                                                          |
-| **View birthdays occurring today**                      | `birthdays`                                                                           |
-| **Add a reminder**                                      | `remind INDEX r/REMINDER rd/DATE`                                                     |
-| **View reminders of a contact**                         | `reminder INDEX`                                                                      |
-| **View reminders on a date**                            | `reminders rd/[DATE]`                                                                 |
-| **Delete a reminder**                                   | `forget INDEX del/REMINDER_INDEX`                                                     |
-| **Exit the program**                                    | `exit`                                                                                |
+| [**Add a contact**](#adding-a-contact-add)              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`                  |
+| [**View all contacts**](#viewing-all-contacts-list)     | `list`                                                                                |
+| [**Edit a contact**](#editing-a-contact-edit)           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [t/TAG]…​` |
+| [**Find a contact by keywords**](#finding-contacts-by-name-find) | `find KEYWORD [MORE_KEYWORDS]`                                                        |
+| [**Delete a contact**](#deleting-a-contact-delete)      | `delete INDEX`                                                                        |
+| [**Add a tag**](#adding-a-tag-tag)                      | `tag INDEX t/TAG`                                                                     |
+| [**Delete a tag**](#deleting-a-tag-untag)               | `untag INDEX t/TAG`                                                                   |
+| [**Show all tags**](#viewing-all-available-tags-tags)   | `tags`                                                                                |
+| [**Find contacts by tags**](#finding-contacts-with-tag-)| `#TAG`                                                                                |
+| [**Record an interaction with a contact**](#adding-interaction-records-with-a-contact-log)                | `log INDEX d/DATE des/description`                                                    |
+| [**Delete a recorded interaction with a contact**](#deleting-a-recent-interaction-record-with-a-contact-unlog)        | `unlog INDEX del/RECORD_INDEX`                                                        |
+| [**View all recorded interactions with a contact**](#viewing-all-recent-interactions-with-a-contact-logs)       | `logs INDEX`                                                                          |
+| [**View contacts contacted within DAYS**](viewing-contacts-that-were-contacted-within-days-within)                 | `within DAYS`                                                                         |
+| [**View contacts you have contacted more than DAYS ago**](#viewing-contacts-contacted-more-than-a-specified-number-of-days-ago-after) | `after DAYS`                                                                          |
+| [**View birthdays occurring today**](#show-all-birthdays-today-birthdays)                      | `birthdays`                                                                           |
+| [**Add a reminder**](#adding-a-reminder-to-a-contact-remind)                                      | `remind INDEX r/REMINDER rd/DATE`                                                     |
+| [**View reminders of a contact**](#viewing-reminders-of-a-contact-reminder)                         | `reminder INDEX`                                                                      |
+| [**View reminders on a date**](#viewing-reminders-by-date-reminders)                            | `reminders rd/[DATE]`                                                                 |
+| [**Delete a reminder**](#deleting-a-reminder-forget)                                   | `forget INDEX del/REMINDER_INDEX`                                                     |
+| [**Exit the program**](#exiting-the-program-exit)                                    | `exit`                                                                                |
 | **Help**                                                | `help`                                                                                |
 
 [Return to Table of Contents](#table-of-contents)
