@@ -51,10 +51,10 @@ public class AddContactedInfoCommandTest {
     public void execute_duplicateContactedInfo_throwsCommandException() {
         // same contacted information
         ContactedInfo contactedInfo = new ContactedInfo(RecentDate.parse("2020-02-02"), new Description("Wedding"));
-        Person personToAddTag = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personToAddContacted = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         // Alice must already have the contacted information
-        assertTrue(personToAddTag.containsContactedInfo(contactedInfo));
+        assertTrue(personToAddContacted.containsContactedInfo(contactedInfo));
 
         AddContactedInfoCommand addContactedInfoCommand = new AddContactedInfoCommand(
                 INDEX_FIRST_PERSON, contactedInfo);
@@ -67,6 +67,29 @@ public class AddContactedInfoCommandTest {
         addContactedInfoCommand = new AddContactedInfoCommand(INDEX_FIRST_PERSON, contactedInfo);
         expectedMessage = String.format(
                 AddContactedInfoCommand.MESSAGE_DUPLICATE_CONTACTED_INFO, contactedInfo.toString());
+        assertCommandFailure(addContactedInfoCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_contactedInfoBeforeBirthday_throwsCommandException() {
+        // contactedInfoWayBeforeBirthday
+        ContactedInfo contactedInfo = new ContactedInfo(RecentDate.parse("1990-02-02"), new Description("Wedding"));
+        Person personToAddContacted = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        AddContactedInfoCommand addContactedInfoCommand = new AddContactedInfoCommand(
+                INDEX_FIRST_PERSON, contactedInfo);
+        String expectedMessage = String.format(
+                AddContactedInfoCommand.MESSAGE_DATE_BEF_BIRTHDATE, personToAddContacted.getBirthDate().toString());
+        assertCommandFailure(addContactedInfoCommand, model, expectedMessage);
+
+        // contactedInfoDayBeforeBirthday
+        contactedInfo = new ContactedInfo(RecentDate.parse("1999-12-31"), new Description("Wedding"));
+        personToAddContacted = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        addContactedInfoCommand = new AddContactedInfoCommand(
+                INDEX_FIRST_PERSON, contactedInfo);
+        expectedMessage = String.format(
+                AddContactedInfoCommand.MESSAGE_DATE_BEF_BIRTHDATE, personToAddContacted.getBirthDate().toString());
         assertCommandFailure(addContactedInfoCommand, model, expectedMessage);
     }
 
