@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.date.BirthDate;
 import seedu.address.model.date.DocumentedDate;
 import seedu.address.model.date.RecentDate;
 import seedu.address.model.description.Description;
@@ -78,6 +79,10 @@ public class ContactedInfo implements Comparable<ContactedInfo> {
         int daysPassed = recentDate.getDaysPassed();
         assert daysPassed >= 0 : "Days passed should not be less than 0";
         return daysPassed;
+    }
+
+    public boolean isBirthDateBefContacted(BirthDate birthdate) {
+        return birthdate.getDaysPassed() < recentDate.getDaysPassed();
     }
 
     /**
