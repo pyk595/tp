@@ -41,6 +41,6 @@ deactivate ContactedInfo
 ParserUtil --> AddContactedInfoCommandParser : ContactedInfo
 deactivate ParserUtil
 
-<-- AddContactedInfoCommandParser: ContactedInfo
+<-- AddContactedInfoCommandParser: AddContactedInfoCommand(index, contactedInfo)
 deactivate AddContactedInfoCommandParser
 @enduml
