@@ -22,7 +22,8 @@ public class AddContactedInfoCommand extends Command {
     public static final String MESSAGE_ADD_INTERACTION_SUCCESS = "Recorded interaction with %1$s"
             + "\n\nSaved interaction as:\n%2$s";
     public static final String MESSAGE_DUPLICATE_CONTACTED_INFO = "Interaction records already contains: %1$s";
-    public static final String MESSAGE_DATE_BEF_BIRTHDATE = "Interaction date cannot occur before %1$s";
+    public static final String MESSAGE_DATE_BEF_BIRTHDATE = "Interaction date cannot occur before person's "
+            + "birth date on %1$s";
     public static final String COMMAND_WORD = "log";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds the last contacted date  "
