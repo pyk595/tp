@@ -76,10 +76,6 @@ public class AddContactedInfoCommand extends Command {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_CONTACTED_INFO, contactedInfo.toString()));
         }
 
-        if (personToEdit.containsContactedInfo(contactedInfo)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_CONTACTED_INFO, contactedInfo.toString()));
-        }
-
         if (contactedInfo.isBirthDateBefContacted(personToEdit.getBirthDate()) ) {
             throw new CommandException(String.format(MESSAGE_DATE_BEF_BIRTHDATE,
                     personToEdit.getBirthDate().toString()));
