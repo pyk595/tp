@@ -71,7 +71,7 @@ more information on what has been done.
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:**
-The contact list is sorted by when contacts are added.
+The contact list is sorted in chronological order.
 The earliest contact added will be on the top, while the latest contact added will be at the bottom.
 </div>
 
