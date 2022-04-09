@@ -43,8 +43,3 @@ Given below are my contributions to the project.
   [#169](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/169),
   [#179](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/179)
 * Attended debugging sessions held either on Discord or Zoom
-
-**Community Contributions:**
-* Forum Contributions
-  * [Refactoring into packages](https://github.com/nus-cs2103-AY2122S2/forum/issues/27)
-  * [CI workflow error](https://github.com/nus-cs2103-AY2122S2/forum/issues/203#issuecomment-1063622656)
