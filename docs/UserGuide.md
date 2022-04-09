@@ -41,7 +41,7 @@ e.g. "exe" refers to the executable file type used on Windows.
 
 ## Quick Start
 
-1. Ensure you have "Java JDK 11" or above installed in your Computer.
+1. Ensure you have "[Java JDK 11](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)" or above installed in your Computer.
 
 2. Download the latest "jar" file, "AIA.jar" [here](https://github.com/AY2122S2-CS2103T-T17-3/tp/releases).
 
@@ -53,7 +53,7 @@ e.g. "exe" refers to the executable file type used on Windows.
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.
 
-7. When in doubt, type `help` in the command box or click "Help" in the application bar to pull up the list of available commands.
+7. When in doubt, type `help` in the command box or click "Help" in the menu bar to pull up the list of available commands.
 
 8. Refer to the [Features](#features) below for details of each command.
 
@@ -68,6 +68,12 @@ Our GUI is designed to be clean and easy to read so that you can start work on y
 
 You can simply type your commands in the command box and upon pressing enter, the result display will show you
 more information on what has been done.
+
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip:**
+The contact list is sorted by when contacts are added.
+The earliest contact added will be on the top, while the latest contact added will be at the bottom.
+</div>
 
 ## Features
 
@@ -98,7 +104,8 @@ more information on what has been done.
 
 * <a name="a-index" />`INDEX` used in the different commands refer to the index number shown in the displayed contact list.
 
-  ❗The `INDEX` must be a positive integer i.e. 1,2,3,...
+  ❗The `INDEX` must be a positive integer i.e. 1,2,3,...<br>
+  If the integer is too large (i.e. greater than 2,147,483,647), we will not consider it an integer.
 
 </div>
 
