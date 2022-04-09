@@ -310,6 +310,7 @@ Occasionally, it might be hard to remember if you met someone recently. The `wit
 
 Format: `within DAYS`
 * DAYS must be a positive integer or 0.
+* If the integer is too large (i.e. greater than 2,147,483,647), we will not consider it an integer.
 
 Example:
 * `within 12` shows a list of people that were last contacted within the past 12 days.
@@ -323,6 +324,7 @@ When cold calling for new potential clients, you can consider looking through yo
 
 Format: `after DAYS`
 * DAYS must be a positive integer or 0.
+* If the integer is too large (i.e. greater than 2,147,483,647), we will not consider it an integer.
 
 Example:
 * `after 50` shows a list of people that were last contacted more than 50 days ago.
