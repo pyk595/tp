@@ -11,7 +11,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-This project is created based on the AddressBook-Level3 project by the [SE-EDU initiative](https://se-education.org/).
+This project is created based on the [AddressBook-Level3 project](https://github.com/se-edu/addressbook-level3) by the [SE-EDU initiative](https://se-education.org/).
 
 Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
