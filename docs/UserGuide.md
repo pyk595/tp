@@ -413,6 +413,14 @@ Example:
 
 [Return to Table of Contents](#table-of-contents)
 
+### Getting help: `help`
+
+Shows link to this guide.
+
+Format: `help`
+
+[Return to Table of Contents](#table-of-contents)
+
 ### Exiting the program: `exit`
 
 Exits the program.
@@ -457,6 +465,6 @@ If you made a mistake while manually editing the saved data, a backup save file 
 | [**View reminders on a date**](#viewing-reminders-by-date-reminders)                            | `reminders rd/[DATE]`                                                                 |
 | [**Delete a reminder**](#deleting-a-reminder-forget)                                   | `forget INDEX del/REMINDER_INDEX`                                                     |
 | [**Exit the program**](#exiting-the-program-exit)                                    | `exit`                                                                                |
-| **Help**                                                | `help`                                                                                |
+| [**Help**](#getting-help)                               | `help`                                                                                |
 
 [Return to Table of Contents](#table-of-contents)
