@@ -892,6 +892,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **MSS**: Main Success Scenario that describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
 * **ContactedInfo**: The type of object that interaction records are saved as.
 * **RecentDate**: The type of date object used to save dates for a given interaction record.
+* **Command Box**: Box for user input, for a graphical representation, click [here](https://ay2122s2-cs2103t-t17-3.github.io/tp/UserGuide.html#overview-of-the-graphical-user-interface-gui).
+* **Result Display Message**: Message shown in the [Result Display](https://ay2122s2-cs2103t-t17-3.github.io/tp/UserGuide.html#overview-of-the-graphical-user-interface-gui).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -933,13 +935,13 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: Duplicate persons<br>
        Command: Run the command from `ii` twice.<br>
-       Expected: Duplicate person message. Error details shown in the status message. Status bar remains the same.
+       Expected: Duplicate person message. Error details shown in the result display message. Command box remains the same.
 
     1. Other incorrect add commands to try:
         - Missing required fields
         - Prefixes with no fields (e.g. `n/` except tag)<br>
 
-        Expected: Invalid command message. Error details shown in the status message. Status bar remains the same.
+        Expected: Invalid command message. Error details shown in the result display message. Command box remains the same.
 
 #### Deleting a person
 
@@ -948,10 +950,10 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the contact list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the contact list. Details of the deleted contact shown in the status message.
+      Expected: First contact is deleted from the contact list. Details of the deleted contact shown in the result display message.
 
    1. Test case: `delete 0`<br>
-      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No contact is deleted. Error details shown in the result display message. Command box remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the contact list size)<br>
       Expected: Similar to previous.
@@ -963,7 +965,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: A contact with tags in the contact list.
 
     1. Test case: `edit 1 n/name`<br>
-       Expected: Name of first contact is changed to `name`. Details of the edited contact shown in the status message.
+       Expected: Name of first contact is changed to `name`. Details of the edited contact shown in the result display message.
 
     1. Other valid edit commands to try:
         - `edit 1 p/88888888`
@@ -977,7 +979,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Tags of the contact is removed.
 
     1. Test case: `edit 0 n/name`<br>
-       Expected: No contact is edited. Error details shown in the status message. Status bar remains the same.
+       Expected: No contact is edited. Error details shown in the result display message. Command box remains the same.
 
     1. Other incorrect edit commands to try: `edit`, `edit x n/name`, `...` (where x is larger than the contact list size)<br>
        Expected: Similar to previous.
@@ -990,12 +992,12 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `birthdays`<br>
        Expected: Contacts with birthdays today are shown in contact list.
-       Number of contacts listed is shown in the status message.
+       Number of contacts listed is shown in the result display message.
 
     1. Test case: no birthdays shown<br>
        Prerequisite: No contacts with birthdays today in the contact list.<br>
        Command: `birthdays`<br>
-       Expected: No contacts are shown in contact list. `0 persons listed` is shown in the status message.
+       Expected: No contacts are shown in contact list. `0 persons listed` is shown in the result display message.
 
 ### Tag Related Tests
 
@@ -1006,14 +1008,14 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: At least one contact in the contact list.
 
     1. Test case: `tag 1 t/someTag`<br>
-       Expected: First contact is tagged to `someTag`. Details of the tagged contact shown in the status message.
+       Expected: First contact is tagged to `someTag`. Details of the tagged contact shown in the result display message.
 
     1. Test case: Duplicate tags<br>
        Command: run the command in `ii` twice.<br>
-       Expected: Contact is not re-tagged. Error details shown in the status message. Status bar remains the same.
+       Expected: Contact is not re-tagged. Error details shown in the result display message. Command box remains the same.
 
     1. Test case: `tag 1 t/some tag`<br>
-       Expected: Contact is not tagged. Error details shown in the status message. Status bar remains the same.
+       Expected: Contact is not tagged. Error details shown in the result display message. Command box remains the same.
 
     1. Other incorrect add tag commands to try: `tag`, `tag 1`, `tag x t/sometag`, `...` (where x is larger than the contact list size)<br>
        Expected: Similar to previous.
@@ -1025,10 +1027,10 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: At least one contact with the tag `someTag` in the contact list.
 
     1. Test case: `untag 1 t/someTag`<br>
-       Expected: First contact is no longer tagged to `someTag`. Details of the contact shown in the status message.
+       Expected: First contact is no longer tagged to `someTag`. Details of the contact shown in the result display message.
 
     1. Test case: `untag 1 t/some tag`<br>
-       Expected: Contact is not changed. Error details shown in the status message. Status bar remains the same.
+       Expected: Contact is not changed. Error details shown in the result display message. Command box remains the same.
 
     1. Other incorrect delete tag commands to try: `untag`, `untag 1`, `untag 1 t/x`, `...` (where x is string that is not a tag)<br>
        Expected: Similar to previous.
@@ -1040,12 +1042,12 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: At least one tag in the contact list.
 
     1. Test case: `tags`<br>
-       Expected: Tag(s) is shown in the status message.
+       Expected: Tag(s) is shown in the result display message.
 
     1. Test case: no tags shown<br>
        Prerequisite: No tags in the contact list.<br>
        Command: `tags`<br>
-       Expected: No tags message shown in the status message.
+       Expected: No tags message shown in the result display message.
 
 #### Finding contacts using a tag
 
@@ -1054,12 +1056,12 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: At least one contact with a the `someTag` tag in the contact list.
 
     1. Test case: `#someTag`<br>
-       Expected: Contact list shows contacts associated with the tag. Number of contacts listed is shown in the status message.
+       Expected: Contact list shows contacts associated with the tag. Number of contacts listed is shown in the result display message.
 
     1. Test case: no contacts shown<br>
        Prerequisite: No contact with the `hello` tag in the contact list.<br>
        Command: `#hello`<br>
-       Expected: No contact shown in contact list. `0 persons listed` shown in the status message.
+       Expected: No contact shown in contact list. `0 persons listed` shown in the result display message.
 
 ### Interaction records related tests
 
@@ -1071,13 +1073,13 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `log 1 d/2022-04-09 des/Coffee`<br>
        Expected: Interaction is saved for the first contact with the given date and description.
-       Details are shown in the status message.
+       Details are shown in the result display message.
 
     1. Test case: `log`<br>
-       Expected: Error details shown in the status message. Status bar remains the same.
+       Expected: Error details shown in the result display message. Command box remains the same.
 
     1. Test case: `log 1 d/3000-01-01 des/post-apocalyptic coffee`<br>
-       Expected: Interaction record is not saved. Error details shown in the status message. Status bar remains the same.
+       Expected: Interaction record is not saved. Error details shown in the result display message. Command box remains the same.
 
     1. Other incorrect add interaction record commands to try: `log 1 d/x des/x`, `log 1 d/ des/x`, `log 1 d/2022-01-01 des/`, `...` (where x is a string)<br>
        Expected: Similar to previous.
@@ -1089,15 +1091,15 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: One contact with an interaction record in the contact list.
 
     1. Test case: `logs 1`<br>
-       Expected: Show the interaction records of the first contact in the status message.
+       Expected: Show the interaction records of the first contact in the result display message.
 
     1. Test case: no interaction records<br>
        Prerequisite: First contact with no interaction records.<br>
        Command: `logs 1`<br>
-       Expected: Show no records of interaction in the status message.
+       Expected: Show no records of interaction in the result display message.
 
     1. Test case: `logs x` (where x is larger than the contact list size)<br>
-       Expected: Error details shown in the status message. Status bar remains the same.
+       Expected: Error details shown in the result display message. Command box remains the same.
 
 #### Deleting an interaction record
 
@@ -1106,10 +1108,10 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: At least one contact with an interaction record in the contact list.
 
     1. Test case: `unlog 1 del/1`<br>
-       Expected: First contact no longer has the first interaction record. Details of the deleted interaction record shown in the status message.
+       Expected: First contact no longer has the first interaction record. Details of the deleted interaction record shown in the result display message.
 
     1. Test case: `unlog 1 del/x` (where x is larger than the interaction record list size)<br>
-       Expected: Contact's interaction records are not changed. Error details shown in the status message. Status bar remains the same.
+       Expected: Contact's interaction records are not changed. Error details shown in the result display message. Command box remains the same.
 
     1. Other incorrect delete interaction record commands to try: `unlog`, `unlog 1`, `unlog x del/1`, `...` (where x is larger than contact list size)<br>
        Expected: Similar to previous.
@@ -1122,14 +1124,14 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `within 5`<br>
        Expected: Contacts with interaction records within 5 days from the current date are shown in the contact list.
-       Number of contacts listed is shown in the status message.
+       Number of contacts listed is shown in the result display message.
 
     1. Test case: No interaction records within 3 days
        prerequisite: No contacts must have interaction records within 3 days (including 3 days before current date).<br>
-       Expected: No contacts shown in contact list. No contacts listed in status message.
+       Expected: No contacts shown in contact list. No contacts listed in result display message.
 
     1. Test case: `within`
-       Expected: Error details shown in the status message. Status bar remains the same.
+       Expected: Error details shown in the result display message. Command box remains the same.
 
 #### Viewing contacts contacted after days
 
@@ -1139,14 +1141,14 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `after 5`<br>
        Expected: Contacts with interaction records more than 5 days ago from the current date are shown in the contact list.
-       Number of contacts listed is shown in the status message.
+       Number of contacts listed is shown in the result display message.
 
     1. Test case: No interaction records more than 3 days old
        prerequisite: No contacts must have interaction records more than 3 days old (including 3 days before current date).<br>
-       Expected: No contacts shown in contact list. No contacts listed in status message.
+       Expected: No contacts shown in contact list. No contacts listed in result display message.
 
     1. Test case: `after`
-       Expected: Error details shown in the status message. Status bar remains the same.
+       Expected: Error details shown in the result display message. Command box remains the same.
 
 ### Reminders related tests
 
@@ -1158,13 +1160,13 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `remind 1 r/Some task rd/x` (Where x is a date in the future)<br>
        Expected: Reminder is saved for the first contact with the given date and description.
-       Details are shown in the status message.
+       Details are shown in the result display message.
 
     1. Test case: `remind`<br>
-       Expected: Error details shown in the status message. Status bar remains the same.
+       Expected: Error details shown in the result display message. Command box remains the same.
 
     1. Test case: `remind 1 r/Some task rd/2000-01-01`<br>
-       Expected: Reminder is not saved. Error details shown in the status message. Status bar remains the same.
+       Expected: Reminder is not saved. Error details shown in the result display message. Command box remains the same.
 
     1. Other incorrect add reminder commands to try: `remind 1`, `remind 1 r/ rd/y`, `remind 1 r/x rd/`, `...` (where x is a string and y is a valid reminder date)<br>
        Expected: Similar to previous.
@@ -1176,15 +1178,15 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: One contact with a reminder in the contact list.
 
     1. Test case: `reminder 1`<br>
-       Expected: Show the reminders of the first contact in the status message.
+       Expected: Show the reminders of the first contact in the result display message.
 
     1. Test case: no reminders<br>
        Prerequisite: First contact with no reminders.<br>
        Command: `reminder 1`<br>
-       Expected: Show no reminders in the status message.
+       Expected: Show no reminders in the result display message.
 
     1. Test case: `reminder x` (where x is larger than the contact list size)<br>
-       Expected: Error details shown in the status message. Status bar remains the same.
+       Expected: Error details shown in the result display message. Command box remains the same.
 
 #### Viewing reminders by date
 
@@ -1193,18 +1195,18 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: At least one contact with a reminder  on 01 Jan 2023 in the contact list.
 
     1. Test case: `reminders rd/2023-01-01`<br>
-       Expected: Show the reminders tagged to 01 Jan 2023 in the status message.
+       Expected: Show the reminders tagged to 01 Jan 2023 in the result display message.
 
     1. Test case: `reminders rd/`<br>
-       Expected: Show the reminders tagged to the current date in the status message.
+       Expected: Show the reminders tagged to the current date in the result display message.
 
     1. Test case: no reminders<br>
        Prerequisite: No reminders occurring on a specified date `x`.<br>
        Command: `reminders rd/x`<br>
-       Expected: Show no reminders in the status message.
+       Expected: Show no reminders in the result display message.
 
     1. Test case: `reminders`<br>
-       Expected: Error details shown in the status message. Status bar remains the same.
+       Expected: Error details shown in the result display message. Command box remains the same.
 
 #### Deleting a reminder
 
@@ -1213,10 +1215,10 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: At least one contact with a reminder in the contact list.
 
     1. Test case: `forget 1 del/1`<br>
-       Expected: First contact no longer has the first reminder. Details of the deleted reminder shown in the status message.
+       Expected: First contact no longer has the first reminder. Details of the deleted reminder shown in the result display message.
 
     1. Test case: `forget 1 del/x` (where x is larger than the reminder list size)<br>
-       Expected: Contact's reminder list is not changed. Error details shown in the status message. Status bar remains the same.
+       Expected: Contact's reminder list is not changed. Error details shown in the result display message. Command box remains the same.
 
     1. Other incorrect delete reminder record commands to try: `forget`, `forget 1`, `forget x del/1`, `...` (where x is larger than contact list size)<br>
        Expected: Similar to previous.
