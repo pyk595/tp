@@ -287,6 +287,11 @@ Example:
 * `logs 1` lists all recorded interactions with the 1st contact in the displayed contact list.
   > <img src="images/userguideimages/LogsCommand.png" alt="Ui"/>
 
+  <div markdown="span" class="alert alert-primary">:bulb:
+  **Tip:**
+  The interaction record list will show the most recent interaction first and the oldest interaction last.
+  </div>
+
 [Return to Table of Contents](#table-of-contents)
 
 ### Deleting a recent interaction record with a contact: `unlog`
