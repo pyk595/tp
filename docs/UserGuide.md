@@ -449,7 +449,7 @@ If you made a mistake while manually editing the saved data, a backup save file 
 | [**Record an interaction with a contact**](#adding-interaction-records-with-a-contact-log)                | `log INDEX d/DATE des/description`                                                    |
 | [**Delete a recorded interaction with a contact**](#deleting-a-recent-interaction-record-with-a-contact-unlog)        | `unlog INDEX del/RECORD_INDEX`                                                        |
 | [**View all recorded interactions with a contact**](#viewing-all-recent-interactions-with-a-contact-logs)       | `logs INDEX`                                                                          |
-| [**View contacts contacted within DAYS**](viewing-contacts-that-were-contacted-within-days-within)                 | `within DAYS`                                                                         |
+| [**View contacts contacted within DAYS**](#viewing-contacts-that-were-contacted-within-days-within)                 | `within DAYS`                                                                         |
 | [**View contacts you have contacted more than DAYS ago**](#viewing-contacts-contacted-more-than-a-specified-number-of-days-ago-after) | `after DAYS`                                                                          |
 | [**View birthdays occurring today**](#show-all-birthdays-today-birthdays)                      | `birthdays`                                                                           |
 | [**Add a reminder**](#adding-a-reminder-to-a-contact-remind)                                      | `remind INDEX r/REMINDER rd/DATE`                                                     |
