@@ -92,7 +92,7 @@ The earliest contact added will be on the top, while the latest contact added wi
 
 * User input can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-  
+
 * User input can include leading and trailing spaces.<br>
   e.g. these are acceptable inputs <code>delete &nbsp; &nbsp; 7 &nbsp; &nbsp;</code> or <code>tag 1 t/ someTag</code>
 
