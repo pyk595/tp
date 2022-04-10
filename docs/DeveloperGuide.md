@@ -391,7 +391,7 @@ A `ContactedInfo` object contains the information regarding recent interactions 
 
 The sequence diagram below shows how the add recently contacted information feature is parsed.
 
-<img src="images/AddContactedInfoCommandParserSeqDiagram.png" width="650" />
+<img src="images/AddContactedInfoCommandParserSeqDiagram.png" width="850" />
 
 The class diagram below shows how ContactedInfo is implemented.
 

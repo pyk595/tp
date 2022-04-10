@@ -15,7 +15,7 @@ import seedu.address.model.contactedinfo.ContactedInfo;
 /**
  * Parses input arguments and creates a new {@code AddContactedCommandParser} object
  */
-public class AddContactedCommandParser implements Parser<AddContactedInfoCommand> {
+public class AddContactedInfoCommandParser implements Parser<AddContactedInfoCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code AddContactedCommand}

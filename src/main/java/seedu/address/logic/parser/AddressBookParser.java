@@ -89,7 +89,7 @@ public class AddressBookParser {
             return new ListCommand();
 
         case AddContactedInfoCommand.COMMAND_WORD:
-            return new AddContactedCommandParser().parse(arguments);
+            return new AddContactedInfoCommandParser().parse(arguments);
 
         case ContactedWithinRangeCommand.COMMAND_WORD:
             return new ContactedWithinRangeCommandParser().parse(arguments);
