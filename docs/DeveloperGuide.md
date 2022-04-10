@@ -11,7 +11,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This project is created based on the [AddressBook-Level3 project](https://github.com/se-edu/addressbook-level3) by the [SE-EDU initiative](https://se-education.org/).
+
+Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -136,7 +138,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-T17-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="650" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -268,11 +270,11 @@ existing tag. The implementation is briefly shown below. <br><br>
 as values.<br>
   * Pros: Updating `UniqueTagList` takes constant time; the number of occurrence for each unique tag is recorded and
   can be used.
-  * Cons: Reading the `UniqueTagList` in alphabetical order takes O(n logn) time, incurred by sorting of the tags.
+  * Cons: Reading the `UniqueTagList` in alphabetical order takes O(n log(n)) time, incurred by sorting of the tags.
 
 * Alternative 2: Unique tags are stored in a `PriorityQueue`.<br>
   * Pros: Reading the `UniqueTagList` in alphabetical order just takes O(n) time.
-  * Cons: Updating `UniqueTagList` takes O(logn) time every time; requires additional data structure to maintain
+  * Cons: Updating `UniqueTagList` takes O(log(n)) time every time; requires additional data structure to maintain
   `UniqueTagList` accurately.
 
 ### Date Features
@@ -314,7 +316,7 @@ enable better testability.
 <img src="images/BirthDateCreationSequenceDiagram.png" width="450" />
 
  As seen in the sequence diagram above, which shows the process of creating a `BirthDate` object,
- `ParserUtil#parseBirthDate(validDate)` is called, with the user supplying a `validDate` in the form of a String.
+ `ParserUtil#parseBirthDate(validDate)` is called, with the user supplying a `validDate` in the form of a `String`.
 The method will trim the `validDate` into a `String` called `trimmedDate` and call
  `DocumentedDate#isValidDate(trimmedDate)` to check if it is in a valid date format. If the `trimmedDate` is indeed a valid date,
 it will then be used to create a new `BirthDate` object. After that, a final check is done using the `getDaysPassed()`
@@ -412,14 +414,14 @@ The class diagram below shows how ContactedInfo is implemented.
 
 * A `RecentDate` object has two private data members (final), `date` representing the date of interaction as a `LocalDate` object,
   and `value` of `String` format representing the date in `YYYY-MM-DD` form.
-* input to create a `recentDate`object needs to be the correct format (`YYYY-MM-DD`).
-* Any two `recentDate` objects are not unique if both `recentDate` represents the same date.
-* `recentDate` objects can be sorted, and the sorted order is the reverse ordering of their `LocalDate`.
+* input to create a `RecentDate`object needs to be the correct format (`YYYY-MM-DD`).
+* Any two `RecentDate` objects are not unique if both `RecentDate` represents the same date.
+* `RecentDate` objects can be sorted, and the sorted order is the reverse ordering of their `LocalDate`.
 
 `RecentDate` implements the following operations.
 
 * `parse(String parsedDate)`<br>
-  Creates a new `RecentDate` using a String. String has to have the format `YYYY-MM-DD`.
+  Creates a new `RecentDate` using a `String`. `String` has to have the format `YYYY-MM-DD`.
 
 * `defaultRecentDate()`<br>
   Returns today's date as a `RecentDate` object.
@@ -433,20 +435,20 @@ The sequence diagram below shows what happens when a Description object is insta
 
 `Description` objects have the following characteristics:
 
-* `Description` needs to be alphanumeric (only letters and numerals are allowed), and should not exceed 280 characters.
+* `Description` can take on any values, but should not be blank nor should it exceed 280 characters.
 * Contains one public data member (final) `value` of `String` object, representing the description of the `Description` object,
   which can be used to distinguish itself from other `Description` object.
 
 `Description` implements the following operations.
 
 * `parse(String parsedDate)`<br>
-  Creates a new `RecentDate` using a String. String has to have the format `YYYY-MM-DD`.
+  Creates a new `RecentDate` using a `String`. `String` has to have the format `YYYY-MM-DD`.
 
 * `defaultDesc()`<br>
-  Returns a `Description` object containing the String with the description being "First Interaction".
+  Returns a `Description` object containing the `String` with the description being "First Interaction".
 
 * `isValidDescription(String test)` <br>
-  Checks if the parsed String is a valid input. Returns true if the input String is alphanumeric and does not exceed 280 characters,
+  Checks if the given `String` is a valid input. Returns true if the input `String` is not blank and does not exceed 280 characters,
   otherwise false.
 
 #### Design Consideration
@@ -505,8 +507,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | busy user                                  | keep track of important tasks daily     | make sure I do not miss out tasks for my clients                       |
 | `* *`    | user with many persons in the address book | assign tags to my contacts              | categorise my contacts in a meaningful manner                          |
 | `* *`    | financial advisor                          | track my last interaction with a contact| have a snapshot of the relationship                                    |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -614,7 +614,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User request to set previously contacted date for a specified contact.
+1. User requests to set previously contacted date for a specified contact.
 2. Address Book sets the previously contacted date for the specified contact.
 
    Use case ends.
@@ -636,6 +636,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1c. The given index is invalid.
 
     * 1c1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1d. No description provided.
+
+    * 1d1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1e. Description provided is more than 280 characters.
+
+    * 1e1. Address Book shows an error message.
 
       Use case ends.
 
@@ -675,7 +687,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. No client was contacted within/outside the designated number of days.
 
-    * 1a1. Address Book shows an error message.
+    * 1a1. Address Book does not show any clients.
+
+      Use case ends.
+
+* 1b. Invalid index provided.
+
+    * 1b1. Address Book shows an error message.
 
       Use case ends.
 
@@ -690,9 +708,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given input is invalid.
+* 1a. The given reminder message is invalid.
 
     * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1b. The given reminder date is invalid.
+
+    * 1b1. Address Book shows an error message.
 
       Use case ends.
 
@@ -890,6 +914,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **MSS**: Main Success Scenario that describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
 * **ContactedInfo**: The type of object that interaction records are saved as.
 * **RecentDate**: The type of date object used to save dates for a given interaction record.
+* **SLAP**: Single level of abstraction principle. Refers to every method dealing with only one level of abstraction.
+* **Command Box**: Box for user input, for a graphical representation, click [here](https://ay2122s2-cs2103t-t17-3.github.io/tp/UserGuide.html#overview-of-the-graphical-user-interface-gui).
+* **Result Display Message**: Message shown in the [Result Display](https://ay2122s2-cs2103t-t17-3.github.io/tp/UserGuide.html#overview-of-the-graphical-user-interface-gui).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -919,20 +946,305 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Deleting a person
+### Person Related Tests
 
-1. Deleting a person while all persons are being shown
+#### Adding a contact
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. Add a new contact into the contact list
+    1. Prerequisites: none
+
+    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/1970-01-01`<br>
+       Expected: Contact is added to contact list.
+
+    1. Test case: Duplicate persons<br>
+       Command: Run the command from `ii` twice.<br>
+       Expected: Duplicate person message. Error details shown in the result display message. Command box remains the same.
+
+    1. Other incorrect add commands to try:
+        - Missing required fields
+        - Prefixes with no fields (e.g. `n/` except tag)<br>
+
+        Expected: Invalid command message. Error details shown in the result display message. Command box remains the same.
+
+#### Deleting a person
+
+1. Deleting a contact while all contacts are being shown
+
+   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the contact list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the contact list. Details of the deleted contact shown in the result display message.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No contact is deleted. Error details shown in the result display message. Command box remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the contact list size)<br>
       Expected: Similar to previous.
+
+#### Editing a contact
+
+1. Editing a contact in contact list
+
+    1. Prerequisites: A contact with tags in the contact list.
+
+    1. Test case: `edit 1 n/name`<br>
+       Expected: Name of first contact is changed to `name`. Details of the edited contact shown in the result display message.
+
+    1. Other valid edit commands to try:
+        - `edit 1 p/88888888`
+        - `edit 1 e/email@mail.com`
+        - `edit 1 a/500 Dover Road`
+        - `edit 1 b/2000-01-01`
+
+        Expected: Similar to previous.
+
+    1. Test case: `edit 1 t/`<br>
+       Expected: Tags of the contact is removed.
+
+    1. Test case: `edit 0 n/name`<br>
+       Expected: No contact is edited. Error details shown in the result display message. Command box remains the same.
+
+    1. Other incorrect edit commands to try: `edit`, `edit x n/name`, `...` (where x is larger than the contact list size)<br>
+       Expected: Similar to previous.
+
+#### Showing all birthdays today
+
+1. Showing all contacts with birthdays today in the contact list
+
+    1. Prerequisites: At least one contact with a birthday today in the contact list.
+
+    1. Test case: `birthdays`<br>
+       Expected: Contacts with birthdays today are shown in contact list.
+       Number of contacts listed is shown in the result display message.
+
+    1. Test case: no birthdays shown<br>
+       Prerequisite: No contacts with birthdays today in the contact list.<br>
+       Command: `birthdays`<br>
+       Expected: No contacts are shown in contact list. `0 persons listed` is shown in the result display message.
+
+### Tag Related Tests
+
+#### Adding a tag
+
+1. Adding a tag to a contact in the contact list
+
+    1. Prerequisites: At least one contact in the contact list.
+
+    1. Test case: `tag 1 t/someTag`<br>
+       Expected: First contact is tagged to `someTag`. Details of the tagged contact shown in the result display message.
+
+    1. Test case: Duplicate tags<br>
+       Command: run the command in `ii` twice.<br>
+       Expected: Contact is not re-tagged. Error details shown in the result display message. Command box remains the same.
+
+    1. Test case: `tag 1 t/some tag`<br>
+       Expected: Contact is not tagged. Error details shown in the result display message. Command box remains the same.
+
+    1. Other incorrect add tag commands to try: `tag`, `tag 1`, `tag x t/sometag`, `...` (where x is larger than the contact list size)<br>
+       Expected: Similar to previous.
+
+#### Deleting a tag
+
+1. Deleting a tag from a contact in the contact list
+
+    1. Prerequisites: At least one contact with the tag `someTag` in the contact list.
+
+    1. Test case: `untag 1 t/someTag`<br>
+       Expected: First contact is no longer tagged to `someTag`. Details of the contact shown in the result display message.
+
+    1. Test case: `untag 1 t/some tag`<br>
+       Expected: Contact is not changed. Error details shown in the result display message. Command box remains the same.
+
+    1. Other incorrect delete tag commands to try: `untag`, `untag 1`, `untag 1 t/x`, `...` (where x is `string` that is not a tag)<br>
+       Expected: Similar to previous.
+
+#### Viewing all tags
+
+1. Viewing all tags in the list
+
+    1. Prerequisites: At least one tag in the contact list.
+
+    1. Test case: `tags`<br>
+       Expected: Tag(s) is shown in the result display message.
+
+    1. Test case: no tags shown<br>
+       Prerequisite: No tags in the contact list.<br>
+       Command: `tags`<br>
+       Expected: No tags message shown in the result display message.
+
+#### Finding contacts using a tag
+
+1. Viewing all contacts associated with a tag
+
+    1. Prerequisites: At least one contact with a the `someTag` tag in the contact list.
+
+    1. Test case: `#someTag`<br>
+       Expected: Contact list shows contacts associated with the tag. Number of contacts listed is shown in the result display message.
+
+    1. Test case: no contacts shown<br>
+       Prerequisite: No contact with the `hello` tag in the contact list.<br>
+       Command: `#hello`<br>
+       Expected: No contact shown in contact list. `0 persons listed` shown in the result display message.
+
+### Interaction records related tests
+
+#### Adding an interaction record
+
+1. Adding an interaction record to a contact in the contact list
+
+    1. Prerequisites: At least one contact in the contact list.
+
+    1. Test case: `log 1 d/2022-04-09 des/Coffee`<br>
+       Expected: Interaction is saved for the first contact with the given date and description.
+       Details are shown in the result display message.
+
+    1. Test case: `log`<br>
+       Expected: Error details shown in the result display message. Command box remains the same.
+
+    1. Test case: `log 1 d/3000-01-01 des/post-apocalyptic coffee`<br>
+       Expected: Interaction record is not saved. Error details shown in the result display message. Command box remains the same.
+
+    1. Other incorrect add interaction record commands to try: `log 1 d/x des/x`, `log 1 d/ des/x`, `log 1 d/2022-01-01 des/`, `...` (where x is a `string`)<br>
+       Expected: Similar to previous.
+
+#### Viewing interaction records of a contact
+
+1. Viewing interaction records of a specific contact in the contact list
+
+    1. Prerequisites: One contact with an interaction record in the contact list.
+
+    1. Test case: `logs 1`<br>
+       Expected: Show the interaction records of the first contact in the result display message.
+
+    1. Test case: no interaction records<br>
+       Prerequisite: First contact with no interaction records.<br>
+       Command: `logs 1`<br>
+       Expected: Show no records of interaction in the result display message.
+
+    1. Test case: `logs x` (where x is larger than the contact list size)<br>
+       Expected: Error details shown in the result display message. Command box remains the same.
+
+#### Deleting an interaction record
+
+1. Deleting an interaction from a contact in the contact list
+
+    1. Prerequisites: At least one contact with an interaction record in the contact list.
+
+    1. Test case: `unlog 1 del/1`<br>
+       Expected: First contact no longer has the first interaction record. Details of the deleted interaction record shown in the result display message.
+
+    1. Test case: `unlog 1 del/x` (where x is larger than the interaction record list size)<br>
+       Expected: Contact's interaction records are not changed. Error details shown in the result display message. Command box remains the same.
+
+    1. Other incorrect delete interaction record commands to try: `unlog`, `unlog 1`, `unlog x del/1`, `...` (where x is larger than contact list size)<br>
+       Expected: Similar to previous.
+
+#### Viewing contacts contacted within days
+
+1. Viewing contacts contacted within a specified number of days
+
+    1. Prerequisites: At least one contact with an interaction record at most 5 days before the current date.
+
+    1. Test case: `within 5`<br>
+       Expected: Contacts with interaction records within 5 days from the current date are shown in the contact list.
+       Number of contacts listed is shown in the result display message.
+
+    1. Test case: No interaction records within 3 days
+       prerequisite: No contacts must have interaction records within 3 days (including 3 days before current date).<br>
+       Expected: No contacts shown in contact list. No contacts listed in result display message.
+
+    1. Test case: `within`
+       Expected: Error details shown in the result display message. Command box remains the same.
+
+#### Viewing contacts contacted after days
+
+1. Viewing contacts contacted more than a specified number of days
+
+    1. Prerequisites: At least one contact with an interaction record at least 5 days before the current date.
+
+    1. Test case: `after 5`<br>
+       Expected: Contacts with interaction records more than 5 days ago from the current date are shown in the contact list.
+       Number of contacts listed is shown in the result display message.
+
+    1. Test case: No interaction records more than 3 days old
+       prerequisite: No contacts must have interaction records more than 3 days old (including 3 days before current date).<br>
+       Expected: No contacts shown in contact list. No contacts listed in result display message.
+
+    1. Test case: `after`
+       Expected: Error details shown in the result display message. Command box remains the same.
+
+### Reminders related tests
+
+#### Adding a reminder
+
+1. Adding an reminder to a contact in the contact list
+
+    1. Prerequisites: At least one contact in the contact list.
+
+    1. Test case: `remind 1 r/Some task rd/x` (Where x is a date in the future)<br>
+       Expected: Reminder is saved for the first contact with the given date and description.
+       Details are shown in the result display message.
+
+    1. Test case: `remind`<br>
+       Expected: Error details shown in the result display message. Command box remains the same.
+
+    1. Test case: `remind 1 r/Some task rd/2000-01-01`<br>
+       Expected: Reminder is not saved. Error details shown in the result display message. Command box remains the same.
+
+    1. Other incorrect add reminder commands to try: `remind 1`, `remind 1 r/ rd/y`, `remind 1 r/x rd/`, `...` (where x is a `string` and y is a valid reminder date)<br>
+       Expected: Similar to previous.
+
+#### Viewing reminders of a contact
+
+1. Viewing reminders of a specific contact in the contact list
+
+    1. Prerequisites: One contact with a reminder in the contact list.
+
+    1. Test case: `reminder 1`<br>
+       Expected: Show the reminders of the first contact in the result display message.
+
+    1. Test case: no reminders<br>
+       Prerequisite: First contact with no reminders.<br>
+       Command: `reminder 1`<br>
+       Expected: Show no reminders in the result display message.
+
+    1. Test case: `reminder x` (where x is larger than the contact list size)<br>
+       Expected: Error details shown in the result display message. Command box remains the same.
+
+#### Viewing reminders by date
+
+1. Viewing reminders in the contact list on a specific date
+
+    1. Prerequisites: At least one contact with a reminder  on 01 Jan 2023 in the contact list.
+
+    1. Test case: `reminders rd/2023-01-01`<br>
+       Expected: Show the reminders tagged to 01 Jan 2023 in the result display message.
+
+    1. Test case: `reminders rd/`<br>
+       Expected: Show the reminders tagged to the current date in the result display message.
+
+    1. Test case: no reminders<br>
+       Prerequisite: No reminders occurring on a specified date `x`.<br>
+       Command: `reminders rd/x`<br>
+       Expected: Show no reminders in the result display message.
+
+    1. Test case: `reminders`<br>
+       Expected: Error details shown in the result display message. Command box remains the same.
+
+#### Deleting a reminder
+
+1. Deleting a reminder from a contact in the contact list
+
+    1. Prerequisites: At least one contact with a reminder in the contact list.
+
+    1. Test case: `forget 1 del/1`<br>
+       Expected: First contact no longer has the first reminder. Details of the deleted reminder shown in the result display message.
+
+    1. Test case: `forget 1 del/x` (where x is larger than the reminder list size)<br>
+       Expected: Contact's reminder list is not changed. Error details shown in the result display message. Command box remains the same.
+
+    1. Other incorrect delete reminder record commands to try: `forget`, `forget 1`, `forget x del/1`, `...` (where x is larger than contact list size)<br>
+       Expected: Similar to previous.
 
 ### Saving data
 
