@@ -438,6 +438,8 @@ A: Open the `backup.json` file, ensure that all data is in the correct format an
 **How do I transfer my data to a new computer?**<br>
 A: You can copy the "AIA.jar" file, and the "data" folder to an empty folder in the new computer. The application should show you your existing data on launch, on the new computer.
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
