@@ -1103,7 +1103,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file
+   1. Run the jar file in a shell application using the command `java -jar AIA.jar`
 
         Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
