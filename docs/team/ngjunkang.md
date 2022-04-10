@@ -5,7 +5,7 @@ title: Ng Jun Kang's Project Portfolio Page
 
 ### Project: Automated Insurance Assistant (AIA)
 
-Automated Insurance Assistant (AIA) is a desktop application that helps Insurance Agents to manage their client contacts.
+Automated Insurance Assistant (AIA) is a desktop application that helps insurance agents manage their client contacts.
 
 This is a brownfield Java project that is built on [AddressBook Level-3](https://github.com/se-edu/addressbook-level3)
 with an addition of approximately 10KLoC. Forking workflow is used throughout the project.
@@ -19,7 +19,7 @@ Given below are my contributions to the project.
     * Added command to add a tag to contact: [\#44](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/44)
     * Added command to delete a tag from contact [\#56](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/56)
     * Added support to show all tags: [\#75](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/75)
-    * Updated the GUI layout using [JavaFX SplitPane](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/SplitPane.html): [\#123](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/123)
+    * Updated the GUI layout using [JavaFX SplitPane](https://openjfx.io/javadoc/11/javafx.controls/javafx/scene/control/SplitPane.html): [\#123](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/123)
 
 * **Documentation**:
     * Developer Guide:
@@ -34,7 +34,7 @@ Given below are my contributions to the project.
     * Updated all Use Cases in Developer Guide: [\#81](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/81)
     * Updated the Quick Start and Features section of User Guide: [\#98](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/98), [\#103](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/103)
     * Added in-page hyperlinks for date format in User Guide: [\#177](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/177)
-    * Updated the deprecated links in Developer Guide to point to the project repository: [\#183](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/183)
+    * Updated the deprecated links in Developer Guide and DevOps to point to the project repository: [\#183](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/183), [\#208](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/208)
     * Ran platform smoke tests of all releases.
 
 * **Community**:
