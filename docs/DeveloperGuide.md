@@ -1111,7 +1111,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by running the jar file with the same command.<br>
        Expected: The most recent window size and location is retained.
 
 <div style="page-break-after: always;"></div>
