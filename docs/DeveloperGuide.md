@@ -30,6 +30,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S2-CS2103T-T17-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -53,6 +55,7 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
+<div style="page-break-after: always;"></div>
 
 **How the architecture components interact with each other**
 
@@ -71,6 +74,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-T17-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -88,6 +93,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2122S2-CS2103T-T17-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -102,12 +109,16 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
+<div style="page-break-after: always;"></div>
+
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -116,6 +127,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-T17-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -134,6 +147,8 @@ The `Model` component,
     :information_source: **Note:** The structure of `Tag`-related classes is detailed in the class diagram in the [implementation section](#tagging-feature) of tagging feature.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-T17-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -144,6 +159,8 @@ The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+<div style="page-break-after: always;"></div>
 
 In the event that data saved in the json file is corrupted, the `Storage` component will make a copy of the
 existing json file.
@@ -163,6 +180,8 @@ before copying the information into `addressbook.json`.
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -211,6 +230,7 @@ will be added to the `HashMap` with an initial value of 1. Otherwise, the value 
 by one. The sequence diagram of this operation is shown below.<br><br>
   <img src="images/AddTagsSequenceDiagram.png" width="450" />
 
+<div style="page-break-after: always;"></div>
 
 * `removeTags(Set<Tag> tagsToRemove)`<br>
 Removes the `Tag` objects in `Set<Tag>` from the `HashMap`. For each `Tag` object, if it is in the `HashMap` with a
@@ -242,6 +262,8 @@ implementation of `UniqueTagList` may fail and needs to be revised.
 For example, during every command that modifies the existing data in `AddressBook`, the method `AddressBook#setPerson(p, q)`
 will be called. Apart from making changes to the `UniquePersonList`, this method call will also update the `UniqueTagList`,
 as shown in the sequence diagram below.
+
+<div style="page-break-after: always;"></div>
 
 <img src="images/SetPersonSequenceDiagram.png" width="500" />
 
@@ -344,6 +366,8 @@ Having two levels of checks ensures that the working "date" type objects are les
 "date" type object for their designated usages. This makes features such as `after` or `within` return valid entries
 when used, instead of an invalid or unexpected entry.
 
+<div style="page-break-after: always;"></div>
+
 #### Design Consideration
 
 ##### Aspect: How date type objects are created
@@ -378,6 +402,8 @@ when used, instead of an invalid or unexpected entry.
             when the system is running other process concurrently.
         * Handling of behaviour for specific date types in terms of comparing dates may require more work.
 
+<div style="page-break-after: always;"></div>
+
 ### Interaction record feature
 
 #### Implementation
@@ -406,6 +432,8 @@ The class diagram below shows how ContactedInfo is implemented.
 * Any two `ContactedInfo` objects are not unique if both `description` and `recentDate` is equal.
 * `ContactedInfo` objects can be sorted, and the sorted order is the reverse ordering of the `RecentDate`.
 
+<div style="page-break-after: always;"></div>
+
 ###### RecentDate
 
 `RecentDate` is an object that stores information regarding the interaction date for `ContactedInfo`. `RecentDate` object inherits from `DocumentedDate` object.
@@ -425,6 +453,8 @@ The class diagram below shows how ContactedInfo is implemented.
 
 * `defaultRecentDate()`<br>
   Returns today's date as a `RecentDate` object.
+
+<div style="page-break-after: always;"></div>
 
 ###### Description
 
@@ -451,6 +481,8 @@ The sequence diagram below shows what happens when a Description object is insta
   Checks if the given `String` is a valid input. Returns true if the input `String` is not blank and does not exceed 280 characters,
   otherwise false.
 
+<div style="page-break-after: always;"></div>
+
 #### Design Consideration
 
 ##### Aspect: How Recent Interaction feature data is handled
@@ -463,6 +495,8 @@ The sequence diagram below shows what happens when a Description object is insta
     * Pros: Easy to implement.
     * Cons: More coupling. This method would make it harder to maintain and update code. This method does not take
       SLAP into account, making it harder to implement commands related to this feature.
+
+<div style="page-break-after: always;"></div>
 
 ### Reminder Feature
 
@@ -484,6 +518,8 @@ characteristics:
     the reminder.
     * Any two `Reminder` objects are not if both `ReminderDescription` and `ReminderDate` are equal.
 
+<div style="page-break-after: always;"></div>
+
 `Reminder` implements the following method:
 
 * `isSameDateAs(ReminderDate reminderDate)` <br>
@@ -496,6 +532,8 @@ The class diagram below shows how a `Reminder` object is implemented
 The sequence diagram below shows how a user input to add a reminder is parsed into a `AddReminderCommand`. <br>
 
 <img src="images/AddReminderCommandParserSeqDiagram.png"/>
+
+<div style="page-break-after: always;"></div>
 
 ##### ReminderDescription
 
@@ -530,6 +568,8 @@ a date which happens in the past, as reminders are supposed to remind users of u
 * `parse(String parsedDate)`
     Creates a new `ReminderDate` using a `String`. The `String` provided has to be in the format `yyyy-MM-dd`.
 
+<div style="page-break-after: always;"></div>
+
 ##### ReminderList
 
 `ReminderList` is an object that stores `Reminder` objects. `ReminderList` makes use of a `PriorityQueue` to store
@@ -543,6 +583,8 @@ consistent, even when there are exceptions.
 The sequence diagram below shows how `ReminderList` handles a deletion of a `Reminder` object.
 
 <img src="images/DeleteReminderFromReminderListSeqDiagram.png"/>
+
+<div style="page-break-after: always;"></div>
 
 #### Design Consideration
 
@@ -559,6 +601,8 @@ The sequence diagram below shows how `ReminderList` handles a deletion of a `Rem
   * Pros: Implementation of `Reminder` is easier
   * Cons: Harder to debug and update the code.
 
+<div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -568,6 +612,8 @@ The sequence diagram below shows how `ReminderList` handles a deletion of a `Rem
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -602,6 +648,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | busy user                                  | keep track of important tasks daily     | make sure I do not miss out tasks for my clients                       |
 | `* *`    | user with many persons in the address book | assign tags to my contacts              | categorise my contacts in a meaningful manner                          |
 | `* *`    | financial advisor                          | track my last interaction with a contact| have a snapshot of the relationship                                    |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -984,6 +1032,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Address Book shows message stating that there are 0 persons with birthdays today.
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements <br>
 
 1.  Should work on any **mainstream OS** as long as it has Java `11` or
@@ -1015,6 +1065,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -1041,6 +1093,8 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+<div style="page-break-after: always;"></div>
+
 ### Person Related Tests
 
 #### Adding a contact
@@ -1061,7 +1115,7 @@ testers are expected to do more *exploratory* testing.
 
         Expected: Invalid command message. Error details shown in the result display message. Command box remains the same.
 
-#### Deleting a person
+#### Deleting a contact
 
 1. Deleting a contact while all contacts are being shown
 
@@ -1075,6 +1129,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the contact list size)<br>
       Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
 
 #### Editing a contact
 
@@ -1117,6 +1173,8 @@ testers are expected to do more *exploratory* testing.
        Command: `birthdays`<br>
        Expected: No contacts are shown in contact list. `0 persons listed` is shown in the result display message.
 
+<div style="page-break-after: always;"></div>
+
 ### Tag Related Tests
 
 #### Adding a tag
@@ -1153,6 +1211,8 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete tag commands to try: `untag`, `untag 1`, `untag 1 t/x`, `...` (where x is `string` that is not a tag)<br>
        Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 #### Viewing all tags
 
 1. Viewing all tags in the list
@@ -1180,6 +1240,8 @@ testers are expected to do more *exploratory* testing.
        Prerequisite: No contact with the `hello` tag in the contact list.<br>
        Command: `#hello`<br>
        Expected: No contact shown in contact list. `0 persons listed` shown in the result display message.
+
+<div style="page-break-after: always;"></div>
 
 ### Interaction records related tests
 
@@ -1219,6 +1281,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `logs x` (where x is larger than the contact list size)<br>
        Expected: Error details shown in the result display message. Command box remains the same.
 
+<div style="page-break-after: always;"></div>
+
 #### Deleting an interaction record
 
 1. Deleting an interaction from a contact in the contact list
@@ -1251,6 +1315,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `within`
        Expected: Error details shown in the result display message. Command box remains the same.
 
+<div style="page-break-after: always;"></div>
+
 #### Viewing contacts contacted after days
 
 1. Viewing contacts contacted more than a specified number of days
@@ -1267,6 +1333,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `after`
        Expected: Error details shown in the result display message. Command box remains the same.
+
+<div style="page-break-after: always;"></div>
 
 ### Reminders related tests
 
@@ -1306,6 +1374,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `reminder x` (where x is larger than the contact list size)<br>
        Expected: Error details shown in the result display message. Command box remains the same.
 
+<div style="page-break-after: always;"></div>
+
 #### Viewing reminders by date
 
 1. Viewing reminders in the contact list on a specific date
@@ -1340,6 +1410,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect delete reminder record commands to try: `forget`, `forget 1`, `forget x del/1`, `...` (where x is larger than contact list size)<br>
        Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
 
 ### Saving data
 
