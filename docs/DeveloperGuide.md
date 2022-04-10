@@ -614,7 +614,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User request to set previously contacted date for a specified contact.
+1. User requests to set previously contacted date for a specified contact.
 2. Address Book sets the previously contacted date for the specified contact.
 
    Use case ends.
@@ -636,6 +636,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1c. The given index is invalid.
 
     * 1c1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1d. No description provided.
+
+    * 1d1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1e. Description provided is more than 280 characters.
+
+    * 1e1. Address Book shows an error message.
 
       Use case ends.
 
@@ -675,7 +687,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. No client was contacted within/outside the designated number of days.
 
-    * 1a1. Address Book shows an error message.
+    * 1a1. Address Book does not show any clients.
+
+      Use case ends.
+    
+* 1b. Invalid index provided.
+
+    * 1b1. Address Book shows an error message.
 
       Use case ends.
 
@@ -690,9 +708,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given input is invalid.
+* 1a. The given reminder message is invalid.
 
     * 1a1. Address Book shows an error message.
+
+      Use case ends.
+
+* 1b. The given reminder date is invalid.
+
+    * 1b1. Address Book shows an error message.
 
       Use case ends.
 
