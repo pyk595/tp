@@ -68,6 +68,8 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
@@ -147,8 +149,6 @@ The `Model` component,
     :information_source: **Note:** The structure of `Tag`-related classes is detailed in the class diagram in the [implementation section](#tagging-feature) of tagging feature.
 </div>
 
-<div style="page-break-after: always;"></div>
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-T17-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -199,6 +199,8 @@ in the Model component.
 
 <img src="images/TagClassDiagram.png" width="450" />
 
+<div style="page-break-after: always;"></div>
+
 ##### Tag
 
 `Tag` objects have the following characteristics:
@@ -223,6 +225,8 @@ are stored and maintained in a `HashMap<Tag, Integer>`, where the key set is the
 the occurrence frequency of each unique tag. For example, if a `Tag` with a `tagName` of "friends" is used twice in the
 `AddressBook`, then the value of the `Tag` will be 2. This implementation requires the value of all the keys in the
 `HashMap` to be more than 0, otherwise the key should be removed. `UniqueTagList` implements the following operations.
+
+<div style="page-break-after: always;"></div>
 
 * `addTags(Set<Tag> tagsToAdd)`<br>
 Adds the `Tag` objects in `Set<Tag>` to the `HashMap`. For each `Tag` object, if it is not in the `HashMap`, then it
@@ -259,17 +263,19 @@ contains `Tag`. Any changes to the `UniquePersonList` in `AddressBook` or any ch
 can only be done through `AddressBook`. Therefore, in an event that the `Person` model becomes mutable, this
 implementation of `UniqueTagList` may fail and needs to be revised.
 
+<div style="page-break-after: always;"></div>
+
 For example, during every command that modifies the existing data in `AddressBook`, the method `AddressBook#setPerson(p, q)`
 will be called. Apart from making changes to the `UniquePersonList`, this method call will also update the `UniqueTagList`,
 as shown in the sequence diagram below.
-
-<div style="page-break-after: always;"></div>
 
 <img src="images/SetPersonSequenceDiagram.png" width="500" />
 
 `UniqueTagList#addTags(Set<Tag> tagsToAdd)` or `UniqueTagList#removeTags(Set<Tag> tagsToRemove)` will be called directly
 by `AddressBook` in situations where new data is being added to the `AddressBook` or existing data is being removed
 from the `AddressBook` respectively.
+
+<div style="page-break-after: always;"></div>
 
 #### Design Consideration
 
@@ -298,6 +304,8 @@ as values.<br>
   * Pros: Reading the `UniqueTagList` in alphabetical order just takes O(n) time.
   * Cons: Updating `UniqueTagList` takes O(log(n)) time every time; requires additional data structure to maintain
   `UniqueTagList` accurately.
+
+<div style="page-break-after: always;"></div>
 
 ### Date Features
 
@@ -330,6 +338,7 @@ A `BirthDate` object needs to be recurring, to check if the person’s birthday 
 being saved in a past year. A `RecentDate` needs to be a date that occurs in the past, and a `ReminderDate` needs to be
 a date that has not yet occurred. To model this more concretely, we implement some checks using the `ParserUtil` class.
 
+<div style="page-break-after: always;"></div>
 
 The three "date" type objects, are primarily created using static methods in the `ParserUtil` class.
 However, there are public constructors to create each `BirthDate`, `RecentDate` and `ReminderDate` object. This is to
@@ -507,6 +516,8 @@ shows how the reminder features are implemented in the `Model` component.
 
 <img src="images/ModelReminder.png"/>
 
+<div style="page-break-after: always;"></div>
+
 ##### Reminder
 
 Each `Reminder` object contains information regarding reminders specific to a saved client, and has the following
@@ -518,8 +529,6 @@ characteristics:
     the reminder.
     * Any two `Reminder` objects are not if both `ReminderDescription` and `ReminderDate` are equal.
 
-<div style="page-break-after: always;"></div>
-
 `Reminder` implements the following method:
 
 * `isSameDateAs(ReminderDate reminderDate)` <br>
@@ -528,6 +537,8 @@ characteristics:
 The class diagram below shows how a `Reminder` object is implemented
 
 <img src="images/Reminder.png"/>
+
+<div style="page-break-after: always;"></div>
 
 The sequence diagram below shows how a user input to add a reminder is parsed into a `AddReminderCommand`. <br>
 
@@ -600,8 +611,6 @@ The sequence diagram below shows how `ReminderList` handles a deletion of a `Rem
   `LocalDate`.
   * Pros: Implementation of `Reminder` is easier
   * Cons: Harder to debug and update the code.
-
-<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -694,6 +703,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Address Book shows an error message.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC03 - List all contacts**
 
@@ -794,6 +805,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC07 - Show all contacted information for a specified contact**
 
 **MSS**
@@ -840,6 +853,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC09 - Set reminder**
 
 **MSS**
@@ -885,6 +900,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Address Book shows an error message.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use Case: UC11 - View reminders on a date**
 
@@ -989,6 +1006,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC16 - Delete a tag from a contact**
 
 **MSS**
@@ -1018,7 +1037,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC16 - Show all birthdays today**
+**Use case: UC17 - Show all birthdays today**
 
 **MSS**
 1. User requests to view all birthdays occurring today.
