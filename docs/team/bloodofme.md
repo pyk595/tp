@@ -46,3 +46,4 @@ Given below are my contributions to the project.
 [\#109](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/109), [\#120](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/120), [\#123](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/123),
 [\#129](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/129), [\#185](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/185), [\#188](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/188)
 * Attended debugging sessions held either on Discord or Zoom
+* Consolidated and produced demo video
