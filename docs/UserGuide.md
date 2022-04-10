@@ -175,7 +175,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE]
 Examples:
 * `edit 7 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
   > <img src="images/userguideimages/EditCommandWithoutTag.png" alt="Ui"/>
-  <div style="page-break-after: always;"></div>
+<div style="page-break-after: always;"></div>
+
 * `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
   > <img src="images/userguideimages/EditCommandWithTag.png" alt="Ui"/>
 
@@ -198,7 +199,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john tan` and `John Doe`
   > <img src="images/userguideimages/FindCommand.png" alt="Ui"/>
-  <div style="page-break-after: always;"></div>
+<div style="page-break-after: always;"></div>
+
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   > <img src="images/userguideimages/FindCommandMultiple.png" alt="Ui"/>
 
