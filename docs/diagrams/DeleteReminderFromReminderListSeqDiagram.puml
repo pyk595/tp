@@ -1,0 +1,54 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+mainframe **sd** DeleteReminderFromReminderList
+hide footbox
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+participant "reminderList\n:ReminderList" as ReminderList
+participant "reminder\n:Reminder" as Reminder
+participant "reminderListCopy\n:ReminderList" as ReminderListCopy
+participant "reminderPriorityQueueCopy\n:PriorityQueue<Reminder>" as PriorityQueueCopy
+
+-> ReminderList : delete(index)
+
+activate ReminderList
+
+create Reminder
+ReminderList -> Reminder : get(index)
+activate Reminder
+
+Reminder --> ReminderList
+deactivate Reminder
+
+create ReminderListCopy
+ReminderList -> ReminderListCopy : getCopy()
+activate ReminderListCopy
+
+create PriorityQueueCopy
+ReminderListCopy -> PriorityQueueCopy : new PriorityQueue(reminderPriorityQueue)
+activate PriorityQueueCopy
+
+PriorityQueueCopy --> ReminderListCopy : reminderPriorityQueueCopy
+deactivate PriorityQueueCopy
+
+ReminderListCopy -> PriorityQueueCopy: remove(reminder)
+activate PriorityQueueCopy
+
+PriorityQueueCopy --> ReminderListCopy : reminderPriorityQueueCopy
+deactivate PriorityQueueCopy
+
+ReminderListCopy --> ReminderList : ReminderListCopy
+deactivate PriorityQueueCopy
+deactivate ReminderListCopy
+
+<-- ReminderList : ReminderListCopy
+deactivate ReminderList
+@enduml

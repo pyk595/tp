@@ -1,0 +1,30 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+Package "Model (focus on Reminder implementation)" <<Rectangle>>{
+
+class AddressBook {
+}
+
+class Person {
++getReminderList() : ReminderList
++containsReminder(Reminder) : Boolean
++getReminderListSize() : Integer
++getReminder(Index) : Reminder
+}
+
+class ReminderList
+class Reminder
+class ReminderDescription
+class ReminderDate
+class UniquePersonList
+
+}
+
+AddressBook *--> "1" UniquePersonList
+UniquePersonList --> "~* all" Person
+Person *-down-> "1" ReminderList
+ReminderList --> "*" Reminder
+Reminder *-down-> "1" ReminderDescription
+Reminder *-down-> "1" ReminderDate
+@enduml

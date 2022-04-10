@@ -1,0 +1,28 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+Package "Reminder" <<Rectangle>>{
+class Reminder {
++isSameDateAs(ReminderDate) : Boolean
++getDescription() : ReminderDescription
++getReminderDate() : ReminderDate
+}
+
+interface Comparable<Reminder> {
++compareTo(Object) : Integer
+}
+
+class ReminderDescription {
++ description: String
+{static} +isValidDescription(String) : Boolean
+}
+
+class ReminderDate {
++ value: String
+{static} +parse(String) : ReminderDate
+}
+
+Reminder *-down-> "1" ReminderDescription
+Reminder *-down-> "1" ReminderDate
+Comparable <|- Reminder
+@enduml

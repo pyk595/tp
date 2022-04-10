@@ -1,0 +1,68 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+mainframe **sd** AddReminderCommandParser
+hide footbox
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+participant ":AddReminderCommandParser" as AddReminderCommandParser
+participant "<<Class>>\nParserUtil" as ParserUtil
+participant "description\n:ReminderDescription" as ReminderDescription
+participant "date\n:ReminderDate" as ReminderDate
+participant "toAdd\n:Reminder" as Reminder
+participant ":AddReminderCommand" as AddReminderCommand
+
+-> AddReminderCommandParser : parse(args)
+
+activate AddReminderCommandParser
+AddReminderCommandParser -> ParserUtil : parseReminderDescription(reminderDescription)
+activate ParserUtil
+
+create ReminderDescription
+ParserUtil -> ReminderDescription : new ReminderDescription(reminderDescription)
+activate ReminderDescription
+
+ReminderDescription --> ParserUtil: description
+deactivate ReminderDescription
+
+ParserUtil --> AddReminderCommandParser : description
+deactivate ParserUtil
+
+AddReminderCommandParser -> ParserUtil : parseReminderDate(reminderDate)
+activate ParserUtil
+
+create ReminderDate
+ParserUtil -> ReminderDate : new ReminderDate(reminderDate)
+activate ReminderDate
+
+ReminderDate --> ParserUtil : date
+deactivate ReminderDate
+
+ParserUtil --> AddReminderCommandParser : date
+deactivate ParserUtil
+
+create Reminder
+AddReminderCommandParser -> Reminder : new Reminder(reminderDescription, reminderDate)
+activate Reminder
+
+Reminder --> AddReminderCommandParser: toAdd
+deactivate Reminder
+
+create AddReminderCommand
+AddReminderCommandParser -> AddReminderCommand : new AddReminderCommand(index, toAdd)
+activate AddReminderCommand
+
+AddReminderCommand --> AddReminderCommandParser : AddReminderCommand
+deactivate AddReminderCommand
+
+<-- AddReminderCommandParser : AddReminderCommand
+deactivate AddReminderCommandParser
+
+@enduml
