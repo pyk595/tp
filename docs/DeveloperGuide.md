@@ -471,20 +471,6 @@ shows how the reminder features are implemented in the `Model` component.
 
 <img src="images/ModelReminder.png"/>
 
-##### ReminderList
-
-`ReminderList` is an object that stores `Reminder` objects. `ReminderList` makes use of a `PriorityQueue` to store
-`Reminder` objects, and makes use of the `ReminderDate` to arrange the `Reminder` objects in chronological order.
-
-`ReminderList` has been designed to be immutable. Every addition or deletion of a `Reminder` in the `ReminderList` would
-return a copy of the updated list. The new instance returned would then be used to replace the existing `ReminderList`
-in a `Person` object. Another advantage of the immutability characteristic is that the internal state will be
-consistent, even when there are exceptions.
-
-The sequence diagram below shows how `ReminderList` handles a deletion of a `Reminder` object.
-
-<img src="images/DeleteReminderFromReminderListSeqDiagram.png"/>
-
 ##### Reminder
 
 Each `Reminder` object contains information regarding reminders specific to a saved client, and has the following
@@ -541,6 +527,20 @@ a date which happens in the past, as reminders are supposed to remind users of u
 
 * `parse(String parsedDate)`
     Creates a new `ReminderDate` using a `String`. The `String` provided has to be in the format `yyyy-MM-dd`.
+
+##### ReminderList
+
+`ReminderList` is an object that stores `Reminder` objects. `ReminderList` makes use of a `PriorityQueue` to store
+`Reminder` objects, and makes use of the `ReminderDate` to arrange the `Reminder` objects in chronological order.
+
+`ReminderList` has been designed to be immutable. Every addition or deletion of a `Reminder` in the `ReminderList` would
+return a copy of the updated list. The new instance returned would then be used to replace the existing `ReminderList`
+in a `Person` object. Another advantage of the immutability characteristic is that the internal state will be
+consistent, even when there are exceptions.
+
+The sequence diagram below shows how `ReminderList` handles a deletion of a `Reminder` object.
+
+<img src="images/DeleteReminderFromReminderListSeqDiagram.png"/>
 
 #### Design Consideration
 

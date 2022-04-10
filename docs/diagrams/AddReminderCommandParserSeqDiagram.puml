@@ -13,7 +13,7 @@ skinparam Sequence {
 }
 
 participant ":AddReminderCommandParser" as AddReminderCommandParser
-participant "<<Class>>\n:ParserUtil" as ParserUtil
+participant "<<Class>>\nParserUtil" as ParserUtil
 participant "reminderDescription\n:ReminderDescription" as ReminderDescription
 participant "reminderDate\n:ReminderDate" as ReminderDate
 participant "toAdd\n:Reminder" as Reminder
@@ -29,7 +29,7 @@ create ReminderDescription
 ParserUtil -> ReminderDescription : new ReminderDescription(reminderDescription)
 activate ReminderDescription
 
-ReminderDescription --> ParserUtil : ReminderDescription
+ReminderDescription --> ParserUtil: reminderDescription
 deactivate ReminderDescription
 
 ParserUtil --> AddReminderCommandParser : ReminderDescription
@@ -52,7 +52,7 @@ create Reminder
 AddReminderCommandParser -> Reminder : new Reminder(reminderDescription, reminderDate)
 activate Reminder
 
-Reminder --> AddReminderCommandParser : Reminder
+Reminder --> AddReminderCommandParser: toAdd
 deactivate Reminder
 
 create AddReminderCommand

@@ -33,25 +33,20 @@ ReminderList -> ReminderListCopy : getCopy()
 activate ReminderListCopy
 
 create PriorityQueueCopy
-ReminderListCopy -> PriorityQueueCopy : new PriorityQueue(this.reminderPriorityQueue)
+ReminderListCopy -> PriorityQueueCopy : new PriorityQueue(reminderPriorityQueue)
+activate PriorityQueueCopy
+
+PriorityQueueCopy --> ReminderListCopy : reminderPriorityQueueCopy
+deactivate PriorityQueueCopy
+
+ReminderListCopy -> PriorityQueueCopy: remove(reminder)
 activate PriorityQueueCopy
 
 PriorityQueueCopy --> ReminderListCopy : reminderPriorityQueueCopy
 deactivate PriorityQueueCopy
 
 ReminderListCopy --> ReminderList : ReminderListCopy
-deactivate ReminderListCopy
-
-ReminderList -> PriorityQueueCopy : reminderPriorityQueue.remove(reminder)
-activate PriorityQueueCopy
-
-PriorityQueueCopy -> PriorityQueueCopy : remove(reminder)
-activate PriorityQueueCopy
 deactivate PriorityQueueCopy
-
-PriorityQueueCopy --> ReminderList : reminderPriorityQueueCopy
-deactivate PriorityQueueCopy
-
 deactivate ReminderListCopy
 
 <-- ReminderList : ReminderListCopy

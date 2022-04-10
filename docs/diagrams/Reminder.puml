@@ -13,12 +13,12 @@ interface Comparable<Reminder> {
 }
 
 class ReminderDescription {
-description: String
++ description: String
 {static} +isValidDescription(String) : Boolean
 }
 
 class ReminderDate {
-value: String
++ value: String
 {static} +parse(String) : ReminderDate
 }
 
