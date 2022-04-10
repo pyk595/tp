@@ -338,8 +338,6 @@ A `BirthDate` object needs to be recurring, to check if the person’s birthday 
 being saved in a past year. A `RecentDate` needs to be a date that occurs in the past, and a `ReminderDate` needs to be
 a date that has not yet occurred. To model this more concretely, we implement some checks using the `ParserUtil` class.
 
-<div style="page-break-after: always;"></div>
-
 The three "date" type objects, are primarily created using static methods in the `ParserUtil` class.
 However, there are public constructors to create each `BirthDate`, `RecentDate` and `ReminderDate` object. This is to
 enable better testability.
@@ -354,6 +352,8 @@ it will then be used to create a new `BirthDate` object. After that, a final che
  method, before `ParserUtil` returns the newly created `BirthDate` object. For `BirthDate` objects, the check using the
  `getDaysPassed()` method has to ensure that `BirthDate` objects are not created using dates in the future,
  i.e. either past dates or the current date.
+
+<div style="page-break-after: always;"></div>
 
 As both `RecentDate` and `ReminderDate` objects have similar requirements to the `BirthDate` objects, the process of
 creating these objects are the same as the `BirthDate` objects. For better comparison, let us examine one more sequence
@@ -952,6 +952,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Address Book shows all existing tags.
 
    Use case ends.
+<div style="page-break-after: always;"></div>
 
 **Extensions**
 
