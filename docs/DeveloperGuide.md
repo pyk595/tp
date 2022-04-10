@@ -448,7 +448,7 @@ The sequence diagram below shows what happens when a Description object is insta
   Returns a `Description` object containing the String with the description being "First Interaction".
 
 * `isValidDescription(String test)` <br>
-  Checks if the parsed String is a valid input. Returns true if the input String is not blank and does not exceed 280 characters,
+  Checks if the given String is a valid input. Returns true if the input `String` is not blank and does not exceed 280 characters,
   otherwise false.
 
 #### Design Consideration
