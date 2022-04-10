@@ -316,7 +316,7 @@ enable better testability.
 <img src="images/BirthDateCreationSequenceDiagram.png" width="450" />
 
  As seen in the sequence diagram above, which shows the process of creating a `BirthDate` object,
- `ParserUtil#parseBirthDate(validDate)` is called, with the user supplying a `validDate` in the form of a String.
+ `ParserUtil#parseBirthDate(validDate)` is called, with the user supplying a `validDate` in the form of a `String`.
 The method will trim the `validDate` into a `String` called `trimmedDate` and call
  `DocumentedDate#isValidDate(trimmedDate)` to check if it is in a valid date format. If the `trimmedDate` is indeed a valid date,
 it will then be used to create a new `BirthDate` object. After that, a final check is done using the `getDaysPassed()`
@@ -421,7 +421,7 @@ The class diagram below shows how ContactedInfo is implemented.
 `RecentDate` implements the following operations.
 
 * `parse(String parsedDate)`<br>
-  Creates a new `RecentDate` using a String. String has to have the format `YYYY-MM-DD`.
+  Creates a new `RecentDate` using a `String`. `String` has to have the format `YYYY-MM-DD`.
 
 * `defaultRecentDate()`<br>
   Returns today's date as a `RecentDate` object.
@@ -442,13 +442,13 @@ The sequence diagram below shows what happens when a Description object is insta
 `Description` implements the following operations.
 
 * `parse(String parsedDate)`<br>
-  Creates a new `RecentDate` using a String. String has to have the format `YYYY-MM-DD`.
+  Creates a new `RecentDate` using a `String`. `String` has to have the format `YYYY-MM-DD`.
 
 * `defaultDesc()`<br>
-  Returns a `Description` object containing the String with the description being "First Interaction".
+  Returns a `Description` object containing the `String` with the description being "First Interaction".
 
 * `isValidDescription(String test)` <br>
-  Checks if the given String is a valid input. Returns true if the input `String` is not blank and does not exceed 280 characters,
+  Checks if the given `String` is a valid input. Returns true if the input `String` is not blank and does not exceed 280 characters,
   otherwise false.
 
 #### Design Consideration
@@ -1055,7 +1055,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `untag 1 t/some tag`<br>
        Expected: Contact is not changed. Error details shown in the result display message. Command box remains the same.
 
-    1. Other incorrect delete tag commands to try: `untag`, `untag 1`, `untag 1 t/x`, `...` (where x is string that is not a tag)<br>
+    1. Other incorrect delete tag commands to try: `untag`, `untag 1`, `untag 1 t/x`, `...` (where x is `string` that is not a tag)<br>
        Expected: Similar to previous.
 
 #### Viewing all tags
@@ -1104,7 +1104,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `log 1 d/3000-01-01 des/post-apocalyptic coffee`<br>
        Expected: Interaction record is not saved. Error details shown in the result display message. Command box remains the same.
 
-    1. Other incorrect add interaction record commands to try: `log 1 d/x des/x`, `log 1 d/ des/x`, `log 1 d/2022-01-01 des/`, `...` (where x is a string)<br>
+    1. Other incorrect add interaction record commands to try: `log 1 d/x des/x`, `log 1 d/ des/x`, `log 1 d/2022-01-01 des/`, `...` (where x is a `string`)<br>
        Expected: Similar to previous.
 
 #### Viewing interaction records of a contact
@@ -1191,7 +1191,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `remind 1 r/Some task rd/2000-01-01`<br>
        Expected: Reminder is not saved. Error details shown in the result display message. Command box remains the same.
 
-    1. Other incorrect add reminder commands to try: `remind 1`, `remind 1 r/ rd/y`, `remind 1 r/x rd/`, `...` (where x is a string and y is a valid reminder date)<br>
+    1. Other incorrect add reminder commands to try: `remind 1`, `remind 1 r/ rd/y`, `remind 1 r/x rd/`, `...` (where x is a `string` and y is a valid reminder date)<br>
        Expected: Similar to previous.
 
 #### Viewing reminders of a contact
