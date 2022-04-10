@@ -508,8 +508,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user with many persons in the address book | assign tags to my contacts              | categorise my contacts in a meaningful manner                          |
 | `* *`    | financial advisor                          | track my last interaction with a contact| have a snapshot of the relationship                                    |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `Address Book` and the **Actor** is the `user`, unless specified otherwise)
