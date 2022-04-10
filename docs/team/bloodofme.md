@@ -17,7 +17,7 @@ This is a brownfield project that closely follows the structure of
 
 Given below are my contributions to the project.
 
-**Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=bloodofme&breakdown=true) </br>
+**Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=bloodofme&breakdown=true)
 * Features:
   - `ContactedInfo` class for recent interaction feature and its corresponding command and parser classes [\#67](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/67)
   - Added command for adding of recent interaction `log` [\#46](https://github.com/AY2122S2-CS2103T-T17-3/tp/pull/46)
