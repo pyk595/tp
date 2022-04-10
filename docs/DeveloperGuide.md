@@ -892,6 +892,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **MSS**: Main Success Scenario that describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
 * **ContactedInfo**: The type of object that interaction records are saved as.
 * **RecentDate**: The type of date object used to save dates for a given interaction record.
+* **SLAP**: Single level of abstraction principle. Refers to every method dealing with only one level of abstraction.
 * **Command Box**: Box for user input, for a graphical representation, click [here](https://ay2122s2-cs2103t-t17-3.github.io/tp/UserGuide.html#overview-of-the-graphical-user-interface-gui).
 * **Result Display Message**: Message shown in the [Result Display](https://ay2122s2-cs2103t-t17-3.github.io/tp/UserGuide.html#overview-of-the-graphical-user-interface-gui).
 
