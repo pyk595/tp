@@ -690,7 +690,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Address Book does not show any clients.
 
       Use case ends.
-    
+
 * 1b. Invalid index provided.
 
     * 1b1. Address Book shows an error message.
