@@ -329,6 +329,7 @@ dates in the same format, as seen in the class diagram below.
 * A `DateTimeFormatter` constant is included as a member so that developers can tweak how the formatted date is shown
 to the users.
 
+<div style="page-break-after: always;"></div>
 
 ##### Documented Date Child Classes
 
