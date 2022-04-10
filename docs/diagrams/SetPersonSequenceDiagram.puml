@@ -11,6 +11,11 @@ skinparam Sequence {
     FontName Arial
 }
 
+skinparam Diagram {
+  BorderColor black
+  BorderThickness 2
+}
+
 Actor Model as Model
 Participant ":AddressBook" as AddressBook
 Participant "p:Person" as PersonP

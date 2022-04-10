@@ -3,7 +3,7 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
-
+Package {
 AddressBook *-right-> "1" UniquePersonList
 AddressBook *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniquePersonList
@@ -14,9 +14,5 @@ UniquePersonList -right-> "*" Person
 
 Person -up-> "*" Tag
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" ContactedInfo
+}
 @enduml
