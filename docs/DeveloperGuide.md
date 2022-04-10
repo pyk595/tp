@@ -1076,13 +1076,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Address Book**: Address book used to store contacts in the application
 * **Application**: The Automated Insurance Assistant Application
+* **Command Box**: Box for user input, for a graphical representation, click [here](https://ay2122s2-cs2103t-t17-3.github.io/tp/UserGuide.html#overview-of-the-graphical-user-interface-gui).
+* **ContactedInfo**: The type of object that interaction records are saved as.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **MSS**: Main Success Scenario that describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
-* **ContactedInfo**: The type of object that interaction records are saved as.
 * **RecentDate**: The type of date object used to save dates for a given interaction record.
-* **SLAP**: Single level of abstraction principle. Refers to every method dealing with only one level of abstraction.
-* **Command Box**: Box for user input, for a graphical representation, click [here](https://ay2122s2-cs2103t-t17-3.github.io/tp/UserGuide.html#overview-of-the-graphical-user-interface-gui).
 * **Result Display Message**: Message shown in the [Result Display](https://ay2122s2-cs2103t-t17-3.github.io/tp/UserGuide.html#overview-of-the-graphical-user-interface-gui).
+* **SLAP**: Single level of abstraction principle. Refers to every method dealing with only one level of abstraction.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1103,7 +1103,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file
+   1. Run the jar file in a shell application using the command `java -jar AIA.jar`
 
         Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
@@ -1111,7 +1111,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by running the jar file with the same command.<br>
        Expected: The most recent window size and location is retained.
 
 <div style="page-break-after: always;"></div>
