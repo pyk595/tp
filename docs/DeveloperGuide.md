@@ -138,7 +138,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-T17-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="650" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -414,9 +414,9 @@ The class diagram below shows how ContactedInfo is implemented.
 
 * A `RecentDate` object has two private data members (final), `date` representing the date of interaction as a `LocalDate` object,
   and `value` of `String` format representing the date in `YYYY-MM-DD` form.
-* input to create a `recentDate`object needs to be the correct format (`YYYY-MM-DD`).
-* Any two `recentDate` objects are not unique if both `recentDate` represents the same date.
-* `recentDate` objects can be sorted, and the sorted order is the reverse ordering of their `LocalDate`.
+* input to create a `RecentDate`object needs to be the correct format (`YYYY-MM-DD`).
+* Any two `RecentDate` objects are not unique if both `RecentDate` represents the same date.
+* `RecentDate` objects can be sorted, and the sorted order is the reverse ordering of their `LocalDate`.
 
 `RecentDate` implements the following operations.
 
@@ -435,7 +435,7 @@ The sequence diagram below shows what happens when a Description object is insta
 
 `Description` objects have the following characteristics:
 
-* `Description` needs to be alphanumeric (only letters and numerals are allowed), and should not exceed 280 characters.
+* `Description` can take on any values, but should not be blank nor should it exceed 280 characters.
 * Contains one public data member (final) `value` of `String` object, representing the description of the `Description` object,
   which can be used to distinguish itself from other `Description` object.
 
@@ -448,7 +448,7 @@ The sequence diagram below shows what happens when a Description object is insta
   Returns a `Description` object containing the String with the description being "First Interaction".
 
 * `isValidDescription(String test)` <br>
-  Checks if the parsed String is a valid input. Returns true if the input String is alphanumeric and does not exceed 280 characters,
+  Checks if the parsed String is a valid input. Returns true if the input String is not blank and does not exceed 280 characters,
   otherwise false.
 
 #### Design Consideration
