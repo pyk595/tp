@@ -430,6 +430,14 @@ If you made a mistake while manually editing the saved data, a backup save file 
 
 [Return to Table of Contents](#table-of-contents)
 
+## FAQ
+
+**How do I use the backup save file?**<br>
+A: Open the `backup.json` file, ensure that all data is in the correct format and save the file as `addressbook.json`. Don't worry about deleting the backup file as it will automatically be overwritten if there is an error in your `addressbook.json` file.
+
+**How do I transfer my data to a new computer?**<br>
+A: You can copy the "AIA.jar" file, and the "data" folder to the new computer. The application should show you your existing data on launch, on the new computer.
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
