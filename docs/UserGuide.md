@@ -3,14 +3,14 @@ layout: page
 title: User Guide
 ---
 
-Automated Insurance Assistant (AIA) is a desktop application that helps insurance agents manage their client contacts.
-Instead of hiring a secretary to handle day-to-day tasks, AIA can help you achieve the following:
+Automated Insurance Assistant (AIAssistant) is a desktop application that helps insurance agents manage their client contacts.
+Instead of hiring a secretary to handle day-to-day tasks, AIAssistant can help you achieve the following:
 - Catalogue and easily retrieve saved data on clients based on specific categories
 - Keep track of important events and time-sensitive to-do tasks for each client (e.g. client birthdays)
 - Keep records of previous interactions with each client
 
 Usage of this application is optimised for use via a Command Line Interface (CLI) while still displaying information to users in an intuitive manner, through a Graphical User Interface (GUI).
-If you can type fast, AIA can significantly reduce the amount of time spent on retrieving saved information for each client that might have been saved on many different sources previously.
+If you can type fast, AIAssistant can significantly reduce the amount of time spent on retrieving saved information for each client that might have been saved on many different sources previously.
 
 This user guide offers the following to insurance agents or other users trying to learn how to use the application:
 - A quick start to running the application
@@ -43,13 +43,13 @@ e.g. "exe" refers to the executable file type used on Windows.
 
 1. Ensure you have "[Java JDK 11](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)" or above installed in your Computer.
 
-2. Download the latest "jar" file, "AIA.jar" [here](https://github.com/AY2122S2-CS2103T-T17-3/tp/releases).
+2. Download the latest "jar" file, "AIAssistant.jar" [here](https://github.com/AY2122S2-CS2103T-T17-3/tp/releases).
 
 3. Move the "jar" file to an empty folder in where you want to store the "jar" file and the contacts.
 
 4. Open a shell application (Command Prompt or Terminal etc.) and navigate to the folder created in step 3.
 
-5. Run the "jar" file with the **java -jar** command in the shell application to run the application, e.g. **java -jar AIA.jar**.
+5. Run the "jar" file with the **java -jar** command in the shell application to run the application, e.g. **java -jar AIAssistant.jar**.
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.
 
@@ -469,7 +469,7 @@ If you made a mistake while manually editing the saved data, a backup save file 
 A: Open the `backup.json` file, ensure that all data is in the correct format and save the file as `addressbook.json`. Don't worry about deleting the backup file as it will automatically be overwritten if there is an error in your `addressbook.json` file.
 
 **How do I transfer my data to a new computer?**<br>
-A: You can copy the "AIA.jar" file, and the "data" folder to an empty folder in the new computer. The application should show you your existing data on launch, on the new computer.
+A: You can copy the "AIAssistant.jar" file, and the "data" folder to an empty folder in the new computer. The application should show you your existing data on launch, on the new computer.
 
 [Return to Table of Contents](#table-of-contents)
 
