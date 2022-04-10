@@ -75,6 +75,8 @@ The contact list is sorted in chronological order.
 The earliest contact added will be on the top, while the latest contact added will be at the bottom.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -137,6 +139,8 @@ Examples:
   > <img src="images/userguideimages/AddCommandWithTag.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing all contacts: `list`
 
@@ -225,6 +229,8 @@ Example:
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a tag: `untag`
 
 If a contact is no longer a client, and you wish to remove the tag, you can simply `untag` contact from the category, as specified by the index.
@@ -238,6 +244,8 @@ Example:
   > <img src="images/userguideimages/UntagCommand.png" alt="Ui"/>
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing all available tags: `tags`
 
 If you forget what tags you have currently, you can list all the tags used in the application, in alphabetical order.
@@ -246,6 +254,8 @@ Format: `tags`
 > <img src="images/userguideimages/TagsCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Finding contacts with tag: `#`
 
@@ -260,6 +270,8 @@ Example:
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Adding interaction records with a contact: `log`
 
 After meeting a client, you might want to write a note about the client, along with the meeting date. By using the `log` command, you can manually save your interaction with the person in the form of a note accompanied by a date.
@@ -273,6 +285,8 @@ Example:
   > <img src="images/userguideimages/LogCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing all recent interactions with a contact: `logs`
 
@@ -312,6 +326,8 @@ Example:
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing contacts that were contacted within days: `within`
 
 Occasionally, it might be hard to remember if you met someone recently. The `within` command allows you to show all contacts that you had interacted with within a specified range of days.
@@ -326,6 +342,8 @@ Example:
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing contacts contacted more than a specified number of days ago: `after`
 
 When cold calling for new potential clients, you can consider looking through your old contacts instead. You can display a list of people that you have not been in contact with for more than a specified number of DAYS.
@@ -339,6 +357,8 @@ Example:
   > <img src="images/userguideimages/AfterCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a reminder to a contact: `remind`
 
@@ -356,6 +376,8 @@ Example:
   > <img src="images/userguideimages/RemindCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing reminders of a contact: `reminder`
 
@@ -386,6 +408,8 @@ Example:
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Show all birthdays today: `birthdays`
 
 As an insurance agent, it is important to keep track of your clients' birthdays. We strongly suggest you to use the `birthdays` command once a day to make sure you do not miss out on your valued clients' birthdays.
@@ -394,6 +418,8 @@ Format: `birthdays`
 > <img src="images/userguideimages/BirthdayCommand.png" alt="Ui"/>
 
 [Return to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a reminder: `forget`
 
