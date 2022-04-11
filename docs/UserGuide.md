@@ -235,7 +235,7 @@ Example:
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:**
-A tags are case-insensitive. For example, "OnlyFriends" and "onlyfriends" will be considered the same tag.
+Tags are case-insensitive. For example, "OnlyFriends" and "onlyfriends" will be considered the same tag.
 </div>
 
 [Return to Table of Contents](#table-of-contents)
