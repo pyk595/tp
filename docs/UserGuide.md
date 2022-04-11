@@ -234,7 +234,7 @@ Example:
   > <img src="images/userguideimages/TagCommand.png" alt="Ui"/>
   <div markdown="span" class="alert alert-primary">:bulb:
   **Tip:**
-  A tags are case-insensitive.
+  A tags are case-insensitive. "OnlyFriends" and "onlyfriends" will be considered the same tag.
   </div>
 
 [Return to Table of Contents](#table-of-contents)
