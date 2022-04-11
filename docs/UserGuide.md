@@ -232,10 +232,11 @@ Format: `tag INDEX t/TAG`
 Example:
 * `tag 7 t/client` adds the "client" tag to the 7th contact in the display contact list.
   > <img src="images/userguideimages/TagCommand.png" alt="Ui"/>
-  <div markdown="span" class="alert alert-primary">:bulb:
-  **Tip:**
-  A tags are case-insensitive. For example, "OnlyFriends" and "onlyfriends" will be considered the same tag.
-  </div>
+
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip:**
+A tags are case-insensitive. For example, "OnlyFriends" and "onlyfriends" will be considered the same tag.
+</div>
 
 [Return to Table of Contents](#table-of-contents)
 
