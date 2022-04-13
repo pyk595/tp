@@ -136,9 +136,13 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTH_DATE [t/TAG]…​`
 A person can have any number of tags (including 0)
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/1970-01-01` adds the contact with only the compulsory information provided.
   > <img src="images/userguideimages/AddCommandWithoutTag.png" alt="Ui"/>
+<div style="page-break-after: always;"></div>
+
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/1970-01-01 t/Client t/BasicMember` adds the contact with the compulsory information provided and the optional information.
   > <img src="images/userguideimages/AddCommandWithTag.png" alt="Ui"/>
 
@@ -210,6 +214,8 @@ Examples:
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 #### Show all birthdays today: `birthdays`
 
 As an insurance agent, it is important to keep track of your clients' birthdays. We strongly suggest you to use the `birthdays` command once a day to make sure you do not miss out on your valued clients' birthdays.
@@ -235,6 +241,8 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
 [Return to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Tag features
 
@@ -343,6 +351,8 @@ Example:
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 #### Deleting a recent interaction record with a contact: `unlog`
 
 Suppose you made a mistake while recording your interaction. You can easily `unlog` the saved interaction record from the specified contact.
@@ -409,6 +419,8 @@ It is hard to keep track of everything all at once. Add a reminder for a client 
 Format: `remind INDEX r/REMINDER rd/DATE`
 * `INDEX` must be in the [specified format](#a-index).
 * `DATE` should be in the [specified date format](#a-date-format).
+
+<div style="page-break-after: always;"></div>
 
 Example:
 * `remind 1 r/sign contract rd/2022-04-02` sets up a reminder for you to make a phone call to the 1st person on 2 April 2022.
