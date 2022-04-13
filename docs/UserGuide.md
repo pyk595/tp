@@ -116,9 +116,9 @@ The earliest contact added will be on the top, while the latest contact added wi
 
 <div style="page-break-after: always;"></div>
 
-### Person related features
+### Basic features
 
-This section covers the things you can do for each individual person you add as a contact.
+This section covers the basic functions you can perform on each contact.
 
 #### Adding a contact: `add`
 
