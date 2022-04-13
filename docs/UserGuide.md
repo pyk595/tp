@@ -9,7 +9,7 @@ Instead of hiring a secretary to handle day-to-day tasks, AIA can help you achie
 - Keep track of important events and time-sensitive to-do tasks for each client (e.g. client birthdays)
 - Keep records of previous interactions with each client
 
-Usage of this application is optimised for use via a Command Line Interface (CLI) while still displaying information to users in an intuitive manner, through a Graphical User Interface (GUI).
+This application is optimised for use via a Command Line Interface (CLI) while still displaying information to users in an intuitive manner, through a Graphical User Interface (GUI).
 If you can type fast, AIA can significantly reduce the amount of time spent on retrieving saved information for each client that might have been saved on many different sources previously.
 
 This user guide offers the following to insurance agents or other users trying to learn how to use the application:
@@ -116,7 +116,11 @@ The earliest contact added will be on the top, while the latest contact added wi
 
 <div style="page-break-after: always;"></div>
 
-### Adding a contact: `add`
+### Person related features
+
+This section covers the things you can do for each individual person you add as a contact.
+
+#### Adding a contact: `add`
 
 When you meet a new potential client, and you managed to get their contact information, you can `add` them as a contact in the application.
 
@@ -142,7 +146,7 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
-### Viewing all contacts: `list`
+#### Viewing all contacts: `list`
 
 When you want to look through your whole clientele, `list` will show all the people saved in the application.
 
@@ -152,7 +156,7 @@ Format: `list`
 [Return to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
-### Editing a contact: `edit`
+#### Editing a contact: `edit`
 
 If you realise a client's information in the application is outdated and needs to be updated, you can update the
 information using the `edit` command.
@@ -183,7 +187,7 @@ Examples:
 [Return to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
-### Finding contacts by name: `find`
+#### Finding contacts by name: `find`
 
 Scrolling through a whole list of people to find a specific client takes a long time. Instead, you can `find` people using keywords of their name.
 
@@ -206,7 +210,18 @@ Examples:
 
 [Return to Table of Contents](#table-of-contents)
 
-### Deleting a contact: `delete`
+#### Show all birthdays today: `birthdays`
+
+As an insurance agent, it is important to keep track of your clients' birthdays. We strongly suggest you to use the `birthdays` command once a day to make sure you do not miss out on your valued clients' birthdays.
+
+Format: `birthdays`
+> <img src="images/userguideimages/BirthdayCommand.png" alt="Ui"/>
+
+[Return to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+#### Deleting a contact: `delete`
 
 If a contact entry is no longer relevant, you can `delete` the specified contact from the application.
 
@@ -221,7 +236,11 @@ Examples:
 
 [Return to Table of Contents](#table-of-contents)
 
-### Adding a tag: `tag`
+### Tag features
+
+This section covers how you can catalogue and organise contacts using tags.
+
+#### Adding a tag: `tag`
 
 Suppose you want to catalogue a contact with a specific category like "client", you can `tag` the contact to a category, as specified by the index.
 
@@ -242,7 +261,7 @@ Tags are case-insensitive. For example, "OnlyFriends" and "onlyfriends" will be 
 
 <div style="page-break-after: always;"></div>
 
-### Deleting a tag: `untag`
+#### Deleting a tag: `untag`
 
 If a contact is no longer a client, and you wish to remove the tag, you can simply `untag` contact from the category, as specified by the index.
 
@@ -258,7 +277,7 @@ Example:
 
 <div style="page-break-after: always;"></div>
 
-### Viewing all available tags: `tags`
+#### Viewing all available tags: `tags`
 
 If you forget what tags you have currently, you can list all the tags used in the application, in alphabetical order.
 
@@ -269,7 +288,7 @@ Format: `tags`
 
 <div style="page-break-after: always;"></div>
 
-### Finding contacts with tag: `#`
+#### Finding contacts with tag: `#`
 
 If you want to focus on a specific category, you can find all the contacts with the specified tag assigned to them.
 
@@ -284,7 +303,11 @@ Example:
 
 <div style="page-break-after: always;"></div>
 
-### Adding interaction records with a contact: `log`
+### Interaction record features
+
+This section covers how you can handle you previous interactions with contacts.
+
+#### Adding interaction records with a contact: `log`
 
 After meeting a client, you might want to write a note about the client, along with the meeting date. By using the `log` command, you can manually save your interaction with the person in the form of a note accompanied by a date.
 
@@ -300,7 +323,7 @@ Example:
 
 <div style="page-break-after: always;"></div>
 
-### Viewing all recent interactions with a contact: `logs`
+#### Viewing all recent interactions with a contact: `logs`
 
 If you want to review your interaction history with a contact, you can use `logs` to list all saved interaction records for the specified contact.
 
@@ -320,7 +343,7 @@ Example:
 
 [Return to Table of Contents](#table-of-contents)
 
-### Deleting a recent interaction record with a contact: `unlog`
+#### Deleting a recent interaction record with a contact: `unlog`
 
 Suppose you made a mistake while recording your interaction. You can easily `unlog` the saved interaction record from the specified contact.
 
@@ -340,7 +363,7 @@ Example:
 
 <div style="page-break-after: always;"></div>
 
-### Viewing contacts that were contacted within days: `within`
+#### Viewing contacts that were contacted within days: `within`
 
 Occasionally, it might be hard to remember if you met someone recently. The `within` command allows you to show all contacts that you had interacted with within a specified range of days.
 
@@ -356,7 +379,7 @@ Example:
 
 <div style="page-break-after: always;"></div>
 
-### Viewing contacts contacted more than a specified number of days ago: `after`
+#### Viewing contacts contacted more than a specified number of days ago: `after`
 
 When cold calling for new potential clients, you can consider looking through your old contacts instead. You can display a list of people that you have not been in contact with for more than a specified number of DAYS.
 
@@ -372,7 +395,11 @@ Example:
 
 <div style="page-break-after: always;"></div>
 
-### Adding a reminder to a contact: `remind`
+### Reminder features
+
+This sections covers how you can set reminders for contacts, as well as how to view these reminders.
+
+#### Adding a reminder to a contact: `remind`
 
 It is hard to keep track of everything all at once. Add a reminder for a client to `remind` you about tasks.
 
@@ -391,7 +418,7 @@ Example:
 
 <div style="page-break-after: always;"></div>
 
-### Viewing reminders of a contact: `reminder`
+#### Viewing reminders of a contact: `reminder`
 
 Sometimes, certain clients require more attention. You can view all reminders of tasks you need to do for these specific clients.
 
@@ -405,7 +432,7 @@ Example:
 [Return to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
-### Viewing reminders by date: `reminders`
+#### Viewing reminders by date: `reminders`
 
 If you just want to look at the tasks you need to do by a specific date, you can display all reminders due by a specified date.
 
@@ -422,18 +449,7 @@ Example:
 
 <div style="page-break-after: always;"></div>
 
-### Show all birthdays today: `birthdays`
-
-As an insurance agent, it is important to keep track of your clients' birthdays. We strongly suggest you to use the `birthdays` command once a day to make sure you do not miss out on your valued clients' birthdays.
-
-Format: `birthdays`
-> <img src="images/userguideimages/BirthdayCommand.png" alt="Ui"/>
-
-[Return to Table of Contents](#table-of-contents)
-
-<div style="page-break-after: always;"></div>
-
-### Deleting a reminder: `forget`
+#### Deleting a reminder: `forget`
 
 If a reminder is no longer necessary, you can delete the specific reminder to make your reminder list cleaner and shorter.
 
@@ -489,6 +505,7 @@ A: You can copy the "AIA.jar" file, and the "data" folder to an empty folder in 
 | [**View all contacts**](#viewing-all-contacts-list)     | `list`                                                                                |
 | [**Edit a contact**](#editing-a-contact-edit)           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTH_DATE] [t/TAG]…​` |
 | [**Find a contact by keywords**](#finding-contacts-by-name-find) | `find KEYWORD [MORE_KEYWORDS]`                                                        |
+| [**View birthdays occurring today**](#show-all-birthdays-today-birthdays)                      | `birthdays`                                                                           |
 | [**Delete a contact**](#deleting-a-contact-delete)      | `delete INDEX`                                                                        |
 | [**Add a tag**](#adding-a-tag-tag)                      | `tag INDEX t/TAG`                                                                     |
 | [**Delete a tag**](#deleting-a-tag-untag)               | `untag INDEX t/TAG`                                                                   |
@@ -499,7 +516,6 @@ A: You can copy the "AIA.jar" file, and the "data" folder to an empty folder in 
 | [**View all recorded interactions with a contact**](#viewing-all-recent-interactions-with-a-contact-logs)       | `logs INDEX`                                                                          |
 | [**View contacts contacted within DAYS**](#viewing-contacts-that-were-contacted-within-days-within)                 | `within DAYS`                                                                         |
 | [**View contacts you have contacted more than DAYS ago**](#viewing-contacts-contacted-more-than-a-specified-number-of-days-ago-after) | `after DAYS`                                                                          |
-| [**View birthdays occurring today**](#show-all-birthdays-today-birthdays)                      | `birthdays`                                                                           |
 | [**Add a reminder**](#adding-a-reminder-to-a-contact-remind)                                      | `remind INDEX r/REMINDER rd/DATE`                                                     |
 | [**View reminders of a contact**](#viewing-reminders-of-a-contact-reminder)                         | `reminder INDEX`                                                                      |
 | [**View reminders on a date**](#viewing-reminders-by-date-reminders)                            | `reminders rd/[DATE]`                                                                 |
