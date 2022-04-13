@@ -305,7 +305,7 @@ Example:
 
 ### Interaction record features
 
-This section covers how you can handle you previous interactions with contacts.
+This section covers how you can handle previous interactions with contacts.
 
 #### Adding interaction records with a contact: `log`
 
