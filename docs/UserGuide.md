@@ -267,8 +267,6 @@ Tags are case-insensitive. For example, "OnlyFriends" and "onlyfriends" will be 
 
 [Return to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"></div>
-
 #### Deleting a tag: `untag`
 
 If a contact is no longer a client, and you wish to remove the tag, you can simply `untag` contact from the category, as specified by the index.
